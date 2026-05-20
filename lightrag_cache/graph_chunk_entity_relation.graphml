@@ -1,0 +1,2548 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d13" for="edge" attr.name="truncate" attr.type="string" />
+  <key id="d12" for="edge" attr.name="created_at" attr.type="long" />
+  <key id="d11" for="edge" attr.name="file_path" attr.type="string" />
+  <key id="d10" for="edge" attr.name="source_id" attr.type="string" />
+  <key id="d9" for="edge" attr.name="keywords" attr.type="string" />
+  <key id="d8" for="edge" attr.name="description" attr.type="string" />
+  <key id="d7" for="edge" attr.name="weight" attr.type="double" />
+  <key id="d6" for="node" attr.name="truncate" attr.type="string" />
+  <key id="d5" for="node" attr.name="created_at" attr.type="long" />
+  <key id="d4" for="node" attr.name="file_path" attr.type="string" />
+  <key id="d3" for="node" attr.name="source_id" attr.type="string" />
+  <key id="d2" for="node" attr.name="description" attr.type="string" />
+  <key id="d1" for="node" attr.name="entity_type" attr.type="string" />
+  <key id="d0" for="node" attr.name="entity_id" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="Requests">
+      <data key="d0">Requests</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Requests is a Python library (version 2.32.3) used for making HTTP requests.</data>
+      <data key="d3">chunk-764585bfa3c0c120e349fa6336d77e7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774121990</data>
+      <data key="d6" />
+    </node>
+    <node id="Python-Dotenv">
+      <data key="d0">Python-Dotenv</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Python-Dotenv is a Python library (version 1.0.1) used for loading environment variables from a .env file.</data>
+      <data key="d3">chunk-764585bfa3c0c120e349fa6336d77e7a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774121990</data>
+      <data key="d6" />
+    </node>
+    <node id="Life Audit">
+      <data key="d0">Life Audit</data>
+      <data key="d1">method</data>
+      <data key="d2">A self-assessment practice where key life areas such as health, relationships, career, finances, mental health, and fun are rated 1–10 and analyzed for patterns, self-deception, and highest-leverage changes.&lt;SEP&gt;A life audit is a self-reflection exercise where key life domains such as health, relationships, career, and finances are rated and described honestly to identify patterns and high-leverage changes.&lt;SEP&gt;A life audit is a self-assessment method where key life areas such as health, relationships, career, and finances are rated 1–10 to identify patterns and high-leverage changes.&lt;SEP&gt;A structured self-assessment method where key life areas such as health, relationships, career, and finances are rated and described honestly to identify patterns and high-leverage changes.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="Self-Sabotage Analysis">
+      <data key="d0">Self-Sabotage Analysis</data>
+      <data key="d1">method</data>
+      <data key="d2">A reflective method where five moments of quitting, avoiding, failing, or getting stuck are described and analyzed to identify an underlying core fear, limiting belief, and hidden payoff.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="Personal Operating System">
+      <data key="d0">Personal Operating System</data>
+      <data key="d1">concept</data>
+      <data key="d2">A personalized set of 5–7 guiding principles distilled from an individual's regrets, proudest moments, hard lessons, and values, formatted as a daily personal code.&lt;SEP&gt;A personal operating system is a set of 5–7 core guiding principles distilled from regrets, proud moments, hard lessons, and non-negotiable values, used as a daily decision-making code.&lt;SEP&gt;A personal operating system is a customized set of 5–7 guiding principles derived from an individual's regrets, proud moments, and values, used as a daily decision-making code.&lt;SEP&gt;A set of 5–7 personalized guiding principles distilled from an individual's biggest regrets, proudest moments, and hard-earned lessons, intended to serve as a personal decision-making code.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="Hard Conversation Rehearsal">
+      <data key="d0">Hard Conversation Rehearsal</data>
+      <data key="d1">method</data>
+      <data key="d2">A practice of writing out a difficult situation, feelings, and fears, then using AI to clarify goals, craft constructive wording, and roleplay the other person's likely response.&lt;SEP&gt;Hard conversation rehearsal is an AI-assisted method to clarify one's real needs, phrase messages honestly without being destructive, and roleplay likely responses before engaging in a difficult conversation.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="Accountability System">
+      <data key="d0">Accountability System</data>
+      <data key="d1">method</data>
+      <data key="d2">A motivation-independent system using tiny-habit design to create small, failproof starts, with AI checking in, tracking streaks, adjusting the system, and restarting without shame after lapses.&lt;SEP&gt;An accountability system is a motivation-independent structure built on tiny habits designed to be "so small you can't fail," with consistent check-ins, streak tracking, and shame-free restarts.&lt;SEP&gt;An accountability system is a motivation-proof structure designed to maintain habits through small achievable starts, check-ins, streak tracking, and shame-free restarts.&lt;SEP&gt;A structured system designed to track habits and streaks, check in with specific questions, adjust the system rather than the goal, and allow shame-free resets after lapses.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="Emotional Trigger Decoding">
+      <data key="d0">Emotional Trigger Decoding</data>
+      <data key="d1">method</data>
+      <data key="d2">A real-time emotional processing practice where one describes what happened, names emotions, rates intensity, and uses AI-guided questioning to trace reactions to deeper roots such as past patterns, unmet needs, and original wounds.&lt;SEP&gt;Emotional trigger decoding is a step-by-step AI-assisted process to trace intense emotional reactions to their deeper sources, such as unmet needs or earlier experiences, framed as therapy-adjacent reflection.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="Letter Writing Exercise">
+      <data key="d0">Letter Writing Exercise</data>
+      <data key="d1">method</data>
+      <data key="d2">An expressive writing technique used to process unresolved relationships or unfinished emotional business, with AI reflecting back core emotions and unmet needs to help craft a final version for personal closure.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="AI">
+      <data key="d0">AI</data>
+      <data key="d1">artifact</data>
+      <data key="d2">An accessible conversational tool used as a nightly or morning instrument to facilitate structured self-reflection, pattern recognition, and personal development across multiple life domains.&lt;SEP&gt;Artificial Intelligence used as a nonjudgmental external thinking partner to support self-awareness, personal growth, reflection, and structured self-conversation.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122031</data>
+      <data key="d6" />
+    </node>
+    <node id="BJ Fogg">
+      <data key="d0">BJ Fogg</data>
+      <data key="d1">person</data>
+      <data key="d2">BJ Fogg is referenced as the creator of tiny-habit design, a behavioral methodology that makes habit starts so small they are nearly impossible to fail.&lt;SEP&gt;BJ Fogg is referenced as the originator of the "so small you can't fail" habit-building approach, cited in the context of designing effective accountability systems.&lt;SEP&gt;BJ Fogg is referenced in the context of tiny habits, a behavioral design approach where habits are made so small they cannot fail.&lt;SEP&gt;A researcher associated with the "tiny habits" approach, which involves designing habits so small that failure is nearly impossible, referenced in the context of motivation-proof accountability systems.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Tiny-Habit Design">
+      <data key="d0">Tiny-Habit Design</data>
+      <data key="d1">method</data>
+      <data key="d2">A behavioral design framework attributed to BJ Fogg that makes the start of a habit so small it cannot be failed, used as a foundation for building reliable accountability systems.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Dopamine">
+      <data key="d0">Dopamine</data>
+      <data key="d1">concept</data>
+      <data key="d2">Dopamine is described as a neurochemical associated with anticipation rather than reward, used to explain why motivation is considered unreliable as a basis for habit formation.&lt;SEP&gt;Dopamine is described as the neurochemical driving motivation through anticipation, which fades after planning, explaining why willpower alone is insufficient for habit maintenance.&lt;SEP&gt;A neurotransmitter tied to anticipation rather than sustained motivation, cited as the reason motivation is unreliable and accountability systems are needed.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Mindless Consumption">
+      <data key="d0">Mindless Consumption</data>
+      <data key="d1">concept</data>
+      <data key="d2">The practice of scrolling others' opinions without intentional engagement, contrasted with structured self-reflection as a less productive use of time and attention.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Structured Self-Conversation">
+      <data key="d0">Structured Self-Conversation</data>
+      <data key="d1">method</data>
+      <data key="d2">A practice of spending intentional time, as little as 10 minutes, in reflective dialogue to regain clarity, spot patterns, and build momentum in life, facilitated by AI.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Prompt Framework">
+      <data key="d0">Prompt Framework</data>
+      <data key="d1">method</data>
+      <data key="d2">A structured set of instructions or templates used to guide AI interactions for specific self-reflection and personal development purposes.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Expressive Writing">
+      <data key="d0">Expressive Writing</data>
+      <data key="d1">method</data>
+      <data key="d2">Expressive writing is an uncensored writing exercise directed at someone or oneself to unload unresolved feelings, aided by AI to identify core emotions and craft a final honest letter for closure.&lt;SEP&gt;A writing technique used to process unresolved emotional experiences and relationships, forming the basis of the Letter Writing Exercise.&lt;SEP&gt;A technique involving writing to unload unresolved emotions, used in the "letter you'll never send" exercise to achieve emotional closure by reflecting core emotions and unmet needs.&lt;SEP&gt;Expressive writing is the practice of writing unfiltered, uncensored thoughts and emotions as a way to process and release unresolved feelings.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Original Wound">
+      <data key="d0">Original Wound</data>
+      <data key="d1">concept</data>
+      <data key="d2">A foundational emotional injury from the past that underlies present-day emotional triggers and reactions, identified through the Emotional Trigger Decoding method.&lt;SEP&gt;The original wound refers to the deeper emotional source or earlier experience to which intense emotional reactions can be traced during emotional trigger decoding.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Core Fear">
+      <data key="d0">Core Fear</data>
+      <data key="d1">concept</data>
+      <data key="d2">A deep-seated fear identified through Self-Sabotage Analysis as an underlying driver of self-defeating behaviors.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Limiting Belief">
+      <data key="d0">Limiting Belief</data>
+      <data key="d1">concept</data>
+      <data key="d2">A restrictive belief identified through Self-Sabotage Analysis that contributes to patterns of self-sabotage and avoidance.</data>
+      <data key="d3">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="ChatGPT">
+      <data key="d0">ChatGPT</data>
+      <data key="d1">artifact</data>
+      <data key="d2">ChatGPT is an AI tool described as an "externalized thinking partner" that helps users gain self-awareness, identify patterns, and reflect more honestly on their lives.&lt;SEP&gt;ChatGPT is an AI tool discussed in the video as a powerful means for self-awareness, personal growth, and structured self-reflection rather than just productivity.&lt;SEP&gt;An AI tool referenced as an example of AI technology that can be used for self-awareness and personal development rather than just productivity tasks.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Claude">
+      <data key="d0">Claude</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Claude is an AI tool mentioned alongside ChatGPT as an example of AI systems that can serve as nonjudgmental external thinking partners for personal growth.&lt;SEP&gt;Claude is an AI assistant/model used for building AI apps, capable of reading/writing files, running shell commands, and connecting to external systems via APIs and MCP.&lt;SEP&gt;Claude is an AI model developed by Anthropic, available in variants including Haiku, Sonnet, and Opus, used for tasks ranging from simple queries to complex reasoning.&lt;SEP&gt;Claude is an AI assistant (also referred to as Claude Code) that can perform tasks such as reading/writing files, running shell commands, and generating responses based on prompts.&lt;SEP&gt;Claude is an AI system (Claude Code) that can access files, create/edit files, run shell commands, and perform complex AI-assisted tasks for users.&lt;SEP&gt;Claude is an AI system developed for coding and general assistance, capable of searching data, answering questions, editing files, running shell commands, and cooperating with sub-agents.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Self-Awareness">
+      <data key="d0">Self-Awareness</data>
+      <data key="d1">concept</data>
+      <data key="d2">Self-awareness is described as the biggest predictor of success across relationships, career, health, and well-being, with research suggesting only 10–15% of people are truly self-aware.&lt;SEP&gt;Self-awareness is described as the most powerful use of AI, contrasted with productivity, and noted as rare among people due to biased self-perception.&lt;SEP&gt;A skill strongly linked to success and well-being; research suggests only 10–15% of people are genuinely self-aware, often hindered by the introspection illusion.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Introspection Illusion">
+      <data key="d0">Introspection Illusion</data>
+      <data key="d1">concept</data>
+      <data key="d2">The introspection illusion is a cognitive bias where people believe they are self-aware but often cannot accurately perceive their own patterns and blind spots.&lt;SEP&gt;The introspection illusion is the concept that the human mind struggles to evaluate itself accurately, leading to biased self-reflection.&lt;SEP&gt;A cognitive bias where humans, when looking inward, tend to protect their self-image and rationalize rather than perceiving themselves clearly.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Cognitive Dissonance">
+      <data key="d0">Cognitive Dissonance</data>
+      <data key="d1">concept</data>
+      <data key="d2">Cognitive dissonance is the tendency to avoid discomfort, which leads people to shy away from honest self-reflection.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Self-Sabotage">
+      <data key="d0">Self-Sabotage</data>
+      <data key="d1">concept</data>
+      <data key="d2">Self-sabotage refers to recurring behaviors such as quitting, avoiding, or getting stuck, analyzed as symptoms of deeper core fears, limiting beliefs, and hidden payoffs.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Hidden Payoff">
+      <data key="d0">Hidden Payoff</data>
+      <data key="d1">concept</data>
+      <data key="d2">The hidden payoff is the psychological protection provided by self-sabotaging patterns, often shielding individuals from judgment or evaluation.&lt;SEP&gt;The hidden payoff is the unconscious benefit or protection that a self-sabotage pattern provides to an individual, shielding them from deeper fears or discomfort.&lt;SEP&gt;The underlying benefit or protection that a self-sabotage pattern provides to an individual, shielding them from a perceived deeper fear or threat.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122032</data>
+      <data key="d6" />
+    </node>
+    <node id="Psychological Distance">
+      <data key="d0">Psychological Distance</data>
+      <data key="d1">concept</data>
+      <data key="d2">Psychological distance is the mental clarity and emotional regulation gained by externalizing and writing down thoughts, which helps individuals evaluate their situations more objectively.&lt;SEP&gt;Psychological distance is the mental separation AI creates between a person and their thoughts, helping them observe patterns and blind spots more objectively.&lt;SEP&gt;A cognitive state created by externalizing thoughts into structured dialogue, which improves clarity and emotional regulation by separating the individual from their immediate emotional experience.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Therapy">
+      <data key="d0">Therapy</data>
+      <data key="d1">concept</data>
+      <data key="d2">Therapy is a professional mental health practice that AI tools like ChatGPT are explicitly noted not to replace, despite their utility in self-reflection.&lt;SEP&gt;Professional mental health support that AI is explicitly noted should not replace, though AI can meaningfully support reflection alongside it.&lt;SEP&gt;Therapy is professional mental health support, explicitly noted in the video as something AI cannot and should not replace, though AI can serve as a therapy-adjacent reflection tool.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Human Relationships">
+      <data key="d0">Human Relationships</data>
+      <data key="d1">concept</data>
+      <data key="d2">Personal connections between people that AI is explicitly noted should not replace, though AI can support and improve real-life conversations and decisions.&lt;SEP&gt;Human relationships are real-world interpersonal connections that AI is explicitly noted as unable to replace, but can help individuals show up better within.</data>
+      <data key="d3">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Self-Sabotage Pattern">
+      <data key="d0">Self-Sabotage Pattern</data>
+      <data key="d1">concept</data>
+      <data key="d2">Self-sabotage patterns are recurring behaviors such as quitting, avoiding, or procrastinating, which share an underlying fear, belief, or hidden payoff that protects the individual from something.</data>
+      <data key="d3">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Unsent Letter">
+      <data key="d0">Unsent Letter</data>
+      <data key="d1">method</data>
+      <data key="d2">An unsent letter is an unfiltered expressive writing exercise addressed to another person or one's past self, used to release unresolved emotions and identify unmet needs.&lt;SEP&gt;A writing exercise in which unspoken anger, grief, or love toward someone or one's past self is expressed, with AI helping reflect unmet needs and produce a final unfiltered version aimed at emotional closure.</data>
+      <data key="d3">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Emotional Trigger">
+      <data key="d0">Emotional Trigger</data>
+      <data key="d1">concept</data>
+      <data key="d2">An emotional trigger is a disproportionate emotional reaction to a surface event that points to a deeper underlying wound or unmet need.</data>
+      <data key="d3">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Difficult Conversation Rehearsal">
+      <data key="d0">Difficult Conversation Rehearsal</data>
+      <data key="d1">method</data>
+      <data key="d2">Difficult conversation rehearsal is a practice method where an individual clarifies their needs, crafts honest language, and roleplays the other person's likely responses before having a real conversation.</data>
+      <data key="d3">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Tiny Habits">
+      <data key="d0">Tiny Habits</data>
+      <data key="d1">method</data>
+      <data key="d2">Tiny habits is a behavioral approach associated with BJ Fogg, where habit starts are made extremely small to ensure consistent success without reliance on motivation.&lt;SEP&gt;A habit-formation approach, associated with BJ Fogg, that involves creating starter habits so small they cannot be failed, used to build accountability systems that do not rely on motivation.</data>
+      <data key="d3">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Human Connection">
+      <data key="d0">Human Connection</data>
+      <data key="d1">concept</data>
+      <data key="d2">Human connection is emphasized as something that AI tools like ChatGPT should not replace, even while being used to deepen self-reflection.</data>
+      <data key="d3">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Self-Sabotage Patterns">
+      <data key="d0">Self-Sabotage Patterns</data>
+      <data key="d1">concept</data>
+      <data key="d2">Recurring behaviors such as quitting, avoiding, or getting stuck, which are analyzed to uncover deeper fears, core beliefs, and hidden payoffs that protect the individual from perceived threats.</data>
+      <data key="d3">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Emotional Triggers">
+      <data key="d0">Emotional Triggers</data>
+      <data key="d1">concept</data>
+      <data key="d2">Reactions involving being overreactive or emotionally flooded, which can be traced through step-by-step questioning to deeper sources, old wounds, or recurring patterns.</data>
+      <data key="d3">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Pattern Recognition">
+      <data key="d0">Pattern Recognition</data>
+      <data key="d1">concept</data>
+      <data key="d2">A capability of AI that makes it especially useful for identifying recurring behaviors, self-deception, and emotional patterns across multiple data points shared by the user.</data>
+      <data key="d3">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="TikTok Video Script">
+      <data key="d0">TikTok Video Script</data>
+      <data key="d1">content</data>
+      <data key="d2">A video script format summarizing seven practical ways to use AI for personal growth, emphasizing self-awareness and structured self-conversation over productivity tasks.</data>
+      <data key="d3">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="YouTube Shorts Script">
+      <data key="d0">YouTube Shorts Script</data>
+      <data key="d1">content</data>
+      <data key="d2">A video script format summarizing how AI can function as an externalized thinking partner for self-awareness, covering seven practical uses with prompt frameworks.</data>
+      <data key="d3">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Difficult Conversations">
+      <data key="d0">Difficult Conversations</data>
+      <data key="d1">method</data>
+      <data key="d2">A practical technique involving clarifying what one needs from a conversation, crafting honest-but-non-destructive wording, and roleplaying the other person's likely responses to prepare for challenging interpersonal exchanges.</data>
+      <data key="d3">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122033</data>
+      <data key="d6" />
+    </node>
+    <node id="Claude Code">
+      <data key="d0">Claude Code</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Claude Code is an AI-powered coding tool developed by Anthropic, featuring concepts such as tools, permission modes, context windows, and sub-agents for software development tasks.&lt;SEP&gt;Claude Code is a tool or framework built around Claude that enables developers and non-technical users to build, connect systems, and use power features like sub-agents and checkpoints.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Retrieval-Augmented Generation (RAG)">
+      <data key="d0">Retrieval-Augmented Generation (RAG)</data>
+      <data key="d1">method</data>
+      <data key="d2">RAG is a method where Claude searches user-provided data and answers based on that source, enabling more accurate and contextually grounded responses.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Sub-Agents">
+      <data key="d0">Sub-Agents</data>
+      <data key="d1">concept</data>
+      <data key="d2">Sub-agents are specialized AI helpers that cooperate on different tasks, functioning like multiple agents in an AI "agency."&lt;SEP&gt;Sub-agents are multiple specialized AI agents that work together, like an AI agency, to split and handle complex tasks collaboratively.&lt;SEP&gt;Sub-agents are multiple specialized AI helpers that coordinate to divide and handle complex workflows, functioning like an AI agency.&lt;SEP&gt;Sub-agents are multiple specialized AI helpers that cooperate within an AI agency framework to complete complex tasks.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Checkpoints And Undo">
+      <data key="d0">Checkpoints And Undo</data>
+      <data key="d1">method</data>
+      <data key="d2">Checkpoints and Undo is a Claude feature that auto-saves project states and allows users to revert edits, providing safety when Claude modifies files.&lt;SEP&gt;Checkpoints and undo is a feature in Claude that auto-saves changes and allows users to revert to previous versions.&lt;SEP&gt;A feature in Claude Code that automatically saves progress and allows users to revert changes, providing a safety net during development.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Plan Mode">
+      <data key="d0">Plan Mode</data>
+      <data key="d1">concept</data>
+      <data key="d2">Plan mode is a safe permissions mode in which Claude proposes changes before executing them, recommended for learning or working on live projects.&lt;SEP&gt;Plan mode is a permission mode in Claude Code recommended for safety, where Claude plans actions before executing them.&lt;SEP&gt;Plan mode is a permissions mode in Claude that is considered the safest option for working on live or sensitive projects, requiring approval before making changes.&lt;SEP&gt;Plan mode is a permission mode in Claude that generates a plan without changing code, recommended for live or important projects.&lt;SEP&gt;Plan mode is a safe permission setting in Claude where no edits are made, allowing users to review planned actions before execution.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Bypass Permission">
+      <data key="d0">Bypass Permission</data>
+      <data key="d1">method</data>
+      <data key="d2">Bypass permission is a command that allows Claude to skip repeated permission prompts and automatically make edits, recommended only when the user trusts Claude and has backups.&lt;SEP&gt;Bypass permission (dangerous_skip_permission) is a mode that speeds up workflows by skipping permission prompts, but requires caution and is recommended only when backups or undo are available.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Claude.md">
+      <data key="d0">Claude.md</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Claude.md is a project-specific long-term memory file (MD format) created using the /init command to store persistent project information and avoid repeating context.&lt;SEP&gt;Claude.md is a file created with the /init command that stores long-term project memory and persistent context for Claude Code projects.&lt;SEP&gt;Claude.md is a markdown file created via /init that serves as a project's long-term memory, preserving context across sessions.&lt;SEP&gt;Claude.md is a project long-term memory file created via the /init command, recommended for every repository to maintain persistent project context.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Haiku">
+      <data key="d0">Haiku</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Haiku is a Claude model variant optimized for speed and low cost, suitable for fast, lightweight tasks.&lt;SEP&gt;Haiku is a Claude model variant designed for fast, cheap, and simple tasks.&lt;SEP&gt;Haiku is a Claude model variant that is the fastest and cheapest, best suited for simple tasks.&lt;SEP&gt;Haiku is a Claude model variant that is fast and cheap, suited for simple tasks.&lt;SEP&gt;Haiku is a Claude model variant that is fast and cheap, recommended for quick tasks.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Sonnet">
+      <data key="d0">Sonnet</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Sonnet is a Claude model variant offering a balanced performance and cost-effectiveness, recommended for drafting work.&lt;SEP&gt;Sonnet is a balanced and cost-effective Claude model variant suitable for general and deeper work, recommended for drafting.&lt;SEP&gt;Sonnet is a Claude model variant that balances speed and capability, recommended for many general uses including drafting and organizing work.&lt;SEP&gt;Sonnet is a Claude model variant that is balanced and recommended for general use, including drafting and organizing work.&lt;SEP&gt;Sonnet is a Claude model variant that is balanced and cost-effective, recommended for general work.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Opus">
+      <data key="d0">Opus</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Opus is the most capable Claude model variant, best suited for complex reasoning and multi-step tasks, but more expensive.&lt;SEP&gt;Opus is the most capable Claude model variant, offering the best reasoning for complex and multi-step tasks, though it is costlier, recommended for verification.&lt;SEP&gt;Opus is a Claude model variant offering the best reasoning and multi-step task performance, though it is costlier than other variants.&lt;SEP&gt;Opus is a Claude model variant with the best reasoning capability, suited for multi-step planning and verifying complex work, but more expensive.&lt;SEP&gt;Opus is a Claude model variant with the best reasoning capability but is more expensive, recommended for complex reasoning tasks.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Model Context Protocol (MCP)">
+      <data key="d0">Model Context Protocol (MCP)</data>
+      <data key="d1">method</data>
+      <data key="d2">MCP is a protocol that acts like a master key, allowing Claude broader control over applications on the user's behalf, going beyond standard API access.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="API">
+      <data key="d0">API</data>
+      <data key="d1">concept</data>
+      <data key="d2">An API (Application Programming Interface) is a key that allows apps to communicate with each other, providing limited and controlled access.&lt;SEP&gt;An API (Application Programming Interface) is a key that grants limited, controlled access to an application or service.&lt;SEP&gt;An API (Application Programming Interface) is a key or interface that allows external applications and services to communicate with each other, such as the Notion API.&lt;SEP&gt;An API is a key used to access specific functionality of an application, likened to a door key.&lt;SEP&gt;An API is a key used to access specific application features, described as providing limited access points to app functionality.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Context Window">
+      <data key="d0">Context Window</data>
+      <data key="d1">concept</data>
+      <data key="d2">The context window is Claude's short-term chat memory with an input/output token limit; it can fill up during long conversations, supporting up to approximately 1 million tokens.&lt;SEP&gt;The context window refers to the short-term chat history available to Claude during a session, with a capacity cited as up to 1 million tokens.&lt;SEP&gt;The context window is the model's short-term memory, consisting of chat history, and has a finite size limit.&lt;SEP&gt;The context window is Claude's short-term memory for the current chat session, with an input/output token limit.&lt;SEP&gt;The context window is Claude's short-term memory for a chat session, which has a size limit and can be managed by compacting conversation history.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Tokens">
+      <data key="d0">Tokens</data>
+      <data key="d1">concept</data>
+      <data key="d2">Tokens are the measurement unit for Claude's usage and cost, roughly corresponding to units of text or words processed.&lt;SEP&gt;Tokens are the unit of usage and cost for Claude, roughly equivalent to one word each; Claude charges by tokens, making usage monitoring important.&lt;SEP&gt;Tokens are the unit of text processing in Claude, roughly equivalent to one word each, and their usage incurs costs that scale with plan size.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Prompt Engineering">
+      <data key="d0">Prompt Engineering</data>
+      <data key="d1">method</data>
+      <data key="d2">Prompt engineering is the practice of crafting clearer and more specific instructions for Claude, including assigning roles to improve output quality.&lt;SEP&gt;Prompt engineering is the practice of writing clearer, role-based natural-language instructions to obtain better results from AI models.&lt;SEP&gt;Prompt engineering is the practice of writing clearer, role-based prompts to obtain better AI results, such as instructing the AI to "act as a senior web developer."&lt;SEP&gt;Prompt engineering is the practice of crafting clearer, role-based, and specific prompts to achieve better results from Claude.&lt;SEP&gt;Prompt engineering is the practice of writing clearer, role-based instructions to obtain better results from AI models like Claude.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="JSON">
+      <data key="d0">JSON</data>
+      <data key="d1">data</data>
+      <data key="d2">JSON is a structured data format used by computers to organize information, which Claude can generate and format on behalf of users.&lt;SEP&gt;JSON is a structured data format used by computers to organize and exchange information, which Claude can generate and organize.&lt;SEP&gt;JSON is a structured data format used for organizing information, preferred by computers for data exchange.&lt;SEP&gt;JSON is a structured data format used to organize information, preferred by computers for data exchange.&lt;SEP&gt;JSON is a structured data format used by computers, referenced in the context of data exchange with Claude and connected systems.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122165</data>
+      <data key="d6" />
+    </node>
+    <node id="Repo">
+      <data key="d0">Repo</data>
+      <data key="d1">artifact</data>
+      <data key="d2">A repo (repository) is a project folder that holds code, files, and settings, used for organizing and versioning project content.&lt;SEP&gt;A repo (repository) is a project folder that holds code, files, and settings, used as the workspace unit in Claude Code.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Git">
+      <data key="d0">Git</data>
+      <data key="d1">method</data>
+      <data key="d2">Git is a version control system that tracks changes in code files, allowing users to revert to earlier versions.&lt;SEP&gt;Git is a version control system that tracks changes and manages versioning of code and files in a project.&lt;SEP&gt;Git is a version control system that tracks changes to files and allows users to revert to earlier versions, functioning like an autosave or history system.&lt;SEP&gt;Git is a version control system that tracks changes to files, allowing users to revert to earlier versions.&lt;SEP&gt;Git is a version control system that tracks changes to code, allowing users to revert to previous states.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="GitHub">
+      <data key="d0">GitHub</data>
+      <data key="d1">organization</data>
+      <data key="d2">GitHub is an online hosting platform for repositories, functioning like a shareable cloud storage service for code.&lt;SEP&gt;GitHub is an online platform that hosts repositories for collaboration and sharing, functioning similarly to a public cloud storage service for code.&lt;SEP&gt;GitHub is an online platform where repositories are shared and collaborated on, similar to a shared Google Drive for code.&lt;SEP&gt;GitHub is an online platform where repositories are shared and collaborated on, similar to a shared Google Drive.&lt;SEP&gt;GitHub is an online platform where repositories are shared and collaborated on, referenced as a source of external links that users should verify.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Terminal / CLI">
+      <data key="d0">Terminal / CLI</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The terminal or CLI (Command-Line Interface) is a text-based interface for controlling a computer and running commands.&lt;SEP&gt;The Terminal/CLI (Command-Line Interface) is a text-based interface used to give commands to a computer, such as opening folders or running installations.&lt;SEP&gt;The terminal or command-line interface (CLI) is a text-based tool for instructing a computer to perform tasks instead of using a graphical interface.&lt;SEP&gt;The Terminal or CLI (Command Line Interface) is a text-based interface used to give commands to a computer, relevant to running Claude Code.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="VS Code">
+      <data key="d0">VS Code</data>
+      <data key="d1">artifact</data>
+      <data key="d2">VS Code is a commonly used code editor or IDE that can be used alongside Claude.&lt;SEP&gt;VS Code (Visual Studio Code) is a popular code editor widely used for software development.&lt;SEP&gt;VS Code is a popular code editor used for software development.&lt;SEP&gt;VS Code is a popular code editor developed by Microsoft, inside which Claude can run.&lt;SEP&gt;VS Code is a popular code editor in which Claude can run; it is the basis for the anti-gravity workspace mentioned by the presenter.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Cursor">
+      <data key="d0">Cursor</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Cursor is a code editor or IDE that can be used with Claude.&lt;SEP&gt;Cursor is a paid code editor option built on VS Code, mentioned as an alternative to Anti-Gravity.&lt;SEP&gt;Cursor is a paid alternative code editor used for software development.&lt;SEP&gt;Cursor is an alternative paid code editor, mentioned as an option alongside VS Code.&lt;SEP&gt;Cursor is a paid code editor alternative to VS Code, mentioned as an option for working with Claude Code.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Vercel">
+      <data key="d0">Vercel</data>
+      <data key="d1">organization</data>
+      <data key="d2">Vercel is a front-end deployment and hosting tool used for publishing user interfaces and web apps.&lt;SEP&gt;Vercel is a platform used for front-end deployment, allowing users to publish web applications for others to access.&lt;SEP&gt;Vercel is a platform used for front-end deployment, serving as an example of a front-end hosting service.&lt;SEP&gt;Vercel is a front-end deployment platform used as an example of a front-end service in the context of building apps with Claude.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Supabase">
+      <data key="d0">Supabase</data>
+      <data key="d1">organization</data>
+      <data key="d2">Supabase is a back-end platform providing server and database logic, used as a back-end tool in Claude-assisted projects.&lt;SEP&gt;Supabase is a back-end platform providing server, data, and logic services for web applications.&lt;SEP&gt;Supabase is a platform used for back-end services, serving as an example of a back-end system.&lt;SEP&gt;Supabase is a back-end service used as an example of a back-end platform when describing front-end/back-end architecture.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Notion">
+      <data key="d0">Notion</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Notion is an application that can be integrated with Claude via the Notion API, serving as an example of an external app that Claude can interact with.&lt;SEP&gt;A Notion document is planned to be shared by the creator to summarize the video content and outline plans for a follow-up on Claude features.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Deployment">
+      <data key="d0">Deployment</data>
+      <data key="d1">concept</data>
+      <data key="d2">Deployment is the process of publishing an app or project so that others can access it.&lt;SEP&gt;Deployment is the process of publishing an application so that others with permission can access it.&lt;SEP&gt;Deployment refers to publishing a project so that others can access it.&lt;SEP&gt;Deployment refers to the process of publishing an application so that others can access it.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Every Claude Code Concept Explained For Non-Techies">
+      <data key="d0">Every Claude Code Concept Explained For Non-Techies</data>
+      <data key="d1">content</data>
+      <data key="d2">A 20-minute educational video explaining 23 Claude Code concepts for beginners, organized into four parts covering workspace basics, building with AI, connecting systems, and power features, plus bonus tips.&lt;SEP&gt;A video (20:15) created by a presenter that explains Claude and Claude Code concepts in four parts plus a bonus section, targeting non-technical audiences.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Compact Conversation">
+      <data key="d0">Compact Conversation</data>
+      <data key="d1">method</data>
+      <data key="d2">Compact conversation is a command that shrinks the current chat history to free up context window space, useful when conversation history is large.&lt;SEP&gt;Compact conversation is a technique to compress chat history in order to free up context window space so Claude focuses on essential information.&lt;SEP&gt;Compact conversation is a command that shrinks or condenses chat history so Claude uses less of the context window.&lt;SEP&gt;Compact conversation is a Claude Code feature that condenses chat history to save context tokens during a session.&lt;SEP&gt;A command in Claude Code that shrinks chat history to save context space and reduce token usage.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="/Clear">
+      <data key="d0">/Clear</data>
+      <data key="d1">method</data>
+      <data key="d2">/clear is a command that clears the chat context entirely to allow a fresh start.&lt;SEP&gt;A command in Claude Code that clears the chat context.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="/Resume">
+      <data key="d0">/Resume</data>
+      <data key="d1">method</data>
+      <data key="d2">/resume is a command that restores a recent conversation after clearing, avoiding the need to retype previous context.&lt;SEP&gt;A command in Claude Code that resumes a cleared or previous conversation.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="/Init">
+      <data key="d0">/Init</data>
+      <data key="d1">method</data>
+      <data key="d2">A command in Claude Code used to create a claude.md file for long-term project memory.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Safety Practices">
+      <data key="d0">Safety Practices</data>
+      <data key="d1">concept</data>
+      <data key="d2">Safety practices in Claude Code include verifying external GitHub links, restricting Claude access to sensitive folders, and reviewing edits when necessary.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Prompt">
+      <data key="d0">Prompt</data>
+      <data key="d1">concept</data>
+      <data key="d2">A prompt is the natural language instruction given to Claude to direct its actions or outputs.&lt;SEP&gt;A prompt is a natural-language instruction given to an AI to direct its actions or outputs; clarity and specificity improve results.&lt;SEP&gt;A prompt is the instruction given to Claude in natural language to direct its actions.&lt;SEP&gt;A prompt is a natural-language instruction given to an AI model, specifying what the user wants it to do.&lt;SEP&gt;A prompt is a user instruction written in plain language given to Claude, analogous to ordering at a restaurant, used to direct Claude's responses and actions.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Tools">
+      <data key="d0">Tools</data>
+      <data key="d1">method</data>
+      <data key="d2">Tools in Claude Code refer to capabilities such as reading files, writing files, and running bash/shell commands, which Claude can perform if granted permission.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Front End">
+      <data key="d0">Front End</data>
+      <data key="d1">concept</data>
+      <data key="d2">Front end refers to the user-facing part of a web application, representing what users see and interact with directly.&lt;SEP&gt;Front end refers to the part of a system that users see and interact with directly.&lt;SEP&gt;Front end refers to the user interface layer of an application, contrasted with back-end server and data logic.&lt;SEP&gt;Front end refers to the part of an application that users see and interact with directly.&lt;SEP&gt;The front end refers to the part of an application that users see and interact with, exemplified by platforms like Vercel.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="Back End">
+      <data key="d0">Back End</data>
+      <data key="d1">concept</data>
+      <data key="d2">Back end refers to the server, data, and logic layer of a web application, operating behind the scenes.&lt;SEP&gt;Back end refers to the underlying internal logic and data systems of an application.&lt;SEP&gt;Back end refers to the server and data logic layer of an application, contrasted with the front-end user interface.&lt;SEP&gt;Back end refers to the underlying functionality and data processing of an application, not visible to users.&lt;SEP&gt;The back end refers to the part of an application that runs behind the scenes, exemplified by platforms like Supabase.</data>
+      <data key="d3">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122166</data>
+      <data key="d6" />
+    </node>
+    <node id="MCP (Model Context Protocol)">
+      <data key="d0">MCP (Model Context Protocol)</data>
+      <data key="d1">concept</data>
+      <data key="d2">MCP is described as a "master key" that allows Claude deeper and broader access to apps, enabling it to act on the user's behalf inside applications.&lt;SEP&gt;MCP (Model Context Protocol) is a protocol described as a powerful "master key" that allows AI models to act across an application on a user's behalf, enabling edits and changes.&lt;SEP&gt;MCP is described as a "master key" that gives Claude broader in-app control, enabling it to act on a user's behalf inside an application.&lt;SEP&gt;MCP is described as a "master key" that provides broader access, allowing Claude to act on a user's behalf inside an application.</data>
+      <data key="d3">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="RAG (Retrieval-Augmented Generation)">
+      <data key="d0">RAG (Retrieval-Augmented Generation)</data>
+      <data key="d1">method</data>
+      <data key="d2">RAG is a method where Claude answers queries by retrieving and using data from user-provided documents or databases for more accurate responses.&lt;SEP&gt;RAG (Retrieval-Augmented Generation) is a method where Claude uses provided data from documents or databases to answer questions, improving accuracy.&lt;SEP&gt;RAG is a method where Claude retrieves information from user-supplied data to accurately answer questions, generating responses grounded in that content.</data>
+      <data key="d3">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Slashinit (/Init)">
+      <data key="d0">Slashinit (/Init)</data>
+      <data key="d1">method</data>
+      <data key="d2">Slashinit (/init) is a command used to create a claude.md long-term memory file at the start of a project.</data>
+      <data key="d3">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Anti-Gravity">
+      <data key="d0">Anti-Gravity</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Anti-Gravity is a VS Code-based workspace used as an alternative code editor, preferred by the video creator for being free.&lt;SEP&gt;Anti-gravity is a code editor or IDE that integrates Claude agents, usable alongside Claude for building projects.</data>
+      <data key="d3">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Ask Before Edits">
+      <data key="d0">Ask Before Edits</data>
+      <data key="d1">method</data>
+      <data key="d2">Ask before edits is a permissions mode in which Claude requests confirmation before making any file edits, providing an intermediate level of safety between plan mode and bypass permission.</data>
+      <data key="d3">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Token">
+      <data key="d0">Token</data>
+      <data key="d1">concept</data>
+      <data key="d2">Tokens are the unit of usage for Claude, roughly corresponding to words, used to measure input and output and determine costs.&lt;SEP&gt;Tokens are the units of computation and cost used by Claude, roughly corresponding to words, with Claude supporting up to 1 million tokens of input/output context.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Repository">
+      <data key="d0">Repository</data>
+      <data key="d1">artifact</data>
+      <data key="d2">A repository (repo) is a project folder that holds code, files, settings, and instructions for a software project.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Checkpoints &amp; Undo">
+      <data key="d0">Checkpoints &amp; Undo</data>
+      <data key="d1">concept</data>
+      <data key="d2">Checkpoints and Undo is a Claude Code feature that auto-saves project states and allows users to revert changes if needed.&lt;SEP&gt;Checkpoints &amp; Undo is a feature where Claude auto-saves progress and provides options to revert changes to earlier states.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Claude Code 2.0">
+      <data key="d0">Claude Code 2.0</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Claude Code 2.0 is a forthcoming advanced version of Claude Code, which the video creator promises to cover in a follow-up video.&lt;SEP&gt;Claude Code 2.0 is a newer version of Claude Code that the speaker promises to cover in a follow-up, featuring new capabilities.&lt;SEP&gt;Claude Code 2.0 is a forthcoming version of Claude Code teased by the presenter as the subject of a follow-up video covering more advanced features.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Notion Doc">
+      <data key="d0">Notion Doc</data>
+      <data key="d1">content</data>
+      <data key="d2">A Notion document provided by the video creator in the video description, summarizing the 23 Claude Code concepts explained in the video.&lt;SEP&gt;A Notion doc is a printable/reader version of the video content that the presenter plans to share with viewers.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Pro/Max Subscription">
+      <data key="d0">Pro/Max Subscription</data>
+      <data key="d1">concept</data>
+      <data key="d2">Pro/Max are Claude subscription plans recommended for heavy users to manage token costs more efficiently compared to pay-per-token pricing.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Tools (Read/Write/Bash)">
+      <data key="d0">Tools (Read/Write/Bash)</data>
+      <data key="d1">concept</data>
+      <data key="d2">Tools refer to capabilities granted to Claude to view files (read), create or edit files (write), and run shell commands (bash) on a user's machine, with permissions governing access.&lt;SEP&gt;Tools in Claude Code refer to capabilities granted to Claude, including reading files, creating/editing files (write), and running shell commands (bash), which can be controlled for safety.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="/Init Command">
+      <data key="d0">/Init Command</data>
+      <data key="d1">method</data>
+      <data key="d2">The /init command initializes a project and creates the project MD file (claude.md) for long-term memory storage.&lt;SEP&gt;The /init command is a Claude Code command used to create a claude.md file that stores long-term project memory for a project.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="/Clear Command">
+      <data key="d0">/Clear Command</data>
+      <data key="d1">method</data>
+      <data key="d2">/clear is a command used to clear the session chat and reset Claude's short-term memory.&lt;SEP&gt;The /clear command is a Claude Code command used to clear the chat history and free up context tokens.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="/Resume Command">
+      <data key="d0">/Resume Command</data>
+      <data key="d1">method</data>
+      <data key="d2">The /resume command is a Claude Code command used to bring back a previous conversation after the chat has been cleared.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122167</data>
+      <data key="d6" />
+    </node>
+    <node id="Bypass Permission Mode">
+      <data key="d0">Bypass Permission Mode</data>
+      <data key="d1">concept</data>
+      <data key="d2">Bypass permission mode is a Claude Code setting that skips permission checks for convenience but carries higher risk; recommended only when the user is confident in the actions being taken.</data>
+      <data key="d3">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="RAG (Retrieval Augmented Generation)">
+      <data key="d0">RAG (Retrieval Augmented Generation)</data>
+      <data key="d1">method</data>
+      <data key="d2">RAG is a method where Claude looks up and uses data fed to it to answer queries, improving accuracy.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Bypass Permissions">
+      <data key="d0">Bypass Permissions</data>
+      <data key="d1">concept</data>
+      <data key="d2">Bypass permissions is a permission mode that allows Claude to act without asking for confirmation each time, convenient but risky for sensitive projects.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Repo (Repository)">
+      <data key="d0">Repo (Repository)</data>
+      <data key="d1">concept</data>
+      <data key="d2">A repository is a project folder that holds code, files, and settings.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Microsoft">
+      <data key="d0">Microsoft</data>
+      <data key="d1">organization</data>
+      <data key="d2">Microsoft is the company that developed VS Code, a popular code editor.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="/init">
+      <data key="d0">/init</data>
+      <data key="d1">method</data>
+      <data key="d2">/init is a command used to initialize a project and create the claude.md long-term memory file.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="/clear">
+      <data key="d0">/clear</data>
+      <data key="d1">method</data>
+      <data key="d2">/clear is a command that clears the current chat and context in Claude.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="-resume">
+      <data key="d0">-resume</data>
+      <data key="d1">method</data>
+      <data key="d2">-resume is a command that resumes a cleared or past conversation, avoiding the need to retype previous context.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Ask-Before-Edits">
+      <data key="d0">Ask-Before-Edits</data>
+      <data key="d1">concept</data>
+      <data key="d2">Ask-before-edits is a permission mode in Claude that prompts the user for confirmation before making any edits, recommended for live projects.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Pro/Max Plan">
+      <data key="d0">Pro/Max Plan</data>
+      <data key="d1">concept</data>
+      <data key="d2">Pro/Max are paid subscription plans for Claude, recommended for users who use Claude heavily rather than paying per token.&lt;SEP&gt;Pro/Max are paid subscription plans for Claude recommended for heavy users to avoid high per-token costs.</data>
+      <data key="d3">chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Permissions/Modes">
+      <data key="d0">Permissions/Modes</data>
+      <data key="d1">concept</data>
+      <data key="d2">Permissions/Modes are operational settings for Claude including plan mode, ask-before-edits, and bypass-permissions, with plan mode recommended as safest for live projects.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Claude.md (MD File)">
+      <data key="d0">Claude.md (MD File)</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Claude.md is a long-term memory file created for a project using the /init command, used to persist project context across sessions.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Sub-agents">
+      <data key="d0">Sub-agents</data>
+      <data key="d1">concept</data>
+      <data key="d2">Sub-agents are specialized AI helpers that collaborate as an "AI agency," with smaller agents handling different tasks.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Resume Command">
+      <data key="d0">Resume Command</data>
+      <data key="d1">method</data>
+      <data key="d2">The resume command restores or continues a previous conversation after the session has been cleared.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Bypass-Permission Mode">
+      <data key="d0">Bypass-Permission Mode</data>
+      <data key="d1">concept</data>
+      <data key="d2">Bypass-permission mode allows Claude to operate without requesting permission for each action; convenient but riskier, recommended only when the agent is trusted or mistakes can be undone.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122168</data>
+      <data key="d6" />
+    </node>
+    <node id="Repository (Repo)">
+      <data key="d0">Repository (Repo)</data>
+      <data key="d1">concept</data>
+      <data key="d2">A repository is a project folder that holds code, files, and settings, often managed with version control.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122169</data>
+      <data key="d6" />
+    </node>
+    <node id="Terminal/CLI">
+      <data key="d0">Terminal/CLI</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Terminal/CLI is a text-based interface used to control a computer by typing commands instead of using a graphical interface.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122169</data>
+      <data key="d6" />
+    </node>
+    <node id="Antigravity">
+      <data key="d0">Antigravity</data>
+      <data key="d1">artifact</data>
+      <data key="d2">Antigravity is a free code editor based on VS Code, described as the presenter's preferred option.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122169</data>
+      <data key="d6" />
+    </node>
+    <node id="Notion API">
+      <data key="d0">Notion API</data>
+      <data key="d1">artifact</data>
+      <data key="d2">The Notion API is an interface that allows external services to communicate with Notion, used as an example of an API integration.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122169</data>
+      <data key="d6" />
+    </node>
+    <node id="Ask-Before-Edits Mode">
+      <data key="d0">Ask-Before-Edits Mode</data>
+      <data key="d1">concept</data>
+      <data key="d2">Ask-before-edits is a permissions mode in Claude that prompts the user for approval before making any edits, recommended for use on live or sensitive projects.</data>
+      <data key="d3">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d4">unknown_source</data>
+      <data key="d5">1774122169</data>
+      <data key="d6" />
+    </node>
+    <edge source="Requests" target="Python-Dotenv">
+      <data key="d7">1.0</data>
+      <data key="d8">Both Requests and Python-Dotenv are listed together as software dependencies in the same requirements specification.</data>
+      <data key="d9">dependency listing,software package</data>
+      <data key="d10">chunk-764585bfa3c0c120e349fa6336d77e7a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774121990</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Life Audit" target="AI">
+      <data key="d7">2.0</data>
+      <data key="d8">AI is used to analyze patterns, self-deception, and highest-leverage changes identified during a Life Audit.&lt;SEP&gt;AI is used to facilitate a life audit by identifying patterns, self-deception, and the highest-leverage change in each life area based on honest self-descriptions.</data>
+      <data key="d9">facilitation,self-assessment,self-reflection,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122034</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Life Audit" target="ChatGPT">
+      <data key="d7">2.0</data>
+      <data key="d8">ChatGPT is used to facilitate a brutally honest life audit by identifying patterns, self-deception, and high-leverage changes across life domains.&lt;SEP&gt;ChatGPT facilitates the life audit process by identifying patterns, areas of self-deception, and the highest-leverage change per life area.</data>
+      <data key="d9">facilitation,self-assessment,structured reflection,tool</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Life Audit" target="Self-Awareness">
+      <data key="d7">1.0</data>
+      <data key="d8">The life audit is a practical method for building self-awareness by honestly evaluating key life areas and identifying patterns of self-deception.</data>
+      <data key="d9">honest assessment,self-improvement tool</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122042</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Sabotage Analysis" target="AI">
+      <data key="d7">1.0</data>
+      <data key="d8">AI is used to analyze described moments of failure and identify underlying core fears, limiting beliefs, and hidden payoffs.</data>
+      <data key="d9">pattern recognition,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Sabotage Analysis" target="Core Fear">
+      <data key="d7">1.0</data>
+      <data key="d8">Self-Sabotage Analysis identifies core fear as one of the key underlying drivers of self-sabotaging behaviors.</data>
+      <data key="d9">pattern identification,psychological insight</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Sabotage Analysis" target="Limiting Belief">
+      <data key="d7">1.0</data>
+      <data key="d8">Self-Sabotage Analysis identifies limiting beliefs as part of the underlying pattern behind self-defeating behaviors.</data>
+      <data key="d9">pattern identification,psychological insight</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Personal Operating System" target="AI">
+      <data key="d7">2.0</data>
+      <data key="d8">AI is used to distill personal values, regrets, and lessons into a set of guiding principles forming a Personal Operating System.&lt;SEP&gt;AI distills an individual's regrets, proud moments, and lessons into a personal operating system of 5–7 guiding principles.</data>
+      <data key="d9">construction,principle distillation,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Personal Operating System" target="ChatGPT">
+      <data key="d7">2.0</data>
+      <data key="d8">ChatGPT helps build a personal operating system by distilling the user's regrets, proud moments, and values into guiding principles.&lt;SEP&gt;ChatGPT distills a user's regrets, proud moments, and values into 5–7 core principles that form a personal operating system.</data>
+      <data key="d9">co-creation,decision-making support,personalization,principle extraction</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122039</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Hard Conversation Rehearsal" target="AI">
+      <data key="d7">1.0</data>
+      <data key="d8">AI assists in clarifying goals, crafting constructive wording, and roleplaying the other person's responses during Hard Conversation Rehearsal.</data>
+      <data key="d9">communication coaching,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Hard Conversation Rehearsal" target="ChatGPT">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT assists users in rehearsing difficult conversations by clarifying needs, refining phrasing, and roleplaying likely responses.</data>
+      <data key="d9">preparation,roleplay</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122039</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Accountability System" target="Tiny-Habit Design">
+      <data key="d7">1.0</data>
+      <data key="d8">The Accountability System is built upon Tiny-Habit Design principles to create a motivation-independent approach to habit maintenance.</data>
+      <data key="d9">behavioral framework,habit formation</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122034</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Accountability System" target="Dopamine">
+      <data key="d7">3.0</data>
+      <data key="d8">The Accountability System is designed as an alternative to motivation, which is framed as unreliable due to dopamine's role in anticipation rather than reward.&lt;SEP&gt;The accountability system is designed to work around the fading of dopamine-driven motivation after planning, replacing willpower with structured support.&lt;SEP&gt;Because dopamine is tied to anticipation rather than sustained action, motivation is unreliable, making a structured accountability system necessary.</data>
+      <data key="d9">behavioral science,habit design,motivation,motivation critique,motivation limitation,system necessity</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Accountability System" target="AI">
+      <data key="d7">2.0</data>
+      <data key="d8">AI checks in, tracks streaks, adjusts the system, and supports shame-free restarts within the Accountability System.&lt;SEP&gt;AI helps design and maintain accountability systems using the tiny habits approach, tracking streaks and enabling shame-free resets.</data>
+      <data key="d9">design,habit support,habit tracking,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Accountability System" target="ChatGPT">
+      <data key="d7">2.0</data>
+      <data key="d8">ChatGPT powers the accountability system by conducting check-ins, tracking streaks, adjusting plans, and enabling shame-free restarts.&lt;SEP&gt;ChatGPT helps design an accountability system with small habit starters, check-ins, streak tracking, and shame-free restarts.</data>
+      <data key="d9">behavioral support,design,habit support,habit tracking</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122040</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Accountability System" target="BJ Fogg">
+      <data key="d7">1.0</data>
+      <data key="d8">The accountability system incorporates BJ Fogg's "so small you can't fail" approach to habit initiation.</data>
+      <data key="d9">habit formation,methodology</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122040</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Accountability System" target="Tiny Habits">
+      <data key="d7">2.0</data>
+      <data key="d8">Tiny habits, associated with BJ Fogg, form the behavioral foundation of the motivation-proof accountability system.&lt;SEP&gt;The tiny habits approach serves as the foundational design principle for building accountability systems that do not rely on motivation.</data>
+      <data key="d9">behavioral foundation,design principle,foundation,habit design</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122041</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Emotional Trigger Decoding" target="Original Wound">
+      <data key="d7">2.0</data>
+      <data key="d8">Emotional Trigger Decoding aims to trace reactions back to the original wound as a foundational source of emotional patterns.&lt;SEP&gt;Emotional trigger decoding is a process aimed at tracing intense reactions back to their original wound or deeper recurring emotional pattern.</data>
+      <data key="d9">emotional source,psychological exploration,root cause analysis,tracing</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9&lt;SEP&gt;chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Emotional Trigger Decoding" target="AI">
+      <data key="d7">1.0</data>
+      <data key="d8">AI guides questioning one at a time to help trace emotional reactions to deeper roots during Emotional Trigger Decoding.</data>
+      <data key="d9">guided reflection,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Emotional Trigger Decoding" target="ChatGPT">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT guides users through step-by-step questions to trace emotional reactions to their deeper sources, such as unmet needs or original wounds.</data>
+      <data key="d9">reflection,step-by-step questioning</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122040</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Letter Writing Exercise" target="Expressive Writing">
+      <data key="d7">1.0</data>
+      <data key="d8">The Letter Writing Exercise is grounded in expressive writing as its core technique for processing unresolved emotional business.</data>
+      <data key="d9">emotional processing,methodology basis</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Letter Writing Exercise" target="AI">
+      <data key="d7">1.0</data>
+      <data key="d8">AI reflects back core emotions and unmet needs and helps craft a final version of the letter for personal closure.</data>
+      <data key="d9">emotional processing,tool application</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Structured Self-Conversation">
+      <data key="d7">1.0</data>
+      <data key="d8">AI serves as the accessible tool that enables Structured Self-Conversation as a nightly or morning practice.</data>
+      <data key="d9">personal development,tool facilitation</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Prompt Framework">
+      <data key="d7">1.0</data>
+      <data key="d8">Prompt Frameworks are used to structure interactions with AI for targeted self-reflection and personal development exercises.</data>
+      <data key="d9">guided interaction,tool structuring</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Self-Awareness">
+      <data key="d7">1.0</data>
+      <data key="d8">AI functions as a nonjudgmental external thinking partner that supports the development of self-awareness by creating psychological distance and identifying patterns.</data>
+      <data key="d9">enablement,personal growth</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122043</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Introspection Illusion">
+      <data key="d7">1.0</data>
+      <data key="d8">AI helps counteract the introspection illusion by externalizing thoughts into structured dialogue, enabling clearer self-perception.</data>
+      <data key="d9">cognitive support,counteraction</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122043</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Self-Sabotage Patterns">
+      <data key="d7">1.0</data>
+      <data key="d8">AI analyzes shared examples of self-sabotage to infer deeper fears, core beliefs, and hidden payoffs driving the patterns.</data>
+      <data key="d9">analysis,behavioral insight</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122044</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Emotional Triggers">
+      <data key="d7">1.0</data>
+      <data key="d8">AI asks step-by-step questions to help trace emotional triggers back to their deeper sources and recurring patterns in real time.</data>
+      <data key="d9">decoding,emotional support</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122044</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Expressive Writing">
+      <data key="d7">1.0</data>
+      <data key="d8">AI supports expressive writing by reflecting core emotions and unmet needs, helping craft an unfiltered final version of unsent letters for emotional closure.</data>
+      <data key="d9">emotional closure,facilitation</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122045</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Pattern Recognition">
+      <data key="d7">1.0</data>
+      <data key="d8">Pattern recognition is a core capability of AI that makes it useful for identifying recurring behavioral and emotional patterns across user-shared data.</data>
+      <data key="d9">capability,insight generation</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122045</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Human Relationships">
+      <data key="d7">1.0</data>
+      <data key="d8">AI is explicitly noted as a tool that should not replace human relationships but can support and improve real-life conversations and decisions.</data>
+      <data key="d9">boundary,complementarity</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122046</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Therapy">
+      <data key="d7">1.0</data>
+      <data key="d8">AI is explicitly noted as a tool that should not replace professional therapy but can meaningfully support personal reflection alongside it.</data>
+      <data key="d9">boundary,complementarity</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122046</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Difficult Conversations">
+      <data key="d7">1.0</data>
+      <data key="d8">AI helps users rehearse difficult conversations by clarifying needed outcomes, crafting appropriate language, and roleplaying likely responses from the other person.</data>
+      <data key="d9">preparation,rehearsal</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122046</data>
+      <data key="d13" />
+    </edge>
+    <edge source="AI" target="Unsent Letter">
+      <data key="d7">1.0</data>
+      <data key="d8">AI assists in the unsent letter exercise by helping users articulate unspoken emotions, reflect unmet needs, and produce a final unfiltered version for emotional closure.</data>
+      <data key="d9">emotional processing,facilitation</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122047</data>
+      <data key="d13" />
+    </edge>
+    <edge source="BJ Fogg" target="Tiny-Habit Design">
+      <data key="d7">1.0</data>
+      <data key="d8">Tiny-Habit Design is a method created and attributed to BJ Fogg.</data>
+      <data key="d9">behavioral science,methodology attribution</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="BJ Fogg" target="Tiny Habits">
+      <data key="d7">2.0</data>
+      <data key="d8">BJ Fogg is associated with the tiny habits approach referenced in the accountability system framework.&lt;SEP&gt;BJ Fogg is associated with the tiny habits methodology, which is referenced as the basis for designing motivation-proof habit starters.</data>
+      <data key="d9">authorship,behavioral design,methodology,originator</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122042</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Mindless Consumption" target="Structured Self-Conversation">
+      <data key="d7">1.0</data>
+      <data key="d8">Structured Self-Conversation is presented as a meaningful alternative to Mindless Consumption such as scrolling others' opinions.</data>
+      <data key="d9">contrast,intentional use of time</data>
+      <data key="d10">chunk-c19ebc4badbd8262c8487882ac0285a9</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122035</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Expressive Writing" target="ChatGPT">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT reflects core emotions and unmet needs from expressive writing and helps craft a final honest letter aimed at emotional closure.</data>
+      <data key="d9">closure,facilitation</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122041</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Expressive Writing" target="Unsent Letter">
+      <data key="d7">2.0</data>
+      <data key="d8">The unsent letter exercise is a form of expressive writing used to process unresolved emotions toward another person or one's past self.&lt;SEP&gt;The unsent letter exercise is a specific application of expressive writing, used to process unresolved emotions and achieve closure with AI assistance.</data>
+      <data key="d9">application,emotional release,technique</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122042</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Expressive Writing" target="Psychological Distance">
+      <data key="d7">1.0</data>
+      <data key="d8">Expressive writing and externalizing thoughts create psychological distance, which improves clarity and emotional regulation.</data>
+      <data key="d9">clarity,mechanism</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122043</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Self-Awareness">
+      <data key="d7">2.0</data>
+      <data key="d8">ChatGPT is described as a powerful tool for building self-awareness by acting as an externalized thinking partner that helps users identify blind spots and patterns.&lt;SEP&gt;The video argues that the most powerful use of ChatGPT is fostering self-awareness rather than improving productivity.</data>
+      <data key="d9">externalized reflection,personal growth,primary use case,tool for self-improvement</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Psychological Distance">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT functions as an externalized thinking partner that creates psychological distance, helping users observe their own patterns and blind spots.</data>
+      <data key="d9">cognitive tool,reflection</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122036</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Introspection Illusion">
+      <data key="d7">2.0</data>
+      <data key="d8">ChatGPT helps users overcome the introspection illusion by providing an external perspective that the human mind cannot easily generate on its own.&lt;SEP&gt;ChatGPT can help users overcome the introspection illusion by surfacing patterns they tend to hide from themselves.</data>
+      <data key="d9">counteracting bias,overcoming cognitive bias,self-perception,self-reflection</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122037</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Self-Sabotage">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT analyzes described instances of self-sabotage to identify core fears, limiting beliefs, and hidden payoffs underlying the behavior.</data>
+      <data key="d9">analysis,pattern recognition</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Therapy">
+      <data key="d7">2.0</data>
+      <data key="d8">ChatGPT is explicitly noted as a tool that should not replace therapy, though it can support reflection.&lt;SEP&gt;The video explicitly states that ChatGPT and AI tools should not replace therapy or professional mental health support.</data>
+      <data key="d9">boundary,complementary role,limitation,non-replacement</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76&lt;SEP&gt;chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122041</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Human Relationships">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT is positioned as a complement to human relationships, not a replacement, helping users reflect more clearly and engage better with others.</data>
+      <data key="d9">complement,limitation</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122041</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Self-Sabotage Pattern">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT analyzes described self-sabotage moments to identify the underlying shared fear, belief, and hidden payoff.</data>
+      <data key="d9">behavioral insight,pattern analysis</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122042</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Difficult Conversation Rehearsal">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT supports difficult conversation rehearsal by clarifying needs, crafting honest language, and roleplaying the other person's likely responses.</data>
+      <data key="d9">conversation preparation,roleplay</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122043</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Emotional Trigger">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT helps decode emotional triggers by asking step-by-step questions to trace disproportionate reactions back to their original source or wound.</data>
+      <data key="d9">emotional decoding,step-by-step questioning</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122043</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Unsent Letter">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT assists with the unsent letter exercise by reflecting core emotions and unmet needs, and helping craft a final version.</data>
+      <data key="d9">emotional processing,expressive writing</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122044</data>
+      <data key="d13" />
+    </edge>
+    <edge source="ChatGPT" target="Human Connection">
+      <data key="d7">1.0</data>
+      <data key="d8">ChatGPT is explicitly noted as a tool that should complement but not replace human connection.</data>
+      <data key="d9">complementary role,non-replacement</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122044</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Self-Awareness">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude, like ChatGPT, is cited as an AI tool capable of supporting self-awareness and personal growth as a nonjudgmental thinking partner.</data>
+      <data key="d9">AI tool,personal growth</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122039</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Retrieval-Augmented Generation (RAG)">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude uses RAG to search user-provided data and generate more accurate, context-specific answers.</data>
+      <data key="d9">capability,data grounding</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122169</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Sub-Agents">
+      <data key="d7">3.0</data>
+      <data key="d8">Claude can operate alongside or coordinate sub-agents, which are specialized AI helpers that cooperate on different tasks.&lt;SEP&gt;Claude can coordinate multiple sub-agents to divide and handle complex workflows.&lt;SEP&gt;Claude coordinates multiple sub-agents as specialized AI helpers to handle complex tasks cooperatively.</data>
+      <data key="d9">AI cooperation,coordination,power features,task delegation,workflow</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122170</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Model Context Protocol (MCP)">
+      <data key="d7">1.0</data>
+      <data key="d8">MCP provides Claude with broader control over external applications, acting as a master key beyond standard API access.</data>
+      <data key="d9">access control,integration</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122170</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Context Window">
+      <data key="d7">4.0</data>
+      <data key="d8">Claude's short-term memory is governed by the context window, which has a token limit that can be filled during long conversations.&lt;SEP&gt;Claude uses the context window as its short-term memory, which holds chat history and has a size limit.&lt;SEP&gt;Claude uses the context window as short-term memory for the current chat session, subject to token limits.&lt;SEP&gt;The context window defines Claude's short-term memory capacity during a chat session, limiting how much information it can retain at once.</data>
+      <data key="d9">computation,limitation,memory,memory management,usage limit</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122170</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Tokens">
+      <data key="d7">3.0</data>
+      <data key="d8">Claude charges users based on token consumption, making it important to monitor usage.&lt;SEP&gt;Tokens measure Claude's usage and associated cost, with heavier usage requiring users to consider a paid plan.&lt;SEP&gt;Claude's usage is measured in tokens, and the number of tokens consumed directly affects the cost to the user.</data>
+      <data key="d9">cost,usage,usage metering</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122171</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Checkpoints And Undo">
+      <data key="d7">3.0</data>
+      <data key="d8">Claude auto-saves states via checkpoints and allows users to undo changes, providing safety during file modification.&lt;SEP&gt;Claude auto-saves changes using checkpoints and allows users to undo and revert to previous versions.&lt;SEP&gt;Claude Code auto-saves via checkpoints and allows users to undo changes, providing a safety mechanism during development.</data>
+      <data key="d9">file management,safety,version control</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122171</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Plan Mode">
+      <data key="d7">3.0</data>
+      <data key="d8">Plan mode is a permissions setting for Claude recommended for live or sensitive projects to ensure safety before edits are made.&lt;SEP&gt;Plan mode is a permission mode in Claude that generates plans without modifying code, recommended for important projects.&lt;SEP&gt;Plan mode is a Claude permission setting that prevents edits, allowing users to safely review planned actions before committing.</data>
+      <data key="d9">permission,permissions,safe editing,safety</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122172</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Bypass Permission">
+      <data key="d7">1.0</data>
+      <data key="d8">Bypass permission mode allows Claude to skip permission prompts to speed up workflows, but introduces risk and requires caution.</data>
+      <data key="d9">risk management,workflow speed</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122172</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Haiku">
+      <data key="d7">4.0</data>
+      <data key="d8">Haiku is a variant of the Claude model optimized for fast, cheap, and simple tasks.&lt;SEP&gt;Haiku is a model variant of Claude optimized for speed and low cost on simple tasks.&lt;SEP&gt;Haiku is a model variant of Claude optimized for fast, cheap, and simple tasks.&lt;SEP&gt;Haiku is a Claude model variant optimized for fast and inexpensive tasks.</data>
+      <data key="d9">capability,model variant,task suitability</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122172</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Sonnet">
+      <data key="d7">4.0</data>
+      <data key="d8">Sonnet is a balanced Claude model variant recommended for general and deeper work.&lt;SEP&gt;Sonnet is a balanced model variant of Claude recommended for general use and drafting work.&lt;SEP&gt;Sonnet is a Claude model variant balanced for general work and cost-effectiveness.</data>
+      <data key="d9">capability,cost-effectiveness,model variant,task suitability</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122173</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Opus">
+      <data key="d7">4.0</data>
+      <data key="d8">Opus is the most capable Claude model variant, best suited for complex and multi-step reasoning tasks.&lt;SEP&gt;Opus is a premium model variant of Claude with the best reasoning and multi-step task performance.&lt;SEP&gt;Opus is the most capable and expensive model variant of Claude, suited for deep reasoning and multi-step planning.&lt;SEP&gt;Opus is a Claude model variant with the highest reasoning capability, recommended for complex tasks despite higher cost.</data>
+      <data key="d9">capability,complex reasoning,model variant,task suitability</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122173</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="API">
+      <data key="d7">3.0</data>
+      <data key="d8">Claude connects to external apps and services through APIs, which provide limited and controlled access.&lt;SEP&gt;An API key is used to access Claude's specific functionality within applications.&lt;SEP&gt;An API provides limited access points for Claude to interact with specific external application features.</data>
+      <data key="d9">access,connectivity,integration</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="GitHub">
+      <data key="d7">2.0</data>
+      <data key="d8">The speaker recommends always verifying unknown GitHub links when using Claude, highlighting a safety consideration in Claude workflows.&lt;SEP&gt;Users are advised to verify external GitHub links when using Claude to avoid security risks.</data>
+      <data key="d9">external links,safety,security,verification</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="VS Code">
+      <data key="d7">3.0</data>
+      <data key="d8">VS Code is a code editor that can be used alongside Claude for building and editing projects.&lt;SEP&gt;Claude can run inside VS Code as part of a developer's code editing workflow.&lt;SEP&gt;Claude can run inside VS Code, making it a supported workspace environment for Claude Code usage.</data>
+      <data key="d9">integration,tool integration,tooling,workspace</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Prompt Engineering">
+      <data key="d7">1.0</data>
+      <data key="d8">Prompt engineering involves writing clearer, role-based instructions to get better results from Claude.</data>
+      <data key="d9">instruction quality,output improvement</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Deployment">
+      <data key="d7">2.0</data>
+      <data key="d8">Claude assists with the deployment process of publishing apps or projects for others to access.&lt;SEP&gt;Deployment is the process of publishing apps built with Claude so that others can access them.</data>
+      <data key="d9">app publishing,output,publishing,workflow</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Safety Practices">
+      <data key="d7">1.0</data>
+      <data key="d8">Safety practices such as restricting sensitive folder access and reviewing edits help mitigate risks when using Claude.</data>
+      <data key="d9">risk mitigation,security</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Tools">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude uses tools such as read, write, and bash to interact with files and run shell commands when permitted.</data>
+      <data key="d9">capability,file and command access</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="JSON">
+      <data key="d7">3.0</data>
+      <data key="d8">Claude can generate and manage JSON-formatted structured data on behalf of users.&lt;SEP&gt;Claude works with JSON as a structured data format for organizing and exchanging information.&lt;SEP&gt;Claude and connected systems use JSON as a structured data format for exchanging information.</data>
+      <data key="d9">automation,data format,data formatting,structured communication,structured output</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="MCP (Model Context Protocol)">
+      <data key="d7">3.0</data>
+      <data key="d8">MCP enables Claude to have deeper and broader access to apps and act on the user's behalf, beyond what a standard API allows.&lt;SEP&gt;MCP provides Claude with broader in-app control, enabling it to act on a user's behalf inside applications.&lt;SEP&gt;MCP allows Claude to act on a user's behalf inside an application with broad access rights.</data>
+      <data key="d9">access,access control,control,integration</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="RAG (Retrieval-Augmented Generation)">
+      <data key="d7">2.0</data>
+      <data key="d8">Claude uses RAG to retrieve and answer from user-provided documents or databases for more accurate responses.&lt;SEP&gt;Claude uses RAG to retrieve information from user-supplied data and generate accurate answers based on that content.</data>
+      <data key="d9">accuracy,answer generation,data retrieval</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122177</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Prompt">
+      <data key="d7">3.0</data>
+      <data key="d8">Users provide prompts as natural language instructions to direct Claude's actions and outputs.&lt;SEP&gt;Claude receives prompts as natural-language instructions that direct its actions and outputs.&lt;SEP&gt;Users interact with Claude by providing prompts in natural language to direct its actions.</data>
+      <data key="d9">input,instruction,interaction</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122177</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Anti-Gravity">
+      <data key="d7">1.0</data>
+      <data key="d8">Anti-gravity is a code editor that integrates Claude agents directly, enabling tighter collaboration between the editor and Claude.</data>
+      <data key="d9">integration,tooling</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122178</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Cursor">
+      <data key="d7">1.0</data>
+      <data key="d8">Cursor is a code editor that can be used alongside Claude for building and editing projects.</data>
+      <data key="d9">integration,tooling</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122178</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Claude Code">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code is built upon and powered by the Claude AI model family for coding and development tasks.</data>
+      <data key="d9">AI model integration,implementation</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122181</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Claude.md">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude.md serves as Claude's long-term memory for a project, created via /init to preserve context across sessions.</data>
+      <data key="d9">long-term memory,project management</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="RAG (Retrieval Augmented Generation)">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude uses RAG to look up and incorporate user-provided data when answering queries, improving accuracy.</data>
+      <data key="d9">accuracy,data retrieval</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Token">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude's usage and cost are measured in tokens, with support for up to 1 million tokens of context.</data>
+      <data key="d9">computation,cost</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Bypass Permissions">
+      <data key="d7">1.0</data>
+      <data key="d8">Bypass permissions allows Claude to act without confirmation, which is convenient but risky for sensitive projects.</data>
+      <data key="d9">permission,risk</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Claude Code 2.0">
+      <data key="d7">2.0</data>
+      <data key="d8">Claude Code 2.0 is a newer version of Claude Code with additional features that the speaker plans to cover in a follow-up.&lt;SEP&gt;Claude Code 2.0 is the next version of Claude Code, teased by the presenter as covering more advanced features in a follow-up video.</data>
+      <data key="d9">future update,upcoming features,versioning</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Ask-Before-Edits">
+      <data key="d7">1.0</data>
+      <data key="d8">Ask-before-edits is a permission mode in Claude that requests user confirmation before making file edits, recommended alongside plan mode for live projects.</data>
+      <data key="d9">permission,safety</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122185</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="/clear">
+      <data key="d7">1.0</data>
+      <data key="d8">The /clear command clears Claude's current chat and context window.</data>
+      <data key="d9">command,context management</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122185</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="-resume">
+      <data key="d7">1.0</data>
+      <data key="d8">The -resume command allows users to resume a previously cleared or past Claude conversation.</data>
+      <data key="d9">command,context management</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Tools (Read/Write/Bash)">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude can be granted tools to read files, write/edit files, and run shell commands on a user's machine.</data>
+      <data key="d9">access,capability</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Claude.md (MD File)">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude uses the claude.md MD file as long-term memory for a project to persist context across sessions.</data>
+      <data key="d9">long-term memory,project context</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Sub-agents">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude can work with sub-agents as specialized AI helpers that collaborate on different tasks.</data>
+      <data key="d9">collaboration,task delegation</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122187</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Checkpoints &amp; Undo">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude provides checkpoints and undo functionality so users can revert changes made during a session.</data>
+      <data key="d9">reversion,safety</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122187</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Bypass-Permission Mode">
+      <data key="d7">1.0</data>
+      <data key="d8">Bypass-permission mode allows Claude to act without requesting permission each time, which is convenient but riskier.</data>
+      <data key="d9">permissions,risk</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122188</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude" target="Ask-Before-Edits Mode">
+      <data key="d7">1.0</data>
+      <data key="d8">Ask-before-edits is a permissions mode for Claude that requires user approval before edits are made, recommended for live or sensitive projects alongside plan mode.</data>
+      <data key="d9">permissions,safety</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122188</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Awareness" target="Cognitive Dissonance">
+      <data key="d7">1.0</data>
+      <data key="d8">Cognitive dissonance causes people to avoid discomfort, making genuine self-awareness difficult to achieve without structured external support.</data>
+      <data key="d9">avoidance,barrier</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Awareness" target="Human Relationships">
+      <data key="d7">1.0</data>
+      <data key="d8">Self-awareness developed through AI-assisted reflection is meant to support and improve real-world human relationships.</data>
+      <data key="d9">personal growth,real-world application</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122039</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Awareness" target="Psychological Distance">
+      <data key="d7">2.0</data>
+      <data key="d8">Psychological distance, created by externalizing thoughts, is a mechanism through which self-awareness and emotional regulation are improved.&lt;SEP&gt;Creating psychological distance through externalized structured dialogue improves clarity and emotional regulation, supporting genuine self-awareness.</data>
+      <data key="d9">clarity,emotional regulation,enablement</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122041</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Awareness" target="Introspection Illusion">
+      <data key="d7">2.0</data>
+      <data key="d8">The introspection illusion is a key barrier to genuine self-awareness, as the mind struggles to evaluate itself accurately.&lt;SEP&gt;The introspection illusion acts as a barrier to genuine self-awareness by causing individuals to protect their self-image and rationalize rather than see clearly.</data>
+      <data key="d9">barrier,barrier to self-knowledge,cognitive limitation,cognitive obstacle</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4&lt;SEP&gt;chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122041</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Awareness" target="TikTok Video Script">
+      <data key="d7">1.0</data>
+      <data key="d8">The TikTok video script promotes self-awareness as AI's most powerful use, presenting seven practical frameworks for personal growth.</data>
+      <data key="d9">content focus,promotion</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122044</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Awareness" target="YouTube Shorts Script">
+      <data key="d7">1.0</data>
+      <data key="d8">The YouTube Shorts script frames self-awareness as AI's most powerful use, covering the introspection illusion and seven practical AI-assisted methods.</data>
+      <data key="d9">content focus,promotion</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122045</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Self-Sabotage" target="Hidden Payoff">
+      <data key="d7">1.0</data>
+      <data key="d8">Self-sabotaging patterns are driven by a hidden payoff that protects individuals from feared outcomes such as judgment or evaluation.</data>
+      <data key="d9">protection,psychological mechanism</data>
+      <data key="d10">chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122038</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Hidden Payoff" target="Self-Sabotage Pattern">
+      <data key="d7">1.0</data>
+      <data key="d8">Every self-sabotage pattern is associated with a hidden payoff that reveals what the pattern protects the individual from.</data>
+      <data key="d9">behavioral protection,unconscious motivation</data>
+      <data key="d10">chunk-3cdd347d2c888fa651c16760dc54aac4</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122042</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Hidden Payoff" target="Self-Sabotage Patterns">
+      <data key="d7">1.0</data>
+      <data key="d8">Analyzing self-sabotage patterns reveals the hidden payoff - the protection or benefit the pattern provides - as a key component of understanding the behavior.</data>
+      <data key="d9">behavioral analysis,underlying motivation</data>
+      <data key="d10">chunk-1eb01cd2d607a14da2729a2994a8833a</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122045</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Claude.md">
+      <data key="d7">2.0</data>
+      <data key="d8">Claude.md is created via the /init command in Claude Code to store long-term project memory and persistent context.&lt;SEP&gt;Claude Code uses the claude.md file, created via /init, to maintain long-term project memory across sessions.</data>
+      <data key="d9">initialization,memory management,project context,project memory</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122170</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Every Claude Code Concept Explained For Non-Techies">
+      <data key="d7">2.0</data>
+      <data key="d8">The video explains 23 Claude Code concepts for beginners, serving as the primary educational resource about Claude Code.&lt;SEP&gt;The video explains Claude Code concepts across four parts and a bonus section for non-technical audiences.</data>
+      <data key="d9">concept explanation,educational content,subject matter</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122170</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Repo">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code operates within repos, which serve as the project folders containing code, files, and settings.</data>
+      <data key="d9">project structure,workspace</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Plan Mode">
+      <data key="d7">1.0</data>
+      <data key="d8">Plan mode is a permission setting within Claude Code recommended for safe operation before executing edits.</data>
+      <data key="d9">permission management,safety</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122177</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Sub-Agents">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code supports sub-agents, enabling multiple specialized AI agents to work together on complex tasks.</data>
+      <data key="d9">AI collaboration,task delegation</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122177</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="MCP (Model Context Protocol)">
+      <data key="d7">1.0</data>
+      <data key="d8">MCP allows Claude Code to act as a master key, enabling the model to perform actions across applications on a user's behalf.</data>
+      <data key="d9">extended access,system integration</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122178</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="RAG (Retrieval-Augmented Generation)">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code uses RAG to answer queries from user-provided documents or databases, improving response accuracy.</data>
+      <data key="d9">accuracy improvement,data retrieval</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122178</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Token">
+      <data key="d7">1.0</data>
+      <data key="d8">Tokens are the unit of usage in Claude Code, determining costs and context capacity.</data>
+      <data key="d9">cost management,usage measurement</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122179</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Context Window">
+      <data key="d7">1.0</data>
+      <data key="d8">The context window defines the short-term memory available to Claude Code during a session, with a capacity of up to 1 million tokens.</data>
+      <data key="d9">input capacity,session memory</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122179</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Checkpoints &amp; Undo">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code auto-saves project states via checkpoints and allows users to undo changes if needed.</data>
+      <data key="d9">safety,version control</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122180</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Prompt Engineering">
+      <data key="d7">1.0</data>
+      <data key="d8">Prompt engineering is used within Claude Code to craft better natural-language instructions for improved AI outputs.</data>
+      <data key="d9">AI interaction,result optimization</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122180</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="API">
+      <data key="d7">1.0</data>
+      <data key="d8">APIs grant Claude Code limited, controlled access to external applications and services.</data>
+      <data key="d9">service access,system connectivity</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122181</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="JSON">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code can generate and organize JSON, the structured data format used for communication between systems.</data>
+      <data key="d9">data format,system integration</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122182</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Deployment">
+      <data key="d7">1.0</data>
+      <data key="d8">Deployment is the process of publishing applications built with Claude Code so others can access them.</data>
+      <data key="d9">accessibility,application publishing</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122182</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Tools (Read/Write/Bash)">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude Code provides tools for reading files, writing/editing files, and running bash commands, which users can control for safety purposes.</data>
+      <data key="d9">capability control,safety management</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122182</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="/Init Command">
+      <data key="d7">1.0</data>
+      <data key="d8">The /init command in Claude Code creates a claude.md file to initialize and store long-term project memory.</data>
+      <data key="d9">command,memory initialization</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Compact Conversation">
+      <data key="d7">1.0</data>
+      <data key="d8">The compact conversation feature in Claude Code condenses chat history to save context tokens during a session.</data>
+      <data key="d9">context management,token efficiency</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="/Clear Command">
+      <data key="d7">1.0</data>
+      <data key="d8">The /clear command in Claude Code clears chat history to free up context tokens.</data>
+      <data key="d9">context management,session control</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="/Resume Command">
+      <data key="d7">1.0</data>
+      <data key="d8">The /resume command in Claude Code restores a previous conversation after the chat has been cleared.</data>
+      <data key="d9">conversation recovery,session management</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Bypass Permission Mode">
+      <data key="d7">1.0</data>
+      <data key="d8">Bypass permission mode in Claude Code skips permission checks for convenience but is recommended only when the user is confident in the actions being performed.</data>
+      <data key="d9">permission management,risk control</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude Code" target="Prompt">
+      <data key="d7">1.0</data>
+      <data key="d8">Prompts are the primary method of providing natural-language instructions to Claude Code to direct its actions.</data>
+      <data key="d9">AI interaction,instruction input</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122185</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Checkpoints And Undo" target="Bypass Permission">
+      <data key="d7">1.0</data>
+      <data key="d8">When using bypass permission mode, it is recommended to rely on checkpoints and undo features to recover from unintended changes.</data>
+      <data key="d9">risk mitigation,safety</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Plan Mode" target="Bypass Permission">
+      <data key="d7">1.0</data>
+      <data key="d8">Plan mode and bypass permission represent opposite ends of the permissions spectrum - plan mode proposes changes safely while bypass permission skips confirmations for automatic edits.</data>
+      <data key="d9">permissions,safety tradeoff</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Plan Mode" target="Ask Before Edits">
+      <data key="d7">1.0</data>
+      <data key="d8">Ask before edits is an intermediate permissions mode that sits between plan mode and bypass permission, requiring Claude to seek confirmation before editing files.</data>
+      <data key="d9">permissions,safety</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Plan Mode" target="Ask-Before-Edits Mode">
+      <data key="d7">1.0</data>
+      <data key="d8">Ask-before-edits and plan mode are both recommended permission modes for working safely on live or sensitive projects with Claude.</data>
+      <data key="d9">permissions,safety options</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122189</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Bypass Permission" target="Ask Before Edits">
+      <data key="d7">1.0</data>
+      <data key="d8">Ask before edits requires confirmation for edits, whereas bypass permission skips all such prompts, representing different levels of user control over Claude's actions.</data>
+      <data key="d9">permissions,safety tradeoff</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122177</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude.md" target="/Init">
+      <data key="d7">1.0</data>
+      <data key="d8">The /init command is used in Claude Code to generate the claude.md long-term memory file for a project.</data>
+      <data key="d9">command,file creation</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122173</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude.md" target="Slashinit (/Init)">
+      <data key="d7">1.0</data>
+      <data key="d8">The /init command is used to create a claude.md file, establishing long-term memory for a project.</data>
+      <data key="d9">creation,long-term memory</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude.md" target="Context Window">
+      <data key="d7">1.0</data>
+      <data key="d8">Claude.md serves as long-term memory to complement the context window's short-term memory, reducing repetition when the context window fills up.</data>
+      <data key="d9">complementary,memory management</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude.md" target="/Init Command">
+      <data key="d7">1.0</data>
+      <data key="d8">The /init command creates the claude.md file, which stores long-term project memory for Claude Code projects.</data>
+      <data key="d9">file creation,memory initialization</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Claude.md" target="/init">
+      <data key="d7">1.0</data>
+      <data key="d8">The /init command is used to create the claude.md long-term memory file for a project.</data>
+      <data key="d9">creation,initialization</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Sonnet" target="Opus">
+      <data key="d7">3.0</data>
+      <data key="d8">Sonnet is recommended for drafting work while Opus is used for final verification and validation of complex work requiring deep reasoning.&lt;SEP&gt;The speaker recommends using Sonnet to draft and organize work, then Opus to verify and finalize complex tasks.&lt;SEP&gt;The recommended workflow is to use Sonnet for organizing and drafting, and Opus to verify and validate complex work.</data>
+      <data key="d9">complementary use,model collaboration,task division,workflow</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="API" target="Notion API">
+      <data key="d7">1.0</data>
+      <data key="d8">The Notion API is cited as a specific example of an API that allows external services to communicate with Notion.</data>
+      <data key="d9">example,instance</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Context Window" target="Compact Conversation">
+      <data key="d7">4.0</data>
+      <data key="d8">Compact conversation shrinks chat history to free up space in the context window when it becomes full.&lt;SEP&gt;Compact conversation compresses chat history to free up space in the context window so Claude focuses on essential information.&lt;SEP&gt;The compact conversation command reduces chat history size to preserve space in Claude's context window.&lt;SEP&gt;The compact conversation command reduces chat history size to preserve context window space and lower token usage.</data>
+      <data key="d9">efficiency,memory management,optimization,token saving</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Context Window" target="/Clear">
+      <data key="d7">1.0</data>
+      <data key="d8">The /clear command clears the chat context, effectively resetting the context window for a new session.</data>
+      <data key="d9">chat reset,memory management</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Context Window" target="Tokens">
+      <data key="d7">1.0</data>
+      <data key="d8">Tokens are the unit by which the context window's usage and cost are measured.</data>
+      <data key="d9">cost,usage measurement</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Context Window" target="/Clear Command">
+      <data key="d7">1.0</data>
+      <data key="d8">The /clear command clears the session chat to reset Claude's short-term memory (context window).</data>
+      <data key="d9">memory management,reset</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122185</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Tokens" target="Pro/Max Plan">
+      <data key="d7">1.0</data>
+      <data key="d8">Subscribing to a Pro/Max plan is recommended for heavy Claude users to manage and reduce high per-token costs.</data>
+      <data key="d9">cost management,subscription</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Prompt Engineering" target="Prompt">
+      <data key="d7">5.0</data>
+      <data key="d8">Prompt engineering is the practice of crafting better and more specific prompts to improve Claude's outputs.&lt;SEP&gt;Prompt engineering is the method of crafting better prompts to improve the quality of Claude's outputs.&lt;SEP&gt;Prompt engineering is the method of crafting better prompts to improve Claude's output quality.&lt;SEP&gt;Prompt engineering is the practice of crafting better, role-based prompts to improve the quality of AI responses.&lt;SEP&gt;Prompt engineering is the practice of refining and improving prompts to produce better results from Claude.</data>
+      <data key="d9">improvement,instruction quality,optimization,refinement,specificity,technique</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Repo" target="Git">
+      <data key="d7">1.0</data>
+      <data key="d8">Git is used to track changes within a repo, enabling version control and the ability to revert to previous states.</data>
+      <data key="d9">project management,version control</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Repo" target="GitHub">
+      <data key="d7">2.0</data>
+      <data key="d8">GitHub is the online platform used to host and share repositories (repos).&lt;SEP&gt;GitHub is the online platform where repos are shared and collaborated on by developers.</data>
+      <data key="d9">code sharing,collaboration,hosting,storage</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Git" target="GitHub">
+      <data key="d7">2.0</data>
+      <data key="d8">Git tracks version history of code, and GitHub hosts git repositories online for sharing and collaboration.&lt;SEP&gt;GitHub is an online platform for hosting and collaborating on repositories managed with Git.</data>
+      <data key="d9">collaboration,hosting,version control</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Git" target="Repository">
+      <data key="d7">1.0</data>
+      <data key="d8">Git tracks changes and manages versioning for repositories, allowing reversion to earlier versions.</data>
+      <data key="d9">change tracking,version control</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122179</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Git" target="Repo (Repository)">
+      <data key="d7">1.0</data>
+      <data key="d8">Git tracks changes within a repository, enabling version control and the ability to revert to earlier states.</data>
+      <data key="d9">project management,version control</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122183</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Git" target="Repository (Repo)">
+      <data key="d7">1.0</data>
+      <data key="d8">Git is used to track changes and manage version history within a repository.</data>
+      <data key="d9">management,version control</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="GitHub" target="Repository">
+      <data key="d7">1.0</data>
+      <data key="d8">GitHub hosts repositories online, enabling collaboration and sharing of project code and files.</data>
+      <data key="d9">code hosting,collaboration</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122179</data>
+      <data key="d13" />
+    </edge>
+    <edge source="GitHub" target="Repository (Repo)">
+      <data key="d7">1.0</data>
+      <data key="d8">GitHub hosts repositories online, enabling sharing and collaboration among developers.</data>
+      <data key="d9">collaboration,hosting</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VS Code" target="Anti-Gravity">
+      <data key="d7">1.0</data>
+      <data key="d8">Anti-Gravity is a workspace built on top of VS Code, used as a free alternative code editor.</data>
+      <data key="d9">editor variant,software foundation</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122179</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VS Code" target="Cursor">
+      <data key="d7">1.0</data>
+      <data key="d8">Cursor is a paid code editor built on VS Code, mentioned as an alternative to Anti-Gravity.</data>
+      <data key="d9">editor variant,software foundation</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122179</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VS Code" target="Microsoft">
+      <data key="d7">1.0</data>
+      <data key="d8">Microsoft developed VS Code, the popular code editor in which Claude can run.</data>
+      <data key="d9">development,ownership</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="VS Code" target="Antigravity">
+      <data key="d7">1.0</data>
+      <data key="d8">Antigravity is a free code editor based on VS Code, serving as the presenter's preferred alternative.</data>
+      <data key="d9">alternative,derived from</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vercel" target="Supabase">
+      <data key="d7">1.0</data>
+      <data key="d8">Vercel and Supabase are used together as examples of front-end and back-end platforms respectively in app development with Claude.</data>
+      <data key="d9">architecture,front-end/back-end</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vercel" target="Front End">
+      <data key="d7">4.0</data>
+      <data key="d8">Vercel is used as the front-end deployment platform for publishing user-facing web applications.&lt;SEP&gt;Vercel is given as an example platform for hosting the front end of a project.&lt;SEP&gt;Vercel is a recommended tool for deploying and hosting front-end applications.&lt;SEP&gt;Vercel is used as an example of a front-end platform in the context of app architecture with Claude.</data>
+      <data key="d9">architecture,deployment,deployment platform,example,hosting,platform example,tooling,web application</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Vercel" target="Deployment">
+      <data key="d7">1.0</data>
+      <data key="d8">Vercel is a tool used for deploying and publishing front-end applications.</data>
+      <data key="d9">front-end,publishing</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Supabase" target="Back End">
+      <data key="d7">4.0</data>
+      <data key="d8">Supabase is used as the back-end platform providing server, data, and logic services for web applications.&lt;SEP&gt;Supabase is given as an example platform for back-end services.&lt;SEP&gt;Supabase is a recommended tool for providing back-end server and database logic.&lt;SEP&gt;Supabase is used as an example of a back-end platform in the context of app architecture with Claude.</data>
+      <data key="d9">architecture,backend services,example,hosting,infrastructure,platform example,tooling,web application</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004&lt;SEP&gt;chunk-1b97dc56900235cb8d228fef7c8405c7&lt;SEP&gt;chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Supabase" target="Deployment">
+      <data key="d7">1.0</data>
+      <data key="d8">Supabase provides back-end infrastructure supporting the deployment of applications.</data>
+      <data key="d9">back-end,data management</data>
+      <data key="d10">chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122177</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Notion" target="Every Claude Code Concept Explained For Non-Techies">
+      <data key="d7">1.0</data>
+      <data key="d8">The creator of the video plans to share a Notion document summarizing the video content and outlining plans for a follow-up on Claude features.</data>
+      <data key="d9">content summary,follow-up</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122174</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Notion" target="Notion API">
+      <data key="d7">1.0</data>
+      <data key="d8">The Notion API provides an interface for external services, including Claude, to communicate with and act within the Notion application.</data>
+      <data key="d9">application,integration</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122187</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Notion" target="MCP (Model Context Protocol)">
+      <data key="d7">1.0</data>
+      <data key="d8">MCP can give Claude broader control to act on a user's behalf inside applications such as Notion.</data>
+      <data key="d9">in-app control,integration</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122187</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Every Claude Code Concept Explained For Non-Techies" target="Claude Code 2.0">
+      <data key="d7">1.0</data>
+      <data key="d8">The video creator promises a follow-up video covering Claude Code 2.0 and its new advanced features.</data>
+      <data key="d9">advanced features,follow-up content</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122180</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Every Claude Code Concept Explained For Non-Techies" target="Notion Doc">
+      <data key="d7">1.0</data>
+      <data key="d8">The video creator provides a Notion document in the video description summarizing the 23 concepts covered in the video.</data>
+      <data key="d9">concept summary,supplementary resource</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122180</data>
+      <data key="d13" />
+    </edge>
+    <edge source="/Clear" target="/Resume">
+      <data key="d7">2.0</data>
+      <data key="d8">/clear clears the chat context while /resume restores a recent conversation, working together to manage context without losing prior work.&lt;SEP&gt;The /resume command allows users to bring back a conversation that was previously cleared using /clear.</data>
+      <data key="d9">context management,continuity,conversation continuity,recovery</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-ab74c3d2ad783400aacdc12951dd5004</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122176</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Front End" target="Back End">
+      <data key="d7">2.0</data>
+      <data key="d8">Front end and back end represent the two complementary layers of an application: the user-facing interface and the underlying data/functionality.&lt;SEP&gt;Front end and back end represent the two complementary layers of application architecture, distinguishing what users see from what runs behind the scenes.</data>
+      <data key="d9">application architecture,architecture,contrast,separation of concerns</data>
+      <data key="d10">chunk-025a86a4903e4e489cd42bedaffcb840&lt;SEP&gt;chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122175</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Token" target="Pro/Max Subscription">
+      <data key="d7">1.0</data>
+      <data key="d8">Heavy token usage in Claude Code benefits from Pro/Max subscription plans rather than pay-per-token pricing.</data>
+      <data key="d9">cost management,usage efficiency</data>
+      <data key="d10">chunk-1b97dc56900235cb8d228fef7c8405c7</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122178</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Token" target="Pro/Max Plan">
+      <data key="d7">1.0</data>
+      <data key="d8">Choosing a Pro/Max plan is recommended over paying per token for users who use Claude heavily.</data>
+      <data key="d9">cost management,subscription</data>
+      <data key="d10">chunk-1694023022122e91d5653a390a57c8f6</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122184</data>
+      <data key="d13" />
+    </edge>
+    <edge source="Tools (Read/Write/Bash)" target="Permissions/Modes">
+      <data key="d7">1.0</data>
+      <data key="d8">Permissions/Modes govern what tools Claude is allowed to use, controlling its access to read, write, and bash capabilities.</data>
+      <data key="d9">access control,governance</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+    <edge source="/Init Command" target="Claude.md (MD File)">
+      <data key="d7">1.0</data>
+      <data key="d8">The /init command initializes a project and creates the claude.md file for long-term memory.</data>
+      <data key="d9">creation,initialization</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122185</data>
+      <data key="d13" />
+    </edge>
+    <edge source="/Clear Command" target="Resume Command">
+      <data key="d7">1.0</data>
+      <data key="d8">The resume command restores a previous conversation after it has been cleared using /clear.</data>
+      <data key="d9">continuity,restoration</data>
+      <data key="d10">chunk-047f3904283ca1416cabe7cde1e03247</data>
+      <data key="d11">unknown_source</data>
+      <data key="d12">1774122186</data>
+      <data key="d13" />
+    </edge>
+  </graph>
+</graphml>

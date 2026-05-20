@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; background:#0F1A23; display:flex; align-items:center; justify-content:center; }
+  .card { width:1280px; height:720px; background:#0F1A23; position:relative; display:flex; align-items:center; padding:80px 96px; overflow:hidden; }
+  .accent-top { position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#38BDF8 0%,rgba(56,189,248,0.15) 60%,transparent 100%); }
+  .accent-left { position:absolute; top:0; left:0; bottom:0; width:5px; background:linear-gradient(180deg,#38BDF8 0%,rgba(56,189,248,0.1) 60%,transparent 100%); }
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(56,189,248,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,0.03) 1px,transparent 1px); background-size:80px 80px; }
+  .glow-tr { position:absolute; top:-80px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(56,189,248,0.1) 0%,transparent 65%); }
+  .glow-bl { position:absolute; bottom:-60px; left:-60px; width:380px; height:380px; background:radial-gradient(circle,rgba(56,189,248,0.05) 0%,transparent 70%); }
+  .left { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; max-width:640px; }
+  .price-tag { display:inline-flex; align-items:center; gap:10px; margin-bottom:32px; }
+  .price-badge { font-family:'Inter',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:#0EA5E9; padding:8px 18px; border-radius:2px; }
+  .series { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(56,189,248,0.45); }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-size:64px; font-weight:900; color:#FAF7F2; line-height:1.05; margin-bottom:24px; }
+  .tagline { font-family:'Inter',sans-serif; font-size:20px; font-weight:400; color:rgba(250,247,242,0.45); line-height:1.55; max-width:520px; margin-bottom:40px; }
+  .prompts { display:flex; flex-direction:column; gap:10px; }
+  .prompt-row { display:flex; align-items:center; gap:12px; }
+  .num { font-family:'Playfair Display',Georgia,serif; font-size:18px; font-weight:700; color:rgba(56,189,248,0.35); min-width:24px; }
+  .prompt-text { font-family:'Inter',sans-serif; font-size:14px; color:rgba(250,247,242,0.4); }
+  .right { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-left:80px; flex-shrink:0; gap:20px; }
+  .prompt-icon { width:160px; height:160px; border:2px solid rgba(56,189,248,0.2); border-radius:4px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background:rgba(56,189,248,0.04); }
+  .icon-num { font-family:'Playfair Display',Georgia,serif; font-size:56px; font-weight:900; color:#38BDF8; line-height:1; }
+  .icon-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:rgba(56,189,248,0.5); }
+  .time-badge { font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:rgba(56,189,248,0.7); background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.2); padding:10px 20px; border-radius:2px; text-align:center; white-space:nowrap; }
+  .bottom-bar { position:absolute; bottom:36px; left:96px; right:96px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:'Playfair Display',Georgia,serif; font-size:16px; font-weight:700; color:rgba(56,189,248,0.4); }
+  .format { font-family:'Inter',sans-serif; font-size:11px; color:rgba(250,247,242,0.15); letter-spacing:0.12em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-top"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-tr"></div>
+  <div class="glow-bl"></div>
+  <div class="left">
+    <div class="price-tag">
+      <span class="price-badge">$27</span>
+      <span class="series">IMG Pivot Guide · Vol. 2</span>
+    </div>
+    <h1>The IMG<br>Identity Reset</h1>
+    <div class="tagline">5 AI prompts for physicians done letting one exam define them. Copy-paste ready for Claude or ChatGPT.</div>
+    <div class="prompts">
+      <div class="prompt-row"><div class="num">01</div><span class="prompt-text">The Credential Detox — who you are without the title</span></div>
+      <div class="prompt-row"><div class="num">02</div><span class="prompt-text">The Skills Translator — your MD in market language</span></div>
+      <div class="prompt-row"><div class="num">03</div><span class="prompt-text">The Shame Reframe — language for the people who sacrificed</span></div>
+      <div class="prompt-row"><div class="num">04</div><span class="prompt-text">The Financial Fear Solver — a 90-day bridge income model</span></div>
+      <div class="prompt-row"><div class="num">05</div><span class="prompt-text">The Wise Mentor — one clear, compassionate answer</span></div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="prompt-icon">
+      <div class="icon-num">5</div>
+      <div class="icon-label">AI Prompts</div>
+    </div>
+    <div class="time-badge">30 minutes to clarity</div>
+  </div>
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="format">PDF · Instant Download · Money-back guarantee</span>
+  </div>
+</div>
+</body>
+</html>

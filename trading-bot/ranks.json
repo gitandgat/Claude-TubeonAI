@@ -1,0 +1,156 @@
+{
+  "GOOGL": {
+    "rank": "High",
+    "outlook": "Outperform",
+    "tech": "HOLD",
+    "rs_rank": 70,
+    "ma_20": 372.89,
+    "ma_50": 332.74,
+    "ma_200": 291.31,
+    "distance_52w": 0.032,
+    "volume_sma": null
+  },
+  "TSM": {
+    "rank": "High",
+    "outlook": "Outperform",
+    "tech": "BUY",
+    "rs_rank": 75,
+    "ma_20": 397.84,
+    "ma_50": 367.59,
+    "ma_200": 313.73,
+    "distance_52w": 0.02,
+    "volume_sma": null
+  },
+  "AAPL": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "BUY",
+    "rs_rank": 65,
+    "ma_20": 281.55,
+    "ma_50": 266.19,
+    "ma_200": 259.13,
+    "distance_52w": 0.05,
+    "volume_sma": null
+  },
+  "AMZN": {
+    "rank": "High",
+    "outlook": "Outperform",
+    "tech": "BUY",
+    "rs_rank": 78,
+    "ma_20": 264.53,
+    "ma_50": 236.71,
+    "ma_200": 229.42,
+    "distance_52w": 0.091,
+    "volume_sma": null
+  },
+  "MSFT": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "SELL",
+    "rs_rank": 62,
+    "ma_20": 417.41,
+    "ma_50": 399.06,
+    "ma_200": 463.13,
+    "distance_52w": 0.108,
+    "volume_sma": null
+  },
+  "ULTA": {
+    "rank": "High",
+    "outlook": "Neutral",
+    "tech": "SELL",
+    "rs_rank": 72,
+    "ma_20": 532.12,
+    "ma_50": 541.29,
+    "ma_200": 567.6,
+    "distance_52w": 0.013,
+    "volume_sma": null
+  },
+  "ELV": {
+    "rank": "Medium",
+    "outlook": "Outperform",
+    "tech": "BUY",
+    "rs_rank": 68,
+    "ma_20": 367.1,
+    "ma_50": 326.07,
+    "ma_200": 329.73,
+    "distance_52w": 0.226,
+    "volume_sma": null
+  },
+  "PLTR": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "SELL",
+    "rs_rank": 60,
+    "ma_20": 139.79,
+    "ma_50": 144.4,
+    "ma_200": 163.35,
+    "distance_52w": 0.142,
+    "volume_sma": null
+  },
+  "ORCL": {
+    "rank": "Medium",
+    "outlook": "Outperform",
+    "tech": "BUY",
+    "rs_rank": 64,
+    "ma_20": 182.05,
+    "ma_50": 163.97,
+    "ma_200": 209.6,
+    "distance_52w": 0.406,
+    "volume_sma": null
+  },
+  "HUBS": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "SELL",
+    "rs_rank": 58,
+    "ma_20": 218.63,
+    "ma_50": 233.34,
+    "ma_200": 356.66,
+    "distance_52w": 0.51,
+    "volume_sma": null
+  },
+  "TSLA": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "HOLD",
+    "rs_rank": 66,
+    "ma_20": 401.32,
+    "ma_50": 386.78,
+    "ma_200": 407.4,
+    "distance_52w": 0.082,
+    "volume_sma": null
+  },
+  "NVDA": {
+    "rank": "Medium",
+    "outlook": "Outperform",
+    "tech": "BUY",
+    "rs_rank": 76,
+    "ma_20": 210.3,
+    "ma_50": 193.07,
+    "ma_200": 185.97,
+    "distance_52w": 0.099,
+    "volume_sma": null
+  },
+  "NFLX": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "SELL",
+    "rs_rank": 63,
+    "ma_20": 90.24,
+    "ma_50": 94.45,
+    "ma_200": 102.56,
+    "distance_52w": 0.3,
+    "volume_sma": null
+  },
+  "BRK-B": {
+    "rank": "Medium",
+    "outlook": "Neutral",
+    "tech": "HOLD",
+    "rs_rank": 61,
+    "ma_20": null,
+    "ma_50": null,
+    "ma_200": null,
+    "distance_52w": null,
+    "volume_sma": null
+  }
+}

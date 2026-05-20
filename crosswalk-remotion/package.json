@@ -1,0 +1,29 @@
+{
+  "name": "crosswalk-remotion",
+  "version": "1.0.0",
+  "description": "Crosswalk Wisdom — Social Video Content Generator",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render",
+    "render:carousel": "remotion render src/index.ts InstagramCarousel out/carousel.mp4",
+    "render:tiktok": "remotion render src/index.ts TikTokReel out/tiktok.mp4",
+    "render:linkedin": "remotion render src/index.ts LinkedInVideo out/linkedin.mp4",
+    "render:quiz": "remotion render src/index.ts QuizResultVideo out/quiz.mp4",
+    "render:april": "for slug in apr-01 apr-02 apr-03 apr-04 apr-05 apr-06 apr-07 apr-08 apr-09 apr-10 apr-11 apr-12 apr-13 apr-14 apr-15 apr-16 apr-17 apr-18 apr-19 apr-20 apr-21 apr-22 apr-23 apr-24 apr-25 apr-26 apr-27 apr-28 apr-29 apr-30; do remotion render src/index.ts AprilPost-${slug} out/april/${slug}.mp4 --props '{\"postId\":\"'${slug}'\"}'; done",
+    "render:april:one": "remotion render src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.438",
+    "remotion": "4.0.438",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.4.5"
+  },
+  "remotion": {
+    "entryPoint": "src/index.ts"
+  }
+}

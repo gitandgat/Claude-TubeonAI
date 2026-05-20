@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMG Stats Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1A1A1A;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1080px;
+    background: #1A1A1A;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    overflow: hidden;
+  }
+
+  /* Background texture lines */
+  .bg-lines {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 59px,
+      rgba(212, 168, 67, 0.04) 59px,
+      rgba(212, 168, 67, 0.04) 60px
+    );
+  }
+
+  /* Amber glow top-left */
+  .glow-tl {
+    position: absolute;
+    top: -120px;
+    left: -120px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(212,168,67,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Subtle glow bottom-right */
+  .glow-br {
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(91,154,139,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Top label */
+  .top-label {
+    position: absolute;
+    top: 56px;
+    left: 80px;
+    right: 80px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .label-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(212,168,67,0.3);
+  }
+
+  .label-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #D4A843;
+  }
+
+  /* Main content */
+  .content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 56px;
+  }
+
+  .stat-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 40px;
+    position: relative;
+  }
+
+  .stat-block.left {
+    background: rgba(212,168,67,0.07);
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .stat-block.right {
+    background: rgba(44,44,44,0.6);
+    border: 1px solid rgba(250,247,242,0.08);
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+  }
+
+  .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .stat-block.left .stat-label { color: #D4A843; }
+  .stat-block.right .stat-label { color: rgba(250,247,242,0.4); }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .stat-block.left .stat-number {
+    font-size: 128px;
+    color: #D4A843;
+    text-shadow: 0 0 60px rgba(212,168,67,0.35);
+  }
+
+  .stat-block.right .stat-number {
+    font-size: 96px;
+    color: rgba(250,247,242,0.25);
+  }
+
+  .stat-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .stat-block.left .stat-sub { color: rgba(212,168,67,0.7); }
+  .stat-block.right .stat-sub { color: rgba(250,247,242,0.3); }
+
+  /* Divider */
+  .vs-badge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #1A1A1A;
+    border: 2px solid rgba(212,168,67,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #D4A843;
+  }
+
+  /* Headline */
+  .headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #FAF7F2;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 780px;
+    margin-bottom: 24px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: #D4A843;
+  }
+
+  /* Sub copy */
+  .sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.45);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: absolute;
+    bottom: 52px;
+    left: 80px;
+    right: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(212,168,67,0.7);
+    letter-spacing: 0.02em;
+  }
+
+  .source {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Accent bar top */
+  .accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D4A843 0%, rgba(212,168,67,0.2) 60%, transparent 100%);
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-bar"></div>
+  <div class="bg-lines"></div>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+
+  <div class="top-label">
+    <div class="label-line"></div>
+    <span class="label-text">CaRMS Match Rate — Canada</span>
+    <div class="label-line"></div>
+  </div>
+
+  <div class="content">
+    <div class="stats-row" style="position:relative;">
+      <div class="stat-block left">
+        <div class="stat-label">Canadian Grads</div>
+        <div class="stat-number">97%</div>
+        <div class="stat-sub">match into residency</div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="stat-block right">
+        <div class="stat-label">IMGs</div>
+        <div class="stat-number">10–22%</div>
+        <div class="stat-sub">match into residency</div>
+      </div>
+    </div>
+
+    <div class="headline">
+      That's not a <em>performance gap.</em><br>That's a structural one.
+    </div>
+
+    <div class="sub">
+      The system wasn't built for you to win.<br>It was built for you to keep trying.
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="source">Source: CaRMS Annual Report</span>
+  </div>
+</div>
+</body>
+</html>

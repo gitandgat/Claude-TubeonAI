@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 2 — Reel Cover</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1A1A1A;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1080px;
+    background: #1A1A1A;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 90px 88px;
+    overflow: hidden;
+  }
+
+  /* Diagonal amber slash */
+  .slash {
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 520px;
+    height: 520px;
+    background: linear-gradient(135deg, rgba(212,168,67,0.12) 0%, transparent 60%);
+    transform: rotate(0deg);
+    pointer-events: none;
+  }
+
+  /* Bottom left glow */
+  .glow-bl {
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(91,154,139,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Top accent bar */
+  .accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D4A843 0%, rgba(212,168,67,0.15) 70%, transparent 100%);
+  }
+
+  /* Left accent line */
+  .accent-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #D4A843 0%, rgba(212,168,67,0.1) 60%, transparent 100%);
+  }
+
+  /* Tag */
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #D4A843;
+    background: rgba(212,168,67,0.1);
+    border: 1px solid rgba(212,168,67,0.25);
+    padding: 8px 18px;
+    border-radius: 2px;
+    margin-bottom: 52px;
+  }
+
+  /* Money line */
+  .money-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+
+  .money-amount {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 110px;
+    font-weight: 900;
+    color: #D4A843;
+    line-height: 1;
+    text-shadow: 0 0 80px rgba(212,168,67,0.3);
+  }
+
+  .money-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: rgba(212,168,67,0.6);
+    margin-left: 12px;
+    margin-bottom: 8px;
+  }
+
+  /* Years line */
+  .years-line {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 52px;
+  }
+
+  .years-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: rgba(250,247,242,0.5);
+    line-height: 1;
+  }
+
+  .years-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.3);
+  }
+
+  .years-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(212,168,67,0.4);
+  }
+
+  /* Divider */
+  .divider {
+    width: 64px;
+    height: 2px;
+    background: rgba(212,168,67,0.4);
+    margin-bottom: 44px;
+  }
+
+  /* Headline */
+  .headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 46px;
+    font-weight: 700;
+    color: #FAF7F2;
+    line-height: 1.25;
+    max-width: 740px;
+    margin-bottom: 28px;
+  }
+
+  .headline em {
+    font-style: italic;
+    color: #D4A843;
+  }
+
+  /* Sub */
+  .sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.4);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  /* Odds badge — top right */
+  .odds-badge {
+    position: absolute;
+    top: 88px;
+    right: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 32px;
+    background: rgba(44,44,44,0.7);
+    border: 1px solid rgba(250,247,242,0.07);
+    border-radius: 4px;
+    gap: 6px;
+  }
+
+  .odds-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.3);
+  }
+
+  .odds-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: rgba(250,247,242,0.18);
+    line-height: 1;
+  }
+
+  .odds-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: rgba(250,247,242,0.2);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: absolute;
+    bottom: 52px;
+    left: 88px;
+    right: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(212,168,67,0.6);
+  }
+
+  .cta-pill {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A1A1A;
+    background: #D4A843;
+    padding: 10px 22px;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Background grid */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-bar"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="slash"></div>
+  <div class="glow-bl"></div>
+
+  <div class="odds-badge">
+    <div class="odds-label">IMG match rate</div>
+    <div class="odds-number">10–22%</div>
+    <div class="odds-sub">from day one</div>
+  </div>
+
+  <div class="tag">The Math Nobody Showed You</div>
+
+  <div class="money-line">
+    <div class="money-amount">$18K</div>
+    <div class="money-label">spent</div>
+  </div>
+
+  <div class="years-line">
+    <div class="years-number">5 years</div>
+    <div class="years-dot"></div>
+    <div class="years-label">given</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="headline">
+    That's not failure.<br>
+    That's a <em>math problem</em><br>
+    nobody showed you.
+  </div>
+
+  <div class="sub">
+    The only question left is —<br>what does the next year cost you?
+  </div>
+
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="cta-pill">Free Calculator →</span>
+  </div>
+</div>
+</body>
+</html>

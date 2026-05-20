@@ -1,0 +1,1168 @@
+{
+  "Requests": {
+    "chunk_ids": [
+      "chunk-764585bfa3c0c120e349fa6336d77e7a"
+    ],
+    "count": 1,
+    "create_time": 1774121990,
+    "update_time": 1774121990,
+    "_id": "Requests"
+  },
+  "Python-Dotenv": {
+    "chunk_ids": [
+      "chunk-764585bfa3c0c120e349fa6336d77e7a"
+    ],
+    "count": 1,
+    "create_time": 1774121990,
+    "update_time": 1774121990,
+    "_id": "Python-Dotenv"
+  },
+  "Life Audit": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 4,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Life Audit"
+  },
+  "Self-Sabotage Analysis": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Self-Sabotage Analysis"
+  },
+  "Personal Operating System": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 4,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Personal Operating System"
+  },
+  "Hard Conversation Rehearsal": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76"
+    ],
+    "count": 2,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Hard Conversation Rehearsal"
+  },
+  "Accountability System": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 4,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Accountability System"
+  },
+  "Emotional Trigger Decoding": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76"
+    ],
+    "count": 2,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Emotional Trigger Decoding"
+  },
+  "Letter Writing Exercise": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "Letter Writing Exercise"
+  },
+  "AI": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 2,
+    "create_time": 1774122031,
+    "update_time": 1774122031,
+    "_id": "AI"
+  },
+  "BJ Fogg": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 4,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "BJ Fogg"
+  },
+  "Tiny-Habit Design": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Tiny-Habit Design"
+  },
+  "Dopamine": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Dopamine"
+  },
+  "Mindless Consumption": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Mindless Consumption"
+  },
+  "Structured Self-Conversation": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Structured Self-Conversation"
+  },
+  "Prompt Framework": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Prompt Framework"
+  },
+  "Expressive Writing": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 4,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Expressive Writing"
+  },
+  "Original Wound": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76"
+    ],
+    "count": 2,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Original Wound"
+  },
+  "Core Fear": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Core Fear"
+  },
+  "Limiting Belief": {
+    "chunk_ids": [
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Limiting Belief"
+  },
+  "ChatGPT": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "ChatGPT"
+  },
+  "Claude": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 6,
+    "update_time": 1774122165,
+    "_id": "Claude"
+  },
+  "Self-Awareness": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Self-Awareness"
+  },
+  "Introspection Illusion": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Introspection Illusion"
+  },
+  "Cognitive Dissonance": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Cognitive Dissonance"
+  },
+  "Self-Sabotage": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76"
+    ],
+    "count": 1,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Self-Sabotage"
+  },
+  "Hidden Payoff": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122032,
+    "update_time": 1774122032,
+    "_id": "Hidden Payoff"
+  },
+  "Psychological Distance": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Psychological Distance"
+  },
+  "Therapy": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 3,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Therapy"
+  },
+  "Human Relationships": {
+    "chunk_ids": [
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 2,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Human Relationships"
+  },
+  "Self-Sabotage Pattern": {
+    "chunk_ids": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Self-Sabotage Pattern"
+  },
+  "Unsent Letter": {
+    "chunk_ids": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 2,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Unsent Letter"
+  },
+  "Emotional Trigger": {
+    "chunk_ids": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Emotional Trigger"
+  },
+  "Difficult Conversation Rehearsal": {
+    "chunk_ids": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Difficult Conversation Rehearsal"
+  },
+  "Tiny Habits": {
+    "chunk_ids": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 2,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Tiny Habits"
+  },
+  "Human Connection": {
+    "chunk_ids": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Human Connection"
+  },
+  "Self-Sabotage Patterns": {
+    "chunk_ids": [
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Self-Sabotage Patterns"
+  },
+  "Emotional Triggers": {
+    "chunk_ids": [
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Emotional Triggers"
+  },
+  "Pattern Recognition": {
+    "chunk_ids": [
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Pattern Recognition"
+  },
+  "TikTok Video Script": {
+    "chunk_ids": [
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "TikTok Video Script"
+  },
+  "YouTube Shorts Script": {
+    "chunk_ids": [
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "YouTube Shorts Script"
+  },
+  "Difficult Conversations": {
+    "chunk_ids": [
+      "chunk-1eb01cd2d607a14da2729a2994a8833a"
+    ],
+    "count": 1,
+    "create_time": 1774122033,
+    "update_time": 1774122033,
+    "_id": "Difficult Conversations"
+  },
+  "Claude Code": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 2,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Claude Code"
+  },
+  "Retrieval-Augmented Generation (RAG)": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840"
+    ],
+    "count": 1,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Retrieval-Augmented Generation (RAG)"
+  },
+  "Sub-Agents": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 4,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Sub-Agents"
+  },
+  "Checkpoints And Undo": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 3,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Checkpoints And Undo"
+  },
+  "Plan Mode": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Plan Mode"
+  },
+  "Bypass Permission": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004"
+    ],
+    "count": 2,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Bypass Permission"
+  },
+  "Claude.md": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 4,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Claude.md"
+  },
+  "Haiku": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Haiku"
+  },
+  "Sonnet": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Sonnet"
+  },
+  "Opus": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Opus"
+  },
+  "Model Context Protocol (MCP)": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840"
+    ],
+    "count": 1,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Model Context Protocol (MCP)"
+  },
+  "API": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "API"
+  },
+  "Context Window": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Context Window"
+  },
+  "Tokens": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 3,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Tokens"
+  },
+  "Prompt Engineering": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "Prompt Engineering"
+  },
+  "JSON": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122165,
+    "update_time": 1774122165,
+    "_id": "JSON"
+  },
+  "Repo": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004"
+    ],
+    "count": 2,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Repo"
+  },
+  "Git": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Git"
+  },
+  "GitHub": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "GitHub"
+  },
+  "Terminal / CLI": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 4,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Terminal / CLI"
+  },
+  "VS Code": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "VS Code"
+  },
+  "Cursor": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Cursor"
+  },
+  "Vercel": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 4,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Vercel"
+  },
+  "Supabase": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 4,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Supabase"
+  },
+  "Notion": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 2,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Notion"
+  },
+  "Deployment": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Deployment"
+  },
+  "Every Claude Code Concept Explained For Non-Techies": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 2,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Every Claude Code Concept Explained For Non-Techies"
+  },
+  "Compact Conversation": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Compact Conversation"
+  },
+  "/Clear": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004"
+    ],
+    "count": 2,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "/Clear"
+  },
+  "/Resume": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004"
+    ],
+    "count": 2,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "/Resume"
+  },
+  "/Init": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840"
+    ],
+    "count": 1,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "/Init"
+  },
+  "Safety Practices": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840"
+    ],
+    "count": 1,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Safety Practices"
+  },
+  "Prompt": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Prompt"
+  },
+  "Tools": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840"
+    ],
+    "count": 1,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Tools"
+  },
+  "Front End": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Front End"
+  },
+  "Back End": {
+    "chunk_ids": [
+      "chunk-025a86a4903e4e489cd42bedaffcb840",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 5,
+    "create_time": 1774122166,
+    "update_time": 1774122166,
+    "_id": "Back End"
+  },
+  "MCP (Model Context Protocol)": {
+    "chunk_ids": [
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 4,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "MCP (Model Context Protocol)"
+  },
+  "RAG (Retrieval-Augmented Generation)": {
+    "chunk_ids": [
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 3,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "RAG (Retrieval-Augmented Generation)"
+  },
+  "Slashinit (/Init)": {
+    "chunk_ids": [
+      "chunk-ab74c3d2ad783400aacdc12951dd5004"
+    ],
+    "count": 1,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Slashinit (/Init)"
+  },
+  "Anti-Gravity": {
+    "chunk_ids": [
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Anti-Gravity"
+  },
+  "Ask Before Edits": {
+    "chunk_ids": [
+      "chunk-ab74c3d2ad783400aacdc12951dd5004"
+    ],
+    "count": 1,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Ask Before Edits"
+  },
+  "Token": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Token"
+  },
+  "Repository": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 1,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Repository"
+  },
+  "Checkpoints & Undo": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Checkpoints & Undo"
+  },
+  "Claude Code 2.0": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 3,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Claude Code 2.0"
+  },
+  "Notion Doc": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Notion Doc"
+  },
+  "Pro/Max Subscription": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 1,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Pro/Max Subscription"
+  },
+  "Tools (Read/Write/Bash)": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "Tools (Read/Write/Bash)"
+  },
+  "/Init Command": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "/Init Command"
+  },
+  "/Clear Command": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 2,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "/Clear Command"
+  },
+  "/Resume Command": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 1,
+    "create_time": 1774122167,
+    "update_time": 1774122167,
+    "_id": "/Resume Command"
+  },
+  "Bypass Permission Mode": {
+    "chunk_ids": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Bypass Permission Mode"
+  },
+  "RAG (Retrieval Augmented Generation)": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "RAG (Retrieval Augmented Generation)"
+  },
+  "Bypass Permissions": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Bypass Permissions"
+  },
+  "Repo (Repository)": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Repo (Repository)"
+  },
+  "Microsoft": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Microsoft"
+  },
+  "/init": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "/init"
+  },
+  "/clear": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "/clear"
+  },
+  "-resume": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "-resume"
+  },
+  "Ask-Before-Edits": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Ask-Before-Edits"
+  },
+  "Pro/Max Plan": {
+    "chunk_ids": [
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 2,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Pro/Max Plan"
+  },
+  "Permissions/Modes": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Permissions/Modes"
+  },
+  "Claude.md (MD File)": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Claude.md (MD File)"
+  },
+  "Sub-agents": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Sub-agents"
+  },
+  "Resume Command": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Resume Command"
+  },
+  "Bypass-Permission Mode": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122168,
+    "update_time": 1774122168,
+    "_id": "Bypass-Permission Mode"
+  },
+  "Repository (Repo)": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122169,
+    "update_time": 1774122169,
+    "_id": "Repository (Repo)"
+  },
+  "Terminal/CLI": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122169,
+    "update_time": 1774122169,
+    "_id": "Terminal/CLI"
+  },
+  "Antigravity": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122169,
+    "update_time": 1774122169,
+    "_id": "Antigravity"
+  },
+  "Notion API": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122169,
+    "update_time": 1774122169,
+    "_id": "Notion API"
+  },
+  "Ask-Before-Edits Mode": {
+    "chunk_ids": [
+      "chunk-047f3904283ca1416cabe7cde1e03247"
+    ],
+    "count": 1,
+    "create_time": 1774122169,
+    "update_time": 1774122169,
+    "_id": "Ask-Before-Edits Mode"
+  }
+}

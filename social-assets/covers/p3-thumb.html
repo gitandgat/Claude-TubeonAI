@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:600px; height:600px; overflow:hidden; background:#0E1A17; display:flex; align-items:center; justify-content:center; }
+  .card { width:600px; height:600px; background:#0E1A17; position:relative; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding:48px 52px; overflow:hidden; }
+  .accent-top { position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#4ADE80 0%,rgba(74,222,128,0.1) 70%,transparent 100%); }
+  .accent-left { position:absolute; top:0; left:0; bottom:0; width:4px; background:linear-gradient(180deg,#4ADE80 0%,rgba(74,222,128,0.1) 60%,transparent 100%); }
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(74,222,128,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,0.025) 1px,transparent 1px); background-size:60px 60px; }
+  .glow { position:absolute; top:-60px; right:-60px; width:300px; height:300px; background:radial-gradient(circle,rgba(74,222,128,0.08) 0%,transparent 65%); }
+  .price { font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#fff; background:#2C5F4A; padding:6px 14px; border-radius:2px; margin-bottom:24px; display:inline-block; }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-size:44px; font-weight:900; color:#FAF7F2; line-height:1.1; margin-bottom:20px; }
+  .sub { font-family:'Inter',sans-serif; font-size:14px; color:rgba(250,247,242,0.4); line-height:1.5; max-width:320px; margin-bottom:28px; }
+  .paths { display:flex; gap:10px; }
+  .path-pill { font-family:'Inter',sans-serif; font-size:12px; font-weight:500; color:rgba(74,222,128,0.65); background:rgba(74,222,128,0.06); border:1px solid rgba(74,222,128,0.15); padding:6px 12px; border-radius:2px; white-space:nowrap; }
+  .brand { position:absolute; bottom:28px; left:52px; font-family:'Playfair Display',Georgia,serif; font-size:13px; font-weight:700; color:rgba(74,222,128,0.4); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-top"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="glow"></div>
+  <div class="price">$37</div>
+  <h1>The IMG<br>Career Map</h1>
+  <div class="sub">12 paths where your MD is an asset. Canadian income data. Express Entry notes.</div>
+  <div class="paths">
+    <div class="path-pill">12 paths</div>
+    <div class="path-pill">$50K–$140K+</div>
+    <div class="path-pill">Immigration safe</div>
+  </div>
+  <div class="brand">Crosswalk Wisdom</div>
+</div>
+</body>
+</html>

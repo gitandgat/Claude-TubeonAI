@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day 4 — Sahawat Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    background: #1A1A1A;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 90px 96px;
+    overflow: hidden;
+    background: #1A1A1A;
+  }
+
+  /* Accents */
+  .accent-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #D4A843 0%, rgba(212,168,67,0.15) 70%, transparent 100%);
+  }
+  .accent-left {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #D4A843 0%, rgba(212,168,67,0.1) 60%, transparent 100%);
+  }
+
+  /* Background grid */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,168,67,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,168,67,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* Glow */
+  .glow-tr {
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 440px; height: 440px;
+    background: radial-gradient(circle, rgba(212,168,67,0.09) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .glow-bl {
+    position: absolute;
+    bottom: -80px; left: -60px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(91,154,139,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Quote block — the two questions */
+  .question-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 60px;
+    position: relative;
+    padding-left: 36px;
+  }
+
+  .question-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #D4A843 0%, rgba(212,168,67,0.2) 100%);
+    border-radius: 2px;
+  }
+
+  .question-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    padding: 20px 0;
+  }
+
+  .question-row + .question-row {
+    border-top: 1px solid rgba(250,247,242,0.06);
+  }
+
+  .question-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(212,168,67,0.5);
+    min-width: 80px;
+    padding-top: 5px;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .question-row.old .question-text {
+    color: rgba(250,247,242,0.25);
+    text-decoration: line-through;
+    text-decoration-color: rgba(212,168,67,0.3);
+  }
+
+  .question-row.new .question-text {
+    color: #FAF7F2;
+  }
+
+  .question-row.new .question-text em {
+    font-style: italic;
+    color: #D4A843;
+  }
+
+  /* Divider */
+  .divider {
+    width: 56px;
+    height: 2px;
+    background: rgba(212,168,67,0.35);
+    margin-bottom: 44px;
+  }
+
+  /* Body copy */
+  .body-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.5);
+    line-height: 1.65;
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+
+  .body-text strong {
+    color: rgba(250,247,242,0.85);
+    font-weight: 600;
+  }
+
+  /* Tag */
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #D4A843;
+    background: rgba(212,168,67,0.1);
+    border: 1px solid rgba(212,168,67,0.25);
+    padding: 7px 16px;
+    border-radius: 2px;
+    margin-bottom: 48px;
+    display: inline-block;
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: absolute;
+    bottom: 52px;
+    left: 96px;
+    right: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(212,168,67,0.6);
+  }
+
+  .author {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(250,247,242,0.25);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-top"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-tr"></div>
+  <div class="glow-bl"></div>
+
+  <div class="tag">Personal Story — IMG Pathway</div>
+
+  <div class="question-block">
+    <div class="question-row old">
+      <div class="question-label">Before</div>
+      <div class="question-text">"Will I match?"</div>
+    </div>
+    <div class="question-row new">
+      <div class="question-label">After</div>
+      <div class="question-text">"Do I even <em>want</em> to?"</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="body-text">
+    At some point on the pathway, the question changed.<br><br>
+    <strong>"Will I match?"</strong> is a question about the system.<br>
+    The system has already answered it. <strong>10–22%.</strong><br><br>
+    <strong>"Do I even want to?"</strong> is a question about you.<br>
+    That one only you can answer.
+  </div>
+
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="author">Sahawat — IMG, Crossing Guard, Founder</span>
+  </div>
+</div>
+</body>
+</html>

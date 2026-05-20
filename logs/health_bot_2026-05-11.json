@@ -1,0 +1,35 @@
+{
+  "date": "2026-05-11",
+  "results": [
+    {
+      "title": "3 signs that you\u2019ve hit clinical burnout and should seek help | Laurie Santos",
+      "slot": "08:00",
+      "success": true,
+      "error": null
+    },
+    {
+      "title": "Why Some People Build Better Habits (and How You Can Too)",
+      "slot": "11:00",
+      "success": true,
+      "error": null
+    },
+    {
+      "title": "How To Treat And Prevent Mental Exhaustion",
+      "slot": "14:00",
+      "success": true,
+      "error": null
+    },
+    {
+      "title": "Burnout Explained: Signs, Causes & How to Recover | Mental Exhaustion & Stress Guide",
+      "slot": "17:00",
+      "success": true,
+      "error": null
+    },
+    {
+      "title": "Healing from Burnout as Part of Complex Trauma Recovery",
+      "slot": "20:00",
+      "success": false,
+      "error": "hour must be in 0..23, not 24"
+    }
+  ]
+}

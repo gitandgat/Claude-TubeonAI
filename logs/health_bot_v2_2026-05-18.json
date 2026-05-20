@@ -1,0 +1,47 @@
+{
+  "date": "2026-05-18",
+  "bot_version": "v2",
+  "health_status": "healthy",
+  "results": [
+    {
+      "title": "10 Habits That Boost Your Emotional Well-being",
+      "slot": "08:00",
+      "success": false,
+      "error": "Zernio error 429: {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}",
+      "duration": 39.5478458404541,
+      "retries": 0
+    },
+    {
+      "title": "7 Stages of Burnout: How Do You Compare?",
+      "slot": "11:00",
+      "success": false,
+      "error": "Zernio error 429: {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}",
+      "duration": 50.82373809814453,
+      "retries": 0
+    },
+    {
+      "title": "How the food you eat affects your brain - Mia Nacamulli",
+      "slot": "14:00",
+      "success": false,
+      "error": "Zernio error 429: {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}",
+      "duration": 48.58470392227173,
+      "retries": 0
+    },
+    {
+      "title": "How I Start My Day for PEAK Performance (6 Science-Based Habits)",
+      "slot": "17:00",
+      "success": false,
+      "error": "Zernio error 429: {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}",
+      "duration": 38.90305781364441,
+      "retries": 0
+    },
+    {
+      "title": "Healthy Lifestyle",
+      "slot": "20:00",
+      "success": false,
+      "error": "Zernio error 429: {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}",
+      "duration": 10.60043215751648,
+      "retries": 0
+    }
+  ]
+}
