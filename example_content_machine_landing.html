@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Mini-Course: Build Your Content Machine (No Burnout)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .subheading {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .hero .highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Main Content */
+        .main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 60px 0;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .video-placeholder {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 48px;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-section p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .value-props {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .value-props li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .value-props li::before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        /* Form */
+        .signup-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .social-proof h3 {
+            font-size: 24px;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .proof-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .proof-item {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .proof-item .number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .proof-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Course Preview */
+        .course-preview {
+            padding: 60px 0;
+        }
+
+        .course-preview h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        .course-modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .module {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .module:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15);
+        }
+
+        .module-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .module h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .module p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background: #fff5f7;
+            padding: 60px 20px;
+            margin: 60px 0;
+        }
+
+        .problem-section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .problem-list {
+            max-width: 600px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .problem-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .problem-list li::before {
+            content: "✗";
+            color: #f5576c;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .secondary-cta {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .secondary-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="highlight">✓ 3,200+ creators have built their machine</div>
+            <h1>Build Your Content Machine<br/>Without the Burnout</h1>
+            <p class="subheading">Free mini-course: 3 videos that reveal the framework used by the most productive creators</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <section class="main">
+            <div class="video-placeholder">
+                🎬 Video 1: The Problem Preview
+            </div>
+
+            <div class="form-section">
+                <h2>Get Instant Access</h2>
+                <p>Learn the exact framework that transforms chaotic content creation into a predictable system that runs itself.</p>
+
+                <ul class="value-props">
+                    <li>3 video lessons (20 min total)</li>
+                    <li>Downloadable content calendar template</li>
+                    <li>The "Minimal Viable Content" framework</li>
+                    <li>Bonus: Implementation checklist</li>
+                </ul>
+
+                <form class="signup-form">
+                    <div class="form-group">
+                        <label for="name">First Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <button type="submit" class="cta-button">Send Me the Free Videos</button>
+
+                    <p style="margin-top: 15px; font-size: 12px; color: #999; text-align: center;">
+                        ✓ No spam. Unsubscribe anytime.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="problem-section">
+            <h2>Does This Sound Familiar?</h2>
+            <ul class="problem-list">
+                <li>You're creating content, but it never feels systematic or scalable</li>
+                <li>You're always asking "What should I post next?"</li>
+                <li>You spend more time planning than actually creating</li>
+                <li>Your best content ideas come at the last minute (and feel rushed)</li>
+                <li>You're burned out from juggling too many platforms</li>
+                <li>You've tried systems before, but they never stick</li>
+            </ul>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="social-proof">
+            <h3>Results from creators who've built their machine</h3>
+            <div class="proof-items">
+                <div class="proof-item">
+                    <div class="number">8 weeks</div>
+                    <p>Average time to build a sustainable content system</p>
+                </div>
+                <div class="proof-item">
+                    <div class="number">65%</div>
+                    <p>Time saved per week after implementing the framework</p>
+                </div>
+                <div class="proof-item">
+                    <div class="number">4.8/5</div>
+                    <p>Average rating from mini-course completers</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Preview -->
+        <section class="course-preview">
+            <h2>What You'll Learn in 3 Videos</h2>
+            <div class="course-modules">
+                <div class="module">
+                    <div class="module-number">1</div>
+                    <h3>The Content Gap</h3>
+                    <p>Why 87% of creators' systems fail (and it's not what you think)</p>
+                </div>
+                <div class="module">
+                    <div class="module-number">2</div>
+                    <h3>The Machine Framework</h3>
+                    <p>The 3-phase system that turns ad-hoc content into a predictable engine</p>
+                </div>
+                <div class="module">
+                    <div class="module-number">3</div>
+                    <h3>Your 90-Day Plan</h3>
+                    <p>Exactly how to implement this week-by-week (with no guesswork)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Build Your Machine?</h2>
+            <p>Get the 3 videos + templates and join 3,200+ creators who are done with chaos.</p>
+            <a href="#signup" class="secondary-cta">Get Instant Access</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Crosswalk Wisdom. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            console.log('Form submitted:', { name, email });
+            alert('Thanks! Your first video is on the way. Check your email in 1 minute.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

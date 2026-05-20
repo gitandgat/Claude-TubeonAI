@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; background:#0E1A17; display:flex; align-items:center; justify-content:center; }
+  .card { width:1280px; height:720px; background:#0E1A17; position:relative; display:flex; align-items:center; padding:80px 96px; overflow:hidden; }
+  .accent-top { position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#2C5F4A 0%,rgba(44,95,74,0.2) 60%,transparent 100%); }
+  .accent-left { position:absolute; top:0; left:0; bottom:0; width:5px; background:linear-gradient(180deg,#4ADE80 0%,rgba(74,222,128,0.1) 60%,transparent 100%); }
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(74,222,128,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,0.025) 1px,transparent 1px); background-size:80px 80px; }
+  .glow-tr { position:absolute; top:-80px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(74,222,128,0.08) 0%,transparent 65%); }
+  .left { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; max-width:600px; }
+  .price-tag { display:inline-flex; align-items:center; gap:10px; margin-bottom:32px; }
+  .price-badge { font-family:'Inter',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:#2C5F4A; padding:8px 18px; border-radius:2px; }
+  .series { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(74,222,128,0.4); }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-size:64px; font-weight:900; color:#FAF7F2; line-height:1.05; margin-bottom:24px; }
+  .tagline { font-family:'Inter',sans-serif; font-size:20px; font-weight:400; color:rgba(250,247,242,0.45); line-height:1.55; max-width:500px; margin-bottom:40px; }
+  .pills { display:flex; flex-wrap:wrap; gap:10px; }
+  .pill { font-family:'Inter',sans-serif; font-size:13px; font-weight:500; color:rgba(74,222,128,0.7); background:rgba(74,222,128,0.06); border:1px solid rgba(74,222,128,0.18); padding:7px 14px; border-radius:2px; }
+  .right { position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; padding-left:64px; flex-shrink:0; gap:12px; }
+  .path-card { width:240px; padding:16px 20px; border:1px solid rgba(74,222,128,0.12); border-left:3px solid rgba(74,222,128,0.4); background:rgba(74,222,128,0.04); border-radius:0 2px 2px 0; }
+  .path-name { font-family:'Inter',sans-serif; font-size:13px; font-weight:600; color:rgba(250,247,242,0.65); margin-bottom:4px; line-height:1.3; }
+  .path-income { font-family:'Playfair Display',Georgia,serif; font-size:16px; font-weight:700; color:#4ADE80; }
+  .path-time { font-family:'Inter',sans-serif; font-size:11px; color:rgba(250,247,242,0.25); margin-top:2px; }
+  .more { font-family:'Inter',sans-serif; font-size:12px; color:rgba(74,222,128,0.4); text-align:right; letter-spacing:0.08em; }
+  .bottom-bar { position:absolute; bottom:36px; left:96px; right:96px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:'Playfair Display',Georgia,serif; font-size:16px; font-weight:700; color:rgba(74,222,128,0.4); }
+  .format { font-family:'Inter',sans-serif; font-size:11px; color:rgba(250,247,242,0.15); letter-spacing:0.12em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-top"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-tr"></div>
+  <div class="left">
+    <div class="price-tag">
+      <span class="price-badge">$37</span>
+      <span class="series">IMG Pivot Guide · Vol. 3</span>
+    </div>
+    <h1>The IMG<br>Career Map</h1>
+    <div class="tagline">12 paths where your MD is an asset, not a liability. With Canadian income data, time-to-hire, and Express Entry notes.</div>
+    <div class="pills">
+      <div class="pill">12 career paths</div>
+      <div class="pill">Canadian income data</div>
+      <div class="pill">Express Entry notes</div>
+      <div class="pill">First step for each</div>
+      <div class="pill">Not a list — a map</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="path-card">
+      <div class="path-name">Medical Writer</div>
+      <div class="path-income">$65K–$110K</div>
+      <div class="path-time">2–6 weeks to first role</div>
+    </div>
+    <div class="path-card">
+      <div class="path-name">Pharma / MedDevice Sales</div>
+      <div class="path-income">$75K–$130K+</div>
+      <div class="path-time">3–6 weeks to first role</div>
+    </div>
+    <div class="path-card">
+      <div class="path-name">Medico-Legal Consultant</div>
+      <div class="path-income">$80K–$140K</div>
+      <div class="path-time">2–4 weeks to first role</div>
+    </div>
+    <div class="more">+ 9 more paths inside</div>
+  </div>
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="format">PDF · Instant Download · Money-back guarantee</span>
+  </div>
+</div>
+</body>
+</html>

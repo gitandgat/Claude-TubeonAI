@@ -1,0 +1,134 @@
+
+============================================================
+Daily Health Bot  —  2026-05-12
+============================================================
+
+Searching for 5 health/wellness videos...
+  Searching: mental health burnout recovery psychology
+Traceback (most recent call last):
+  File "/Users/toto/Claude TubeonAI/daily_health_bot.py", line 252, in <module>
+    run()
+    ~~~^^
+  File "/Users/toto/Claude TubeonAI/daily_health_bot.py", line 213, in run
+    videos = get_fresh_videos(5)
+  File "/Users/toto/Claude TubeonAI/health_video_finder.py", line 84, in get_fresh_videos
+    for v in search_youtube(query):
+             ~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/toto/Claude TubeonAI/health_video_finder.py", line 58, in search_youtube
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=45)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1038, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py", line 1989, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'yt-dlp'
+
+============================================================
+Daily Health Bot  —  2026-05-15
+============================================================
+
+Searching for 5 health/wellness videos...
+  Searching: stress nervous system regulation
+  Searching: longevity healthy aging lifestyle
+Found 5 video(s). Starting pipeline...
+
+
+[Post 1/5]  →  08:00 ET
+  Advice From the #1 Longevity Doctor: Add 10 Years to Your Life With 3 
+  https://www.youtube.com/watch?v=SQ54wma-JQA
+  [1/4] TubeonAI summary...
+  [2/4] Writing post (Haiku)...
+  ✓ Hook: **You can't buy your way to longevity—you have to live your way there.**
+  [3/4] Generating image (DALL-E 3)...
+  ✗ Error: Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+
+[Post 2/5]  →  11:00 ET
+  9 Micro Habits for Self-Regulation of Trauma or Anxiety
+  https://www.youtube.com/watch?v=7nj7Z2lPLnU
+  [1/4] TubeonAI summary...
+  Waiting for summary 019e2b50-ccff-71b8-90b7-5717c647a767...
+  [0%] Request queued for processing
+  [10%] Fetching content information...
+  [35%] Transcription complete. Starting summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [100%] Summary complete
+  [2/4] Writing post (Haiku)...
+  ✓ Hook: **Your nervous system is stuck in fight-or-flight mode, and it's exhausting you.
+  [3/4] Generating image (DALL-E 3)...
+  ✗ Error: Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+
+[Post 3/5]  →  14:00 ET
+  Parasympathetic Response: Train Your Nervous System to Turn off Stress
+  https://www.youtube.com/watch?v=8FpKpW0EhYo
+  [1/4] TubeonAI summary...
+  Waiting for summary 019e2b51-c23b-7385-a46a-0977ee4d279d...
+  [0%] Request queued for processing
+  [10%] Fetching content information...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [100%] Summary complete
+  [2/4] Writing post (Haiku)...
+  ✓ Hook: **Your nervous system has an off switch—and it's probably collecting dust.**
+  [3/4] Generating image (DALL-E 3)...
+  ✗ Error: Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+
+[Post 4/5]  →  17:00 ET
+  Aging well: my journey to a healthier lifestyle | Bettina Gordon-Wayne
+  https://www.youtube.com/watch?v=h7CfQI64uqQ
+  [1/4] TubeonAI summary...
+  Waiting for summary 019e2b52-7485-71ca-8e8a-5a3e6d04c3a9...
+  [0%] Request queued for processing
+  [10%] Fetching content information...
+  [40%] Analyzing content for summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [85%] Generating summary...
+  [100%] Summary complete
+  [2/4] Writing post (Haiku)...
+  ✓ Hook: **Your biological age might be a decade younger than you think—and you have more
+  [3/4] Generating image (DALL-E 3)...
+  ✗ Error: Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+
+[Post 5/5]  →  20:00 ET
+  Nervous System Reset: Do THIS Every Day to Rewire Your Brain From Stre
+  https://www.youtube.com/watch?v=2aI8q3gE2-c
+  [1/4] TubeonAI summary...
+  [2/4] Writing post (Haiku)...
+  ✓ Hook: **Your childhood stress response is still running your adult relationships.**
+  [3/4] Generating image (DALL-E 3)...
+  ✗ Error: Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+
+============================================================
+SUMMARY
+============================================================
+  ✗  [08:00 ET]  Advice From the #1 Longevity Doctor: Add 10 Years to Yo
+       ↳ Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+  ✗  [11:00 ET]  9 Micro Habits for Self-Regulation of Trauma or Anxiety
+       ↳ Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+  ✗  [14:00 ET]  Parasympathetic Response: Train Your Nervous System to 
+       ↳ Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+  ✗  [17:00 ET]  Aging well: my journey to a healthier lifestyle | Betti
+       ↳ Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+  ✗  [20:00 ET]  Nervous System Reset: Do THIS Every Day to Rewire Your 
+       ↳ Error code: 400 - {'error': {'message': "The model 'dall-e-2' does not exist.", 'type': 'image_generation_user_error', 'param': 'model', 'code': 'invalid_value'}}
+
+Log: logs/health_bot_2026-05-15.json
+============================================================
+

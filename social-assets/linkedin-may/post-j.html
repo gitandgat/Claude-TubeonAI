@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Post J — The Structural Truth</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    background-image: url('./images/j-structural-truth.jpg');
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(14,10,6,0.97) 0%,
+      rgba(14,10,6,0.85) 40%,
+      rgba(14,10,6,0.55) 65%,
+      rgba(14,10,6,0.20) 100%
+    );
+  }
+
+  .accent-left {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, rgba(212,168,67,0.1) 0%, #D4A843 50%, rgba(212,168,67,0.15) 100%);
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 0 88px 72px 92px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #D4A843;
+    background: rgba(212,168,67,0.12);
+    border: 1px solid rgba(212,168,67,0.3);
+    padding: 7px 16px;
+    border-radius: 2px;
+    margin-bottom: 36px;
+  }
+
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: #D4A843;
+    line-height: 1;
+    min-width: 120px;
+  }
+
+  .stat-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.8);
+    line-height: 1.35;
+  }
+
+  .stat-row.contrast .stat-num {
+    color: rgba(250,247,242,0.35);
+  }
+
+  .stat-row.contrast .stat-text {
+    color: rgba(250,247,242,0.4);
+  }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: rgba(212,168,67,0.4);
+    margin-bottom: 28px;
+  }
+
+  .sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.5);
+    line-height: 1.55;
+    max-width: 700px;
+    margin-bottom: 52px;
+  }
+
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(212,168,67,0.7);
+  }
+
+  .author {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(250,247,242,0.3);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="overlay"></div>
+  <div class="accent-left"></div>
+  <div class="content">
+    <div class="tag">The Structural Truth</div>
+    <div class="stat-block">
+      <div class="stat-row">
+        <div class="stat-num">44K</div>
+        <div class="stat-text">more doctors<br>Canada needs</div>
+      </div>
+      <div class="stat-row contrast">
+        <div class="stat-num">88%</div>
+        <div class="stat-text">of IMGs rejected<br>from residency</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="sub">Nobody wants to say both of those things<br>in the same sentence.</div>
+    <div class="bottom-bar">
+      <span class="brand">Crosswalk Wisdom</span>
+      <span class="author">Sahawat — IMG, Crossing Guard, Founder</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

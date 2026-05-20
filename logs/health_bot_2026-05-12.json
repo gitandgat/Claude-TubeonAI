@@ -1,0 +1,35 @@
+{
+  "date": "2026-05-12",
+  "results": [
+    {
+      "title": "How to manage your mental health | Leon Taylor | TEDxClapham",
+      "slot": "08:00",
+      "success": true,
+      "error": null
+    },
+    {
+      "title": "6 Weeks To Fix Their Gut Health!",
+      "slot": "11:00",
+      "success": false,
+      "error": "Zernio scheduling failed"
+    },
+    {
+      "title": "How to Improve Your GUT HEALTH The Holistic Way!",
+      "slot": "14:00",
+      "success": false,
+      "error": "Zernio scheduling failed"
+    },
+    {
+      "title": "Will fermented foods improve my gut health? | Sandor Katz and Professor Tim Spector",
+      "slot": "17:00",
+      "success": false,
+      "error": "Zernio scheduling failed"
+    },
+    {
+      "title": "The Science of Gut Health (& Why It Matters)",
+      "slot": "20:00",
+      "success": true,
+      "error": null
+    }
+  ]
+}

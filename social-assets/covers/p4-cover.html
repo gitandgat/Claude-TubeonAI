@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; background:#130F1E; display:flex; align-items:center; justify-content:center; }
+  .card { width:1280px; height:720px; background:#130F1E; position:relative; display:flex; align-items:center; padding:80px 96px; overflow:hidden; }
+  .accent-top { position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#7C3AED 0%,rgba(124,58,237,0.15) 60%,transparent 100%); }
+  .accent-left { position:absolute; top:0; left:0; bottom:0; width:5px; background:linear-gradient(180deg,#A855F7 0%,rgba(168,85,247,0.1) 60%,transparent 100%); }
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(168,85,247,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(168,85,247,0.03) 1px,transparent 1px); background-size:80px 80px; }
+  .glow-tr { position:absolute; top:-80px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(168,85,247,0.1) 0%,transparent 65%); }
+  .glow-bl { position:absolute; bottom:-60px; left:-60px; width:380px; height:380px; background:radial-gradient(circle,rgba(124,58,237,0.06) 0%,transparent 70%); }
+  .left { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; max-width:600px; }
+  .price-tag { display:inline-flex; align-items:center; gap:10px; margin-bottom:32px; }
+  .price-badge { font-family:'Inter',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#fff; background:#7C3AED; padding:8px 18px; border-radius:2px; }
+  .series { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(168,85,247,0.45); }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-size:64px; font-weight:900; color:#FAF7F2; line-height:1.05; margin-bottom:24px; }
+  .tagline { font-family:'Inter',sans-serif; font-size:20px; font-weight:400; color:rgba(250,247,242,0.45); line-height:1.55; max-width:500px; margin-bottom:40px; }
+  .weeks { display:flex; flex-direction:column; gap:12px; }
+  .week-row { display:flex; align-items:flex-start; gap:16px; padding:12px 16px; border:1px solid rgba(168,85,247,0.1); border-left:3px solid rgba(168,85,247,0.4); background:rgba(168,85,247,0.04); }
+  .week-label { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:rgba(168,85,247,0.5); white-space:nowrap; padding-top:2px; min-width:56px; }
+  .week-title { font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:rgba(250,247,242,0.65); }
+  .right { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-left:72px; flex-shrink:0; gap:16px; }
+  .day-ring { width:200px; height:200px; border-radius:50%; border:3px solid rgba(168,85,247,0.25); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; }
+  .day-ring::before { content:''; position:absolute; inset:-3px; border-radius:50%; border:3px solid transparent; border-top-color:#A855F7; border-right-color:rgba(168,85,247,0.4); }
+  .day-num { font-family:'Playfair Display',Georgia,serif; font-size:72px; font-weight:900; color:#A855F7; line-height:1; text-shadow:0 0 40px rgba(168,85,247,0.3); }
+  .day-label { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(168,85,247,0.5); }
+  .outcome { font-family:'Inter',sans-serif; font-size:14px; color:rgba(250,247,242,0.35); text-align:center; max-width:180px; line-height:1.5; }
+  .bottom-bar { position:absolute; bottom:36px; left:96px; right:96px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:'Playfair Display',Georgia,serif; font-size:16px; font-weight:700; color:rgba(168,85,247,0.45); }
+  .format { font-family:'Inter',sans-serif; font-size:11px; color:rgba(250,247,242,0.15); letter-spacing:0.12em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-top"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-tr"></div>
+  <div class="glow-bl"></div>
+  <div class="left">
+    <div class="price-tag">
+      <span class="price-badge">$47</span>
+      <span class="series">IMG Pivot Guide · Vol. 4</span>
+    </div>
+    <h1>The IMG<br>Survival Playbook</h1>
+    <div class="tagline">Income in 30 days. Without hiding your medical degree, starting over, or waiting for clarity first.</div>
+    <div class="weeks">
+      <div class="week-row"><span class="week-label">Week 1</span><span class="week-title">Reframe the Resume</span></div>
+      <div class="week-row"><span class="week-label">Week 2</span><span class="week-title">Target the Right Roles</span></div>
+      <div class="week-row"><span class="week-label">Week 3</span><span class="week-title">Outreach That Works</span></div>
+      <div class="week-row"><span class="week-label">Week 4</span><span class="week-title">Interview Prep — Own the Room</span></div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="day-ring">
+      <div class="day-num">30</div>
+      <div class="day-label">Day Plan</div>
+    </div>
+    <div class="outcome">Income without a Canadian medical license</div>
+  </div>
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="format">PDF · Instant Download · Money-back guarantee</span>
+  </div>
+</div>
+</body>
+</html>

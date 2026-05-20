@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trading Bot Dashboard</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ── Design tokens ─────────────────────────────────────────── */
+    :root {
+      --bg:          #080b10;
+      --surface:     #0d1117;
+      --panel:       #161b22;
+      --border:      #21262d;
+      --border-dim:  #161b22;
+      --text:        #c9d1d9;
+      --text-dim:    #8b949e;
+      --text-faint:  #484f58;
+      --green:       #3fb950;
+      --green-dim:   rgba(63,185,80,.15);
+      --red:         #f85149;
+      --red-dim:     rgba(248,81,73,.15);
+      --yellow:      #d29922;
+      --yellow-dim:  rgba(210,153,34,.15);
+      --blue:        #58a6ff;
+      --accent:      #00c7b1;
+      --accent-dim:  rgba(0,199,177,.1);
+      --radius:      6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Scrollbar ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── Layout ────────────────────────────────────────────────── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    /* ── Header ────────────────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .5px;
+    }
+
+    .mode-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: var(--yellow-dim);
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .clock {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    .clock span { color: var(--text); font-weight: 500; }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-faint);
+      transition: background .3s;
+    }
+    .status-dot.running  { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 1.4s infinite; }
+    .status-dot.error    { background: var(--red); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .4; }
+    }
+
+    /* ── Section labels ────────────────────────────────────────── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    /* ── Metric cards ──────────────────────────────────────────── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 24px 0 20px;
+    }
+
+    @media (max-width: 700px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+    }
+
+    .metric-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .metric-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .metric-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.5px;
+    }
+
+    .metric-value.positive { color: var(--green); }
+    .metric-value.negative { color: var(--red); }
+
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    /* ── Control buttons ───────────────────────────────────────── */
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid;
+      transition: all .15s;
+      outline: none;
+    }
+
+    .btn-run {
+      background: var(--green-dim);
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .btn-run:hover { background: var(--green); color: var(--bg); }
+
+    .btn-stop {
+      background: var(--red-dim);
+      border-color: var(--red);
+      color: var(--red);
+    }
+    .btn-stop:hover { background: var(--red); color: #fff; }
+
+    .btn-refresh {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text-dim);
+    }
+    .btn-refresh:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── Watchlist table ───────────────────────────────────────── */
+    .table-wrapper {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: var(--surface);
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-dim);
+      transition: background .1s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,.025); }
+
+    tbody td {
+      padding: 11px 14px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .ticker-cell {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--blue);
+    }
+
+    .price-cell { font-weight: 500; }
+
+    .vs-sma-pos { color: var(--green); }
+    .vs-sma-neg { color: var(--red); }
+
+    /* K Score cell */
+    .k-score-cell { min-width: 130px; }
+
+    .k-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .k-bar-track {
+      flex: 1;
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .k-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      /* gradient: red → yellow → green across the 0-100 scale */
+      background: linear-gradient(to right, #f85149, #d29922 50%, #3fb950);
+      transition: width .4s ease;
+    }
+
+    .k-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 28px;
+      text-align: right;
+    }
+
+    /* Signal badge */
+    .badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+    .badge-buy  { background: var(--green-dim);  border-color: var(--green);  color: var(--green); }
+    .badge-sell { background: var(--red-dim);    border-color: var(--red);    color: var(--red); }
+    .badge-hold { background: var(--yellow-dim); border-color: var(--yellow); color: var(--yellow); }
+
+    /* Position cell */
+    .position-cell { color: var(--text-dim); }
+    .position-cell.held { color: var(--accent); font-weight: 600; }
+
+    /* ── Activity log ──────────────────────────────────────────── */
+    .log-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .log-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .log-header-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .log-clear-btn {
+      font-family: inherit;
+      font-size: 10px;
+      color: var(--text-faint);
+      background: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .5px;
+    }
+    .log-clear-btn:hover { color: var(--text-dim); }
+
+    .log-body {
+      padding: 10px 14px;
+      height: 200px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .log-entry {
+      display: grid;
+      grid-template-columns: 70px 50px 1fr;
+      gap: 8px;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .log-time  { color: var(--text-faint); }
+    .log-level { font-weight: 600; }
+    .log-level.INFO  { color: var(--blue); }
+    .log-level.WARN  { color: var(--yellow); }
+    .log-level.ERROR { color: var(--red); }
+    .log-level.TRADE { color: var(--green); }
+    .log-msg   { color: var(--text-dim); }
+
+    /* ── Toast ─────────────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 18px;
+      font-size: 12px;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all .25s;
+      pointer-events: none;
+      z-index: 999;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── Last updated ──────────────────────────────────────────── */
+    .last-updated {
+      text-align: right;
+      font-size: 10px;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ───────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-left">
+      <div class="logo">▶ TRADING BOT</div>
+      <div class="mode-badge" id="mode-badge">paper</div>
+    </div>
+    <div class="header-right">
+      <div class="clock">ET <span id="clock">--:--:-- --</span></div>
+      <div class="status-dot" id="status-dot" title="Bot status"></div>
+    </div>
+  </header>
+
+  <!-- ── MAIN CONTENT ────────────────────────────────────────────────── -->
+  <div class="container">
+
+    <!-- Metric cards -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Portfolio Equity</div>
+        <div class="metric-value" id="equity">—</div>
+        <div class="metric-sub" id="equity-sub">Last trading day</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Buying Power</div>
+        <div class="metric-value" id="buying-power">—</div>
+        <div class="metric-sub" id="bp-sub">Available for trades</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Today's P&amp;L</div>
+        <div class="metric-value" id="pnl">—</div>
+        <div class="metric-sub" id="pnl-pct">vs yesterday close</div>
+      </div>
+    </div>
+
+    <!-- Control buttons -->
+    <div class="controls">
+      <button class="btn btn-run" onclick="handleRunBot()">▶ Run Bot</button>
+      <button class="btn btn-stop" onclick="handleStop()">■ Stop</button>
+      <button class="btn btn-refresh" onclick="handleRefresh()">↻ Refresh Data</button>
+    </div>
+
+    <!-- Last updated -->
+    <div class="last-updated" id="last-updated">Never refreshed</div>
+
+    <!-- Watchlist table -->
+    <div class="section-label">Watchlist</div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Last Close</th>
+            <th>SMA 20</th>
+            <th>vs SMA</th>
+            <th>Stock Rank (0–100)</th>
+            <th>Signal</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody id="watchlist-body">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Activity log -->
+    <div class="log-panel">
+      <div class="log-header">
+        <span class="log-header-title">Activity Log</span>
+        <button class="log-clear-btn" onclick="clearLog()">clear</button>
+      </div>
+      <div class="log-body" id="log-body">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- Toast notification -->
+  <div id="toast"></div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════════════
+    // MOCK DATA
+    // ─────────────────────────────────────────────────────────────────
+    // To connect real data, replace MOCK_DATA with fetch() calls to
+    // your backend (e.g. http://localhost:8000/api/account,
+    // /api/watchlist, /api/log) and call renderDashboard(data).
+    // ═══════════════════════════════════════════════════════════════════
+    const MOCK_DATA = {
+      account: {
+        equity:       100000.00,  // real starting balance from Alpaca paper account
+        buying_power: 200000.00,  // 2× margin
+        pnl_today:         0.00,
+        pnl_pct:           0.00,
+        mode:           "paper",
+      },
+      watchlist: [
+        {
+          ticker:    "AAPL",
+          close:     189.45,
+          sma20:     184.23,
+          vs_sma:      2.83,
+          k_score:     50,    // placeholder — update with real Kavout Stock Rank (0-100)
+          signal:    "HOLD",
+          position:  "—",
+        },
+        {
+          ticker:    "MSFT",
+          close:     415.20,
+          sma20:     398.60,
+          vs_sma:      4.16,
+          k_score:     50,
+          signal:    "HOLD",
+          position:  "—",
+        },
+        {
+          ticker:    "NVDA",
+          close:     875.30,
+          sma20:     860.10,
+          vs_sma:      1.77,
+          k_score:     50,
+          signal:    "HOLD",
+          position:  "—",
+        },
+        {
+          ticker:    "TSLA",
+          close:     174.00,
+          sma20:     198.40,
+          vs_sma:    -12.30,
+          k_score:     50,
+          signal:    "SELL",  // price below SMA20 overrides neutral rank
+          position:  "—",
+        },
+        {
+          ticker:    "AMZN",
+          close:     185.90,
+          sma20:     182.50,
+          vs_sma:      1.86,
+          k_score:     50,
+          signal:    "HOLD",
+          position:  "—",
+        },
+      ],
+      log: [
+        { time: "20:59:28", level: "INFO",  msg: "Dashboard loaded — Alpaca paper account PA3EOCOPH2PS connected." },
+        { time: "20:59:28", level: "INFO",  msg: "Account │ equity=$100,000.00 │ buying_power=$200,000.00" },
+        { time: "20:59:28", level: "INFO",  msg: "Market closed. Next open: Mon 2026-05-11 09:30 ET" },
+        { time: "20:59:28", level: "INFO",  msg: "Open positions: none — ready for first run." },
+        { time: "20:59:28", level: "INFO",  msg: "Update KAVOUT_STOCK_RANK in bot/bot.py before market open, then run scheduler." },
+      ],
+    };
+
+    // ─── Bot state ──────────────────────────────────────────────────────
+    let botRunning = false;
+
+    // ─── Live ET clock ──────────────────────────────────────────────────
+    function updateClock() {
+      const now = new Date();
+      const et  = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        hour:     "2-digit",
+        minute:   "2-digit",
+        second:   "2-digit",
+        hour12:   true,
+      }).format(now);
+      document.getElementById("clock").textContent = et;
+    }
+
+    // ─── Format helpers ─────────────────────────────────────────────────
+    function fmtUSD(n) {
+      return "$" + Math.abs(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function signedUSD(n) {
+      return (n >= 0 ? "+" : "−") + fmtUSD(n);
+    }
+
+    // Stock Rank is already 0-100; clamp for safety
+    function kScorePct(k) {
+      return Math.min(Math.max(k, 0), 100);
+    }
+
+    // Kavout's three display labels
+    function rankLabel(k) {
+      if (k >= 60) return "High";
+      if (k >= 40) return "Medium";
+      return "Low";
+    }
+
+    // ─── Render ─────────────────────────────────────────────────────────
+    function renderDashboard(data) {
+      renderAccount(data.account);
+      renderWatchlist(data.watchlist);
+      renderLog(data.log);
+      document.getElementById("last-updated").textContent =
+        "Last updated: " + new Date().toLocaleTimeString("en-US", { timeZone: "America/New_York" }) + " ET";
+    }
+
+    function renderAccount(a) {
+      document.getElementById("equity").textContent       = fmtUSD(a.equity);
+      document.getElementById("buying-power").textContent = fmtUSD(a.buying_power);
+
+      const pnlEl  = document.getElementById("pnl");
+      const pctEl  = document.getElementById("pnl-pct");
+      pnlEl.textContent = signedUSD(a.pnl_today);
+      pctEl.textContent = (a.pnl_today >= 0 ? "+" : "") + a.pnl_pct.toFixed(2) + "% vs yesterday";
+      pnlEl.className   = "metric-value " + (a.pnl_today >= 0 ? "positive" : "negative");
+
+      document.getElementById("mode-badge").textContent   = a.mode;
+    }
+
+    function renderWatchlist(rows) {
+      const tbody = document.getElementById("watchlist-body");
+      tbody.innerHTML = rows.map(r => {
+        const vsPct  = r.vs_sma;
+        const vsClass = vsPct >= 0 ? "vs-sma-pos" : "vs-sma-neg";
+        const vsStr   = (vsPct >= 0 ? "+" : "") + vsPct.toFixed(2) + "%";
+
+        const sigLower  = r.signal.toLowerCase();
+        const badgeClass = `badge badge-${sigLower}`;
+
+        const kFill  = kScorePct(r.k_score).toFixed(1);
+        const kLabel = rankLabel(r.k_score);
+        const posClass = r.position !== "—" ? "position-cell held" : "position-cell";
+
+        return `
+          <tr>
+            <td class="ticker-cell">${r.ticker}</td>
+            <td class="price-cell">$${r.close.toFixed(2)}</td>
+            <td class="price-cell">$${r.sma20.toFixed(2)}</td>
+            <td class="${vsClass}">${vsStr}</td>
+            <td class="k-score-cell">
+              <div class="k-bar-container">
+                <div class="k-bar-track">
+                  <div class="k-bar-fill" style="width:${kFill}%"></div>
+                </div>
+                <span class="k-num">${Math.round(r.k_score)} <span style="font-weight:400;color:var(--text-dim)">${kLabel}</span></span>
+              </div>
+            </td>
+            <td><span class="${badgeClass}">${r.signal}</span></td>
+            <td class="${posClass}">${r.position}</td>
+          </tr>`;
+      }).join("");
+    }
+
+    function renderLog(entries) {
+      const body = document.getElementById("log-body");
+      body.innerHTML = entries.map(e => `
+        <div class="log-entry">
+          <span class="log-time">${e.time}</span>
+          <span class="log-level ${e.level}">${e.level}</span>
+          <span class="log-msg">${escapeHtml(e.msg)}</span>
+        </div>`
+      ).join("");
+      // Scroll to bottom
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    }
+
+    // ─── Button handlers ─────────────────────────────────────────────────
+    //
+    // These are wired up for mock mode. To connect a real backend,
+    // replace the toast calls with fetch("http://localhost:8000/run")
+    // (or wherever your FastAPI / Flask server listens).
+    //
+
+    function handleRunBot() {
+      if (botRunning) { showToast("Bot is already running."); return; }
+      botRunning = true;
+      const dot = document.getElementById("status-dot");
+      dot.classList.add("running");
+      dot.title = "Running";
+      showToast("▶ Bot triggered — check activity log.");
+      addLogEntry("INFO", "Manual run triggered from dashboard.");
+
+      // Simulate a completed run after 3 s (mock only)
+      setTimeout(() => {
+        botRunning = false;
+        dot.classList.remove("running");
+        dot.title = "Idle";
+        addLogEntry("INFO", "Mock run complete — connect backend for real execution.");
+      }, 3000);
+    }
+
+    function handleStop() {
+      botRunning = false;
+      const dot = document.getElementById("status-dot");
+      dot.classList.remove("running");
+      dot.title = "Stopped";
+      showToast("■ Bot stopped.");
+      addLogEntry("WARN", "Bot manually stopped from dashboard.");
+    }
+
+    function handleRefresh() {
+      showToast("↻ Refreshing data…");
+      // Mock: just re-render with same data after short delay.
+      // Real: fetch("/api/dashboard").then(r => r.json()).then(renderDashboard);
+      setTimeout(() => {
+        renderDashboard(MOCK_DATA);
+        showToast("Data refreshed.");
+      }, 600);
+    }
+
+    function clearLog() {
+      document.getElementById("log-body").innerHTML = "";
+    }
+
+    function addLogEntry(level, msg) {
+      const body = document.getElementById("log-body");
+      const now  = new Date().toLocaleTimeString("en-US", {
+        timeZone: "America/New_York",
+        hour12: false,
+      });
+      const div = document.createElement("div");
+      div.className = "log-entry";
+      div.innerHTML = `
+        <span class="log-time">${now}</span>
+        <span class="log-level ${level}">${level}</span>
+        <span class="log-msg">${escapeHtml(msg)}</span>`;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    // ─── Toast ───────────────────────────────────────────────────────────
+    let toastTimer;
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove("show"), 2800);
+    }
+
+    // ─── Init ────────────────────────────────────────────────────────────
+    updateClock();
+    setInterval(updateClock, 1000);
+    renderDashboard(MOCK_DATA);
+  </script>
+</body>
+</html>

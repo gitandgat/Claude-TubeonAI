@@ -1,0 +1,111 @@
+{
+  "doc-764585bfa3c0c120e349fa6336d77e7a": {
+    "status": "processed",
+    "chunks_count": 1,
+    "chunks_list": [
+      "chunk-764585bfa3c0c120e349fa6336d77e7a"
+    ],
+    "content_summary": "requests==2.32.3\npython-dotenv==1.0.1",
+    "content_length": 37,
+    "created_at": "2026-03-21T19:39:43.741339+00:00",
+    "updated_at": "2026-03-21T19:39:51.316312+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260321_153943_f8d0d139",
+    "metadata": {
+      "processing_start_time": 1774121983,
+      "processing_end_time": 1774121991
+    }
+  },
+  "doc-028b28e8288a815e696c1af2408e84a7": {
+    "status": "processed",
+    "chunks_count": 4,
+    "chunks_list": [
+      "chunk-3cdd347d2c888fa651c16760dc54aac4",
+      "chunk-2c69eb46b9fdf4cfbf2d4e228fde1a76",
+      "chunk-1eb01cd2d607a14da2729a2994a8833a",
+      "chunk-c19ebc4badbd8262c8487882ac0285a9"
+    ],
+    "content_summary": "# How To Use Chat GPT to Actually Change Your Life\n\n============================================================\n## LinkedIn Post\n============================================================\n\n## Summary: *How To Use ChatGPT to Actually Change Your Li...",
+    "content_length": 18616,
+    "created_at": "2026-03-21T19:39:51.323813+00:00",
+    "updated_at": "2026-03-21T19:40:47.791843+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260321_153951_d8b62005",
+    "metadata": {
+      "processing_start_time": 1774121991,
+      "processing_end_time": 1774122047
+    }
+  },
+  "doc-4b9a527410b598de8bd50bc7bac9de05": {
+    "status": "processed",
+    "chunks_count": 5,
+    "chunks_list": [
+      "chunk-1b97dc56900235cb8d228fef7c8405c7",
+      "chunk-047f3904283ca1416cabe7cde1e03247",
+      "chunk-1694023022122e91d5653a390a57c8f6",
+      "chunk-ab74c3d2ad783400aacdc12951dd5004",
+      "chunk-025a86a4903e4e489cd42bedaffcb840"
+    ],
+    "content_summary": "# Every Claude Code Concept Explained for Non-techies\n\n============================================================\n## LinkedIn Post\n============================================================\n\nVideo: Every Claude Code Concept Explained for Non-tech...",
+    "content_length": 24851,
+    "created_at": "2026-03-21T19:40:47.817063+00:00",
+    "updated_at": "2026-03-21T19:43:09.354150+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260321_154047_c46cafdd",
+    "metadata": {
+      "processing_start_time": 1774122047,
+      "processing_end_time": 1774122189
+    }
+  },
+  "dup-dd59e8f23b71824310ca56b2b8ca3f1a": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-764585bfa3c0c120e349fa6336d77e7a",
+    "content_length": 37,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-03-21T19:44:13.881845+00:00",
+    "updated_at": "2026-03-21T19:44:13.881848+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260321_154413_de1f5305",
+    "error_msg": "Content already exists. Original doc_id: doc-764585bfa3c0c120e349fa6336d77e7a, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-764585bfa3c0c120e349fa6336d77e7a",
+      "original_track_id": "insert_20260321_153943_f8d0d139"
+    }
+  },
+  "dup-7d1f378b270e9e1e7f19194d52f5690f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-028b28e8288a815e696c1af2408e84a7",
+    "content_length": 18616,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-03-21T19:44:13.883341+00:00",
+    "updated_at": "2026-03-21T19:44:13.883344+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260321_154413_62c62791",
+    "error_msg": "Content already exists. Original doc_id: doc-028b28e8288a815e696c1af2408e84a7, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-028b28e8288a815e696c1af2408e84a7",
+      "original_track_id": "insert_20260321_153951_d8b62005"
+    }
+  },
+  "dup-e5394f6f40e536a9cbd2d586254b9733": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-4b9a527410b598de8bd50bc7bac9de05",
+    "content_length": 24851,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-03-21T19:44:13.884849+00:00",
+    "updated_at": "2026-03-21T19:44:13.884851+00:00",
+    "file_path": "unknown_source",
+    "track_id": "insert_20260321_154413_acb4399f",
+    "error_msg": "Content already exists. Original doc_id: doc-4b9a527410b598de8bd50bc7bac9de05, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-4b9a527410b598de8bd50bc7bac9de05",
+      "original_track_id": "insert_20260321_154047_c46cafdd"
+    }
+  }
+}

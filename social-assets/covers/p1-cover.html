@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; background:#1A1A1A; display:flex; align-items:center; justify-content:center; }
+  .card { width:1280px; height:720px; background:#1A1A1A; position:relative; display:flex; align-items:center; padding:80px 96px; overflow:hidden; }
+  .accent-top { position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg,#D4A843 0%,rgba(212,168,67,0.15) 60%,transparent 100%); }
+  .accent-left { position:absolute; top:0; left:0; bottom:0; width:5px; background:linear-gradient(180deg,#D4A843 0%,rgba(212,168,67,0.1) 60%,transparent 100%); }
+  .bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(212,168,67,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.03) 1px,transparent 1px); background-size:80px 80px; }
+  .glow-tr { position:absolute; top:-80px; right:-80px; width:500px; height:500px; background:radial-gradient(circle,rgba(212,168,67,0.12) 0%,transparent 65%); }
+  .glow-bl { position:absolute; bottom:-60px; left:-60px; width:380px; height:380px; background:radial-gradient(circle,rgba(212,168,67,0.06) 0%,transparent 70%); }
+  .left { flex:1; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:2; max-width:640px; }
+  .price-tag { display:inline-flex; align-items:center; gap:10px; margin-bottom:32px; }
+  .price-badge { font-family:'Inter',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#1A1A1A; background:#D4A843; padding:8px 18px; border-radius:2px; }
+  .series { font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:rgba(212,168,67,0.5); }
+  h1 { font-family:'Playfair Display',Georgia,serif; font-size:64px; font-weight:900; color:#FAF7F2; line-height:1.05; margin-bottom:24px; }
+  .tagline { font-family:'Inter',sans-serif; font-size:20px; font-weight:400; color:rgba(250,247,242,0.5); line-height:1.55; max-width:520px; margin-bottom:40px; }
+  .includes { display:flex; flex-direction:column; gap:10px; }
+  .include-row { display:flex; align-items:center; gap:12px; }
+  .dot { width:6px; height:6px; border-radius:50%; background:#D4A843; flex-shrink:0; }
+  .include-text { font-family:'Inter',sans-serif; font-size:14px; color:rgba(250,247,242,0.4); }
+  .right { position:relative; z-index:2; display:flex; flex-direction:column; align-items:flex-end; justify-content:center; padding-left:80px; flex-shrink:0; }
+  .big-stat { font-family:'Playfair Display',Georgia,serif; font-size:140px; font-weight:900; line-height:1; color:#D4A843; text-shadow:0 0 80px rgba(212,168,67,0.25); }
+  .stat-label { font-family:'Inter',sans-serif; font-size:14px; font-weight:500; color:rgba(212,168,67,0.5); letter-spacing:0.12em; text-align:right; margin-top:8px; }
+  .vs-row { display:flex; align-items:center; gap:16px; margin-top:16px; }
+  .vs-num { font-family:'Playfair Display',Georgia,serif; font-size:40px; font-weight:700; color:rgba(250,247,242,0.15); }
+  .vs-badge { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.15em; color:rgba(250,247,242,0.2); }
+  .vs-label { font-family:'Inter',sans-serif; font-size:11px; color:rgba(250,247,242,0.2); }
+  .bottom-bar { position:absolute; bottom:36px; left:96px; right:96px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-family:'Playfair Display',Georgia,serif; font-size:16px; font-weight:700; color:rgba(212,168,67,0.5); }
+  .format { font-family:'Inter',sans-serif; font-size:11px; color:rgba(250,247,242,0.18); letter-spacing:0.12em; text-transform:uppercase; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="accent-top"></div>
+  <div class="accent-left"></div>
+  <div class="bg-grid"></div>
+  <div class="glow-tr"></div>
+  <div class="glow-bl"></div>
+  <div class="left">
+    <div class="price-tag">
+      <span class="price-badge">$17</span>
+      <span class="series">IMG Pivot Guide · Vol. 1</span>
+    </div>
+    <h1>Should You<br>Keep Going?</h1>
+    <div class="tagline">The honest guide for IMGs who are tired of letting sunk costs make the decision for them.</div>
+    <div class="includes">
+      <div class="include-row"><div class="dot"></div><span class="include-text">The verified match rate math — finally</span></div>
+      <div class="include-row"><div class="dot"></div><span class="include-text">The 4-layer sunk cost decoder</span></div>
+      <div class="include-row"><div class="dot"></div><span class="include-text">A structured decision framework (not opinions)</span></div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="big-stat">97%</div>
+    <div class="stat-label">Canadian grad match rate</div>
+    <div class="vs-row">
+      <div class="vs-badge">VS</div>
+      <div>
+        <div class="vs-num">10–22%</div>
+        <div class="vs-label">IMG match rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span class="brand">Crosswalk Wisdom</span>
+    <span class="format">PDF · Instant Download · Money-back guarantee</span>
+  </div>
+</div>
+</body>
+</html>

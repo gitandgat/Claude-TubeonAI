@@ -1,0 +1,698 @@
+{
+  "doc-764585bfa3c0c120e349fa6336d77e7a": {
+    "relation_pairs": [
+      [
+        "Python-Dotenv",
+        "Requests"
+      ]
+    ],
+    "count": 1,
+    "create_time": 1774121991,
+    "update_time": 1774121991,
+    "_id": "doc-764585bfa3c0c120e349fa6336d77e7a"
+  },
+  "doc-028b28e8288a815e696c1af2408e84a7": {
+    "relation_pairs": [
+      [
+        "AI",
+        "Letter Writing Exercise"
+      ],
+      [
+        "AI",
+        "Difficult Conversations"
+      ],
+      [
+        "AI",
+        "Therapy"
+      ],
+      [
+        "ChatGPT",
+        "Psychological Distance"
+      ],
+      [
+        "Life Audit",
+        "Self-Awareness"
+      ],
+      [
+        "Emotional Trigger Decoding",
+        "Original Wound"
+      ],
+      [
+        "ChatGPT",
+        "Life Audit"
+      ],
+      [
+        "ChatGPT",
+        "Expressive Writing"
+      ],
+      [
+        "AI",
+        "Emotional Triggers"
+      ],
+      [
+        "Accountability System",
+        "Tiny-Habit Design"
+      ],
+      [
+        "ChatGPT",
+        "Hard Conversation Rehearsal"
+      ],
+      [
+        "ChatGPT",
+        "Difficult Conversation Rehearsal"
+      ],
+      [
+        "AI",
+        "Emotional Trigger Decoding"
+      ],
+      [
+        "Hidden Payoff",
+        "Self-Sabotage"
+      ],
+      [
+        "Accountability System",
+        "Tiny Habits"
+      ],
+      [
+        "Hidden Payoff",
+        "Self-Sabotage Pattern"
+      ],
+      [
+        "AI",
+        "Pattern Recognition"
+      ],
+      [
+        "AI",
+        "Self-Awareness"
+      ],
+      [
+        "ChatGPT",
+        "Therapy"
+      ],
+      [
+        "AI",
+        "Human Relationships"
+      ],
+      [
+        "AI",
+        "Structured Self-Conversation"
+      ],
+      [
+        "AI",
+        "Personal Operating System"
+      ],
+      [
+        "ChatGPT",
+        "Self-Sabotage"
+      ],
+      [
+        "Cognitive Dissonance",
+        "Self-Awareness"
+      ],
+      [
+        "Accountability System",
+        "Dopamine"
+      ],
+      [
+        "Accountability System",
+        "ChatGPT"
+      ],
+      [
+        "ChatGPT",
+        "Emotional Trigger Decoding"
+      ],
+      [
+        "ChatGPT",
+        "Self-Sabotage Pattern"
+      ],
+      [
+        "AI",
+        "Accountability System"
+      ],
+      [
+        "Introspection Illusion",
+        "Self-Awareness"
+      ],
+      [
+        "Self-Awareness",
+        "YouTube Shorts Script"
+      ],
+      [
+        "ChatGPT",
+        "Self-Awareness"
+      ],
+      [
+        "ChatGPT",
+        "Human Relationships"
+      ],
+      [
+        "AI",
+        "Introspection Illusion"
+      ],
+      [
+        "Expressive Writing",
+        "Unsent Letter"
+      ],
+      [
+        "Human Relationships",
+        "Self-Awareness"
+      ],
+      [
+        "Psychological Distance",
+        "Self-Awareness"
+      ],
+      [
+        "AI",
+        "Self-Sabotage Analysis"
+      ],
+      [
+        "ChatGPT",
+        "Personal Operating System"
+      ],
+      [
+        "Claude",
+        "Self-Awareness"
+      ],
+      [
+        "Accountability System",
+        "BJ Fogg"
+      ],
+      [
+        "AI",
+        "Prompt Framework"
+      ],
+      [
+        "AI",
+        "Unsent Letter"
+      ],
+      [
+        "Expressive Writing",
+        "Psychological Distance"
+      ],
+      [
+        "ChatGPT",
+        "Human Connection"
+      ],
+      [
+        "AI",
+        "Hard Conversation Rehearsal"
+      ],
+      [
+        "BJ Fogg",
+        "Tiny-Habit Design"
+      ],
+      [
+        "BJ Fogg",
+        "Tiny Habits"
+      ],
+      [
+        "ChatGPT",
+        "Introspection Illusion"
+      ],
+      [
+        "Mindless Consumption",
+        "Structured Self-Conversation"
+      ],
+      [
+        "Limiting Belief",
+        "Self-Sabotage Analysis"
+      ],
+      [
+        "AI",
+        "Expressive Writing"
+      ],
+      [
+        "AI",
+        "Self-Sabotage Patterns"
+      ],
+      [
+        "AI",
+        "Life Audit"
+      ],
+      [
+        "Expressive Writing",
+        "Letter Writing Exercise"
+      ],
+      [
+        "ChatGPT",
+        "Emotional Trigger"
+      ],
+      [
+        "Hidden Payoff",
+        "Self-Sabotage Patterns"
+      ],
+      [
+        "ChatGPT",
+        "Unsent Letter"
+      ],
+      [
+        "Core Fear",
+        "Self-Sabotage Analysis"
+      ],
+      [
+        "Self-Awareness",
+        "TikTok Video Script"
+      ]
+    ],
+    "count": 60,
+    "create_time": 1774122047,
+    "update_time": 1774122047,
+    "_id": "doc-028b28e8288a815e696c1af2408e84a7"
+  },
+  "doc-4b9a527410b598de8bd50bc7bac9de05": {
+    "relation_pairs": [
+      [
+        "Claude",
+        "Claude.md"
+      ],
+      [
+        "Back End",
+        "Supabase"
+      ],
+      [
+        "Claude Code",
+        "RAG (Retrieval-Augmented Generation)"
+      ],
+      [
+        "Cursor",
+        "VS Code"
+      ],
+      [
+        "Front End",
+        "Vercel"
+      ],
+      [
+        "Prompt",
+        "Prompt Engineering"
+      ],
+      [
+        "Bypass-Permission Mode",
+        "Claude"
+      ],
+      [
+        "Claude",
+        "MCP (Model Context Protocol)"
+      ],
+      [
+        "Claude Code",
+        "Context Window"
+      ],
+      [
+        "Git",
+        "Repository"
+      ],
+      [
+        "Bypass Permissions",
+        "Claude"
+      ],
+      [
+        "/Init Command",
+        "Claude.md (MD File)"
+      ],
+      [
+        "Deployment",
+        "Supabase"
+      ],
+      [
+        "Claude",
+        "Claude Code"
+      ],
+      [
+        "Claude",
+        "RAG (Retrieval-Augmented Generation)"
+      ],
+      [
+        "Claude",
+        "VS Code"
+      ],
+      [
+        "/Clear Command",
+        "Claude Code"
+      ],
+      [
+        "Claude Code",
+        "Tools (Read/Write/Bash)"
+      ],
+      [
+        "Claude",
+        "Haiku"
+      ],
+      [
+        "Bypass Permission",
+        "Claude"
+      ],
+      [
+        "GitHub",
+        "Repo"
+      ],
+      [
+        "Claude",
+        "Cursor"
+      ],
+      [
+        "Claude Code 2.0",
+        "Every Claude Code Concept Explained For Non-Techies"
+      ],
+      [
+        "Pro/Max Plan",
+        "Token"
+      ],
+      [
+        "Checkpoints And Undo",
+        "Claude"
+      ],
+      [
+        "Git",
+        "Repo (Repository)"
+      ],
+      [
+        "Claude",
+        "JSON"
+      ],
+      [
+        "/Clear",
+        "Context Window"
+      ],
+      [
+        "Claude Code",
+        "Every Claude Code Concept Explained For Non-Techies"
+      ],
+      [
+        "/Clear Command",
+        "Context Window"
+      ],
+      [
+        "Ask-Before-Edits",
+        "Claude"
+      ],
+      [
+        "Compact Conversation",
+        "Context Window"
+      ],
+      [
+        "API",
+        "Notion API"
+      ],
+      [
+        "Claude Code",
+        "Plan Mode"
+      ],
+      [
+        "Claude",
+        "GitHub"
+      ],
+      [
+        "/Init Command",
+        "Claude.md"
+      ],
+      [
+        "Claude",
+        "Prompt Engineering"
+      ],
+      [
+        "Context Window",
+        "Tokens"
+      ],
+      [
+        "Claude Code",
+        "Sub-Agents"
+      ],
+      [
+        "Anti-Gravity",
+        "VS Code"
+      ],
+      [
+        "Bypass Permission",
+        "Checkpoints And Undo"
+      ],
+      [
+        "Bypass Permission Mode",
+        "Claude Code"
+      ],
+      [
+        "Claude",
+        "Sub-Agents"
+      ],
+      [
+        "Every Claude Code Concept Explained For Non-Techies",
+        "Notion Doc"
+      ],
+      [
+        "Claude Code",
+        "Deployment"
+      ],
+      [
+        "Antigravity",
+        "VS Code"
+      ],
+      [
+        "Claude Code",
+        "Prompt"
+      ],
+      [
+        "Deployment",
+        "Vercel"
+      ],
+      [
+        "Permissions/Modes",
+        "Tools (Read/Write/Bash)"
+      ],
+      [
+        "Claude",
+        "Opus"
+      ],
+      [
+        "Checkpoints & Undo",
+        "Claude"
+      ],
+      [
+        "Claude Code",
+        "Token"
+      ],
+      [
+        "Claude",
+        "Context Window"
+      ],
+      [
+        "Claude",
+        "Safety Practices"
+      ],
+      [
+        "-resume",
+        "Claude"
+      ],
+      [
+        "API",
+        "Claude Code"
+      ],
+      [
+        "Claude",
+        "Tools (Read/Write/Bash)"
+      ],
+      [
+        "/Clear Command",
+        "Resume Command"
+      ],
+      [
+        "Opus",
+        "Sonnet"
+      ],
+      [
+        "Ask Before Edits",
+        "Plan Mode"
+      ],
+      [
+        "/Init",
+        "Claude.md"
+      ],
+      [
+        "MCP (Model Context Protocol)",
+        "Notion"
+      ],
+      [
+        "Claude",
+        "Tokens"
+      ],
+      [
+        "Claude",
+        "Plan Mode"
+      ],
+      [
+        "Microsoft",
+        "VS Code"
+      ],
+      [
+        "Claude",
+        "Tools"
+      ],
+      [
+        "Claude.md",
+        "Context Window"
+      ],
+      [
+        "Claude Code",
+        "Repo"
+      ],
+      [
+        "Every Claude Code Concept Explained For Non-Techies",
+        "Notion"
+      ],
+      [
+        "/Init Command",
+        "Claude Code"
+      ],
+      [
+        "Claude",
+        "Sub-agents"
+      ],
+      [
+        "/clear",
+        "Claude"
+      ],
+      [
+        "Claude Code",
+        "Claude.md"
+      ],
+      [
+        "Claude",
+        "Model Context Protocol (MCP)"
+      ],
+      [
+        "Git",
+        "Repo"
+      ],
+      [
+        "Claude",
+        "RAG (Retrieval Augmented Generation)"
+      ],
+      [
+        "GitHub",
+        "Repository (Repo)"
+      ],
+      [
+        "Claude",
+        "Deployment"
+      ],
+      [
+        "Claude Code",
+        "MCP (Model Context Protocol)"
+      ],
+      [
+        "Claude",
+        "Prompt"
+      ],
+      [
+        "Ask-Before-Edits Mode",
+        "Plan Mode"
+      ],
+      [
+        "Back End",
+        "Front End"
+      ],
+      [
+        "Supabase",
+        "Vercel"
+      ],
+      [
+        "Claude",
+        "Token"
+      ],
+      [
+        "Claude",
+        "Sonnet"
+      ],
+      [
+        "Pro/Max Subscription",
+        "Token"
+      ],
+      [
+        "/Clear",
+        "/Resume"
+      ],
+      [
+        "Claude.md",
+        "Slashinit (/Init)"
+      ],
+      [
+        "Claude",
+        "Claude Code 2.0"
+      ],
+      [
+        "Claude Code",
+        "JSON"
+      ],
+      [
+        "/init",
+        "Claude.md"
+      ],
+      [
+        "Claude",
+        "Retrieval-Augmented Generation (RAG)"
+      ],
+      [
+        "GitHub",
+        "Repository"
+      ],
+      [
+        "/Resume Command",
+        "Claude Code"
+      ],
+      [
+        "Claude",
+        "Claude.md (MD File)"
+      ],
+      [
+        "API",
+        "Claude"
+      ],
+      [
+        "Ask Before Edits",
+        "Bypass Permission"
+      ],
+      [
+        "Claude Code",
+        "Prompt Engineering"
+      ],
+      [
+        "Bypass Permission",
+        "Plan Mode"
+      ],
+      [
+        "Git",
+        "Repository (Repo)"
+      ],
+      [
+        "Git",
+        "GitHub"
+      ],
+      [
+        "Anti-Gravity",
+        "Claude"
+      ],
+      [
+        "Notion",
+        "Notion API"
+      ],
+      [
+        "Claude Code",
+        "Compact Conversation"
+      ],
+      [
+        "Pro/Max Plan",
+        "Tokens"
+      ],
+      [
+        "Checkpoints & Undo",
+        "Claude Code"
+      ],
+      [
+        "Ask-Before-Edits Mode",
+        "Claude"
+      ]
+    ],
+    "count": 107,
+    "create_time": 1774122189,
+    "update_time": 1774122189,
+    "_id": "doc-4b9a527410b598de8bd50bc7bac9de05"
+  }
+}

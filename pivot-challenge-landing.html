@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day IMG Pivot Challenge | Crosswalk Wisdom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .subheading {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .body-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #d4a574;
+            font-weight: 600;
+        }
+
+        .bullets {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .bullets li {
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .bullets li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #d4a574;
+            font-weight: bold;
+        }
+
+        .form-section {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .form-section h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #1a1a2e;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #d4a574;
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #d4a574 0%, #c09464 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4f1d4;
+            color: #1a6b1a;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background: #fdd;
+            color: #a33;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .form-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">CROSSWALK WISDOM</div>
+            <h1>The 7-Day IMG Pivot Challenge</h1>
+            <p class="subheading">Stop Waiting for CaRMS. Start Building a Career That Pays.</p>
+        </div>
+
+        <div class="content">
+            <div class="body-text">
+                <strong>You passed MCCQE.<br>You survived medical school in another language.<br>You made it to CaRMS twice.</strong>
+                <br><br>
+                And you still didn't match.
+                <br><br>
+                So now you're in limbo: $48K salary, WhatsApp family pressure, 2am Google searches for "IMG career options."
+                <br><br>
+                <span class="highlight">You're not a failure. The system is.</span>
+            </div>
+
+            <p style="font-size: 15px; color: #555; margin-bottom: 20px;">
+                But you don't have to wait another 2 years for the next match.
+                <br><br>
+                <strong>Over 7 days, I'm going to show you:</strong>
+            </p>
+
+            <ul class="bullets">
+                <li>The 4 clinical career paths that actually hire IMG doctors (no residency required)</li>
+                <li>Why your "failure" is actually your greatest asset</li>
+                <li>The 30-day action plan to pivot</li>
+                <li>How to stop waiting and start earning $65K+</li>
+            </ul>
+
+            <p style="font-size: 15px; color: #555; margin-bottom: 25px;">
+                <strong>This is the same path I walked when I left medicine and became a crossing guard.</strong>
+                <br><br>
+                It works.
+            </p>
+
+            <div class="form-section">
+                <h3>Get Day 1 Free</h3>
+                <div class="success-message" id="successMessage">
+                    ✓ Check your email for Day 1 of the challenge!
+                </div>
+                <div class="error-message" id="errorMessage">
+                    Something went wrong. Please try again.
+                </div>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            name="firstName"
+                            placeholder="First name"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="your.email@example.com"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="cta-button">
+                        Start the Challenge
+                    </button>
+                    <p class="footer-note">
+                        First lesson arrives in 5 minutes.<br>
+                        No spam. Ever. Unsubscribe anytime.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // This is a placeholder integration. Replace with your actual Encharge webhook/API endpoint
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = {
+                firstName: formData.get('firstName'),
+                email: formData.get('email'),
+                tag: 'challenge-joined',
+                source: 'pivot-challenge-landing',
+                joinedAt: new Date().toISOString(),
+            };
+
+            try {
+                // Replace this endpoint with your actual Encharge webhook or backend endpoint
+                const response = await fetch('/api/encharge/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    document.getElementById('signupForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    throw new Error('Subscription failed');
+                }
+            } catch (error) {
+                document.getElementById('errorMessage').style.display = 'block';
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

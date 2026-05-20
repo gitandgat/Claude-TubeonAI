@@ -1,0 +1,4 @@
+.env
+node_modules/
+prompt_ids.json
+*.txt
