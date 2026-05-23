@@ -3,12 +3,13 @@ Retry: Schedule the 2 failed posts (may-33 and may-34) from the retry run.
 Images are already rendered. Just re-upload and schedule.
 """
 
+import os
 import requests, time
 from pathlib import Path
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "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"
-ZERNIO_KEY    = "sk_d1c977cc304ec9685c24f22c7e3b868abd5a10b9db8f7648b2b74384ab1ca399"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE   = "https://zernio.com/api/v1"
 ZERNIO_HDR    = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -36,7 +37,7 @@ MISSING = [
         "slot": "2026-05-24T17:00:00",
         "topic": "4 non-clinical roles unmatched IMGs in Canada can start applying for this week — with salary ranges",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
 ]
 

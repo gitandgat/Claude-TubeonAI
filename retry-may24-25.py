@@ -10,9 +10,9 @@ from pathlib import Path
 from anthropic import Anthropic
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-ANTHROPIC_KEY = "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"
-OPENAI_KEY    = "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"
-ZERNIO_KEY    = "sk_d1c977cc304ec9685c24f22c7e3b868abd5a10b9db8f7648b2b74384ab1ca399"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE  = "https://zernio.com/api/v1"
 ZERNIO_HDR   = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -54,7 +54,7 @@ MISSING = [
         "slot": "2026-05-24T17:00:00",
         "topic": "4 non-clinical roles unmatched IMGs in Canada can start applying for this week — with salary ranges",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Confident professional walking into a modern office building, business casual attire, briefcase, glass doors, morning light, cinematic 35mm film grain, forward momentum, sense of new beginning",
     },
     {
@@ -70,7 +70,7 @@ MISSING = [
         "slot": "2026-05-25T08:00:00",
         "topic": "What the free IMG calculator revealed — the number that finally made 300 people choose to cross",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Person looking at a smartphone screen, slight relief and recognition on their face, warm interior lighting, sitting at a kitchen table, cinematic 35mm film grain, moment of clarity, shallow depth of field",
     },
 ]

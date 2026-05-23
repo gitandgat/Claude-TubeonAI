@@ -3,11 +3,11 @@ Schedule May 30+ posts (30 total) with 2-hour spacing. Skip image generation, us
 Fast path: content to Zernio immediately, add visuals later via Freepik.
 """
 from __future__ import annotations
-import time, requests
+import os, time, requests
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "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"
-ZERNIO_KEY    = "sk_d1c977cc304ec9685c24f22c7e3b868abd5a10b9db8f7648b2b74384ab1ca399"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE = "https://zernio.com/api/v1"
 ZERNIO_HDR  = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -42,39 +42,39 @@ Under 1500 characters. Write as lived experience. Output ONLY the post."""
 POSTS = [
     # May 30
     {"slug": "may-37", "slot": "2026-05-30T08:00:00", "topic": "The midnight panic attack — why IMGs freeze when they see a job posting that matches their dreams", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "may-38", "slot": "2026-05-30T10:00:00", "topic": "CaRMS rejection isn't about clinical skill — it's about visibility politics and timeline luck", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "may-38", "slot": "2026-05-30T10:00:00", "topic": "CaRMS rejection isn't about clinical skill — it's about visibility politics and timeline luck", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "may-39", "slot": "2026-05-30T12:00:00", "topic": "The $48K salary lie — what it costs an IMG besides money when they're stuck in non-clinical limbo", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "may-40", "slot": "2026-05-30T14:00:00", "topic": "4 roles in Canada where IMG credentials are an *asset*, not a barrier — and the salary ranges you should expect", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "may-40", "slot": "2026-05-30T14:00:00", "topic": "4 roles in Canada where IMG credentials are an *asset*, not a barrier — and the salary ranges you should expect", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "may-41", "slot": "2026-05-30T16:00:00", "topic": "The yellow vest taught me something MD credentials never could — permission to be imperfect", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
     # May 31
     {"slug": "may-42", "slot": "2026-05-31T08:00:00", "topic": "What unmatched IMGs don't tell their parents — the invisible grief of reaching a credential nobody values", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "may-43", "slot": "2026-05-31T10:00:00", "topic": "The one question that breaks the pivot paralysis — and why IMGs never ask it", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "may-43", "slot": "2026-05-31T10:00:00", "topic": "The one question that breaks the pivot paralysis — and why IMGs never ask it", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "may-44", "slot": "2026-05-31T12:00:00", "topic": "Tim Hortons at 6am — the unspoken ritual where IMGs process their choices", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
-    {"slug": "may-45", "slot": "2026-05-31T14:00:00", "topic": "Why PhD-track research is the path nobody tells unmatched IMGs exists — $75K salary, no residency required", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "may-45", "slot": "2026-05-31T14:00:00", "topic": "Why PhD-track research is the path nobody tells unmatched IMGs exists — $75K salary, no residency required", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "may-46", "slot": "2026-05-31T16:00:00", "topic": "The real cost of 'almosts' — what happens when you chase a residency that won't come", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
     # June 1
-    {"slug": "jun-01", "slot": "2026-06-01T08:00:00", "topic": "The bridge nobody talks about — how to go from 'failed IMG' to 'unmatched IMG who chose differently'", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-01", "slot": "2026-06-01T08:00:00", "topic": "The bridge nobody talks about — how to go from 'failed IMG' to 'unmatched IMG who chose differently'", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-02", "slot": "2026-06-01T10:00:00", "topic": "Sunk cost isn't a number — it's the weight you carry at 34, stuck between two countries, two identities", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "jun-03", "slot": "2026-06-01T12:00:00", "topic": "The clinical role that *won't* require another exam — and why you have zero idea it exists", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-03", "slot": "2026-06-01T12:00:00", "topic": "The clinical role that *won't* require another exam — and why you have zero idea it exists", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-04", "slot": "2026-06-01T14:00:00", "topic": "Yellow vest wisdom — why standing still on the corner taught me more than residency ever did", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
-    {"slug": "jun-05", "slot": "2026-06-01T16:00:00", "topic": "What 'pivot' really means for an IMG — it's not failure, it's recalibration at the right time", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-05", "slot": "2026-06-01T16:00:00", "topic": "What 'pivot' really means for an IMG — it's not failure, it's recalibration at the right time", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     # June 2
     {"slug": "jun-06", "slot": "2026-06-02T08:00:00", "topic": "The family chat that nobody answers — why your parents' expectations are 10 years behind your reality", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "jun-07", "slot": "2026-06-02T10:00:00", "topic": "Ultrasound technician path in Canada — $65K starting, full credential recognition, zero additional exams", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-07", "slot": "2026-06-02T10:00:00", "topic": "Ultrasound technician path in Canada — $65K starting, full credential recognition, zero additional exams", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-08", "slot": "2026-06-02T12:00:00", "topic": "What I learned standing in the rain at 6am on the corner — permission doesn't come from a credential", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
     {"slug": "jun-09", "slot": "2026-06-02T14:00:00", "topic": "The IMG paradox — overqualified for every job that doesn't require a residency, invisible for the ones that do", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "jun-10", "slot": "2026-06-02T16:00:00", "topic": "Lab director, research lead, education coordinator — 3 IMG-friendly roles paying $70K+ that nobody mentors you toward", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-10", "slot": "2026-06-02T16:00:00", "topic": "Lab director, research lead, education coordinator — 3 IMG-friendly roles paying $70K+ that nobody mentors you toward", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     # June 3
-    {"slug": "jun-11", "slot": "2026-06-03T08:00:00", "topic": "The question nobody asks — what if failing CaRMS was the best thing that happened to you?", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-11", "slot": "2026-06-03T08:00:00", "topic": "The question nobody asks — what if failing CaRMS was the best thing that happened to you?", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-12", "slot": "2026-06-03T10:00:00", "topic": "Immigrant weight — the invisible tax of leaving your country, passing exams, and still not being 'enough'", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "jun-13", "slot": "2026-06-03T12:00:00", "topic": "Regulatory coordinator for medical boards — $68K, IMG-credentialed, nobody mentions this path", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-13", "slot": "2026-06-03T12:00:00", "topic": "Regulatory coordinator for medical boards — $68K, IMG-credentialed, nobody mentions this path", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-14", "slot": "2026-06-03T14:00:00", "topic": "What Sahawat learned on the crossing — that safety isn't about status, it's about presence", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
     {"slug": "jun-15", "slot": "2026-06-03T16:00:00", "topic": "Two years into 'maybe next time' — at what point does a dream become a sunk cost that won't return?", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
     # June 4 (bonus 5 posts)
-    {"slug": "jun-16", "slot": "2026-06-04T08:00:00", "topic": "Clinical trials coordinator — IMG role, $70K, zero residency requirement, fast path to employment", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-16", "slot": "2026-06-04T08:00:00", "topic": "Clinical trials coordinator — IMG role, $70K, zero residency requirement, fast path to employment", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-17", "slot": "2026-06-04T10:00:00", "topic": "The unfinished grief of 'I'm smart enough to be a doctor, just not in Canada'", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
     {"slug": "jun-18", "slot": "2026-06-04T12:00:00", "topic": "Why your CaRMS number doesn't define your worth — and what actually does in the marketplace", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
-    {"slug": "jun-19", "slot": "2026-06-04T14:00:00", "topic": "The pivot conversation nobody has with unmatched IMGs until it's too late", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-19", "slot": "2026-06-04T14:00:00", "topic": "The pivot conversation nobody has with unmatched IMGs until it's too late", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "jun-20", "slot": "2026-06-04T16:00:00", "topic": "Five years, two failed matches, $300K in debt — when does the dream become a burden?", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
 ]
 

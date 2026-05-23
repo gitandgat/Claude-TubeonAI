@@ -1,12 +1,12 @@
 """Retry the single post that failed due to Anthropic 529 overload."""
 from __future__ import annotations
-import time, subprocess, requests
+import os, time, subprocess, requests
 from pathlib import Path
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "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"
-OPENAI_KEY    = "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"
-ZERNIO_KEY    = "sk_d1c977cc304ec9685c24f22c7e3b868abd5a10b9db8f7648b2b74384ab1ca399"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 ZERNIO_BASE   = "https://zernio.com/api/v1"
 ZERNIO_HDR    = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
 OPENAI_HDR    = {"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"}
@@ -29,7 +29,7 @@ Under 1500 chars. Lived experience only. Output ONLY the post."""
 TOPIC  = "4 non-clinical roles unmatched IMGs in Canada can start applying for this week — with salary ranges"
 PILLAR = "Courage to Choose"
 SLOT   = "2026-05-29T08:00:00"
-FC     = "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator"
+FC     = "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator"
 SLUG   = "may-34"
 
 def write_post_with_retry():
