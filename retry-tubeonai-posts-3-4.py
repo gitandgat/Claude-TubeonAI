@@ -8,9 +8,9 @@ import os, time, requests
 from pathlib import Path
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "***REMOVED-ANTHROPIC-KEY***"
-OPENAI_KEY    = "***REMOVED-OPENAI-KEY***"
-ZERNIO_KEY    = "***REMOVED-ZERNIO-KEY***"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE  = "https://zernio.com/api/v1"
 ZERNIO_HDR   = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -66,7 +66,7 @@ FAILED_POSTS = [
         "pillar": "Courage to Choose",
         "topic": "Ontario IMG policy changes — what the system shifting means for the 88% who don't match",
         "file": "Ontarios New IMG Policy What You Need to Know for .txt",
-        "first_comment": "Here's the free IMG Reality Calculator — see how the new numbers affect your specific situation: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see how the new numbers affect your specific situation: www.crosswalkwisdom.com/img/calculator",
     },
 ]
 

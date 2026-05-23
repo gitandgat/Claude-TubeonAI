@@ -10,9 +10,9 @@ from pathlib import Path
 from anthropic import Anthropic
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-ANTHROPIC_KEY = "***REMOVED-ANTHROPIC-KEY***"
-OPENAI_KEY    = "***REMOVED-OPENAI-KEY***"
-ZERNIO_KEY    = "***REMOVED-ZERNIO-KEY***"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE  = "https://zernio.com/api/v1"
 ZERNIO_HDR   = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -54,7 +54,7 @@ MISSING = [
         "slot": "2026-05-24T17:00:00",
         "topic": "4 non-clinical roles unmatched IMGs in Canada can start applying for this week — with salary ranges",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Confident professional walking into a modern office building, business casual attire, briefcase, glass doors, morning light, cinematic 35mm film grain, forward momentum, sense of new beginning",
     },
     {
@@ -70,7 +70,7 @@ MISSING = [
         "slot": "2026-05-25T08:00:00",
         "topic": "What the free IMG calculator revealed — the number that finally made 300 people choose to cross",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Person looking at a smartphone screen, slight relief and recognition on their face, warm interior lighting, sitting at a kitchen table, cinematic 35mm film grain, moment of clarity, shallow depth of field",
     },
 ]

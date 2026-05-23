@@ -4,11 +4,11 @@ Posts: may-39, may-40, may-41, jun-05
 New slots: Jun 5 8am, 10am, 12pm, 2pm ET
 """
 from __future__ import annotations
-import time, requests
+import os, time, requests
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "***REMOVED-ANTHROPIC-KEY***"
-ZERNIO_KEY    = "***REMOVED-ZERNIO-KEY***"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE = "https://zernio.com/api/v1"
 ZERNIO_HDR  = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -43,9 +43,9 @@ Under 1500 characters. Output ONLY the post."""
 # 4 failed posts, recovered on June 5 with 2-hour spacing
 RECOVERY_POSTS = [
     {"slug": "may-39", "new_slot": "2026-06-05T08:00:00", "topic": "The $48K salary lie — what it costs an IMG besides money when they're stuck in non-clinical limbo", "pillar": "Identity Cage", "fc": "https://fear-audit.vercel.app"},
-    {"slug": "may-40", "new_slot": "2026-06-05T10:00:00", "topic": "4 roles in Canada where IMG credentials are an *asset*, not a barrier — and the salary ranges you should expect", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "may-40", "new_slot": "2026-06-05T10:00:00", "topic": "4 roles in Canada where IMG credentials are an *asset*, not a barrier — and the salary ranges you should expect", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
     {"slug": "may-41", "new_slot": "2026-06-05T12:00:00", "topic": "The yellow vest taught me something MD credentials never could — permission to be imperfect", "pillar": "Crossing Guard Philosophy", "fc": "https://crosswalkwisdom.com/philosophy"},
-    {"slug": "jun-05", "new_slot": "2026-06-05T14:00:00", "topic": "What 'pivot' really means for an IMG — it's not failure, it's recalibration at the right time", "pillar": "Courage to Choose", "fc": "https://crosswalkwisdom.com/calculator"},
+    {"slug": "jun-05", "new_slot": "2026-06-05T14:00:00", "topic": "What 'pivot' really means for an IMG — it's not failure, it's recalibration at the right time", "pillar": "Courage to Choose", "fc": "www.crosswalkwisdom.com/img/calculator"},
 ]
 
 

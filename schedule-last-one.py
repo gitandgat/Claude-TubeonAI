@@ -1,12 +1,12 @@
 """Retry the single post that failed due to Anthropic 529 overload."""
 from __future__ import annotations
-import time, subprocess, requests
+import os, time, subprocess, requests
 from pathlib import Path
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "***REMOVED-ANTHROPIC-KEY***"
-OPENAI_KEY    = "***REMOVED-OPENAI-KEY***"
-ZERNIO_KEY    = "***REMOVED-ZERNIO-KEY***"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 ZERNIO_BASE   = "https://zernio.com/api/v1"
 ZERNIO_HDR    = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
 OPENAI_HDR    = {"Authorization": f"Bearer {OPENAI_KEY}", "Content-Type": "application/json"}
@@ -29,7 +29,7 @@ Under 1500 chars. Lived experience only. Output ONLY the post."""
 TOPIC  = "4 non-clinical roles unmatched IMGs in Canada can start applying for this week — with salary ranges"
 PILLAR = "Courage to Choose"
 SLOT   = "2026-05-29T08:00:00"
-FC     = "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator"
+FC     = "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator"
 SLUG   = "may-34"
 
 def write_post_with_retry():

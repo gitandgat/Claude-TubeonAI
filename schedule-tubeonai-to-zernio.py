@@ -13,9 +13,9 @@ from pathlib import Path
 from anthropic import Anthropic
 
 # ── Config ──────────────────────────────────────────────────────────────────────
-ANTHROPIC_KEY = "***REMOVED-ANTHROPIC-KEY***"
-OPENAI_KEY    = "***REMOVED-OPENAI-KEY***"
-ZERNIO_KEY    = "***REMOVED-ZERNIO-KEY***"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE  = "https://zernio.com/api/v1"
 ZERNIO_HDR   = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -48,7 +48,7 @@ SOURCE_FILES = [
         "file": "How Can IMGs Build Their CV to Get a Position.txt",
         "topic": "Non-clinical career paths for unmatched IMGs — research, medical writing, clinic admin",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see your actual options and what pivoting looks like in practice: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see your actual options and what pivoting looks like in practice: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Exhausted young South Asian man in casual clothes sitting alone at a library desk late at night, medical textbooks and research papers spread out, warm amber lamp light, cinematic 35mm film grain, moody atmosphere, shallow depth of field",
     },
     {
@@ -69,7 +69,7 @@ SOURCE_FILES = [
         "file": "Ontarios New IMG Policy What You Need to Know for .txt",
         "topic": "Ontario IMG policy changes — what the system shifting means for the 88% who don't match",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see how the new numbers affect your specific situation: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see how the new numbers affect your specific situation: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Canadian government building exterior at dusk, stone columns, warm amber streetlights, a lone figure walking away from the entrance, cinematic 35mm film grain, moody atmosphere, sense of exclusion",
     },
     {
@@ -83,7 +83,7 @@ SOURCE_FILES = [
         "file": "Overcoming the Sunk Cost Fallacy in Your Career.txt",
         "topic": "The sunk cost fallacy in career decisions — why past investment should never drive future choices",
         "pillar": "Courage to Choose",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
         "image_prompt": "Person at a crossroads on a quiet misty road at dawn, one path continues forward, one turns right, warm amber light breaking through fog, rear view, cinematic 35mm film grain, moody atmosphere, solitary figure",
     },
 ]

@@ -365,7 +365,9 @@ But here's what happens after you take it:
 
 You get a detailed report showing your IMG Pivot Path.
 
-And if you want the deeper work (the one that actually gets you hired), there's **The Courage to Choose** — my complete playbook for IMG career transitions.
+And if you want the deeper work (the one that actually gets you hired), there's **The Courage to Choose** ($27) — my complete playbook for IMG career transitions.
+
+→ **[Get The Courage to Choose] https://sahawat.gumroad.com/l/courage-to-choose**
 
 **The choice is yours.**
 

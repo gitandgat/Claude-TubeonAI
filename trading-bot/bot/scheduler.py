@@ -75,20 +75,37 @@ def sleep_mac() -> None:
     )
 
 
+def wait_for_network_indefinite() -> None:
+    """
+    Wait indefinitely for network to become available.
+    Retries every 30 seconds with persistent logging.
+    """
+    attempt = 0
+    while True:
+        attempt += 1
+        try:
+            import socket
+            socket.setdefaulttimeout(5)
+            socket.getaddrinfo("api.polygon.io", 443)
+            log.info("Network is available (attempt %d). Proceeding with bot run.", attempt)
+            return
+        except OSError:
+            log.info("Network unavailable (attempt %d). Retrying in 30 seconds…", attempt)
+            time.sleep(30)
+
+
 def trigger_bot() -> None:
     """
     Called by schedule at 09:00 ET every day.
     Skips weekends, runs bot.py, then sleeps the Mac if configured.
+    Waits indefinitely for network before proceeding.
     """
     if not is_market_weekday():
         log.info("Weekend in ET — skipping bot run.")
         return
 
     log.info("Checking network connectivity …")
-    if not wait_for_network():
-        log.error("Network not available after 120 s — skipping bot run today.")
-        _log_next_run()
-        return
+    wait_for_network_indefinite()
 
     log.info("Network ready. Triggering minervini_bot.py …")
     result = subprocess.run([sys.executable, str(BOT_SCRIPT)])
@@ -118,16 +135,14 @@ def trigger_all_variants() -> None:
     """
     Called by schedule at 09:05 ET every weekday.
     Runs all 3 bot variants (A, B, C) in sequence with delays between them.
+    Waits indefinitely for network before proceeding.
     """
     if not is_market_weekday():
         log.info("Weekend in ET — skipping 3-bot run.")
         return
 
     log.info("Checking network connectivity for 3-bot run …")
-    if not wait_for_network():
-        log.error("Network not available after 120 s — skipping 3-bot run today.")
-        _log_next_run()
-        return
+    wait_for_network_indefinite()
 
     log.info("Network ready. Triggering all 3 bot variants …")
 

@@ -62,7 +62,7 @@ POSTS = [
         "topic": "CaRMS rejection isn't about clinical skill — it's about visibility politics and timeline luck",
         "pillar": "Courage to Choose",
         "image_prompt": "Moody office scene: CaRMS portal screen with rejection email, stack of case files, stethoscope coiled on desk, soft dramatic lighting from window",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "may-39", "slot": "2026-05-30T12:00:00",
@@ -76,7 +76,7 @@ POSTS = [
         "topic": "4 roles in Canada where IMG credentials are an *asset*, not a barrier — and the salary ranges you should expect",
         "pillar": "Courage to Choose",
         "image_prompt": "Collage of 4 professional settings: lab, hospital hallway, research office, clinic. Warm, hopeful lighting, diverse professionals at work",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "may-41", "slot": "2026-05-30T16:00:00",
@@ -98,7 +98,7 @@ POSTS = [
         "topic": "The one question that breaks the pivot paralysis — and why IMGs never ask it",
         "pillar": "Courage to Choose",
         "image_prompt": "Person sitting at kitchen table, hand on chin in contemplative pose, morning light, blank journal nearby, expression of realization dawning",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "may-44", "slot": "2026-05-31T12:00:00",
@@ -112,7 +112,7 @@ POSTS = [
         "topic": "Why PhD-track research is the path nobody tells unmatched IMGs exists — $75K salary, no residency required",
         "pillar": "Courage to Choose",
         "image_prompt": "Research lab: IMG in lab coat examining test tubes, microscope, data charts on wall, collaborative colleagues in background, modern clean setting",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "may-46", "slot": "2026-05-31T16:00:00",
@@ -127,7 +127,7 @@ POSTS = [
         "topic": "The bridge nobody talks about — how to go from 'failed IMG' to 'unmatched IMG who chose differently'",
         "pillar": "Courage to Choose",
         "image_prompt": "Symbolic bridge scene: person standing at crossroads, one path toward hospital, other path toward different opportunity, hopeful dawn lighting",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "jun-02", "slot": "2026-06-01T10:00:00",
@@ -141,7 +141,7 @@ POSTS = [
         "topic": "The clinical role that *won't* require another exam — and why you have zero idea it exists",
         "pillar": "Courage to Choose",
         "image_prompt": "Professional IMG in clinical setting without white coat, engaging with patient in non-surgical role, warm collaborative atmosphere, modern healthcare",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "jun-04", "slot": "2026-06-01T14:00:00",
@@ -155,7 +155,7 @@ POSTS = [
         "topic": "What 'pivot' really means for an IMG — it's not failure, it's recalibration at the right time",
         "pillar": "Courage to Choose",
         "image_prompt": "IMG at turning point, looking at two directions, one showing residency lab, other showing broader healthcare career path, balanced perspective",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     # June 2 (5 posts)
     {
@@ -170,7 +170,7 @@ POSTS = [
         "topic": "Ultrasound technician path in Canada — $65K starting, full credential recognition, zero additional exams",
         "pillar": "Courage to Choose",
         "image_prompt": "Ultrasound tech performing scan, IMG professional in clinical setting, modern equipment, confident clinical presence, respected role visualized",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "jun-08", "slot": "2026-06-02T12:00:00",
@@ -191,7 +191,7 @@ POSTS = [
         "topic": "Lab director, research lead, education coordinator — 3 IMG-friendly roles paying $70K+ that nobody mentors you toward",
         "pillar": "Courage to Choose",
         "image_prompt": "Composite of 3 professional roles: lab director overseeing team, researcher presenting findings, education coordinator teaching, diverse IMG professionals thriving",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     # June 3 (5 posts)
     {
@@ -199,7 +199,7 @@ POSTS = [
         "topic": "The question nobody asks — what if failing CaRMS was the best thing that happened to you?",
         "pillar": "Courage to Choose",
         "image_prompt": "IMG looking back at CaRMS rejection with new perspective, sunlight on face, hopeful realization, path forward visible, growth moment captured",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "jun-12", "slot": "2026-06-03T10:00:00",
@@ -213,7 +213,7 @@ POSTS = [
         "topic": "Regulatory coordinator for medical boards — $68K, IMG-credentialed, nobody mentions this path",
         "pillar": "Courage to Choose",
         "image_prompt": "Professional in regulatory office, IMG working with medical documentation, confident in role, modern institutional setting, meaningful healthcare contribution",
-        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator",
+        "first_comment": "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator",
     },
     {
         "slug": "jun-14", "slot": "2026-06-03T14:00:00",

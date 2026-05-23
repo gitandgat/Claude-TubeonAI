@@ -4,13 +4,13 @@ Retry script: schedules the 8 posts that failed in schedule-may19-24.py
   - Posts 26-30    → generate new images + full pipeline
 """
 from __future__ import annotations
-import time, json, subprocess, requests
+import os, time, json, subprocess, requests
 from pathlib import Path
 from anthropic import Anthropic
 
-ANTHROPIC_KEY = "***REMOVED-ANTHROPIC-KEY***"
-OPENAI_KEY    = "***REMOVED-OPENAI-KEY***"
-ZERNIO_KEY    = "***REMOVED-ZERNIO-KEY***"
+ANTHROPIC_KEY = os.getenv("ANTHROPIC_KEY")
+OPENAI_KEY    = os.getenv("OPENAI_KEY")
+ZERNIO_KEY    = os.getenv("ZERNIO_KEY")
 
 ZERNIO_BASE  = "https://zernio.com/api/v1"
 ZERNIO_HDR   = {"Authorization": f"Bearer {ZERNIO_KEY}", "Content-Type": "application/json"}
@@ -29,7 +29,7 @@ anthropic = Anthropic(api_key=ANTHROPIC_KEY)
 
 FC_FEAR  = "Here's the Fear Audit — 5 minutes to name what's holding you in the loop: https://fear-audit.vercel.app"
 FC_START = "This is where Crosswalk Wisdom starts. If the crosswalk is calling you: https://crosswalkwisdom.com/start"
-FC_CALC  = "Here's the free IMG Reality Calculator — see the actual math before you decide: https://crosswalkwisdom.com/calculator"
+FC_CALC  = "Here's the free IMG Reality Calculator — see the actual math before you decide: www.crosswalkwisdom.com/img/calculator"
 
 SYSTEM_PROMPT = """\
 You write LinkedIn posts for Crosswalk Wisdom, a brand by Sahawat Nilwatcharamanee — a former physician who left medicine, became a crossing guard, and now helps unmatched IMGs in Canada navigate career transitions.

@@ -80,7 +80,7 @@ Follow **encharge-pivot-setup-manual.md** exactly:
 **CRITICAL:** Verify Day 7 email includes:
 ```
 Fear Audit: https://fear-audit.vercel.app
-Courage to Choose: https://gumroad.com/l/courage-to-choose
+Courage to Choose: https://sahawat.gumroad.com/l/courage-to-choose
 ```
 
 ### Step 2: Deploy Landing Page
@@ -235,7 +235,7 @@ Once deployed, these endpoints are available:
 - In Encharge UI, edit Day 7 email
 - Verify these links are in the body:
   - `https://fear-audit.vercel.app`
-  - `https://gumroad.com/l/courage-to-choose` (or your actual link)
+  - `https://sahawat.gumroad.com/l/courage-to-choose`
 
 ---
 
