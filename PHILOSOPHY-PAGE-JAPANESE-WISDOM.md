@@ -1,0 +1,716 @@
+# Philosophy Page: Crosswalk Wisdom + Japanese Philosophy
+
+## Page Structure & HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy - Crosswalk Wisdom</title>
+    <meta name="description" content="The philosophy of deliberate career crossing. From the Ward to the World—guided by Japanese wisdom and the real psychology of change.">
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="philosophy-hero">
+    <div class="hero-content">
+        <h1>The Philosophy of Crossing</h1>
+        <p class="subtitle">
+            From the Ward to the World—
+            <br/>guided by Japanese wisdom and the real psychology of change.
+        </p>
+        <p class="tagline">
+            A crosswalk is not just a path. It's a <em>permission</em>.
+        </p>
+    </div>
+</section>
+
+<!-- THE CORE INSIGHT -->
+<section class="core-insight">
+    <div class="container">
+        <h2>The Core Insight: What a Crosswalk Really Means</h2>
+        <p>
+            A crosswalk is the painted lines that tell you it's safe to cross even though danger lives here. Cars pass. People rush. The world doesn't stop for your crossing. But the crosswalk says:
+        </p>
+        <blockquote>
+            <strong>You belong on this street. Take your time. You will be seen.</strong>
+        </blockquote>
+        <p>
+            <strong>Crosswalk Wisdom</strong> is the philosophy of deliberate career transition built on this insight: <em>You don't need permission from your old career to begin your new one. You need a defined path forward.</em>
+        </p>
+    </div>
+</section>
+
+<!-- JAPANESE PHILOSOPHY INTEGRATION -->
+<section class="japanese-philosophy">
+    <div class="container">
+        <h2>Five Japanese Philosophies for Your Crossing</h2>
+        <p class="intro">
+            If you're stuck between careers, you're already embodying these ancient concepts. Here's what they teach:
+        </p>
+
+        <!-- 1. KINTSUGI -->
+        <div class="philosophy-card kintsugi">
+            <h3>🏺 Kintsugi: Your Broken Self Is Beautiful</h3>
+            <p class="japanese">金継ぎ — "golden joinery"</p>
+            
+            <div class="concept">
+                <p>
+                    <strong>What it means:</strong> The art of repairing broken pottery with gold. In Japanese aesthetics, the damage and repair make the object more beautiful, not less.
+                </p>
+                <p>
+                    <strong>For your crossing:</strong> You feel broken. A low-level position despite world-class credentials. Burnout that no prestige could prevent. An identity that doesn't fit anymore.
+                </p>
+                <p>
+                    <strong>The wisdom:</strong> You're not broken. You're being repaired. The cracks you're experiencing—the doubts, the grief, the falling apart—these are not signs of failure. They're the first stage of becoming whole in a different way.
+                </p>
+                <p>
+                    <strong>Your crosswalk:</strong> Kintsugi teaches that <em>the repair is the masterpiece</em>. The gold doesn't hide the crack—it honors it. Your career crossing doesn't erase your past. It honors every difficult thing you learned and integrates it into who you're becoming.
+                </p>
+            </div>
+            <blockquote>
+                "There is beauty in what is broken. The damage and its repair are part of the object's story, not a blemish on it."
+            </blockquote>
+        </div>
+
+        <!-- 2. IKIGAI -->
+        <div class="philosophy-card ikigai">
+            <h3>🌸 Ikigai: Your Reason for Being</h3>
+            <p class="japanese">生き甲斐 — "reason for being"</p>
+            
+            <div class="concept">
+                <p>
+                    <strong>What it means:</strong> The intersection of what you love, what you're good at, what the world needs, and what you can be paid for. But ikigai is deeper than Western optimization—it's about purpose embedded in daily life, not just career achievement.
+                </p>
+                <p>
+                    <strong>For your crossing:</strong> You had a title and credentials, but you didn't have ikigai. You had a career, but you didn't have a reason for being. No amount of prestige can substitute for purpose.
+                </p>
+                <p>
+                    <strong>The wisdom:</strong> The Courage to Choose is the moment you stop choosing based on what looks good and start choosing based on what feels aligned. Not what impresses your parents. Not what keeps you safe. What actually *feeds your soul*.
+                </p>
+                <p>
+                    <strong>Your crosswalk:</strong> Ikigai is the north star on your crossing. It's the reason you're willing to risk everything. Because you've named something in yourself that's worth more than prestige: <em>the person you could become if you stopped hiding.</em>
+                </p>
+            </div>
+            <blockquote>
+                "Ikigai is not about career success. It's about waking up in the morning knowing your life has meaning."
+            </blockquote>
+        </div>
+
+        <!-- 3. SHOSHIN -->
+        <div class="philosophy-card shoshin">
+            <h3>🧠 Shoshin: Beginner's Mind, Expert's Courage</h3>
+            <p class="japanese">初心 — "beginner's mind"</p>
+            
+            <div class="concept">
+                <p>
+                    <strong>What it means:</strong> In Zen Buddhism, shoshin is the ability to approach something with the openness and eagerness of a beginner, even when you're an expert. It means *not knowing* as a strength, not a weakness.
+                </p>
+                <p>
+                    <strong>For your crossing:</strong> You're an expert. A credentialed physician with deep knowledge. But your expertise has become a cage. You can't start fresh because you know too much. You can't be a beginner because you've built an identity around expertise.
+                </p>
+                <p>
+                    <strong>The wisdom:</strong> Shoshin teaches that being an expert can actually *prevent* you from learning. The expert who clings to what they know misses what they could discover. The beginner who is willing to not know everything can learn anything.
+                </p>
+                <p>
+                    <strong>Your crosswalk:</strong> Your greatest superpower on the other side of your crossing is not your medical degree—it's your willingness to be a beginner again. To ask questions instead of have all the answers. To be curious instead of knowing. This is what Crossing Guard Philosophy teaches: <em>the beginner's mind is the expert's secret weapon.</em>
+                </p>
+            </div>
+            <blockquote>
+                "In the mind of the beginner, there are many possibilities. In the mind of the expert, there are but few." — Shunryū Suzuki
+            </blockquote>
+        </div>
+
+        <!-- 4. WABI-SABI -->
+        <div class="philosophy-card wabisabi">
+            <h3>🍂 Wabi-Sabi: Beauty in Impermanence</h3>
+            <p class="japanese">侘寂 — "impermanence and incompleteness"</p>
+            
+            <div class="concept">
+                <p>
+                    <strong>What it means:</strong> The aesthetic of incompleteness, impermanence, and imperfection. Nothing lasts. Nothing is finished. Nothing is perfect. And in that reality, there is profound beauty.
+                </p>
+                <p>
+                    <strong>For your crossing:</strong> You were chasing perfection: the perfect career, the perfect credentials, the perfect life. And it broke you. Because perfection doesn't exist. It's a cage built on a lie.
+                </p>
+                <p>
+                    <strong>The wisdom:</strong> The moment you stop demanding a perfect landing—a perfect new career, a perfect salary, a perfect identity—is the moment you're actually free. Your crossing doesn't need to be flawless. You don't need to know exactly where you're going. The beauty is in the incompleteness.
+                </p>
+                <p>
+                    <strong>Your crosswalk:</strong> From the Ward to the World is not a perfect trajectory. It's messy. It's unfinished. You'll make mistakes. You'll question. You'll fail and restart. That's not a bug. That's the whole point. <em>Your imperfect crossing is more beautiful than any perfect stasis.</em>
+                </p>
+            </div>
+            <blockquote>
+                "The faded beauty of a worn kimono, the moss on a temple wall—incompleteness and impermanence are what make things precious."
+            </blockquote>
+        </div>
+
+        <!-- 5. MA -->
+        <div class="philosophy-card ma">
+            <h3>⬜ Ma: The Meaningful Space Between</h3>
+            <p class="japanese">間 — "the gap, the space, the pause"</p>
+            
+            <div class="concept">
+                <p>
+                    <strong>What it means:</strong> In Japanese aesthetics, ma is not the absence of something. It's the *presence* of space. The silence between notes is music. The empty space in a painting gives the whole work meaning. Ma teaches that emptiness is not void—it's *potential*.
+                </p>
+                <p>
+                    <strong>For your crossing:</strong> You're in the STOP stage right now. In the gap. The place with no job title, no clear identity, no path. And it feels like nothing. Like emptiness. Like failure.
+                </p>
+                <p>
+                    <strong>The wisdom:</strong> That gap is not wasted space. It's the most important part of your crossing. In that silence, you're reconstructing who you are. In that emptiness, you're learning what you actually need. The space between who you were and who you're becoming is where all the real work happens.
+                </p>
+                <p>
+                    <strong>Your crosswalk:</strong> Don't rush through the ma. Don't try to fill it with a new job immediately just to feel solid again. The loneliness and uncertainty of this stage is <em>the stage</em>. It's not something to escape. It's something to honor. The silence is where you learn to listen to yourself instead of listening to everyone else.
+                </p>
+            </div>
+            <blockquote>
+                "The space between is not empty—it is full of potential. The silence is not absence—it is presence waiting."
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<!-- THE FOUR STAGES (MAPPED TO JAPANESE PHILOSOPHY) -->
+<section class="four-stages">
+    <div class="container">
+        <h2>Your Crossing in Four Stages</h2>
+        
+        <div class="stage-row">
+            <div class="stage start">
+                <h3>Stage 1: START — Kintsugi (The Breaking)</h3>
+                <p>You name what's breaking. You see the cracks clearly. And in seeing them, you realize: <em>these cracks are where the light gets in.</em></p>
+            </div>
+            <div class="stage stop">
+                <h3>Stage 2: STOP — Ma (The Gap)</h3>
+                <p>You're in the space between. It's empty and terrifying and necessary. You're not hiding. You're not yet arriving. You're just... here. In the silence. Learning to breathe.</p>
+            </div>
+            <div class="stage elder">
+                <h3>Stage 3: ELDER — Shoshin (The Beginner's Wisdom)</h3>
+                <p>You're starting to integrate. You realize your expertise wasn't the whole of you. Your beginner's mind is your greatest asset now. You're learning what you didn't know you needed to know.</p>
+            </div>
+            <div class="stage human">
+                <h3>Stage 4: HUMAN — Ikigai & Wabi-Sabi (The Landing)</h3>
+                <p>You're across. Not perfect. Not finished. But finally aligned. You've found your reason for being. You know what you actually need. And that's enough.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIVE FEARS SECTION -->
+<section class="five-fears">
+    <div class="container">
+        <h2>The Five Fears That Keep You Caged</h2>
+        <p>Every fear holding you back has a name. Naming it gives you power.</p>
+        
+        <div class="fears-grid">
+            <div class="fear-card">
+                <h4>💰 Financial Fear</h4>
+                <p><strong>"I can't afford to leave."</strong></p>
+                <p>Run the actual numbers. Most people's fear is bigger than their actual cost of living. Name the real number. Make decisions based on data, not panic.</p>
+            </div>
+            <div class="fear-card">
+                <h4>🪪 Identity Fear</h4>
+                <p><strong>"Who am I without my title?"</strong></p>
+                <p>The title was a container, not your essence. You can change containers and stay exactly who you are. This takes time to feel true. That's the ELDER stage.</p>
+            </div>
+            <div class="fear-card">
+                <h4>👁️ Judgment Fear</h4>
+                <p><strong>"What will people think?"</strong></p>
+                <p>Some people will judge. Notice who asks, "Are you sleeping better?" instead of "Why did you give up such a good career?" Those are your people.</p>
+            </div>
+            <div class="fear-card">
+                <h4>❌ Failure Fear</h4>
+                <p><strong>"What if the new thing doesn't work out?"</strong></p>
+                <p>You might fail. You might pivot three times. Failure is not binary—it's feedback. And you've already survived the hardest part: the choice itself.</p>
+            </div>
+            <div class="fear-card">
+                <h4>😢 Grief Fear</h4>
+                <p><strong>"What if I wasted everything I gave?"</strong></p>
+                <p>You're not wasting it. You're integrating it. The doctor you were taught you how to listen. The burnout taught you when to stop. Nothing that shaped you is lost.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHO THIS IS FOR -->
+<section class="who-this-for">
+    <div class="container">
+        <h2>This Philosophy Is for You If:</h2>
+        <ul>
+            <li>You're a credentialed professional (IMG, physician, lawyer, engineer) in a low-level position</li>
+            <li>You're burning out from a title that looked prestigious on the outside but felt like a cage</li>
+            <li>You're afraid to leave because of sunk cost: the time, money, sacrifice you've already invested</li>
+            <li>You're asking yourself, "Is this all there is?" at 2am</li>
+            <li>You know you need to cross, but you're terrified of who you'll be on the other side</li>
+            <li>You're ready to stop choosing from fear and start choosing from alignment</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CALL TO ACTION SECTION -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-main">
+            <h2>Ready to Start Your Crossing?</h2>
+            <p>
+                The first step is naming your fears. The second step is choosing your path. 
+                <br/>
+                We've created a tool to help with both.
+            </p>
+            
+            <!-- CTA 1: FEAR AUDIT -->
+            <div class="cta-card">
+                <h3>Take the Fear Audit</h3>
+                <p>
+                    A 5-minute assessment that reveals which of the five fears is holding you back the most. 
+                    Get clarity on what's really stopping you.
+                </p>
+                <a href="/fear-audit" class="btn btn-primary">Start the Fear Audit</a>
+            </div>
+
+            <!-- CTA 2: IMG PIVOT CHALLENGE -->
+            <div class="cta-card">
+                <h3>Join the IMG Pivot Challenge</h3>
+                <p>
+                    A free 7-day email series designed specifically for credentialed professionals stuck between careers. 
+                    Learn the psychology of crossing, connect with others on the same path.
+                </p>
+                <a href="/img-pivot-challenge" class="btn btn-primary">Claim Your Free Challenge</a>
+            </div>
+
+            <!-- CTA 3: DEEPER DIVE -->
+            <div class="cta-card">
+                <h3>Read the Full Philosophy</h3>
+                <p>
+                    A deep dive into the four stages of crossing, the five fears, and what Crosswalk Wisdom actually teaches.
+                    <strong>Download the full philosophy guide (free).</strong>
+                </p>
+                <a href="/download-philosophy-guide" class="btn btn-secondary">Download the Guide</a>
+            </div>
+        </div>
+
+        <!-- SECONDARY CTA: EMAIL SIGNUP -->
+        <div class="email-signup">
+            <p>
+                <strong>Want to stay updated on Crosswalk Wisdom?</strong>
+                <br/>
+                Get essays on identity, sunk cost, burnout, and how to cross from the Ward to the World.
+            </p>
+            <form>
+                <input type="email" placeholder="Your email" required />
+                <button type="submit" class="btn btn-small">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- AUTHOR BIO -->
+<section class="author-bio">
+    <div class="container">
+        <h3>About the Philosophy</h3>
+        <p>
+            <strong>Crosswalk Wisdom was built by Dr. Sahawat Nilwatcharamanee</strong> — a former physician who left medicine after burnout, moved to Canada as an international medical graduate, became a crossing guard, and learned that the greatest career you can have is a life where you're not running anymore.
+        </p>
+        <p>
+            This philosophy is offered to anyone standing at the curb, afraid to cross. If you're stuck between careers, you're not broken. You're becoming.
+        </p>
+    </div>
+</section>
+
+</body>
+</html>
+```
+
+## CSS Styling
+
+```css
+/* Philosophy Page Styles */
+
+:root {
+  --color-primary: #d4a574;      /* Warm amber */
+  --color-text: #1a1a1a;         /* Deep charcoal */
+  --color-light-bg: #f9f7f4;     /* Warm off-white */
+  --color-accent: #e8d4c4;       /* Soft taupe */
+  --color-border: #d9cec2;       /* Warm gray */
+  --spacing-large: 4rem;
+  --spacing-medium: 2rem;
+  --spacing-small: 1rem;
+}
+
+/* HERO */
+.philosophy-hero {
+  background: linear-gradient(135deg, #2c2c2c 0%, #3d3d3d 100%);
+  color: white;
+  padding: 8rem 2rem;
+  text-align: center;
+  margin-bottom: var(--spacing-large);
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.hero-content .subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.hero-content .tagline {
+  font-size: 1.5rem;
+  font-style: italic;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* CORE INSIGHT */
+.core-insight {
+  background: var(--color-light-bg);
+  padding: var(--spacing-large) 2rem;
+  margin-bottom: var(--spacing-large);
+}
+
+.core-insight h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+.core-insight blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 2rem;
+  margin: 2rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* JAPANESE PHILOSOPHY CARDS */
+.japanese-philosophy {
+  padding: var(--spacing-large) 2rem;
+}
+
+.japanese-philosophy .intro {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  color: #555;
+}
+
+.philosophy-card {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+}
+
+.philosophy-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.philosophy-card .japanese {
+  font-style: italic;
+  color: #999;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.philosophy-card .concept p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+.philosophy-card blockquote {
+  background: var(--color-light-bg);
+  border-left: 3px solid var(--color-primary);
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
+  margin-top: 2rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* FOUR STAGES */
+.four-stages {
+  background: white;
+  padding: var(--spacing-large) 2rem;
+  margin: var(--spacing-large) 0;
+}
+
+.four-stages h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: var(--color-text);
+}
+
+.stage-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.stage {
+  background: var(--color-light-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--color-primary);
+}
+
+.stage h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.stage p {
+  line-height: 1.7;
+  color: #555;
+}
+
+/* FIVE FEARS */
+.five-fears {
+  background: var(--color-light-bg);
+  padding: var(--spacing-large) 2rem;
+}
+
+.five-fears h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.five-fears > .container > p {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #555;
+}
+
+.fears-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.fear-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border-top: 3px solid var(--color-primary);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.fear-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.fear-card p {
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 0.75rem;
+}
+
+.fear-card p:first-of-type {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* WHO THIS IS FOR */
+.who-this-for {
+  padding: var(--spacing-large) 2rem;
+  background: white;
+}
+
+.who-this-for h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+.who-this-for ul {
+  list-style: none;
+  padding: 0;
+}
+
+.who-this-for li {
+  padding: 1rem 0;
+  padding-left: 2rem;
+  border-bottom: 1px solid var(--color-accent);
+  position: relative;
+  color: #333;
+  line-height: 1.6;
+}
+
+.who-this-for li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* CTA SECTION */
+.cta-section {
+  background: linear-gradient(135deg, #2c2c2c 0%, #3d3d3d 100%);
+  color: white;
+  padding: var(--spacing-large) 2rem;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.cta-section > .container > p {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.cta-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.cta-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.cta-card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #1a1a1a;
+}
+
+.btn-primary:hover {
+  background: #e8a260;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background: white;
+  color: #2c2c2c;
+}
+
+/* EMAIL SIGNUP */
+.email-signup {
+  background: rgba(255,255,255,0.08);
+  padding: 2.5rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.email-signup p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.email-signup form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.email-signup input {
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  min-width: 300px;
+  font-size: 1rem;
+}
+
+.btn-small {
+  padding: 0.875rem 2rem;
+}
+
+/* AUTHOR BIO */
+.author-bio {
+  background: var(--color-light-bg);
+  padding: var(--spacing-large) 2rem;
+  text-align: center;
+}
+
+.author-bio h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.author-bio p {
+  line-height: 1.8;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .philosophy-hero {
+    padding: 4rem 1.5rem;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .stage-row {
+    grid-template-columns: 1fr;
+  }
+
+  .fears-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .email-signup input {
+    min-width: 100%;
+  }
+}
+```
+

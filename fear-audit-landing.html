@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fear Audit | Crosswalk Wisdom</title>
+    <meta name="description" content="Discover which of the 5 fears is holding you back from your career crossing. Free 5-minute assessment.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f9f7f4 0%, #ede7e0 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .timer {
+            font-size: 0.95rem;
+            color: #d4a574;
+            font-weight: 600;
+        }
+
+        /* QUIZ FORM */
+        .quiz-form {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 4px;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #d4a574 0%, #c09464 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .question-number {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .radio-label:hover {
+            border-color: #d4a574;
+            background: #fef9f6;
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            accent-color: #d4a574;
+            flex-shrink: 0;
+        }
+
+        .radio-label input[type="radio"]:checked + .option-text {
+            color: #d4a574;
+            font-weight: 600;
+        }
+
+        .radio-label.selected {
+            border-color: #d4a574;
+            background: #fef9f6;
+        }
+
+        .option-text {
+            flex: 1;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #1a1a1a;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4a574 0%, #c09464 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* RESULTS PAGE */
+        .results-page {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+        }
+
+        .results-page.active {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .results-header h2 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .fear-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4a574 0%, #c09464 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .fear-result {
+            background: #fef9f6;
+            border: 2px solid #d4a574;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .fear-result h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .fear-result p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .fear-result .insight {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #d4a574;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        .other-fears {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .other-fears h4 {
+            font-size: 1rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .fear-list {
+            list-style: none;
+        }
+
+        .fear-list li {
+            padding: 0.75rem 0;
+            color: #666;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .fear-list li:last-child {
+            border-bottom: none;
+        }
+
+        .cta-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .cta-buttons .btn {
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .cta-philosophy {
+            background: white;
+            border: 2px solid #d4a574;
+            color: #d4a574;
+        }
+
+        .cta-philosophy:hover {
+            background: #fef9f6;
+        }
+
+        .cta-challenge {
+            background: linear-gradient(135deg, #d4a574 0%, #c09464 100%);
+            color: white;
+        }
+
+        .cta-challenge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.3);
+        }
+
+        /* HIDDEN FORM */
+        .email-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .email-form.active {
+            display: flex;
+        }
+
+        .email-modal {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .email-modal h3 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .email-modal p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .email-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .email-form input {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: #d4a574;
+        }
+
+        .email-form .btn {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .quiz-form, .results-page {
+                padding: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .question-text {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Fear Audit</h1>
+        <p class="tagline">Which of the 5 fears is holding you back?</p>
+        <p class="timer">⏱️ Takes 5 minutes</p>
+    </div>
+
+    <!-- QUIZ PAGE -->
+    <div class="quiz-page active">
+        <div class="quiz-form">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <form id="quizForm">
+                <!-- Question 1: Financial Fear -->
+                <div class="question-container question-1">
+                    <div class="question-number">Question 1 / 5</div>
+                    <div class="question-text">When you think about leaving your current career, what's the first thing that scares you?</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="financial">
+                            <span class="option-text">"I'll lose my income and financial security. I have debt, family, bills—I can't afford to risk it."</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="identity">
+                            <span class="option-text">"Who am I without this title? My entire identity is built on being a [doctor/engineer/lawyer]. Without it, I disappear."</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="judgment">
+                            <span class="option-text">"What will people think? My family, friends, colleagues—they'll judge me for giving up such a 'good career.'"</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="failure">
+                            <span class="option-text">"What if the new thing doesn't work out? I'll have lost both the old career AND failed at the new one."</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q1" value="grief">
+                            <span class="option-text">"What about all the years, debt, and sacrifice? What if I wasted everything I've already given?"</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2: Identity Fear -->
+                <div class="question-container question-2" style="display:none;">
+                    <div class="question-number">Question 2 / 5</div>
+                    <div class="question-text">When you imagine yourself in a new career, what feels most uncomfortable?</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="financial">
+                            <span class="option-text">The paycut or uncertainty about whether I can actually support myself financially on a different path.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="identity">
+                            <span class="option-text">Not having the status, title, or prestige anymore. Feeling small or invisible without my credentials.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="judgment">
+                            <span class="option-text">The awkward conversations with people who ask "Why did you leave?" or the judgment I'll face.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="failure">
+                            <span class="option-text">Not knowing if I'll be successful in the new path. The risk of failure feels too high.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q2" value="grief">
+                            <span class="option-text">The realization that I've spent years on a path that wasn't right for me. The loss of time.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3: Grief Fear -->
+                <div class="question-container question-3" style="display:none;">
+                    <div class="question-number">Question 3 / 5</div>
+                    <div class="question-text">When you're honest with yourself, what keeps you up at 2am?</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="financial">
+                            <span class="option-text">Math. Running the numbers. Can I actually afford to transition? Where will the money come from?</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="identity">
+                            <span class="option-text">Wondering if there's anything else I could be good at. If I leave this, what's even left of me?</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="judgment">
+                            <span class="option-text">What people will say. How others will perceive me. Whether I'll be seen as a failure.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="failure">
+                            <span class="option-text">Worst-case scenarios. What if I make the change and it goes badly? Can I recover from that?</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q3" value="grief">
+                            <span class="option-text">Regret. Did I waste my life? Were the sacrifices worth it? Can I ever get that time back?</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 4: Judgment Fear -->
+                <div class="question-container question-4" style="display:none;">
+                    <div class="question-number">Question 4 / 5</div>
+                    <div class="question-text">If no one would ever find out about your career change, would you still hesitate?</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="financial">
+                            <span class="option-text">Yes. The financial reality doesn't change. I genuinely can't afford it right now.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="identity">
+                            <span class="option-text">Yes. It's not about others—it's about me. I don't know who I am without this career.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="judgment">
+                            <span class="option-text">No. Honestly? If no one knew, I'd probably go for it. The judgment is half the battle.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="failure">
+                            <span class="option-text">Yes. Even in private, I'd worry about failing. Whether anyone knew or not.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q4" value="grief">
+                            <span class="option-text">Yes. The sadness about what I've sacrificed would still be there, regardless of judgment.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 5: Failure Fear -->
+                <div class="question-container question-5" style="display:none;">
+                    <div class="question-number">Question 5 / 5</div>
+                    <div class="question-text">What would actually help you cross right now?</div>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="financial">
+                            <span class="option-text">A clear financial plan. Knowing exactly how much I need, how long I can sustain it, and what my runway is.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="identity">
+                            <span class="option-text">Proof that I'm more than my title. Stories of other credentialed people who crossed and found themselves.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="judgment">
+                            <span class="option-text">Permission from the right people. Knowing that the people who matter most would support me.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="failure">
+                            <span class="office-text">A step-by-step plan and proof that failure isn't fatal. Knowing I could recover if needed.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="q5" value="grief">
+                            <span class="option-text">To stop running from the grief. To process it instead of staying stuck in it.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" disabled>← Back</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Next →</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- RESULTS PAGE -->
+    <div class="results-page" id="resultsPage">
+        <div class="results-header">
+            <h2>Your Primary Fear</h2>
+            <div class="fear-badge" id="fearBadge"></div>
+            <p>This is what's most likely holding you back.</p>
+        </div>
+
+        <div class="fear-result" id="fearResult"></div>
+
+        <div class="other-fears">
+            <h4>Your Other Fears (in order)</h4>
+            <ul class="fear-list" id="otherFearsList"></ul>
+        </div>
+
+        <div style="background: #f9f7f4; padding: 2rem; border-radius: 12px; margin-bottom: 2rem;">
+            <p style="color: #666; line-height: 1.8;">
+                <strong>What this means:</strong> This audit reveals which fear is the primary blocker. The others are real too, but this one is driving most of your hesitation. 
+                <br><br>
+                The Crosswalk Wisdom philosophy shows you how to address each fear. Read the full philosophy to see how Japanese wisdom applies to your specific fear.
+            </p>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="https://www.crosswalkwisdom.com/philosophy" class="btn cta-philosophy">Read Philosophy</a>
+            <a href="https://www.crosswalkwisdom.com/img-pivot-challenge" class="btn cta-challenge">Join Challenge</a>
+        </div>
+    </div>
+</div>
+
+<!-- EMAIL CAPTURE MODAL (hidden) -->
+<div class="email-form" id="emailForm">
+    <div class="email-modal">
+        <h3>Get Your Full Report</h3>
+        <p>Your fear breakdown will be sent to your email. Plus, you'll get the complete Crosswalk Wisdom philosophy guide + access to the IMG Pivot Challenge.</p>
+        <form id="emailFormSubmit">
+            <div class="form-group">
+                <input type="text" name="firstName" placeholder="First name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="your.email@example.com" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Send My Report</button>
+            <p style="font-size: 0.85rem; color: #999; text-align: center; margin-top: 1rem;">
+                ✓ No spam. Unsubscribe anytime.
+            </p>
+        </form>
+    </div>
+</div>
+
+<script>
+    const fearDescriptions = {
+        financial: {
+            name: "💰 Financial Fear",
+            short: "\"I can't afford to leave.\"",
+            description: "Your primary fear is financial security. You're worried about losing income, managing debt, and sustaining yourself during a transition.",
+            insight: "This is the most rational fear—financial security is real. But most people's actual financial need is smaller than their perceived fear. Run the real numbers. You might discover you have more runway than you think."
+        },
+        identity: {
+            name: "🪪 Identity Fear",
+            short: "\"Who am I without my title?\"",
+            description: "Your primary fear is losing your identity. You've organized your entire adult self around this career. The title feels like who you are.",
+            insight: "The truth: the title was always just a container you lived in. You can change containers and stay exactly who you are. This realization takes time (that's the ELDER stage), but it's possible. Your essence doesn't live in the credential—it lives in you."
+        },
+        judgment: {
+            name: "👁️ Judgment Fear",
+            short: "\"What will people think?\"",
+            description: "Your primary fear is what others will think of your choice. You worry about being judged by family, colleagues, and society for 'giving up' a good career.",
+            insight: "Some people will judge you. But notice who asks 'Are you sleeping better?' instead of 'Why did you give up such a good career?' Those are your people. Their opinion is the one that matters. Everyone else is just noise."
+        },
+        failure: {
+            name: "❌ Failure Fear",
+            short: "\"What if it doesn't work out?\"",
+            description: "Your primary fear is failure in the new path. You're afraid that if you leave and the new thing doesn't work, you'll have lost everything.",
+            insight: "You might fail. You might pivot three times before finding fit. But failure isn't binary—it's feedback. You've already survived the hardest thing: making the choice. Everything after that is information."
+        },
+        grief: {
+            name: "😢 Grief Fear",
+            short: "\"What if I wasted everything?\"",
+            description: "Your primary fear is regret. You're grieving the years, credentials, and sacrifice you've already invested. You fear all of it was for nothing.",
+            insight: "You're not wrong to grieve. The loss is real. But nothing that shaped you is wasted—especially not the parts that broke you. You're not leaving your past behind. You're integrating it. The doctor you were taught you how to listen. The burnout taught you when to stop."
+        }
+    };
+
+    let currentQuestion = 1;
+    const totalQuestions = 5;
+    const answers = {};
+
+    // Quiz Navigation
+    document.getElementById('nextBtn').addEventListener('click', showNextQuestion);
+    document.getElementById('prevBtn').addEventListener('click', showPrevQuestion);
+
+    function showNextQuestion() {
+        // Get answer for current question
+        const answer = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+        if (!answer) {
+            alert('Please select an answer');
+            return;
+        }
+        answers[`q${currentQuestion}`] = answer.value;
+        currentQuestion++;
+
+        if (currentQuestion > totalQuestions) {
+            showResults();
+        } else {
+            updateUI();
+        }
+    }
+
+    function showPrevQuestion() {
+        currentQuestion--;
+        updateUI();
+    }
+
+    function updateUI() {
+        // Hide all questions
+        document.querySelectorAll('.question-container').forEach(q => q.style.display = 'none');
+        // Show current question
+        document.querySelector(`.question-${currentQuestion}`).style.display = 'block';
+
+        // Update progress bar
+        const progress = (currentQuestion / totalQuestions) * 100;
+        document.getElementById('progressFill').style.width = progress + '%';
+
+        // Update buttons
+        document.getElementById('prevBtn').disabled = currentQuestion === 1;
+        document.getElementById('nextBtn').textContent = currentQuestion === totalQuestions ? 'See Results' : 'Next →';
+
+        // Restore selected answer
+        if (answers[`q${currentQuestion}`]) {
+            document.querySelector(`input[name="q${currentQuestion}"][value="${answers[`q${currentQuestion}`]}"]`).checked = true;
+        }
+    }
+
+    function showResults() {
+        // Count fear votes
+        const fearCounts = { financial: 0, identity: 0, judgment: 0, failure: 0, grief: 0 };
+        Object.values(answers).forEach(fear => {
+            fearCounts[fear]++;
+        });
+
+        // Find primary fear
+        const primaryFear = Object.keys(fearCounts).reduce((a, b) => 
+            fearCounts[a] > fearCounts[b] ? a : b
+        );
+
+        // Sort other fears
+        const otherFears = Object.keys(fearCounts)
+            .filter(f => f !== primaryFear)
+            .sort((a, b) => fearCounts[b] - fearCounts[a]);
+
+        // Display results
+        document.querySelector('.quiz-page').classList.remove('active');
+        document.getElementById('resultsPage').classList.add('active');
+
+        const desc = fearDescriptions[primaryFear];
+        document.getElementById('fearBadge').textContent = desc.short;
+        
+        document.getElementById('fearResult').innerHTML = `
+            <h3>${desc.name}</h3>
+            <p>${desc.description}</p>
+            <div class="insight">${desc.insight}</div>
+        `;
+
+        // List other fears
+        let otherHtml = '';
+        otherFears.forEach((fear, i) => {
+            otherHtml += `<li>${i+2}. ${fearDescriptions[fear].short}</li>`;
+        });
+        document.getElementById('otherFearsList').innerHTML = otherHtml;
+
+        // Show email capture after short delay
+        setTimeout(() => {
+            document.getElementById('emailForm').classList.add('active');
+        }, 500);
+    }
+
+    // Email submission
+    document.getElementById('emailFormSubmit').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const primaryFear = Object.keys({financial: 0, identity: 0, judgment: 0, failure: 0, grief: 0})
+            .reduce((a, b) => {
+                const fearCounts = {};
+                Object.values(answers).forEach(f => fearCounts[f] = (fearCounts[f] || 0) + 1);
+                return fearCounts[a] > fearCounts[b] ? a : b;
+            });
+
+        const data = {
+            firstName: e.target.firstName.value,
+            email: e.target.email.value,
+            primaryFear: primaryFear,
+            allAnswers: answers,
+            source: 'fear-audit-landing',
+            completedAt: new Date().toISOString(),
+            tag: `fear-${primaryFear}`
+        };
+
+        try {
+            // Replace with your actual API endpoint
+            const response = await fetch('/api/encharge/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                document.getElementById('emailForm').classList.remove('active');
+                alert('✓ Check your email for your full report!');
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            alert('Something went wrong. Please try again or email hello@crosswalkwisdom.com');
+            console.error('Error:', error);
+        }
+    });
+
+    // Initialize
+    updateUI();
+</script>
+
+</body>
+</html>
