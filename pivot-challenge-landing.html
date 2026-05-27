@@ -31,7 +31,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #d4a574 0%, #c09464 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
@@ -42,7 +42,15 @@
             font-size: 14px;
             letter-spacing: 1px;
             margin-bottom: 20px;
-            opacity: 0.8;
+            opacity: 0.9;
+        }
+
+        .tagline {
+            font-size: 12px;
+            letter-spacing: 2px;
+            opacity: 0.85;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         h1 {
@@ -54,7 +62,7 @@
 
         .subheading {
             font-size: 14px;
-            opacity: 0.9;
+            opacity: 0.95;
             font-weight: 400;
             margin-bottom: 0;
         }
@@ -73,6 +81,21 @@
         .highlight {
             color: #d4a574;
             font-weight: 600;
+        }
+
+        .philosophy-intro {
+            background: #f5f2ed;
+            border-left: 4px solid #d4a574;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #5a3a2a;
+        }
+
+        .philosophy-intro strong {
+            color: #d4a574;
         }
 
         .bullets {
@@ -97,6 +120,52 @@
             font-weight: bold;
         }
 
+        .philosophy-concepts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .concept-card {
+            background: #f5f2ed;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #d4a574;
+            font-size: 13px;
+        }
+
+        .concept-card strong {
+            color: #d4a574;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .concept-card em {
+            font-size: 12px;
+            color: #8a6a5a;
+        }
+
+        .related-links {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .related-links a {
+            color: #d4a574;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+
+        .related-links a:hover {
+            text-decoration: underline;
+        }
+
         .form-section {
             background: #f9f9f9;
             padding: 30px;
@@ -107,7 +176,7 @@
         .form-section h3 {
             font-size: 16px;
             margin-bottom: 15px;
-            color: #1a1a2e;
+            color: #2c1810;
         }
 
         .form-group {
@@ -201,6 +270,10 @@
             .form-section {
                 padding: 20px;
             }
+
+            .philosophy-concepts {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -208,8 +281,9 @@
     <div class="container">
         <div class="header">
             <div class="logo">CROSSWALK WISDOM</div>
+            <div class="tagline">From the Ward to the World</div>
             <h1>The 7-Day IMG Pivot Challenge</h1>
-            <p class="subheading">Stop Waiting for CaRMS. Start Building a Career That Pays.</p>
+            <p class="subheading">Discover Why You're Stuck, Then Break Free.</p>
         </div>
 
         <div class="content">
@@ -223,18 +297,43 @@
                 <span class="highlight">You're not a failure. The system is.</span>
             </div>
 
+            <div class="philosophy-intro">
+                <strong>But here's what most guides won't tell you:</strong> Your career pivot doesn't require choosing between your credentials and your sanity. It requires perspective—the kind Eastern philosophy has been teaching for centuries.
+            </div>
+
             <p style="font-size: 15px; color: #555; margin-bottom: 20px;">
-                But you don't have to wait another 2 years for the next match.
-                <br><br>
-                <strong>Over 7 days, I'm going to show you:</strong>
+                Over 7 days, I'm going to show you the four stages of a career crossing, guided by timeless wisdom:
             </p>
 
             <ul class="bullets">
-                <li>The 4 clinical career paths that actually hire IMG doctors (no residency required)</li>
-                <li>Why your "failure" is actually your greatest asset</li>
-                <li>The 30-day action plan to pivot</li>
-                <li>How to stop waiting and start earning $65K+</li>
+                <li>How <strong>Ikigai</strong> (your reason for being) replaces "which clinical path?"</li>
+                <li>Why your "failure" is actually <strong>Kintsugi</strong> (repair with gold)</li>
+                <li>The 30-day action plan to pivot with intention, not panic</li>
+                <li>How to move from survival to choice—and start earning $65K+</li>
             </ul>
+
+            <div class="philosophy-concepts">
+                <div class="concept-card">
+                    <strong>Ikigai</strong>
+                    <em>Your reason for being</em>
+                </div>
+                <div class="concept-card">
+                    <strong>Shoshin</strong>
+                    <em>Beginner's mind</em>
+                </div>
+                <div class="concept-card">
+                    <strong>Ma</strong>
+                    <em>Meaningful emptiness</em>
+                </div>
+                <div class="concept-card">
+                    <strong>Kintsugi</strong>
+                    <em>Repair with gold</em>
+                </div>
+            </div>
+
+            <div class="related-links">
+                Want the full framework? <a href="/philosophy">Read our philosophy</a> or <a href="/fear-audit">take the Fear Audit</a>.
+            </div>
 
             <p style="font-size: 15px; color: #555; margin-bottom: 25px;">
                 <strong>This is the same path I walked when I left medicine and became a crossing guard.</strong>
