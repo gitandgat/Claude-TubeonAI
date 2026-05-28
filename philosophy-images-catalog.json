@@ -1,0 +1,84 @@
+{
+  "catalog_name": "Philosophy Images",
+  "total_images": 7,
+  "total_size_mb": 7.58,
+  "images": [
+    {
+      "filename": "On Leaving Safe Paths.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/On Leaving Safe Paths.jpeg",
+      "size_bytes": 1321133,
+      "size_mb": 1.26,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "On Leaving Safe Paths",
+      "created": 1779944494.981727
+    },
+    {
+      "filename": "The Credential Halo.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/The Credential Halo.jpeg",
+      "size_bytes": 1163721,
+      "size_mb": 1.11,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "The Credential Halo",
+      "created": 1779944494.985879
+    },
+    {
+      "filename": "The Discomfort Is the Point.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/The Discomfort Is the Point.jpeg",
+      "size_bytes": 839365,
+      "size_mb": 0.8,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "The Discomfort Is the Point",
+      "created": 1779944494.9890673
+    },
+    {
+      "filename": "The Sunk Cost Projection.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/The Sunk Cost Projection.jpeg",
+      "size_bytes": 1203944,
+      "size_mb": 1.15,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "The Sunk Cost Projection",
+      "created": 1779944494.9917874
+    },
+    {
+      "filename": "Three Things People Hate About Your Choice.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/Three Things People Hate About Your Choice.jpeg",
+      "size_bytes": 1334557,
+      "size_mb": 1.27,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "Three Things People Hate About Your Choice",
+      "created": 1779944494.9948497
+    },
+    {
+      "filename": "What Your Training Actually Taught You.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/What Your Training Actually Taught You.jpeg",
+      "size_bytes": 1090972,
+      "size_mb": 1.04,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "What Your Training Actually Taught You",
+      "created": 1779944494.9973698
+    },
+    {
+      "filename": "You Don't Need Permission.jpeg",
+      "path": "/Users/toto/Claude TubeonAI/Philosophy images/You Don't Need Permission.jpeg",
+      "size_bytes": 996729,
+      "size_mb": 0.95,
+      "width": 1024,
+      "height": 1024,
+      "format": "JPEG",
+      "title": "You Don't Need Permission",
+      "created": 1779944495.0000749
+    }
+  ]
+}
