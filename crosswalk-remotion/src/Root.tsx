@@ -240,6 +240,17 @@ export const RemotionRoot: React.FC = () => (
       defaultProps={{ scriptId: 'fear-audit-instagram' }}
     />
 
+    {/* ── Fear Audit Reel (5-scene 60s) ── */}
+    <Composition
+      id="TikTokReel-fear-audit"
+      component={TikTokReel}
+      durationInFrames={1800}
+      fps={30}
+      width={1080}
+      height={1920}
+      defaultProps={{ scriptId: 'fear-audit' }}
+    />
+
     {/* ── LinkedIn Videos ── */}
     <Composition
       id="LinkedInVideo-SunkCost"
