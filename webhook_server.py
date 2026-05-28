@@ -60,12 +60,73 @@ class ChallengeSignup(BaseModel):
     email: EmailStr
 
 
+class FearAuditResult(BaseModel):
+    email: EmailStr
+    firstName: str
+    primaryFear: str    # "financial" | "identity" | "judgment" | "failure" | "grief"
+    allAnswers: List[int]
+    source: str
+    completedAt: str
+    tag: str
+
+
 @app.post("/api/encharge/subscribe")
-async def img_pivot_challenge_signup(signup: ChallengeSignup):
-    """Handle IMG Pivot Challenge landing page form submission."""
+async def encharge_subscribe(request_data: dict):
+    """
+    Handle both Fear Audit results and IMG Pivot Challenge signups.
+    Routes based on presence of 'primaryFear' field.
+    """
     api_key = os.getenv("ENCHARGE_API_KEY")
     if not api_key:
         raise HTTPException(status_code=500, detail="ENCHARGE_API_KEY not configured")
+
+    # Check if this is a Fear Audit result (has primaryFear field)
+    if "primaryFear" in request_data:
+        return await handle_fear_audit_result(request_data, api_key)
+    else:
+        return await handle_challenge_signup(request_data, api_key)
+
+
+async def handle_fear_audit_result(data: dict, api_key: str) -> dict:
+    """Handle Fear Audit quiz results from fear-audit-landing.html."""
+    try:
+        result = FearAuditResult(**data)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid Fear Audit data: {str(e)}")
+
+    logger.info(f"Fear Audit result: {result.email} → fear={result.primaryFear}")
+
+    # Validate fear type
+    valid_fears = {"financial", "identity", "judgment", "failure", "grief"}
+    fear = result.primaryFear.lower()
+    if fear not in valid_fears:
+        raise HTTPException(status_code=400, detail=f"Invalid fear type: {result.primaryFear}")
+
+    client = EnchargeClient(api_key)
+    client.add_subscriber(
+        email=result.email,
+        name=result.firstName,
+        tags=[f"fear-{fear}", "fear-audit-completed"],
+    )
+
+    logger.info(f"Encharge: {result.email} tagged fear-{fear}, enrolled in fear-specific nurture sequence")
+    return {
+        "success": True,
+        "message": f"✓ Check your email for your personalized Fear Report, {result.firstName}!",
+        "contact_id": result.email,
+        "email": result.email,
+        "fear_type": fear,
+        "sequence": f"{fear.capitalize()} Fear Nurture Sequence",
+        "first_email_delay_minutes": 5,
+    }
+
+
+async def handle_challenge_signup(data: dict, api_key: str) -> dict:
+    """Handle IMG Pivot Challenge landing page form submission."""
+    try:
+        signup = ChallengeSignup(**data)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid Challenge signup data: {str(e)}")
 
     logger.info(f"IMG Pivot Challenge signup: {signup.email} ({signup.firstName})")
 
