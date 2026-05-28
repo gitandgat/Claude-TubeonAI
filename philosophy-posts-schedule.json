@@ -1,0 +1,44 @@
+{
+  "scheduled_at": "2026-05-28T11:36:29.657744",
+  "total_posts": 5,
+  "successful": 3,
+  "posts": [
+    {
+      "title": "Kintsugi Hook - Broken Pottery",
+      "scheduled_at": "2026-05-29T08:00:00.856087",
+      "post_id": "N/A",
+      "status": "success"
+    },
+    {
+      "title": "Ikigai Hook - Purpose Over Prestige",
+      "scheduled_at": "2026-06-01T08:00:00.401645",
+      "status": "failed",
+      "error": "429 Client Error: Too Many Requests for url: https://zernio.com/api/v1/posts \u2014 {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}"
+    },
+    {
+      "title": "Shoshin Hook - Beginner's Mind",
+      "scheduled_at": "2026-06-05T08:00:00.883322",
+      "status": "failed",
+      "error": "429 Client Error: Too Many Requests for url: https://zernio.com/api/v1/posts \u2014 {\"error\":\"Daily limit reached for this account: 5/5 posts today.\",\"details\":{\"accountId\":\"690940455f6fbb9ef8323070\",\"platform\":\"linkedin\",\"dailyLimit\":5,\"currentCount\":5}}"
+    },
+    {
+      "title": "Ma Hook - The Meaningful Gap",
+      "scheduled_at": "2026-06-08T08:00:00.589011",
+      "post_id": "N/A",
+      "status": "success"
+    },
+    {
+      "title": "Philosophy Overview - East Meets West",
+      "scheduled_at": "2026-06-12T08:00:00.795342",
+      "post_id": "N/A",
+      "status": "success"
+    }
+  ],
+  "timing_strategy": {
+    "day_1": "Kintsugi Hook",
+    "day_4": "Ikigai Hook",
+    "day_8": "Shoshin Hook",
+    "day_11": "Ma Hook",
+    "day_15": "Philosophy Overview"
+  }
+}
