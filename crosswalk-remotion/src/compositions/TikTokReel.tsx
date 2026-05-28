@@ -437,6 +437,40 @@ const scripts: Record<string, { title: string; segments: ScriptSegment[] }> = {
       { text: 'Free. 3 minutes. fear-audit.vercel.app', type: 'cta', durationFrames: 70 },
     ],
   },
+
+  'fear-audit': {
+    title: 'The Fear That Keeps Physicians Stuck',
+    segments: [
+      // Scene 1 — Hook (0–8s = 240 frames)
+      { text: 'Most physicians don\'t leave medicine because they hate it.', type: 'hook', durationFrames: 180 },
+      { text: '', type: 'pause', durationFrames: 60 },
+
+      // Scene 2 — Fear Named (8–20s = 360 frames)
+      { text: 'They stay because they\'re terrified of who they\'ll be without it.', type: 'hook', durationFrames: 240 },
+      { text: '', type: 'pause', durationFrames: 120 },
+
+      // Scene 3 — Pivot (20–35s = 450 frames)
+      { text: 'I was one of them.', type: 'body', durationFrames: 90 },
+      { text: 'I became a crossing guard.', type: 'body', durationFrames: 90 },
+      { text: '', type: 'pause', durationFrames: 30 },
+      { text: 'Most people thought I\'d lost my mind.', type: 'body', durationFrames: 90 },
+      { text: 'I thought I\'d finally found it.', type: 'hook', durationFrames: 90 },
+      { text: '', type: 'pause', durationFrames: 60 },
+
+      // Scene 4 — Invitation (35–48s = 390 frames)
+      { text: 'If you\'re a physician quietly asking yourself—', type: 'body', durationFrames: 100 },
+      { text: '"Is this all there is?"', type: 'hook', durationFrames: 80 },
+      { text: '', type: 'pause', durationFrames: 30 },
+      { text: 'That voice isn\'t weakness.', type: 'body', durationFrames: 80 },
+      { text: 'It\'s the most honest thing you\'ve felt in years.', type: 'body', durationFrames: 100 },
+
+      // Scene 5 — CTA (48–60s = 360 frames)
+      { text: '', type: 'pause', durationFrames: 30 },
+      { text: 'The Fear Audit.', type: 'hook', durationFrames: 80 },
+      { text: '3 minutes.', type: 'body', durationFrames: 60 },
+      { text: 'fear-audit.vercel.app', type: 'cta', durationFrames: 190 },
+    ],
+  },
 };
 
 // ─── Caption component ──────────────────────────────────────────────────────────
