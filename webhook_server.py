@@ -31,6 +31,7 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 
 from encharge_client import EnchargeClient
+from pdf_generator import generate_personalized_html
 
 load_dotenv()
 
@@ -187,3 +188,72 @@ async def health():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("webhook_server:app", host="0.0.0.0", port=8000, reload=True)
+
+
+# ═════════════════════════════════════════════════════════════════
+# SUNK COST TRACKER ENDPOINT
+# ═════════════════════════════════════════════════════════════════
+
+class SunkCostTrackerResult(BaseModel):
+    email: EmailStr
+    score: int                  # 0-100
+    years_trapped: int          # 0-20
+    money_invested: str         # "$0-5K", "$5-15K", etc.
+    relationships_cost: int     # 0-10
+    identity_loss: int          # 1-10
+
+
+@app.post("/api/capture-tracker")
+async def capture_sunk_cost_tracker(result: SunkCostTrackerResult):
+    """
+    Capture Sunk Cost Tracker results.
+    Adds to Encharge, triggers 2-email Gumroad → Fear Audit sequence.
+    """
+    api_key = os.getenv("ENCHARGE_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="ENCHARGE_API_KEY not configured")
+
+    logger.info(f"Sunk Cost Tracker: {result.email} → score={result.score}")
+
+    try:
+        # Add subscriber to Encharge with tracker tag
+        client = EnchargeClient(api_key)
+        client.add_subscriber(
+            email=result.email,
+            tags=["tracker-sunk-cost"],
+        )
+
+        logger.info(f"Encharge: {result.email} tagged tracker-sunk-cost → 2-email Gumroad sequence triggered")
+
+        return {
+            "success": True,
+            "message": "Check your inbox in 2 minutes. We sent you the download link.",
+            "email": result.email,
+            "score": result.score,
+            "sequence": "Sunk Cost Tracker → Gumroad → Fear Audit",
+        }
+
+    except Exception as e:
+        logger.error(f"Tracker capture failed for {result.email}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to capture tracker data: {str(e)}")
+
+
+@app.get("/guides/sunk-cost")
+async def get_sunk_cost_guide(score: int = 72, years: int = 9, money: str = "$30-50K", rels: int = 8, identity: int = 9):
+    """
+    Serve personalized Sunk Cost guide as HTML.
+    Print to PDF in browser: File → Print → Save as PDF
+    
+    Usage:
+      /guides/sunk-cost?score=72&years=9&money=$30-50K&rels=8&identity=9
+    """
+    from fastapi.responses import HTMLResponse
+    
+    html = generate_personalized_html(
+        score=score,
+        years_trapped=years,
+        money_invested=money,
+        relationships_cost=rels,
+        identity_loss=identity,
+    )
+    return HTMLResponse(content=html)
