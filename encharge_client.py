@@ -22,7 +22,8 @@ class EnchargeClient:
                 payload["tags"] = tags
 
         resp = self.session.post(f"{BASE_URL}/people", json={"person": payload})
-        resp.raise_for_status()
+        if resp.status_code >= 400:
+            raise requests.HTTPError(f"Encharge API error: {resp.status_code} - {resp.text}")
         return resp.json()
 
     def create_fields(self, fields: list) -> dict:
