@@ -219,11 +219,13 @@ async def capture_sunk_cost_tracker(result: SunkCostTrackerResult):
         # Add subscriber to Encharge, then apply tag using contact ID
         client = EnchargeClient(api_key)
         subscriber_response = client.add_subscriber(email=result.email)
+        logger.info(f"Subscriber response: {subscriber_response}")
+
         contact_id = subscriber_response.get("user", {}).get("id")
+        if not contact_id:
+            raise ValueError(f"No contact ID returned from Encharge: {subscriber_response}")
 
-        if contact_id:
-            client.add_tag(tag="tracker-sunk-cost", contact_id=contact_id)
-
+        client.add_tag(tag="tracker-sunk-cost", contact_id=contact_id)
         logger.info(f"Encharge: {result.email} (ID: {contact_id}) tagged tracker-sunk-cost → 2-email Gumroad sequence triggered")
 
         return {
