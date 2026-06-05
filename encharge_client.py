@@ -15,7 +15,11 @@ class EnchargeClient:
         if name:
             payload["name"] = name
         if tags:
-            payload["tags"] = tags
+            # Convert tags list to comma-separated string for Encharge API
+            if isinstance(tags, list):
+                payload["tags"] = ", ".join(tags)
+            else:
+                payload["tags"] = tags
 
         resp = self.session.post(f"{BASE_URL}/people", json={"person": payload})
         resp.raise_for_status()
