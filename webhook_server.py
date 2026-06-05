@@ -216,12 +216,10 @@ async def capture_sunk_cost_tracker(result: SunkCostTrackerResult):
     logger.info(f"Sunk Cost Tracker: {result.email} → score={result.score}")
 
     try:
-        # Add subscriber to Encharge with tracker tag
+        # Add subscriber to Encharge, then apply tag separately
         client = EnchargeClient(api_key)
-        client.add_subscriber(
-            email=result.email,
-            tags=["tracker-sunk-cost"],
-        )
+        client.add_subscriber(email=result.email)
+        client.add_tag(email=result.email, tag="tracker-sunk-cost")
 
         logger.info(f"Encharge: {result.email} tagged tracker-sunk-cost → 2-email Gumroad sequence triggered")
 
