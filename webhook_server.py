@@ -225,7 +225,13 @@ async def capture_sunk_cost_tracker(result: SunkCostTrackerResult):
         if not contact_id:
             raise ValueError(f"No contact ID returned from Encharge: {subscriber_response}")
 
-        client.add_tag(tag="tracker-sunk-cost", contact_id=contact_id)
+        try:
+            tag_response = client.add_tag(tag="tracker-sunk-cost", contact_id=contact_id)
+            logger.info(f"Tag response: {tag_response}")
+        except Exception as tag_error:
+            logger.error(f"Failed to add tag: {str(tag_error)}")
+            # Continue even if tagging fails - subscriber is created
+
         logger.info(f"Encharge: {result.email} (ID: {contact_id}) tagged tracker-sunk-cost → 2-email Gumroad sequence triggered")
 
         return {
