@@ -37,9 +37,17 @@ class EnchargeClient:
         resp.raise_for_status()
         return resp.json()
 
-    def add_tag(self, email: str, tag: str) -> dict:
-        """Add a tag to a person."""
-        resp = self.session.post(f"{BASE_URL}/tags", json={"tag": tag, "email": email})
+    def add_tag(self, tag: str, email: str = "", contact_id: str = "") -> dict:
+        """Add a tag to a person by email or contact ID."""
+        payload = {"tag": tag}
+        if contact_id:
+            payload["id"] = contact_id
+        elif email:
+            payload["email"] = email
+        else:
+            raise ValueError("Must provide either email or contact_id")
+
+        resp = self.session.post(f"{BASE_URL}/tags", json=payload)
         resp.raise_for_status()
         return resp.json()
 
