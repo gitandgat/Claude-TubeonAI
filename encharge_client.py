@@ -49,7 +49,8 @@ class EnchargeClient:
 
         resp = self.session.post(f"{BASE_URL}/tags", json=payload)
         resp.raise_for_status()
-        return resp.json()
+        # Tags endpoint returns plain text "Created", not JSON
+        return {"status": resp.status_code, "message": resp.text}
 
     def add_quiz_result(self, email: str, first_name: str, stage: str, score: float) -> dict:
         """
