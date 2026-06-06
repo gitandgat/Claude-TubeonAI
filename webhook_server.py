@@ -196,6 +196,7 @@ if __name__ == "__main__":
 
 class SunkCostTrackerResult(BaseModel):
     email: EmailStr
+    firstName: str
     score: int                  # 0-100
     years_trapped: int          # 0-20
     money_invested: str         # "$0-5K", "$5-15K", etc.
@@ -216,9 +217,9 @@ async def capture_sunk_cost_tracker(result: SunkCostTrackerResult):
     logger.info(f"Sunk Cost Tracker: {result.email} → score={result.score}")
 
     try:
-        # Add subscriber to Encharge, then apply tag using contact ID
+        # Add subscriber to Encharge with firstName, then apply tag using contact ID
         client = EnchargeClient(api_key)
-        subscriber_response = client.add_subscriber(email=result.email)
+        subscriber_response = client.add_subscriber(email=result.email, name=result.firstName)
         logger.info(f"Subscriber response: {subscriber_response}")
 
         contact_id = subscriber_response.get("user", {}).get("id")
@@ -232,7 +233,7 @@ async def capture_sunk_cost_tracker(result: SunkCostTrackerResult):
             logger.error(f"Failed to add tag: {str(tag_error)}")
             # Continue even if tagging fails - subscriber is created
 
-        logger.info(f"Encharge: {result.email} (ID: {contact_id}) tagged tracker-sunk-cost → 2-email Gumroad sequence triggered")
+        logger.info(f"Encharge: {result.firstName} ({result.email}, ID: {contact_id}) tagged tracker-sunk-cost → 2-email Gumroad sequence triggered")
 
         return {
             "success": True,
