@@ -90,10 +90,10 @@ def validate_trend_template(
             f"52-week high (max 25%)"
         )
 
-    # Check 4: Volume confirmation (> 1.5x 50-day average)
-    vol_confirmed = volume_ratio >= 1.5
+    # Check 4: Volume confirmation (> 1.5x 50-day average) - SKIP if unavailable
+    vol_confirmed = volume_ratio >= 1.5 if volume_ratio is not None else True
     checks["volume_confirmed"] = vol_confirmed
-    if not vol_confirmed:
+    if not vol_confirmed and volume_ratio is not None:
         reasons.append(
             f"Volume ratio {volume_ratio:.2f}x < 1.5x (50-day average)"
         )

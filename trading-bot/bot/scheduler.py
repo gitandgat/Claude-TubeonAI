@@ -9,6 +9,7 @@ Managed by launchd — starts at login, restarts on crash.
 Logs: scheduler.log (this file) and bot.log (trade activity).
 """
 
+import json
 import logging
 import subprocess
 import sys
@@ -115,11 +116,25 @@ def trigger_bot() -> None:
     else:
         log.error("Bot exited with code %d — check bot.log for details.", result.returncode)
 
+    _write_heartbeat(result.returncode)
     _log_next_run()
 
     if SLEEP_AFTER_RUN:
         time.sleep(5)   # brief pause so the final log line flushes before sleep
         sleep_mac()
+
+
+def _write_heartbeat(returncode: int) -> None:
+    """Record the last bot run so DAILY_CHECK.sh can verify execution health."""
+    heartbeat = {
+        "last_run": datetime.now(ET).isoformat(),
+        "returncode": returncode,
+        "status": "ok" if returncode == 0 else "failed",
+    }
+    try:
+        (BOT_DIR / "last_run.json").write_text(json.dumps(heartbeat, indent=2))
+    except OSError as exc:
+        log.warning("Could not write heartbeat file: %s", exc)
 
 
 def _log_next_run() -> None:
@@ -131,7 +146,7 @@ def _log_next_run() -> None:
         log.info("Next scheduled run: %s", job.next_run)
 
 
-def trigger_all_variants() -> None:
+def trigger_all_variants_disabled() -> None:  # DISABLED
     """
     Called by schedule at 09:05 ET every weekday.
     Runs all 3 bot variants (A, B, C) in sequence with delays between them.
@@ -174,7 +189,8 @@ def trigger_all_variants() -> None:
 # ── Schedule ──────────────────────────────────────────────────────────────────
 # TZ=America/New_York is set in the launchd plist, so "09:00" fires at 9:00 AM ET.
 schedule.every().day.at("09:00").do(trigger_bot)
-schedule.every().day.at("09:05").do(trigger_all_variants)
+# DISABLED: 3-bot variants (simplified to Bot A only)
+# schedule.every().day.at("09:05").do(trigger_all_variants)
 
 log.info("Scheduler started — minervini_bot fires weekdays at 09:00 ET, 3-bot variants at 09:05 ET.")
 log.info("Sleep after run: %s", SLEEP_AFTER_RUN)
