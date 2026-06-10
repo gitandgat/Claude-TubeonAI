@@ -91,7 +91,20 @@ fi
 echo ""
 
 # ─────────────────────────────────────────────────────────────────
-# 5. Log summary
+# 5. Variant rebuild milestone (Bot B/C archived Jun 2026)
+#    Once the base bot proves itself, the adaptive variants get rebuilt.
+# ─────────────────────────────────────────────────────────────────
+CLOSED_TOTAL=$(sqlite3 "$DB_FILE" "SELECT COUNT(*) FROM trades WHERE status='CLOSED';" 2>/dev/null || echo 0)
+CUM_PNL=$(sqlite3 "$DB_FILE" "SELECT ROUND(COALESCE(SUM(profit_loss_pct),0),2) FROM trades WHERE status='CLOSED';" 2>/dev/null || echo 0)
+if [ "${CLOSED_TOTAL:-0}" -ge 10 ] && awk "BEGIN{exit !($CUM_PNL > 0)}"; then
+    echo "🎯 MILESTONE REACHED: $CLOSED_TOTAL closed trades, cumulative P&L +${CUM_PNL}%"
+    echo "   → Base case proven. Ask Claude to check the bot — it will"
+    echo "     automatically rebuild the adaptive variants (Bot B/C)."
+    echo ""
+fi
+
+# ─────────────────────────────────────────────────────────────────
+# 6. Log summary
 # ─────────────────────────────────────────────────────────────────
 echo "✓ LOGS"
 echo "  Bot log:       $BOT_LOG"
