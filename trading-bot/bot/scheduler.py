@@ -146,53 +146,12 @@ def _log_next_run() -> None:
         log.info("Next scheduled run: %s", job.next_run)
 
 
-def trigger_all_variants_disabled() -> None:  # DISABLED
-    """
-    Called by schedule at 09:05 ET every weekday.
-    Runs all 3 bot variants (A, B, C) in sequence with delays between them.
-    Waits indefinitely for network before proceeding.
-    """
-    if not is_market_weekday():
-        log.info("Weekend in ET — skipping 3-bot run.")
-        return
-
-    log.info("Checking network connectivity for 3-bot run …")
-    wait_for_network_indefinite()
-
-    log.info("Network ready. Triggering all 3 bot variants …")
-
-    variants = ["bot_a.py", "bot_b.py", "bot_c.py"]
-    for variant_script in variants:
-        variant_path = BOT_DIR / variant_script
-        if not variant_path.exists():
-            log.error("Bot script not found: %s", variant_path)
-            continue
-
-        log.info(f"Running {variant_script}…")
-        result = subprocess.run([sys.executable, str(variant_path)])
-
-        if result.returncode == 0:
-            log.info(f"{variant_script} finished successfully.")
-        else:
-            log.error(f"{variant_script} exited with code {result.returncode}")
-
-        time.sleep(30)  # Delay between variants to avoid Polygon rate limits
-
-    log.info("All 3-bot variants completed. Running comparison…")
-    compare_script = BOT_DIR / "compare_performance.py"
-    if compare_script.exists():
-        subprocess.run([sys.executable, str(compare_script), "--last-7"])
-
-    _log_next_run()
-
-
 # ── Schedule ──────────────────────────────────────────────────────────────────
 # TZ=America/New_York is set in the launchd plist, so "09:00" fires at 9:00 AM ET.
+# (3-bot variant trigger removed — variants archived to trading-bot/archive/, Jun 2026)
 schedule.every().day.at("09:00").do(trigger_bot)
-# DISABLED: 3-bot variants (simplified to Bot A only)
-# schedule.every().day.at("09:05").do(trigger_all_variants)
 
-log.info("Scheduler started — minervini_bot fires weekdays at 09:00 ET, 3-bot variants at 09:05 ET.")
+log.info("Scheduler started — minervini_bot fires weekdays at 09:00 ET.")
 log.info("Sleep after run: %s", SLEEP_AFTER_RUN)
 _log_next_run()
 
