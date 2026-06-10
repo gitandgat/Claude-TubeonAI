@@ -16,12 +16,24 @@ echo "╚═══════════════════════�
 echo ""
 
 # ─────────────────────────────────────────────────────────────────
-# 1. Check bot execution
+# 1. Check bot execution (heartbeat written by scheduler after each run)
 # ─────────────────────────────────────────────────────────────────
 echo "✓ BOT EXECUTION"
-if [ -f "$SCHEDULER_LOG" ]; then
+HEARTBEAT="$BOT_DIR/bot/last_run.json"
+if [ -f "$HEARTBEAT" ]; then
+    HB_DATE=$(python3 -c "import json;print(json.load(open('$HEARTBEAT'))['last_run'][:10])" 2>/dev/null || echo "?")
+    HB_STATUS=$(python3 -c "import json;print(json.load(open('$HEARTBEAT'))['status'])" 2>/dev/null || echo "?")
+    TODAY=$(date '+%Y-%m-%d')
+    if [ "$HB_DATE" = "$TODAY" ] && [ "$HB_STATUS" = "ok" ]; then
+        echo "  ✓ Bot ran successfully today ($HB_DATE)"
+    elif [ "$HB_DATE" = "$TODAY" ]; then
+        echo "  ✗ Bot ran today but FAILED — check bot.log"
+    else
+        echo "  ⚠ Last successful heartbeat: $HB_DATE (status=$HB_STATUS) — bot has NOT run today"
+    fi
+elif [ -f "$SCHEDULER_LOG" ]; then
     if tail -5 "$SCHEDULER_LOG" | grep -q "Bot run finished successfully"; then
-        echo "  ✓ Bot ran successfully today"
+        echo "  ✓ Bot ran successfully (per scheduler.log; no heartbeat yet)"
     else
         echo "  ✗ Bot execution status unclear — check scheduler.log"
     fi
@@ -64,20 +76,10 @@ else
 fi
 echo ""
 
-# ─────────────────────────────────────────────────────────────────
-# 4. 3-Bot parallel comparison
-# ─────────────────────────────────────────────────────────────────
-echo "✓ 3-BOT PARALLEL COMPARISON"
-if command -v python3 &> /dev/null && [ -f "$BOT_DIR/bot/compare_performance.py" ]; then
-    cd "$BOT_DIR"
-    python3 bot/compare_performance.py --last-7 2>/dev/null || echo "  (Run: python3 bot/compare_performance.py --last-7)"
-else
-    echo "  (3-bot comparison not available yet)"
-fi
-echo ""
+# (3-bot comparison removed — simplified to single production bot, Jun 2026)
 
 # ─────────────────────────────────────────────────────────────────
-# 5. Quick performance summary
+# 4. Quick performance summary
 # ─────────────────────────────────────────────────────────────────
 echo "✓ PERFORMANCE (Last 7 Days)"
 if command -v python3 &> /dev/null && [ -f "$BOT_DIR/bot/performance_tracker.py" ]; then

@@ -3,7 +3,7 @@ minervini_bot.py — Mark Minervini Trend Template Trading Bot
 ─────────────────────────────────────────────────────────────
 
 Entry: Minervini Trend Template (4 checks: MA alignment, RS>70, 25% from high, volume)
-Exit:  Hard stop loss (-7%), take profit (+20%), time exit (~180 days), trailing stop
+Exit:  Hard stop loss (-7%), take profit (+20%), time exit (~180 days), trailing stop (3% below high)
 Position Sizing: Risk-based (1.25-2.5% per trade), NOT fixed dollars
 
 Two-layer validation:
@@ -101,6 +101,13 @@ TAKE_PROFIT_PCT = 20.0  # Take profit at +20%
 MAX_OPEN_POSITIONS = 5
 MAX_POSITION_PCT = 20.0  # Max 20% of account per position
 
+# Trailing stop: arms only after the trade is up TRAILING_ACTIVATION_PCT, then
+# trails TRAILING_STOP_PCT below the peak. Activation must exceed the trail so
+# a trailing exit always locks in profit (worst case ≈ +1.85% with 5%/3%)
+# instead of overriding the -7% Minervini stop with a tighter -3% one.
+TRAILING_STOP_PCT = 3.0
+TRAILING_ACTIVATION_PCT = 5.0
+
 # ── Logging ──────────────────────────────────────────────────────────────────
 logging.basicConfig(
     level=logging.INFO,
@@ -159,11 +166,11 @@ def fetch_52week_high_with_cache(ticker: str, ranks: dict) -> float | None:
 
 
 def fetch_volume_ratio_with_cache(ticker: str, ranks: dict) -> float | None:
-    """Get volume ratio from cached values, default to 1.0 if unavailable."""
+    """Get volume ratio from cached values, return None if unavailable."""
     cached = get_cached_minervini_data(ticker, ranks)
     if cached["volume_sma"] is not None:
         return float(cached["volume_sma"])
-    return 1.0  # Default neutral volume ratio when cache miss
+    return None  # Return None when data unavailable (Polygon rate limit, etc.)
 
 
 # ── Alpaca helpers ───────────────────────────────────────────────────────────
@@ -320,9 +327,8 @@ def run_bot() -> None:
 
             # Fetch volume ratio (with cache-aware fallback)
             volume_ratio = fetch_volume_ratio_with_cache(ticker, ranks)
-            if volume_ratio is None:
-                log.warning("└── %s │ SKIP — missing volume data", ticker)
-                continue
+            # Note: volume_ratio can be None if Polygon data unavailable
+            # The Trend Template validator will skip the volume check in that case
 
             # Check Trend Template (now with closes for RSI confirmation)
             trend_result = validate_trend_template(
@@ -338,8 +344,9 @@ def run_bot() -> None:
             )
 
             log.info("│   Price=$%.2f │ MA20=$%.2f MA50=$%.2f MA200=$%.2f", close, ma_20, ma_50, ma_200)
-            log.info("│   RS=%d │ Distance_52W=%.1f%% │ Volume_ratio=%.2fx",
-                     rs_rank, distance_52w_pct * 100, volume_ratio)
+            vol_str = f"{volume_ratio:.2f}x" if volume_ratio is not None else "N/A"
+            log.info("│   RS=%d │ Distance_52W=%.1f%% │ Volume_ratio=%s",
+                     rs_rank, distance_52w_pct * 100, vol_str)
             log.info("│   %s", format_trend_result(ticker, trend_result))
 
             if not trend_result["passes"]:
@@ -484,12 +491,26 @@ def run_bot() -> None:
                 log.warning("└── %s │ No quote, skip exit check", ticker)
                 continue
 
+            # Trailing-stop bookkeeping: track the highest price since entry
+            peak = max(trade.get("highest_price_seen") or 0, trade["entry_price"])
+            if current_price > peak:
+                peak = current_price
+                tracker.update_trade_highest_price(trade["trade_id"], peak)
+
+            # Trailing stop arms after +TRAILING_ACTIVATION_PCT, trails the peak
+            trail_pct = trade.get("trailing_stop_pct") or TRAILING_STOP_PCT
+            activation_level = trade["entry_price"] * (1 + TRAILING_ACTIVATION_PCT / 100)
+            trailing_armed = peak >= activation_level
+            trailing_stop = peak * (1 - trail_pct / 100) if trailing_armed else None
+
             # Check exit conditions
             exit_reason = None
             if current_price <= trade["stop_loss_level"]:
                 exit_reason = "STOP_LOSS"
             elif current_price >= trade["take_profit_level"]:
                 exit_reason = "TAKE_PROFIT"
+            elif trailing_stop is not None and current_price <= trailing_stop:
+                exit_reason = "TRAILING_STOP"
             elif (datetime.now(ET) - trade["entry_date"]).days > 180:
                 exit_reason = "TIME_EXIT"
 
@@ -528,12 +549,18 @@ def run_bot() -> None:
                 )
             else:
                 unrealized_pct = ((current_price - trade["entry_price"]) / trade["entry_price"]) * 100
+                trail_str = f"${trailing_stop:.2f}" if trailing_stop is not None else f"off (arms @ ${activation_level:.2f})"
                 log.info(
-                    "└── %s │ HOLD @ $%.2f (entry=$%.2f, unrealized=%+.2f%%)",
+                    "└── %s │ HOLD @ $%.2f (entry=$%.2f, peak=$%.2f, unrealized=%+.2f%%) │ "
+                    "stop=$%.2f target=$%.2f trail=%s",
                     ticker,
                     current_price,
                     trade["entry_price"],
+                    peak,
                     unrealized_pct,
+                    trade["stop_loss_level"],
+                    trade["take_profit_level"],
+                    trail_str,
                 )
 
             time.sleep(13)

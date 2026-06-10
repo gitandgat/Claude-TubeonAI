@@ -1,3 +1,4 @@
+import patch_yfinance  # Apply yfinance mock to avoid gevent conflicts
 """
 Multi-source data fetcher with fallback logic.
 Primary: Polygon

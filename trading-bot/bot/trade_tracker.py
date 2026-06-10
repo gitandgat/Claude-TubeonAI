@@ -105,6 +105,17 @@ class TradeTracker:
         """
         )
 
+        # Migration: ensure trailing-stop columns exist (idempotent — runs every
+        # startup so the schema self-heals even if the DB file is recreated)
+        for column_def in (
+            "highest_price_seen REAL",
+            "trailing_stop_pct REAL DEFAULT 3.0",
+        ):
+            try:
+                cursor.execute(f"ALTER TABLE trades ADD COLUMN {column_def}")
+            except sqlite3.OperationalError:
+                pass  # column already exists
+
         conn.commit()
         if self.db_path != ":memory:":
             conn.close()
@@ -143,11 +154,11 @@ class TradeTracker:
                 """
                 INSERT INTO trades
                 (ticker, entry_date, entry_price, entry_qty, stop_loss_level,
-                 take_profit_level, status)
-                VALUES (?, ?, ?, ?, ?, ?, 'OPEN')
+                 take_profit_level, highest_price_seen, status)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'OPEN')
             """,
                 (ticker, entry_date, entry_price, entry_qty, stop_loss_level,
-                 take_profit_level),
+                 take_profit_level, entry_price),
             )
             conn.commit()
             trade_id = cursor.lastrowid
@@ -159,6 +170,22 @@ class TradeTracker:
         except sqlite3.IntegrityError as e:
             log.warning(f"Trade for {ticker} on {entry_date} already exists: {e}")
             return -1
+        finally:
+            if self.db_path != ":memory:":
+                conn.close()
+
+    def update_trade_highest_price(self, trade_id: int, highest_price: float) -> None:
+        """Persist the highest price seen for a trade (trailing-stop bookkeeping)."""
+        if self.db_path == ":memory:":
+            conn = self._persistent_conn
+        else:
+            conn = sqlite3.connect(str(self.db_path))
+        try:
+            conn.execute(
+                "UPDATE trades SET highest_price_seen = ? WHERE id = ?",
+                (highest_price, trade_id),
+            )
+            conn.commit()
         finally:
             if self.db_path != ":memory:":
                 conn.close()
@@ -191,20 +218,20 @@ class TradeTracker:
         cursor = conn.cursor()
 
         try:
-            # Get existing trade
-            cursor.execute("SELECT * FROM trades WHERE id = ?", (trade_id,))
+            # Get existing trade (explicit columns — schema-width independent)
+            cursor.execute(
+                """
+                SELECT ticker, entry_date, entry_price, entry_qty
+                FROM trades WHERE id = ?
+            """,
+                (trade_id,),
+            )
             row = cursor.fetchone()
             if not row:
                 log.error(f"Trade {trade_id} not found")
                 return None
 
-            # Unpack (id, ticker, entry_date, entry_price, entry_qty, stop, target,
-            #         exit_date, exit_price, exit_qty, exit_reason, pl, pl_pct,
-            #         days_held, status)
-            (
-                _, ticker, entry_date_str, entry_price, entry_qty, stop_loss,
-                take_profit, _, _, _, _, _, _, _, _
-            ) = row
+            ticker, entry_date_str, entry_price, entry_qty = row
 
             # Calculate P&L
             total_cost = entry_price * entry_qty
@@ -315,7 +342,8 @@ class TradeTracker:
             cursor.execute(
                 """
                 SELECT id, ticker, entry_date, entry_price, entry_qty,
-                       stop_loss_level, take_profit_level
+                       stop_loss_level, take_profit_level,
+                       highest_price_seen, trailing_stop_pct
                 FROM trades
                 WHERE status = 'OPEN'
                 ORDER BY entry_date ASC
@@ -331,6 +359,8 @@ class TradeTracker:
                     "entry_qty": r[4],
                     "stop_loss_level": r[5],
                     "take_profit_level": r[6],
+                    "highest_price_seen": r[7],
+                    "trailing_stop_pct": r[8],
                 }
                 for r in rows
             ]
