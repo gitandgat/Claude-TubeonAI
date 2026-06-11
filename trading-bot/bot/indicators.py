@@ -31,14 +31,18 @@ def polygon_get(url: str, params: dict) -> Optional[Dict]:
 
 
 def fetch_stock_returns(ticker: str, days: int = 252) -> Optional[float]:
-    """Fetch N-day return for a stock (in %) using free-first data fetching."""
+    """Fetch N-trading-day return for a stock (in %) using free-first data fetching."""
     try:
-        result = fetch_daily_bars(ticker, days=days + 30)
+        # `days` means TRADING bars; fetch ~1.5x calendar days to cover
+        # weekends/holidays (252 trading days needs ~365+ calendar days)
+        result = fetch_daily_bars(ticker, days=int(days * 1.5) + 30)
         if not result or len(result) < 3:  # (closes, highs, lows)
             return None
 
         closes = result[0]  # First element is closes tuple
-        if len(closes) < days:
+        # Accept a shorter window (>=200 bars) rather than failing outright —
+        # a 200-day return is a fine RS proxy when full history is unavailable
+        if len(closes) < min(days, 200):
             return None
 
         # Return: (current_price - price_N_days_ago) / price_N_days_ago * 100
