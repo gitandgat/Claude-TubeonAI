@@ -165,20 +165,49 @@ def is_market_in_uptrend() -> bool:
 
 
 def get_vix_level() -> Optional[float]:
-    """Fetch current VIX level using free-first data fetching."""
+    """
+    Fetch current VIX level.
+    Tier 1: real VIX close from FRED (keyless CSV, ~1 trading day delayed —
+            fine for a daily 9 AM bot).
+    Tier 2: SPY 20-day realized volatility, annualized, +2pt variance-risk-
+            premium adjustment (implied vol normally trades above realized).
+    Returns None only if both fail. (^VIX is not available from any of the
+    bot's market-data sources, so it is no longer attempted.)
+    """
+    # Tier 1: real VIX from FRED (no API key required)
     try:
-        result = fetch_daily_bars("^VIX", days=2)
-        if not result or len(result) < 3:
-            return None
+        import requests
+        from datetime import datetime, timedelta
+        start = (datetime.now() - timedelta(days=30)).strftime("%Y-%m-%d")
+        resp = requests.get(
+            f"https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS&cosd={start}",
+            timeout=10,
+        )
+        resp.raise_for_status()
+        rows = [line.split(",") for line in resp.text.strip().splitlines()[1:]]
+        values = [float(v) for _, v in rows if v not in (".", "")]
+        if values:
+            log.info("VIX %.2f (source: FRED VIXCLS)", values[-1])
+            return values[-1]
+    except Exception as e:
+        log.debug("FRED VIX fetch failed: %s", e)
 
-        closes = result[0]  # First element is closes tuple
-        if len(closes) < 1:
-            return None
+    # Tier 2: realized-volatility proxy from SPY daily returns
+    try:
+        result = fetch_daily_bars("SPY", days=45)
+        if result and len(result[0]) >= 21:
+            closes = result[0][-21:]
+            rets = [(closes[i] - closes[i - 1]) / closes[i - 1] for i in range(1, len(closes))]
+            mean = sum(rets) / len(rets)
+            var = sum((r - mean) ** 2 for r in rets) / (len(rets) - 1)
+            realized = (var ** 0.5) * (252 ** 0.5) * 100
+            proxy = realized + 2.0  # VRP: implied usually runs above realized
+            log.info("VIX ~%.2f (proxy: SPY 20d realized vol %.2f + 2.0 VRP)", proxy, realized)
+            return proxy
+    except Exception as e:
+        log.debug("Realized-vol VIX proxy failed: %s", e)
 
-        return closes[-1]
-
-    except Exception:
-        return None
+    return None
 
 
 def is_volatility_acceptable(max_vix: float = 30, min_vix: float = 10) -> bool:
@@ -189,6 +218,7 @@ def is_volatility_acceptable(max_vix: float = 30, min_vix: float = 10) -> bool:
     """
     vix = get_vix_level()
     if vix is None:
+        log.warning("VIX unavailable from all sources — volatility check SKIPPED (fail-open)")
         return True  # Default to acceptable if unavailable
 
     return min_vix <= vix <= max_vix
