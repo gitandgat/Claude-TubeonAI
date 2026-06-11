@@ -29,7 +29,7 @@ from alpaca.trading.enums import OrderSide, TimeInForce
 from alpaca.trading.requests import MarketOrderRequest
 from dotenv import load_dotenv
 
-from data_fetcher import fetch_previous_close, fetch_daily_bars
+from data_fetcher import fetch_previous_close, fetch_daily_bars, fetch_minervini_metrics
 from trend_filter import validate_trend_template, format_trend_result
 from position_manager import (
     calculate_position_size,
@@ -295,25 +295,33 @@ def run_bot() -> None:
         for ticker in candidates:
             log.info("┌── %s", ticker)
 
-            # Fetch market data (with cache-aware fallback for MA levels and 52W high)
-            close = fetch_previous_close(ticker)
-            ma_data = fetch_ma_levels_with_cache(ticker, ranks)
-            fifty_two_w = fetch_52week_high_with_cache(ticker, ranks)
+            # Live Minervini metrics computed from real Alpaca daily bars.
+            # Cached ranks.json values are used only if Alpaca is unavailable —
+            # the cache froze for 3 weeks in June 2026 when the Polygon key died.
+            metrics = fetch_minervini_metrics(ticker)
+            if metrics:
+                close = metrics["price"]
+                ma_20, ma_50, ma_200 = metrics["ma_20"], metrics["ma_50"], metrics["ma_200"]
+                distance_52w_pct = metrics["distance_52w"]
+                volume_ratio = metrics["volume_ratio"]
+                if metrics["bars_used"] < 200:
+                    log.info("│   (MA200 approximated from %d bars)", metrics["bars_used"])
+            else:
+                log.warning("│   Alpaca metrics unavailable — falling back to cached ranks.json")
+                close = fetch_previous_close(ticker)
+                ma_data = fetch_ma_levels_with_cache(ticker, ranks)
+                fifty_two_w = fetch_52week_high_with_cache(ticker, ranks)
+                if close is None or ma_data is None or fifty_two_w is None:
+                    log.warning(
+                        "└── %s │ SKIP — missing market data (close=%s, ma=%s, 52w=%s)",
+                        ticker, close, ma_data, fifty_two_w,
+                    )
+                    continue
+                ma_20, ma_50, ma_200 = ma_data
+                distance_52w_pct = (fifty_two_w - close) / fifty_two_w
+                volume_ratio = fetch_volume_ratio_with_cache(ticker, ranks)
 
-            if close is None or ma_data is None or fifty_two_w is None:
-                log.warning(
-                    "└── %s │ SKIP — missing market data (close=%s, ma=%s, 52w=%s)",
-                    ticker,
-                    close,
-                    ma_data,
-                    fifty_two_w,
-                )
-                continue
-
-            ma_20, ma_50, ma_200 = ma_data
-            distance_52w_pct = (fifty_two_w - close) / fifty_two_w
-
-            real_price = close  # Use previous close as the current price
+            real_price = close  # Latest real price
 
             # Fetch daily bars for ATR and RSI calculation
             bar_data = fetch_daily_bars(ticker, days=60)
@@ -325,10 +333,8 @@ def run_bot() -> None:
             # Calculate real RS Rank vs SPY (using 252-day returns)
             rs_rank = calculate_rs_rank(ticker)
 
-            # Fetch volume ratio (with cache-aware fallback)
-            volume_ratio = fetch_volume_ratio_with_cache(ticker, ranks)
-            # Note: volume_ratio can be None if Polygon data unavailable
-            # The Trend Template validator will skip the volume check in that case
+            # volume_ratio set above (live, or cache fallback); may be None —
+            # the Trend Template validator skips the volume check in that case
 
             # Check Trend Template (now with closes for RSI confirmation)
             trend_result = validate_trend_template(
@@ -491,6 +497,11 @@ def run_bot() -> None:
                 log.warning("└── %s │ No quote, skip exit check", ticker)
                 continue
 
+            # Normalize entry_date — tolerate naive timestamps (assume ET)
+            entry_dt = trade["entry_date"]
+            if entry_dt.tzinfo is None:
+                entry_dt = ET.localize(entry_dt)
+
             # Trailing-stop bookkeeping: track the highest price since entry
             peak = max(trade.get("highest_price_seen") or 0, trade["entry_price"])
             if current_price > peak:
@@ -511,7 +522,7 @@ def run_bot() -> None:
                 exit_reason = "TAKE_PROFIT"
             elif trailing_stop is not None and current_price <= trailing_stop:
                 exit_reason = "TRAILING_STOP"
-            elif (datetime.now(ET) - trade["entry_date"]).days > 180:
+            elif (datetime.now(ET) - entry_dt).days > 180:
                 exit_reason = "TIME_EXIT"
 
             if exit_reason:
@@ -529,24 +540,26 @@ def run_bot() -> None:
                 if qty_held > 0:
                     place_order(client, alpaca_ticker, OrderSide.SELL, qty_held)
 
-                # Send exit alert
-                alert_exit_signal(
-                    ticker=ticker,
-                    exit_price=current_price,
-                    qty=qty_held,
-                    exit_reason=exit_reason,
-                    entry_price=trade["entry_price"],
-                    profit_loss_pct=profit_loss_pct,
-                )
-
-                # Close trade in tracker
-                tracker.close_trade(
-                    trade["trade_id"],
-                    datetime.now(ET),
-                    current_price,
-                    qty_held,
-                    exit_reason,
-                )
+                if DRY_RUN:
+                    # Don't mutate tracker state on dry runs — no order was
+                    # actually placed, so the position is still open.
+                    log.info("└── %s │ [DRY-RUN] tracker left OPEN", ticker)
+                else:
+                    alert_exit_signal(
+                        ticker=ticker,
+                        exit_price=current_price,
+                        qty=qty_held,
+                        exit_reason=exit_reason,
+                        entry_price=trade["entry_price"],
+                        profit_loss_pct=profit_loss_pct,
+                    )
+                    tracker.close_trade(
+                        trade["trade_id"],
+                        datetime.now(ET),
+                        current_price,
+                        qty_held,
+                        exit_reason,
+                    )
             else:
                 unrealized_pct = ((current_price - trade["entry_price"]) / trade["entry_price"]) * 100
                 trail_str = f"${trailing_stop:.2f}" if trailing_stop is not None else f"off (arms @ ${activation_level:.2f})"

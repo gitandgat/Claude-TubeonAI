@@ -1,12 +1,11 @@
-import patch_yfinance  # Apply yfinance mock to avoid gevent conflicts
 """
 Multi-source data fetcher with fallback logic.
-Primary: Polygon
-Fallback 1: Alltick
-Fallback 2: AlphaVantage
-Fallback 3: Finnhub
-Fallback 4: Twelve Data
-Fallback 5: yfinance
+Primary: Alpaca (real-time, same broker that executes trades)
+Fallbacks: Finnhub → Polygon → Alltick → AlphaVantage → Twelve Data → yfinance
+
+NOTE: patch_yfinance (the synthetic-data mock) must NEVER be imported here —
+it silently replaces real prices with fake ones. The bot screened GOOGL at
+$164 vs a real $355 for four days in June 2026 because of it.
 """
 
 import os
@@ -93,6 +92,89 @@ def twelvedata_get(endpoint: str, params: dict) -> dict:
         raise
 
 
+_ALPACA_CLIENT = None
+
+
+def _alpaca_client():
+    """Lazy singleton for Alpaca's historical data client."""
+    global _ALPACA_CLIENT
+    if _ALPACA_CLIENT is None:
+        from alpaca.data.historical import StockHistoricalDataClient
+        _ALPACA_CLIENT = StockHistoricalDataClient(
+            os.getenv("ALPACA_API_KEY") or os.getenv("APCA_API_KEY_ID"),
+            os.getenv("ALPACA_SECRET_KEY") or os.getenv("APCA_API_SECRET_KEY"),
+        )
+    return _ALPACA_CLIENT
+
+
+def alpaca_get_bars(ticker: str, days: int = 60) -> Optional[dict]:
+    """
+    Fetch daily OHLCV bars from Alpaca.
+    Returns {"closes": [...], "highs": [...], "lows": [...], "volumes": [...]}
+    or None on failure (caller falls through to the next source).
+    """
+    try:
+        from alpaca.data.requests import StockBarsRequest
+        from alpaca.data.timeframe import TimeFrame
+        bars = _alpaca_client().get_stock_bars(StockBarsRequest(
+            symbol_or_symbols=ticker,
+            timeframe=TimeFrame.Day,
+            start=datetime.now() - timedelta(days=days),
+        ))
+        if ticker not in bars.data or not bars[ticker]:
+            return None
+        return {
+            "closes": [b.close for b in bars[ticker]],
+            "highs": [b.high for b in bars[ticker]],
+            "lows": [b.low for b in bars[ticker]],
+            "volumes": [b.volume for b in bars[ticker]],
+        }
+    except Exception as e:
+        log.debug("%s: Alpaca bars failed — %s", ticker, e)
+        return None
+
+
+def alpaca_latest_price(ticker: str) -> Optional[float]:
+    """Latest trade price from Alpaca, or None on failure."""
+    try:
+        from alpaca.data.requests import StockLatestTradeRequest
+        trades = _alpaca_client().get_stock_latest_trade(
+            StockLatestTradeRequest(symbol_or_symbols=ticker)
+        )
+        return float(trades[ticker].price)
+    except Exception as e:
+        log.debug("%s: Alpaca latest trade failed — %s", ticker, e)
+        return None
+
+
+def fetch_minervini_metrics(ticker: str) -> Optional[dict]:
+    """
+    Compute live Minervini metrics from ~300 days of real Alpaca bars:
+    MA20/50/200, distance from 52-week high (0-1), volume ratio vs 50-day
+    average, and the close series (for RSI). Returns None if data unavailable.
+    """
+    data = alpaca_get_bars(ticker, days=300)
+    if not data or len(data["closes"]) < 60:
+        return None
+    closes, vols = data["closes"], data["volumes"]
+    n = len(closes)
+    ma_20 = sum(closes[-20:]) / 20
+    ma_50 = sum(closes[-50:]) / 50
+    ma_200 = sum(closes[-200:]) / 200 if n >= 200 else sum(closes) / n
+    hi_52w = max(closes)
+    avg_vol_50 = sum(vols[-50:]) / 50
+    return {
+        "price": closes[-1],
+        "ma_20": ma_20,
+        "ma_50": ma_50,
+        "ma_200": ma_200,
+        "distance_52w": (hi_52w - closes[-1]) / hi_52w if hi_52w > 0 else 0.0,
+        "volume_ratio": vols[-1] / avg_vol_50 if avg_vol_50 > 0 else None,
+        "closes": closes,
+        "bars_used": n,
+    }
+
+
 def yfinance_get(ticker: str, days: int = 60, min_bars: int = 1) -> Optional[Tuple]:
     """Fetch daily bars from yfinance."""
     try:
@@ -112,10 +194,15 @@ def yfinance_get(ticker: str, days: int = 60, min_bars: int = 1) -> Optional[Tup
 
 def fetch_previous_close(ticker: str) -> Optional[float]:
     """
-    Fetch previous close price with fallback chain (free-first, then paid):
-    yfinance → Finnhub → Polygon → Alltick → AlphaVantage → Twelve Data
+    Fetch latest/previous close price with fallback chain:
+    Alpaca → yfinance → Finnhub → Polygon → Alltick → AlphaVantage → Twelve Data
     """
-    # Try yfinance first (free, unlimited)
+    # Try Alpaca first (real-time, same broker executing the trades)
+    price = alpaca_latest_price(ticker)
+    if price is not None:
+        return price
+
+    # Try yfinance (free, unlimited)
     try:
         result = yfinance_get(ticker, days=5, min_bars=1)
         if result:
@@ -181,11 +268,16 @@ def fetch_previous_close(ticker: str) -> Optional[float]:
 
 def fetch_daily_bars(ticker: str, days: int = 60) -> Optional[Tuple]:
     """
-    Fetch daily bars (OHLCV) with fallback chain (free-first, then paid).
+    Fetch daily bars with fallback chain.
     Returns: (closes, highs, lows) tuples
-    Fallback chain: yfinance → Finnhub → Polygon → Alltick → AlphaVantage → Twelve Data
+    Fallback chain: Alpaca → yfinance → Finnhub → Polygon → Alltick → AlphaVantage → Twelve Data
     """
-    # Try yfinance first (free, unlimited)
+    # Try Alpaca first (real-time, same broker executing the trades)
+    data = alpaca_get_bars(ticker, days=days)
+    if data and len(data["closes"]) >= 14:
+        return (data["closes"], data["highs"], data["lows"])
+
+    # Try yfinance (free, unlimited)
     try:
         result = yfinance_get(ticker, days=days, min_bars=14)
         if result:
