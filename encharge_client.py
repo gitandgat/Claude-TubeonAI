@@ -21,7 +21,7 @@ class EnchargeClient:
             else:
                 payload["tags"] = tags
 
-        resp = self.session.post(f"{BASE_URL}/people", json={"person": payload})
+        resp = self.session.post(f"{BASE_URL}/people", json=payload)
         if resp.status_code >= 400:
             raise requests.HTTPError(f"Encharge API error: {resp.status_code} - {resp.text}")
         return resp.json()
@@ -79,6 +79,6 @@ class EnchargeClient:
             "quizScore": str(round(score, 2)),
             "tags": f"quiz-completed, {tag}",
         }
-        resp = self.session.post(f"{BASE_URL}/people", json={"person": payload})
+        resp = self.session.post(f"{BASE_URL}/people", json=payload)
         resp.raise_for_status()
         return resp.json()
