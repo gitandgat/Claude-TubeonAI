@@ -97,7 +97,7 @@ def wait_for_network_indefinite() -> None:
 
 def trigger_bot() -> None:
     """
-    Called by schedule at 09:00 ET every day.
+    Called by schedule at 09:45 ET every day (after the 9:30 market open).
     Skips weekends, runs bot.py, then sleeps the Mac if configured.
     Waits indefinitely for network before proceeding.
     """
@@ -147,11 +147,14 @@ def _log_next_run() -> None:
 
 
 # ── Schedule ──────────────────────────────────────────────────────────────────
-# TZ=America/New_York is set in the launchd plist, so "09:00" fires at 9:00 AM ET.
+# TZ=America/New_York is set in the launchd plist, so "09:45" fires at 9:45 AM ET.
+# Runs 15 min AFTER the 9:30 open (not before it): the intraday momentum filter
+# needs the market open with 5/15-min bars formed. At the old 9:00 slot the market
+# was still closed, so the intraday check rejected 100% of entries every day.
 # (3-bot variant trigger removed — variants archived to trading-bot/archive/, Jun 2026)
-schedule.every().day.at("09:00").do(trigger_bot)
+schedule.every().day.at("09:45").do(trigger_bot)
 
-log.info("Scheduler started — minervini_bot fires weekdays at 09:00 ET.")
+log.info("Scheduler started — minervini_bot fires weekdays at 09:45 ET (after market open).")
 log.info("Sleep after run: %s", SLEEP_AFTER_RUN)
 _log_next_run()
 
