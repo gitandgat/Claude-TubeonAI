@@ -18,6 +18,7 @@ import logging
 import os
 import sys
 import time
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Tuple, Optional
@@ -30,6 +31,8 @@ from alpaca.trading.requests import MarketOrderRequest
 from dotenv import load_dotenv
 
 from data_fetcher import fetch_previous_close, fetch_daily_bars, fetch_minervini_metrics
+from universe import get_universe
+from universe_screener import screen_universe
 from trend_filter import validate_trend_template, format_trend_result
 from position_manager import (
     calculate_position_size,
@@ -100,6 +103,7 @@ STOP_LOSS_PCT = 7.0  # Hard -7% stop
 TAKE_PROFIT_PCT = 20.0  # Take profit at +20%
 MAX_OPEN_POSITIONS = 5
 MAX_POSITION_PCT = 20.0  # Max 20% of account per position
+MAX_PER_SECTOR = 2  # Diversification: at most 2 positions in any one GICS sector
 
 # Trailing stop: arms only after the trade is up TRAILING_ACTIVATION_PCT, then
 # trails TRAILING_STOP_PCT below the peak. Activation must exceed the trail so
@@ -281,200 +285,127 @@ def run_bot() -> None:
     if not market_uptrend or not volatility_ok:
         log.warning("Market conditions unfavorable — skipping entry screening")
     else:
-        # Filter for Kavout High + Outperform (pre-filter)
-        candidates = [
-            t
-            for t, entry in ranks.items()
-            if entry.get("rank") == "High" and entry.get("outlook") == "Outperform"
-        ]
-        log.info(f"Kavout pre-filter: {len(candidates)} High/Outperform candidates")
+        # ── Full-universe screen: S&P 500, true percentile RS, accumulation ──
+        # Replaces the 14-stock Kavout watchlist. Kavout still rides along as a
+        # quality-overlay tag (kavout_endorsed) but no longer limits the universe.
+        universe = get_universe()
+        screened = screen_universe(universe, kavout_ranks=ranks)
+        log.info("Screen surfaced %d Trend-Template candidates (RS-ranked)", len(screened))
 
-        if not candidates:
-            log.info("No Kavout High/Outperform candidates available.")
+        # Sector diversification: count sectors already held so we cap exposure
+        held_sectors = Counter(
+            universe.get(t) or get_stock_sector(t) or "Unknown" for t in positions
+        )
+        entries_made = 0
 
-        for ticker in candidates:
-            log.info("┌── %s", ticker)
-
-            # Live Minervini metrics computed from real Alpaca daily bars.
-            # Cached ranks.json values are used only if Alpaca is unavailable —
-            # the cache froze for 3 weeks in June 2026 when the Polygon key died.
-            metrics = fetch_minervini_metrics(ticker)
-            if metrics:
-                close = metrics["price"]
-                ma_20, ma_50, ma_200 = metrics["ma_20"], metrics["ma_50"], metrics["ma_200"]
-                distance_52w_pct = metrics["distance_52w"]
-                volume_ratio = metrics["volume_ratio"]
-                if metrics["bars_used"] < 200:
-                    log.info("│   (MA200 approximated from %d bars)", metrics["bars_used"])
-            else:
-                log.warning("│   Alpaca metrics unavailable — falling back to cached ranks.json")
-                close = fetch_previous_close(ticker)
-                ma_data = fetch_ma_levels_with_cache(ticker, ranks)
-                fifty_two_w = fetch_52week_high_with_cache(ticker, ranks)
-                if close is None or ma_data is None or fifty_two_w is None:
-                    log.warning(
-                        "└── %s │ SKIP — missing market data (close=%s, ma=%s, 52w=%s)",
-                        ticker, close, ma_data, fifty_two_w,
-                    )
-                    continue
-                ma_20, ma_50, ma_200 = ma_data
-                distance_52w_pct = (fifty_two_w - close) / fifty_two_w
-                volume_ratio = fetch_volume_ratio_with_cache(ticker, ranks)
-
-            real_price = close  # Latest real price
-
-            # Fetch daily bars for ATR and RSI calculation
-            bar_data = fetch_daily_bars(ticker, days=60)
-            if bar_data is None:
-                log.warning("└── %s │ SKIP — insufficient bar data for indicators", ticker)
-                continue
-            closes, highs, lows = bar_data
-
-            # Calculate real RS Rank vs SPY (using 252-day returns)
-            rs_rank = calculate_rs_rank(ticker)
-
-            # volume_ratio set above (live, or cache fallback); may be None —
-            # the Trend Template validator skips the volume check in that case
-
-            # Check Trend Template (now with closes for RSI confirmation)
-            trend_result = validate_trend_template(
-                ticker,
-                real_price,
-                ma_20,
-                ma_50,
-                ma_200,
-                rs_rank,
-                distance_52w_pct,
-                volume_ratio,
-                closes=closes,  # For RSI calculation
-            )
-
-            log.info("│   Price=$%.2f │ MA20=$%.2f MA50=$%.2f MA200=$%.2f", close, ma_20, ma_50, ma_200)
-            vol_str = f"{volume_ratio:.2f}x" if volume_ratio is not None else "N/A"
-            log.info("│   RS=%d │ Distance_52W=%.1f%% │ Volume_ratio=%s",
-                     rs_rank, distance_52w_pct * 100, vol_str)
-            log.info("│   %s", format_trend_result(ticker, trend_result))
-
-            if not trend_result["passes"]:
-                log.info("└── %s │ SKIP — Trend Template failed", ticker)
-                continue
-
-            # Position limit check
+        for cand in screened:
+            ticker = cand["ticker"]
             alpaca_ticker = TICKER_ALIASES.get(ticker, ticker)
+
+            if len(positions) + entries_made >= MAX_OPEN_POSITIONS:
+                log.info("Reached MAX_OPEN_POSITIONS (%d) — done entering", MAX_OPEN_POSITIONS)
+                break
             if alpaca_ticker in positions:
-                log.info("└── %s │ Already holding — SKIP", ticker)
+                continue  # already holding
+
+            sector = cand["sector"]
+            if held_sectors[sector] >= MAX_PER_SECTOR:
+                log.info("┌── %s │ SKIP — sector '%s' already at cap (%d)",
+                         ticker, sector, MAX_PER_SECTOR)
                 continue
 
-            # Calculate ATR-based stop loss and take profit
+            real_price = cand["price"]
+            ma_20, ma_50, ma_200 = cand["ma_20"], cand["ma_50"], cand["ma_200"]
+            rs_rank = cand["rs_rank"]
+            distance_52w_pct = cand["distance_52w"]
+            volume_ratio = cand["volume_ratio"]
+            closes, highs, lows = cand["closes"], cand["highs"], cand["lows"]
+
+            tag = " ★Kavout" if cand["kavout_endorsed"] else ""
+            log.info("┌── %s │ RS=%d │ %s%s", ticker, rs_rank, sector, tag)
+            vol_str = f"{volume_ratio:.2f}x" if volume_ratio is not None else "N/A"
+            log.info("│   Price=$%.2f MA20=$%.2f MA50=$%.2f MA200=$%.2f │ 52W=%.1f%% vol=%s",
+                     real_price, ma_20, ma_50, ma_200, distance_52w_pct * 100, vol_str)
+
+            # ATR-based stop loss and take profit
             atr = calculate_atr(highs, lows, closes, period=14)
             if atr is None:
                 log.warning("└── %s │ SKIP — could not calculate ATR", ticker)
                 continue
-
             stop_loss = calculate_atr_stop_loss(highs, lows, closes, real_price, atr_multiplier=2.0)
             take_profit = calculate_take_profit_price(real_price, atr=atr, profit_target_pct=20.0)
-
             if stop_loss is None:
                 log.warning("└── %s │ SKIP — invalid stop loss calculation", ticker)
                 continue
 
-            # Position sizing with ATR-based stop
+            # Position sizing (risk-based), scaled by sector strength
             qty = calculate_position_size(
-                float(account.equity),
-                real_price,
-                stop_loss,
+                float(account.equity), real_price, stop_loss,
                 max_risk_pct=MAX_RISK_PER_TRADE_PCT,
             )
-
-            # Apply sector weight multiplier
-            sector = get_stock_sector(ticker)
             sector_weight = calculate_sector_weight_multiplier(ticker, sector_scores)
-            qty_weighted = int(qty * sector_weight)
+            qty = int(qty * sector_weight)
 
-            if sector:
-                sector_strength = sector_scores.get(sector, 50)
-                log.info("│   Sector: %s (strength=%.0f) │ Weight: %.1fx", sector, sector_strength, sector_weight)
-
-            if qty_weighted < 1:
-                log.warning("└── %s │ Position size too small after sector weight (qty=%d, weighted=%d)",
-                           ticker, qty, qty_weighted)
+            # Cap at the per-position ceiling by TRIMMING (not rejecting). With a
+            # diverse universe of lower-priced names, tight-ATR risk sizing often
+            # lands a few % over 20%; rejecting outright would block most trades.
+            max_qty_by_cap = int((float(account.equity) * MAX_POSITION_PCT / 100) / real_price)
+            if qty > max_qty_by_cap:
+                log.info("│   Trimming %d→%d shares to respect %.0f%% position cap",
+                         qty, max_qty_by_cap, MAX_POSITION_PCT)
+                qty = max_qty_by_cap
+            if qty < 1:
+                log.warning("└── %s │ SKIP — position size < 1 share", ticker)
                 continue
 
-            qty = qty_weighted  # Use weighted quantity
-
-            # Validate position limits
+            # Position limits (count + final sanity; size already capped above)
             position_value = real_price * qty
             is_valid, reason = validate_position_limits(
-                float(account.equity),
-                position_value,
-                len(positions),
-                max_positions=MAX_OPEN_POSITIONS,
-                max_position_pct=MAX_POSITION_PCT,
+                float(account.equity), position_value, len(positions) + entries_made,
+                max_positions=MAX_OPEN_POSITIONS, max_position_pct=MAX_POSITION_PCT,
             )
             if not is_valid:
                 log.warning("└── %s │ Position limit: %s", ticker, reason)
                 continue
 
-            # Intraday entry confirmation (if market hours)
-            intraday_ok, intraday_reason = should_enter_intraday(ticker, real_price)
+            # Intraday entry confirmation (market hours). Dry runs skip it so the
+            # full buy path can be exercised outside trading hours.
+            intraday_ok, intraday_reason = should_enter_intraday(
+                ticker, real_price, skip_intraday_check=DRY_RUN
+            )
             if not intraday_ok:
                 log.warning("└── %s │ Intraday check failed: %s", ticker, intraday_reason)
                 continue
-            log.info("│   Intraday: %s ✓", intraday_reason)
 
-            # Place buy order
             log.info(
-                "└── ENTRY: BUY %d shares @ $%.2f (stop=$%.2f, target=$%.2f, ATR=%.2f)",
-                qty,
-                real_price,
-                stop_loss,
-                take_profit,
-                atr,
+                "└── ENTRY: BUY %d %s @ $%.2f (stop=$%.2f target=$%.2f ATR=%.2f)",
+                qty, ticker, real_price, stop_loss, take_profit, atr,
             )
             place_order(client, alpaca_ticker, OrderSide.BUY, qty)
 
-            # Send entry alert
-            alert_entry_signal(
-                ticker=ticker,
-                entry_price=real_price,
-                qty=qty,
-                stop_loss=stop_loss,
-                take_profit=take_profit,
-                rs_rank=rs_rank,
-                sector=get_stock_sector(ticker),
-                notes=f"Intraday confirmed, ATR=${atr:.2f}",
-            )
+            if not DRY_RUN:
+                alert_entry_signal(
+                    ticker=ticker, entry_price=real_price, qty=qty,
+                    stop_loss=stop_loss, take_profit=take_profit,
+                    rs_rank=rs_rank, sector=sector,
+                    notes=f"RS {rs_rank}, ATR=${atr:.2f}" + (" Kavout★" if cand["kavout_endorsed"] else ""),
+                )
+                tracker.open_trade(
+                    ticker, datetime.now(ET), real_price, qty, stop_loss, take_profit,
+                )
+                kv = ranks.get(ticker, {})
+                tracker.log_signal(
+                    datetime.now(ET), ticker, real_price,
+                    ma_20=ma_20, ma_50=ma_50, ma_200=ma_200,
+                    rs_rank=rs_rank, distance_52w=distance_52w_pct,
+                    volume_ratio=volume_ratio, trend_template_pass=True, signal="BUY",
+                    kavout_rank=kv.get("rank"), kavout_outlook=kv.get("outlook"),
+                    kavout_tech=kv.get("tech"),
+                )
 
-            # Log trade
-            trade_id = tracker.open_trade(
-                ticker,
-                datetime.now(ET),
-                real_price,
-                qty,
-                stop_loss,
-                take_profit,
-            )
-
-            # Log signal
-            entry = ranks.get(ticker, {})
-            tracker.log_signal(
-                datetime.now(ET),
-                ticker,
-                real_price,
-                ma_20=ma_20,
-                ma_50=ma_50,
-                ma_200=ma_200,
-                rs_rank=rs_rank,
-                distance_52w=distance_52w_pct,
-                volume_ratio=volume_ratio,
-                trend_template_pass=True,
-                signal="BUY",
-                kavout_rank=entry.get("rank"),
-                kavout_outlook=entry.get("outlook"),
-                kavout_tech=entry.get("tech"),
-            )
-
-            time.sleep(13)  # Rate limit
+            held_sectors[sector] += 1
+            entries_made += 1
+            time.sleep(13)  # Rate limit between entries
 
     # ── EXIT PHASE ────────────────────────────────────────────────────────────
 

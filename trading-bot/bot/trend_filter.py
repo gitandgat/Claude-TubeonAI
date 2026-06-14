@@ -41,6 +41,9 @@ def validate_trend_template(
     distance_52w_pct: float,
     volume_ratio: float,
     closes: Optional[List[float]] = None,
+    accumulation_signal: Optional[bool] = None,
+    market_uptrend: Optional[bool] = None,
+    volatility_ok: Optional[bool] = None,
 ) -> TrendCheckResult:
     """
     Validate all Minervini Trend Template conditions + enhanced checks.
@@ -53,8 +56,15 @@ def validate_trend_template(
         ma_200: 200-day moving average
         rs_rank: Relative strength rank vs SPY (0-100)
         distance_52w_pct: How far below 52-week high (0-1 range)
-        volume_ratio: Today's volume / 50-day average volume
+        volume_ratio: Today's volume / 50-day average volume (for logging/fallback)
         closes: List of closes for RSI calculation (optional)
+        accumulation_signal: Preferred volume check — True if an institutional
+            accumulation day (up-close on >=1.5x avg volume) occurred recently.
+            When provided, supersedes the single-day volume_ratio check, which
+            is near-impossible to satisfy on an arbitrary screening day.
+        market_uptrend: Pre-computed SPY>MA200 (avoids a per-stock network call
+            when screening a large universe). Falls back to a live check if None.
+        volatility_ok: Pre-computed VIX-in-range. Falls back to live if None.
 
     Returns:
         TrendCheckResult with passes flag, individual checks, and reasons.
@@ -90,13 +100,19 @@ def validate_trend_template(
             f"52-week high (max 25%)"
         )
 
-    # Check 4: Volume confirmation (> 1.5x 50-day average) - SKIP if unavailable
-    vol_confirmed = volume_ratio >= 1.5 if volume_ratio is not None else True
+    # Check 4: Volume confirmation. Prefer the recent-accumulation signal
+    # (institutions bought on volume in the last ~10 sessions) over a single-day
+    # 1.5x spike, which a healthy leader shows only on its rare breakout day.
+    if accumulation_signal is not None:
+        vol_confirmed = accumulation_signal
+        if not vol_confirmed:
+            reasons.append("No recent accumulation day (up-close on >=1.5x volume in last 10 sessions)")
+    else:
+        # Fallback: single-day ratio (skip if unavailable)
+        vol_confirmed = volume_ratio >= 1.5 if volume_ratio is not None else True
+        if not vol_confirmed and volume_ratio is not None:
+            reasons.append(f"Volume ratio {volume_ratio:.2f}x < 1.5x (50-day average)")
     checks["volume_confirmed"] = vol_confirmed
-    if not vol_confirmed and volume_ratio is not None:
-        reasons.append(
-            f"Volume ratio {volume_ratio:.2f}x < 1.5x (50-day average)"
-        )
 
     # ═══════════════════════════════════════════════════════════════════
     # ENHANCED CHECKS (confirmation filters)
@@ -116,14 +132,15 @@ def validate_trend_template(
     else:
         checks["rsi_confirmation"] = True
 
-    # Check 6: Market regime (SPY > MA200)
-    market_ok = is_market_in_uptrend()
+    # Check 6: Market regime (SPY > MA200). Use pre-computed value when given —
+    # it's market-wide, so re-fetching per stock would hammer the network.
+    market_ok = market_uptrend if market_uptrend is not None else is_market_in_uptrend()
     checks["market_uptrend"] = market_ok
     if not market_ok:
         reasons.append("SPY in downtrend (broad market risk)")
 
-    # Check 7: Volatility acceptable (10 < VIX < 30)
-    vol_ok = is_volatility_acceptable(max_vix=30, min_vix=10)
+    # Check 7: Volatility acceptable (10 < VIX < 30). Pre-computed when given.
+    vol_ok = volatility_ok if volatility_ok is not None else is_volatility_acceptable(max_vix=30, min_vix=10)
     checks["volatility_acceptable"] = vol_ok
     if not vol_ok:
         reasons.append("VIX outside safe range")

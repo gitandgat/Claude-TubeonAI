@@ -134,6 +134,60 @@ def alpaca_get_bars(ticker: str, days: int = 60) -> Optional[dict]:
         return None
 
 
+def alpaca_get_bars_batch(symbols: list, days: int = 300) -> dict:
+    """
+    Batch-fetch daily bars for many symbols in one Alpaca request per chunk.
+    This is what makes screening 500 stocks feasible — Alpaca returns all
+    requested symbols together and the SDK auto-paginates.
+
+    Returns {symbol: {"closes": [...], "highs": [...], "lows": [...],
+    "volumes": [...]}} for every symbol that returned data.
+    """
+    from alpaca.data.requests import StockBarsRequest
+    from alpaca.data.timeframe import TimeFrame
+
+    out: dict = {}
+    client = _alpaca_client()
+    start = datetime.now() - timedelta(days=days)
+    CHUNK = 50  # symbols per request — keeps each response well-bounded
+
+    def _fetch(chunk: list) -> None:
+        """Fetch a chunk; on failure (e.g. one invalid symbol), split and
+        retry so a single bad ticker can't sink its 49 neighbours."""
+        if not chunk:
+            return
+        try:
+            bars = client.get_stock_bars(StockBarsRequest(
+                symbol_or_symbols=chunk,
+                timeframe=TimeFrame.Day,
+                start=start,
+            ))
+        except Exception as e:
+            if len(chunk) == 1:
+                log.debug("Skipping unfetchable symbol %s: %s", chunk[0], e)
+                return
+            mid = len(chunk) // 2
+            _fetch(chunk[:mid])
+            _fetch(chunk[mid:])
+            return
+        for sym in chunk:
+            if sym not in bars.data or not bars[sym]:
+                continue
+            rows = bars[sym]
+            out[sym] = {
+                "closes": [b.close for b in rows],
+                "highs": [b.high for b in rows],
+                "lows": [b.low for b in rows],
+                "volumes": [b.volume for b in rows],
+            }
+
+    for i in range(0, len(symbols), CHUNK):
+        _fetch(symbols[i:i + CHUNK])
+
+    log.info("Alpaca batch: fetched bars for %d/%d symbols", len(out), len(symbols))
+    return out
+
+
 def alpaca_latest_price(ticker: str) -> Optional[float]:
     """Latest trade price from Alpaca, or None on failure."""
     try:
