@@ -132,7 +132,8 @@ def _fetch_dated(symbols: list, days: int) -> dict:
 def run_backtest(months: int = 24, rebalance_days: int = 5,
                  trail_activation_pct: float = TRAIL_ACTIVATION_PCT,
                  trail_pct: float = TRAIL_PCT,
-                 use_trail: bool = True) -> dict:
+                 use_trail: bool = True,
+                 end_date: str = None) -> dict:
     universe = get_universe()
     sectors = dict(universe)
     symbols = list(universe.keys()) + ["SPY"]
@@ -157,7 +158,17 @@ def run_backtest(months: int = 24, rebalance_days: int = 5,
     vol = pd.DataFrame({s: series(s, "volume") for s in tickers})
     spy = pd.Series(dated["SPY"]["close"], index=pd.to_datetime(dated["SPY"]["dates"])).reindex(master)
 
-    log.info("Aligned %d tickers over %d trading days", len(tickers), len(master))
+    # Hard cutoff: truncate everything to on/before end_date for a clean
+    # out-of-sample window (e.g. end 2023-12-31 to exclude the trail-decision era)
+    if end_date:
+        keep = master <= pd.Timestamp(end_date)
+        master = master[keep]
+        close, high, low, vol = close[keep], high[keep], low[keep], vol[keep]
+        spy = spy[keep]
+        log.info("Truncated to <= %s", end_date)
+
+    log.info("Aligned %d tickers over %d trading days (%s → %s)",
+             len(tickers), len(master), master[0].date(), master[-1].date())
 
     # ── Vectorized point-in-time features ─────────────────────────────────
     ma20 = close.rolling(20).mean()
@@ -385,5 +396,8 @@ if __name__ == "__main__":
     # Default OFF to match the live bot (USE_TRAILING_STOP=False in minervini_bot).
     # --trail re-enables the tight 5%/3% trail for comparison.
     ap.add_argument("--trail", action="store_true", help="enable tight trailing stop (default: off, matches live)")
+    ap.add_argument("--end-date", type=str, default=None,
+                    help="hard cutoff YYYY-MM-DD for out-of-sample testing (e.g. 2023-12-31)")
     args = ap.parse_args()
-    run_backtest(months=args.months, rebalance_days=args.rebalance_days, use_trail=args.trail)
+    run_backtest(months=args.months, rebalance_days=args.rebalance_days,
+                 use_trail=args.trail, end_date=args.end_date)
