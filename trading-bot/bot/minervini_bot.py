@@ -105,10 +105,14 @@ MAX_OPEN_POSITIONS = 5
 MAX_POSITION_PCT = 20.0  # Max 20% of account per position
 MAX_PER_SECTOR = 2  # Diversification: at most 2 positions in any one GICS sector
 
-# Trailing stop: arms only after the trade is up TRAILING_ACTIVATION_PCT, then
-# trails TRAILING_STOP_PCT below the peak. Activation must exceed the trail so
-# a trailing exit always locks in profit (worst case ≈ +1.85% with 5%/3%)
-# instead of overriding the -7% Minervini stop with a tighter -3% one.
+# Trailing stop — DISABLED based on 24-month backtest (Jun 15 2026).
+# The tight 3% trail (armed at +5%) HALVED returns: it scalped winners at
+# +2-5% while losers ran to the full ATR stop — the inverse of "let winners
+# run." Backtest: trail ON = +47.8%/Sharpe 1.40; trail OFF = +103%/Sharpe 2.01
+# over the same window. Winners now ride to the +4×ATR target; the −2×ATR hard
+# stop still cuts every loser fast. Re-enable (flip USE_TRAILING_STOP) only with
+# a regime filter — a trail earns its keep in choppy/bear markets, not trends.
+USE_TRAILING_STOP = False
 TRAILING_STOP_PCT = 3.0
 TRAILING_ACTIVATION_PCT = 5.0
 
@@ -433,19 +437,24 @@ def run_bot() -> None:
             if entry_dt.tzinfo is None:
                 entry_dt = ET.localize(entry_dt)
 
-            # Trailing-stop bookkeeping: track the highest price since entry
+            # Peak tracking (kept for logging + optional trailing stop)
             peak = max(trade.get("highest_price_seen") or 0, trade["entry_price"])
             if current_price > peak:
                 peak = current_price
                 tracker.update_trade_highest_price(trade["trade_id"], peak)
 
-            # Trailing stop arms after +TRAILING_ACTIVATION_PCT, trails the peak
-            trail_pct = trade.get("trailing_stop_pct") or TRAILING_STOP_PCT
-            activation_level = trade["entry_price"] * (1 + TRAILING_ACTIVATION_PCT / 100)
-            trailing_armed = peak >= activation_level
-            trailing_stop = peak * (1 - trail_pct / 100) if trailing_armed else None
+            # Trailing stop (DISABLED by default — see USE_TRAILING_STOP note).
+            # Backtest proved the tight trail scalps winners and halves returns.
+            trailing_stop = None
+            if USE_TRAILING_STOP:
+                trail_pct = trade.get("trailing_stop_pct") or TRAILING_STOP_PCT
+                activation_level = trade["entry_price"] * (1 + TRAILING_ACTIVATION_PCT / 100)
+                if peak >= activation_level:
+                    trailing_stop = peak * (1 - trail_pct / 100)
 
-            # Check exit conditions
+            # Check exit conditions: hard stop → target → (trailing) → time.
+            # With the trail off, winners ride to the +4×ATR target; losers are
+            # still cut fast at the −2×ATR hard stop.
             exit_reason = None
             if current_price <= trade["stop_loss_level"]:
                 exit_reason = "STOP_LOSS"
@@ -493,7 +502,7 @@ def run_bot() -> None:
                     )
             else:
                 unrealized_pct = ((current_price - trade["entry_price"]) / trade["entry_price"]) * 100
-                trail_str = f"${trailing_stop:.2f}" if trailing_stop is not None else f"off (arms @ ${activation_level:.2f})"
+                trail_str = f"${trailing_stop:.2f}" if trailing_stop is not None else "off"
                 log.info(
                     "└── %s │ HOLD @ $%.2f (entry=$%.2f, peak=$%.2f, unrealized=%+.2f%%) │ "
                     "stop=$%.2f target=$%.2f trail=%s",
