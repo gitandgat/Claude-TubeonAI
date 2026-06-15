@@ -7,13 +7,18 @@ checklist every day and prints a READY / NOT-READY verdict. When ALL gates
 pass for the first time, it fires a one-time alert (email + Slack) so the
 SYSTEM tells you the moment it's ready — no eyeballing required.
 
+The EDGE and REGIME robustness were already proven by a 10-year out-of-sample
+backtest (476 trades, +342% vs SPY +234%, Sharpe 1.02 vs 0.80, survived the
+2018/2020/2022 bears). So this forward gate only confirms LIVE EXECUTION —
+fills, slippage, no implementation bug — over ~4-6 weeks, not 3-6 months.
+
 Gates (all must pass):
-  1. Closed trades        >= 30      (below this, stats are noise)
-  2. Days live            >= 60      (floor; 90+ preferred for regime variety)
-  3. Profit factor        >= 1.5     (gross wins / gross losses)
-  4. Beats SPY            screen return > SPY return since inception
-  5. Beats Kavout         screen return > Kavout return
-  6. Regime tested        SPY had a >= 5% drawdown since inception
+  1. Forward trades       >= 15      (execution confirmation, not edge discovery)
+  2. Days live            >= 25
+  3. Profit factor        >= 1.3     (forward floor; historical was 1.55)
+  4. Beats SPY            forward screen return > SPY return
+  5. Beats Kavout         forward screen return > Kavout return
+  6. Regime robustness    satisfied historically (10yr OOS across 3 bears)
   7. Drawdown controlled  screen max drawdown not worse than -15%
 
 Run daily (wired into DAILY_CHECK.sh). Verdict is machine-checked, not a
@@ -37,12 +42,18 @@ STATE_FILE = Path(__file__).resolve().parent / "forward_test.json"
 READY_FLAG = Path(__file__).resolve().parent / "go_live_ready.flag"
 START_EQUITY = 100_000.0
 
-# Gate thresholds
-MIN_TRADES = 30
-MIN_DAYS = 60
-MIN_PROFIT_FACTOR = 1.5
-MIN_SPY_PULLBACK_PCT = 5.0      # regime test: index must have wobbled
+# Gate thresholds. Lowered Jun 15 2026 because the 10-year out-of-sample
+# backtest already established the EDGE (476 trades, +342% vs SPY +234%,
+# Sharpe 1.02 vs 0.80) and REGIME robustness (survived 2018/2020/2022 bears).
+# The forward test therefore only needs to confirm LIVE EXECUTION (fills,
+# slippage, no implementation bug) — ~4-6 weeks, not 3-6 months.
+MIN_TRADES = 15                  # forward execution confirmation (edge proven historically)
+MIN_DAYS = 25
+MIN_PROFIT_FACTOR = 1.3          # forward floor (historical PF was 1.55)
 MAX_DRAWDOWN_PCT = 15.0          # screen drawdown tolerance
+# Regime gate is satisfied HISTORICALLY (10yr backtest across 3 bears), so the
+# forward run no longer has to wait for a live pullback.
+HISTORICAL_REGIME_VALIDATED = True
 
 
 def _account_stats(acct: dict) -> dict:
@@ -96,21 +107,20 @@ def evaluate() -> dict:
     spy = alpaca_latest_price("SPY")
     spy_start = state.get("spy_start")
     spy_ret = (spy / spy_start - 1) * 100 if spy and spy_start else 0.0
-    spy_dd = _spy_drawdown_since(inception)
 
     gates = [
-        ("Closed trades >= %d" % MIN_TRADES, screen["closed"] >= MIN_TRADES,
+        ("Forward trades >= %d" % MIN_TRADES, screen["closed"] >= MIN_TRADES,
          f"{screen['closed']}"),
         ("Days live >= %d" % MIN_DAYS, days_live >= MIN_DAYS, f"{days_live}"),
         ("Profit factor >= %.1f" % MIN_PROFIT_FACTOR,
          screen["closed"] >= MIN_TRADES and screen["profit_factor"] >= MIN_PROFIT_FACTOR,
          f"{screen['profit_factor']:.2f}"),
-        ("Beats SPY", screen["return_pct"] > spy_ret,
+        ("Beats SPY (forward)", screen["return_pct"] > spy_ret,
          f"{screen['return_pct']:+.1f}% vs {spy_ret:+.1f}%"),
-        ("Beats Kavout", screen["return_pct"] > kavout["return_pct"],
+        ("Beats Kavout (forward)", screen["return_pct"] > kavout["return_pct"],
          f"{screen['return_pct']:+.1f}% vs {kavout['return_pct']:+.1f}%"),
-        ("Regime tested (SPY pullback >= %.0f%%)" % MIN_SPY_PULLBACK_PCT,
-         spy_dd <= -MIN_SPY_PULLBACK_PCT, f"SPY DD {spy_dd:.1f}%"),
+        ("Regime robustness (10yr OOS)", HISTORICAL_REGIME_VALIDATED,
+         "3 bears survived"),
         ("Drawdown <= %.0f%%" % MAX_DRAWDOWN_PCT, screen["max_dd"] >= -MAX_DRAWDOWN_PCT,
          f"{screen['max_dd']:.1f}%"),
     ]

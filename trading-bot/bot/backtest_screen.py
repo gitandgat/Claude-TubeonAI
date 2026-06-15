@@ -382,5 +382,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--months", type=int, default=24)
     ap.add_argument("--rebalance-days", type=int, default=5)
+    # Default OFF to match the live bot (USE_TRAILING_STOP=False in minervini_bot).
+    # --trail re-enables the tight 5%/3% trail for comparison.
+    ap.add_argument("--trail", action="store_true", help="enable tight trailing stop (default: off, matches live)")
     args = ap.parse_args()
-    run_backtest(months=args.months, rebalance_days=args.rebalance_days)
+    run_backtest(months=args.months, rebalance_days=args.rebalance_days, use_trail=args.trail)
