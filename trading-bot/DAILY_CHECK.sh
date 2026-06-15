@@ -79,6 +79,14 @@ echo ""
 # (3-bot comparison removed — simplified to single production bot, Jun 2026)
 
 # ─────────────────────────────────────────────────────────────────
+# 3b. Go-live readiness gate (forward test vs criteria)
+# ─────────────────────────────────────────────────────────────────
+if command -v python3 &> /dev/null && [ -f "$BOT_DIR/bot/readiness_check.py" ]; then
+    cd "$BOT_DIR" && python3 bot/readiness_check.py 2>/dev/null | grep -A 20 "GO-LIVE READINESS" || true
+fi
+echo ""
+
+# ─────────────────────────────────────────────────────────────────
 # 4. Quick performance summary
 # ─────────────────────────────────────────────────────────────────
 echo "✓ PERFORMANCE (Last 7 Days)"
