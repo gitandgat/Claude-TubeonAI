@@ -116,11 +116,16 @@ def trigger_bot() -> None:
     else:
         log.error("Bot exited with code %d — check bot.log for details.", result.returncode)
 
-    # Tier-2 forward paper-trade log (screen vs SPY, zero-lookahead validation)
+    # Tier-2 forward paper-trade log (screen vs Kavout vs SPY, zero-lookahead)
     forward_script = BOT_DIR / "forward_test.py"
     if forward_script.exists():
         log.info("Logging forward paper-trade snapshot …")
         subprocess.run([sys.executable, str(forward_script)])
+
+    # Go-live readiness gate — fires a one-time alert when all criteria pass
+    readiness_script = BOT_DIR / "readiness_check.py"
+    if readiness_script.exists():
+        subprocess.run([sys.executable, str(readiness_script)])
 
     _write_heartbeat(result.returncode)
     _log_next_run()
