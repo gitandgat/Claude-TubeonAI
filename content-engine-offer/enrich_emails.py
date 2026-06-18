@@ -23,18 +23,31 @@ import json
 import os
 import re
 import urllib.parse
-import urllib.request
 from pathlib import Path
 from typing import Optional
 
+import requests  # bundles certifi -> avoids macOS Python SSL cert errors
+
 HUNTER_FINDER = "https://api.hunter.io/v2/email-finder"
+
+# Load repo-root .env into the environment if python-dotenv is available.
+# The library reads the file at runtime; the key value is never printed here.
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except Exception:  # noqa: BLE001
+    pass
 
 
 def resolve_key() -> Optional[str]:
-    """Return the Hunter key from env or repo keychain. Never logs it."""
+    """Return the Hunter key from env/.env or repo keychain. Never logs it."""
     key = os.environ.get("HUNTER_API_KEY")
     if key:
         return key
+    # Fall back to any env var whose NAME mentions HUNTER (value never printed).
+    for name, val in os.environ.items():
+        if "HUNTER" in name.upper() and val:
+            return val
     try:  # reuse repo secret store if it exists, without assuming its API
         import keychain_secrets  # type: ignore
         for fn in ("get_secret", "get", "get_api_key"):
@@ -71,11 +84,13 @@ def split_name(name: str) -> tuple[str, str]:
 
 
 def find_email(key: str, domain: str, first: str, last: str) -> tuple[Optional[str], Optional[int]]:
-    q = urllib.parse.urlencode(
-        {"domain": domain, "first_name": first, "last_name": last, "api_key": key})
+    params = {"domain": domain, "first_name": first, "last_name": last, "api_key": key}
     try:
-        with urllib.request.urlopen(f"{HUNTER_FINDER}?{q}", timeout=20) as r:
-            data = json.load(r).get("data", {})
+        r = requests.get(HUNTER_FINDER, params=params, timeout=20)
+        if r.status_code != 200:
+            print(f"    ! {domain}: HTTP {r.status_code} {r.json().get('errors', '')}")
+            return None, None
+        data = r.json().get("data", {})
         return data.get("email"), data.get("score")
     except Exception as e:  # noqa: BLE001 - report, never fabricate
         print(f"    ! lookup failed for {domain}: {e}")

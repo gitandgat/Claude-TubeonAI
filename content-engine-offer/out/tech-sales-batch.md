@@ -10,7 +10,7 @@ Each has a tailored gap teaser + a filled Email 1 below. King for all = Patrick 
 ---
 
 ## 1. Trent Dressel — *Conquer the Cold Call* / CourseCareers
-- **Reach:** youtube.com/c/trentdressel · skool.com/@trent-dressel · LinkedIn /in/trentdressel
+- **Reach:** DM only (no email indexed) — LinkedIn /in/trentdressel · skool.com/@trent-dressel
 - **Teaser:** `out/trent-dressel-gap-teaser.md`
 - **Finding:** Patrick Dang quit tech sales for AI content; Trent has zero AI-for-SDRs content in his lane.
 
@@ -20,14 +20,14 @@ Each has a tailored gap teaser + a filled Email 1 below. King for all = Patrick 
 > sales" hasn't posted a tech-sales video in 25 uploads. He left. Meanwhile the whole
 > niche is on the AI wave and you've got nothing on it yet.
 > So I built you a 1-page gap report — 5 posts that grab his orphaned audience + ride AI
-> inside your cold-calling lane. No opt-in: {teaser_url}
+> inside your cold-calling lane. No opt-in: https://www.crosswalkwisdom.com/r/trent-dressel
 > I run an engine that does this weekly for tech-sales coaches. Useful? I'll show you how.
 > — [name]
 
 ---
 
 ## 2. Chris Bussing — *Tech Sales Accelerator*
-- **Reach:** chrisbussing.com · techsalesaccelerator.com · LinkedIn /in/chrisbussing
+- **Reach:** EMAIL **chris@techsalesaccelerator.com** (Hunter 97) · LinkedIn /in/chrisbussing
 - **Teaser:** `out/chris-bussing-gap-teaser.md`
 - **Finding:** His best take ("AI is coming for your tech sales job," podcast #134) is buried in audio; his YouTube has ~zero AI content.
 
@@ -37,14 +37,14 @@ Each has a tailored gap teaser + a filled Email 1 below. King for all = Patrick 
 > it's stuck in audio. Your YouTube has almost no AI content, right as Patrick Dang vacated
 > the whole topic for AI hustles.
 > I built you a 1-page gap report: how to turn that take into your most-clicked video, plus
-> 12+ shorts already sitting inside your Reisert/$132M interviews. No opt-in: {teaser_url}
+> 12+ shorts already sitting inside your Reisert/$132M interviews. No opt-in: https://www.crosswalkwisdom.com/r/chris-bussing
 > I run an engine that does this weekly for tech-sales coaches. Worth 15 min?
 > — [name]
 
 ---
 
 ## 3. Connor Murray — *Cold Call Mastery* (Higher Levels)
-- **Reach:** higherlevels.com · youtube.com/@Connor-Murray · LinkedIn (Connor Murray, Higher Levels)
+- **Reach:** EMAIL **connor@higherlevels.com** (Hunter 98) · LinkedIn (Connor Murray, Higher Levels)
 - **Teaser:** `out/connor-murray-gap-teaser.md`
 - **Finding:** His deepest AE content ("15+ yrs in 36 min," discovery-call breakdowns) is locked in long videos — 20+ unmade shorts.
 
@@ -55,7 +55,7 @@ Each has a tailored gap teaser + a filled Email 1 below. King for all = Patrick 
 > That's 20+ shorts already filmed, plus the whole "break in" audience Patrick Dang just
 > abandoned.
 > I built you a 1-page gap report showing exactly which clips + which posts. No opt-in:
-> {teaser_url}
+> https://www.crosswalkwisdom.com/r/connor-murray
 > I run an engine that does this weekly for tech-sales coaches. Worth a look?
 > — [name]
 
@@ -72,15 +72,15 @@ Each has a tailored gap teaser + a filled Email 1 below. King for all = Patrick 
 > Whisperer was built on the "$3–8k/mo appointment setter" dream, and that audience (the one
 > that buys your entry course) is barely hearing from you now.
 > I built you a 1-page gap report: 5 posts that keep that funnel alive on autopilot while
-> you focus up-market. No opt-in: {teaser_url}
+> you focus up-market. No opt-in: https://www.crosswalkwisdom.com/r/dylan-rich
 > I run an engine that does this weekly. Worth 15 min?
 > — [name]
 
 ---
 
 ### Status / next actions
-- [ ] Resolve emails: `python enrich_emails.py` (needs HUNTER_API_KEY + each site as `website`)
-- [ ] Host the 4 teasers (Notion/Drive/your site) → fill `{teaser_url}`
+- [x] Resolve emails — Chris + Connor found; Trent + Dylan = DM
+- [x] Host the 4 teasers — LIVE at crosswalkwisdom.com/r/<coach>, URLs filled above
 - [ ] Warm a sending domain
 - [ ] Send Email 1; schedule the 2 follow-ups from `cold-email-sequence.md`
 - [ ] Optional quality lift: regenerate teasers via `AI_PROVIDER=claude` or `/stop-slop`
