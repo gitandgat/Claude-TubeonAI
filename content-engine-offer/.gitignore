@@ -1,0 +1,16 @@
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Enriched lists may contain real prospect emails (PII) — never commit
+*-enriched.csv
+
+# Transient scrape / run artifacts
+*.log
+_scrape_all.log
+*-snapshot.csv
+
+# First-draft (local Ollama) generations — keep only the hand-polished teasers
+out/batch/
+out/*-RAW.md
+out/*-RAW.json
