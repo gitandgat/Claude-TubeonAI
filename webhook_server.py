@@ -23,6 +23,7 @@ Local dev:
 """
 
 import os
+import json
 import logging
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
@@ -40,9 +41,19 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Crosswalk Wisdom Webhook")
 
+# CORS is env-driven so production can be locked down without code changes.
+# Default allows the main site; the regex also allows Vercel-hosted apps
+# (Fear Audit, IMG Pivot Challenge landing, calculator). If any intake origin
+# lives elsewhere (e.g. a Bolt/StackBlitz domain), add it to ALLOWED_ORIGINS.
+_DEFAULT_ORIGINS = "https://crosswalkwisdom.com,https://www.crosswalkwisdom.com"
+ALLOWED_ORIGINS = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", _DEFAULT_ORIGINS).split(",") if o.strip()]
+ALLOWED_ORIGIN_REGEX = os.getenv("ALLOWED_ORIGIN_REGEX", r"https://([a-z0-9-]+\.)*vercel\.app")
+logger.info(f"CORS origins: {ALLOWED_ORIGINS} + regex {ALLOWED_ORIGIN_REGEX!r}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Tighten to your quiz domain after deployment
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=ALLOWED_ORIGIN_REGEX,
     allow_methods=["POST", "OPTIONS"],
     allow_headers=["*"],
 )
@@ -178,6 +189,38 @@ async def receive_quiz_result(result: QuizResult):
 async def quiz_result_alias(result: QuizResult):
     """Alias for /quiz-results for API consistency."""
     return await receive_quiz_result(result)
+
+
+class LeadMagnetRequest(BaseModel):
+    email: EmailStr
+    firstName: str
+
+
+LEAD_QUEUE_FILE = os.path.join(os.path.dirname(__file__), "lead-magnets", "leads_queue.jsonl")
+
+
+@app.post("/api/lead-magnet")
+async def request_lead_magnet(req: LeadMagnetRequest):
+    """
+    Queue a lead-magnet delivery from a form submission.
+    The com.crosswalk.lead-magnet-deliver LaunchAgent picks it up (<=5 min),
+    emails the PDF, and tags the lead in Encharge. Intake is decoupled from
+    delivery so a slow send never blocks the form response.
+    """
+    line = json.dumps({"email": req.email, "name": req.firstName})
+    try:
+        with open(LEAD_QUEUE_FILE, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except OSError as e:
+        logger.error(f"Failed to queue lead magnet for {req.email}: {e}")
+        raise HTTPException(status_code=500, detail="Could not queue request")
+
+    logger.info(f"Lead magnet queued: {req.email} ({req.firstName})")
+    return {
+        "success": True,
+        "message": f"On its way, {req.firstName}! Check your inbox in a few minutes.",
+        "email": req.email,
+    }
 
 
 @app.get("/health")
