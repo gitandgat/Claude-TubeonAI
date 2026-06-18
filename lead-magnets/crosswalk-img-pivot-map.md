@@ -1,0 +1,58 @@
+# The Unmatched Doctor's Pivot Map
+
+**Five honest paths to income, identity, and momentum after CaRMS — without betting another year on the match.**
+
+*A Crosswalk Wisdom guide. From the Ward to the World.*
+
+---
+
+## 1. You're Not Behind. You're Trapped by What You've Already Spent.
+
+If you trained as a doctor overseas, moved to Canada, and didn't match, you already know the loop: re-apply, re-study, re-take the exam, wait a year, and tell yourself this is the year. I'm not here to tell you to quit medicine. I'm here to show you something most IMGs never get to see clearly — the real trap isn't the match rate, it's sunk cost. The years, the money, and the identity you've poured in all whisper that stopping now would waste everything. This guide is about what your training is worth the moment you stop measuring it by a single residency seat.
+
+- **Name the four layers of the sunk-cost trap** that keep you re-applying when the math no longer works.
+- **Get the one reframe** that turns "wasted years" into transferable assets you can use this month.
+
+## 2. The Reframe That Changes Everything
+
+**The Question That Keeps You Stuck.** Most unmatched IMGs ask one question on repeat: "How do I finally match?" It feels responsible. It feels like grit. But it quietly assumes the only acceptable outcome is a residency seat, and it hands your entire future to a lottery you don't control.
+
+**The Question That Sets You Free.** Here is the better question: "What is my medical training worth right now, outside the match?" The day you ask it honestly, your degree stops being a debt you're trying to pay off and starts being capital you can deploy. Same training, completely different life.
+
+## 3. What Your Training Is Actually Worth
+
+**Clinical Judgment.** You can read a chart, weigh risk, and make decisions with incomplete information while someone's health is on the line. Outside the hospital, that judgment is rare and valuable — in health tech, in research, and in any company that sells to clinicians and keeps guessing wrong about what they need.
+
+**The Language of Medicine.** You are fluent in a language most of the business world only pretends to speak. You can translate between a guideline and a patient, a study and a sales team, a symptom and a product spec. Companies pay well for people who bridge that gap, because almost no one can.
+
+**Earned Trust.** Patients trusted you with their bodies. That credibility doesn't expire because you didn't match. It carries into medical education, patient advocacy, content, and consulting — anywhere people need to believe the person explaining medicine actually understands it.
+
+## 4. Four Pivot Paths That Use Your Degree
+
+**Clinical-Adjacent Roles.** Medical Science Liaison, clinical research associate, medical affairs, pharmacovigilance. These roles want your clinical background, rarely require a completed residency, and pay in a range that finally respects your training. Many IMGs land here once they stop hiding the non-match and start framing it as clinical depth.
+
+**Health Tech and Digital Health.** Every health-tech company is trying to build products for clinicians and patients without enough clinicians in the room. Clinical product roles, implementation, and medical review of AI tools all need your perspective — and this sector is hiring faster than almost any other.
+
+**Medical Communication and Education.** Medical writing, CME content, exam prep, courses, and patient education. If you can explain a hard concept clearly, there is an audience and a budget for it. This is also the lowest-friction path to start tonight: one article, one video, one explainer.
+
+**Consulting and Building Your Own Thing.** Healthcare consulting, advising startups, or building your own service for the exact community you came from — IMGs, patients, or overworked clinicians. You understand this market from the inside, and that is the unfair advantage most founders would pay to have.
+
+## 5. Your First 90 Days
+
+1. **Weeks 1-2 — Audit.** List every skill from your training that isn't "practicing as a licensed physician here" — diagnosis, research, teaching, communication, languages, performance under pressure. You will be surprised how long the list is once you stop discounting it.
+2. **Weeks 2-3 — Translate.** Rewrite your CV for one specific path, not all of them. Drop the hospital jargon. Lead with outcomes a non-doctor hiring manager understands. Your non-match is clinical experience, not a confession.
+3. **Week 3 — Choose One.** Pick one path from this guide and commit for 90 days. Spreading yourself across all four is how another year disappears. One path, one focus, one honest test.
+4. **Weeks 4-8 — Build Proof.** Make something real before anyone hires you: write three articles, finish one course, shadow one role, or ship one small project. Proof beats permission, and it beats another exam attempt.
+5. **Weeks 6-10 — Network With Intent.** Stop applying into the void. Find ten people already doing the path you chose, message them like a colleague, and ask one specific question. Most IMG pivots happen through a conversation, not a job board.
+6. **Week 12 — Set a Real Deadline.** Give yourself a date to decide whether you re-apply or fully commit to the crossing. A deadline turns an open wound into a clear choice. From the ward to the world is a decision, not an accident.
+
+---
+
+### Where to go next
+
+You've named the trap and seen the map. The next step is deciding — and that's the hard part, because deciding is what sunk cost is built to stop.
+
+- **Take the Fear Audit** to find out exactly which layer of the trap is holding you (2 minutes): crosswalkwisdom.com
+- **Read *The Courage to Choose*** ($27) — the full framework for making the call when everyone around you says keep waiting.
+
+*From the Ward to the World.*

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.crosswalk.lead-magnet-deliver</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Library/Frameworks/Python.framework/Versions/3.14/bin/python3</string>
+    <string>/Users/toto/Claude TubeonAI/lead-magnets/process_leads.py</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/toto/Claude TubeonAI</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+  <key>StartInterval</key>
+  <integer>300</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/Users/toto/Claude TubeonAI/logs/lead_magnet_deliver.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/toto/Claude TubeonAI/logs/lead_magnet_deliver.log</string>
+</dict>
+</plist>
