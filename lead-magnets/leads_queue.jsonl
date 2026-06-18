@@ -1,0 +1,5 @@
+# Lead-magnet delivery queue. One JSON object per line. Lines starting with # are ignored.
+# A lead lands here from any source (form, Zapier, webhook, manual). The launchd
+# job (com.crosswalk.lead-magnet-deliver) delivers each pending lead once.
+# Example:
+# {"email": "lead@example.com", "name": "Dr. Asha Rao"}

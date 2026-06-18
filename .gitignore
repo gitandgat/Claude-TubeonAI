@@ -2,3 +2,8 @@
 node_modules/
 prompt_ids.json
 *.txt
+
+# Lead-magnet pipeline runtime artifacts
+__pycache__/
+lead-magnets/leads_state.json
+lead-magnets/*.html
