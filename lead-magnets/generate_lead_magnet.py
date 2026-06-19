@@ -100,6 +100,12 @@ def extract_json(text):
 def ai_generate(topic, summary, company=BRAND):
     """Generate schema JSON via the repo's AI client factory (free-first)."""
     sys.path.insert(0, str(HERE.parent))
+    # Load repo .env so provider keys (ANTHROPIC/GROQ/OPENAI) are available.
+    try:
+        from dotenv import load_dotenv
+        load_dotenv(HERE.parent / ".env")
+    except ImportError:
+        pass
     from ai_client_factory import get_ai_client  # noqa: E402
 
     payload = json.dumps({"topic": topic, "summary": summary, "yourCompanyName": company})
@@ -121,7 +127,15 @@ def ai_generate(topic, summary, company=BRAND):
         resp = client.create(messages=messages, system=SYSTEM_PROMPT, max_tokens=2500)
         raw = resp.content[0].text
 
-    return extract_json(raw)
+    return _normalize(extract_json(raw))
+
+
+def _normalize(data):
+    """Strip AI-slop punctuation (em/en dashes) from all string values."""
+    def fix(s):
+        return (s.replace(" — ", ", ").replace("—", ", ")
+                 .replace(" – ", ", ").replace("–", "-")) if isinstance(s, str) else s
+    return {k: fix(v) for k, v in data.items()}
 
 
 # --- HTML rendering -----------------------------------------------------------
