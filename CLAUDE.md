@@ -19,13 +19,15 @@ Both systems require a `.env` file at the repo root:
 ## Python pipeline commands
 
 ```bash
-# Repurpose a YouTube video into all 7 platforms
-python main.py <youtube_url>
+# Repurpose YouTube videos into all 7 platforms (TubeonAI).
+# Add URLs to the URLS list inside batch_repurpose.py, then run:
+python batch_repurpose.py
+# → output/YYYY-MM-DD/<title>.txt, one file per video
 
-# Use an already-summarised TubeonAI URL
-python main.py https://tubeonai.com/summaries/<uuid>
+# No-API fallback when TubeonAI fails (free local AI via ai_client_factory):
+python repurpose_local.py summary.txt --title "Topic"   # or --text "..." / stdin
 
-# Run the quiz webhook server locally
+# Run the quiz webhook server locally (main.py starts this same app)
 python webhook_server.py
 # → http://localhost:8000/quiz-results (POST)
 # → http://localhost:8000/health (GET)
