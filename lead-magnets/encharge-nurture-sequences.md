@@ -1,8 +1,18 @@
 # Encharge nurture sequences — 5 lead magnets
 
-Each magnet tags a new lead `lead-magnet-<slug>` on capture. Build one flow per tag in
-Encharge: **Trigger = Tag Added (`lead-magnet-<slug>`) → Email (Day 0) → Wait 2 days →
-Email → Wait 2 days → Email.** Use the shared branded wrapper on every email:
+**The 15 emails are CREATED in Encharge** (richtext, compliance: approved) via
+`create_encharge_emails.py`. Build one flow per tag in the Encharge flow builder with these
+IDs — **Trigger = Tag Added → Email (Day 0) → Wait 2d → Email → Wait 2d → Email:**
+
+| Tag | Email IDs (Day 0, +2d, +4d) |
+|-----|-----------------------------|
+| `lead-magnet-pivot-map` | 463907, 463908, 463909 |
+| `lead-magnet-inner-voices` | 463910, 463911, 463912 |
+| `lead-magnet-train-like-a-clinician` | 463913, 463914, 463915 |
+| `lead-magnet-marginal-decade` | 463916, 463917, 463918 |
+| `lead-magnet-clinic-to-coaching` | 463919, 463920, 463921 |
+
+Shared branded wrapper on every email:
 
 - **Header:** Crosswalk Wisdom amber wordmark + crosswalk stripes
 - **Footer (CAN-SPAM):** social buttons + `2 Kingsdale Ave, North York, ON M2N 3W1` + unsubscribe
