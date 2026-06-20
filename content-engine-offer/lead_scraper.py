@@ -29,7 +29,10 @@ OUT_DIR = Path(__file__).resolve().parent / "scraped"
 
 # Each sub-vertical -> search queries that surface course-selling career coaches.
 SUBVERTICAL_QUERIES: dict[str, list[str]] = {
-    "tech sales": ["break into tech sales", "SDR cold calling tips", "tech sales AE career"],
+    "tech sales": ["break into tech sales", "SDR cold calling tips", "tech sales AE career",
+                   "how to get into tech sales", "SDR to AE promotion", "B2B sales prospecting tips",
+                   "account executive day in the life", "tech sales interview prep",
+                   "sales career advice software", "cold calling live examples"],
     "swe interview": ["system design interview", "coding interview prep faang", "leetcode explained"],
     "data science": ["break into data science", "data analyst portfolio", "data science career advice"],
     "product management": ["product manager interview", "break into product management", "PM career coach"],
