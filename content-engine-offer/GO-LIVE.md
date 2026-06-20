@@ -38,3 +38,12 @@ deployed link, then:
 - Chris, Connor → Email 1 + follow-ups (Day 3 / Day 7) from `cold-email-sequence.md`
 - Trent, Dylan → LinkedIn/Skool DM (Dylan's DM copy is in the batch file)
 - I won't send anything until you say go — that's the one outward step.
+
+## Booking link + reply playbook
+Booking link: **https://calendly.com/sahawat/30min** (now a button on every /r/ teaser page).
+
+When a prospect replies with interest, don't pitch — just book:
+> Awesome, glad it's useful. Grab whatever time works and I'll walk you through the full
+> month: https://calendly.com/sahawat/30min
+
+On the call: pull up their teaser, then offer the **pilot ($1.5–2.5k) + monthly retainer**.

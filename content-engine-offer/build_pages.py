@@ -42,10 +42,14 @@ TEMPLATE = """<!doctype html>
   details {{ background:#fff; border:1px solid var(--line); border-radius:8px; padding:.6em 1em; }}
   summary {{ cursor:pointer; color:var(--muted); }}
   em {{ color:var(--muted); }}
+  .cta-book {{ margin-top:2em; }}
+  .cta-book a {{ display:inline-block; background:var(--accent); color:#fff;
+    padding:.85em 1.5em; border-radius:8px; text-decoration:none; font-weight:600; }}
 </style>
 </head>
 <body><main>
 {body}
+<p class="cta-book"><a href="https://calendly.com/sahawat/30min">Book a free 15-min call &rarr;</a></p>
 </main></body>
 </html>
 """
