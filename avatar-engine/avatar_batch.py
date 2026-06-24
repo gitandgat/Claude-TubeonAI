@@ -29,6 +29,11 @@ def log(msg: str) -> None:
 
 
 def main() -> None:
+    # load .env so VoiSpark TTS works for verticals without cached audio.
+    # (avatar_hook.main() does this, but we import build_one directly — it doesn't run.)
+    from dotenv import load_dotenv
+    load_dotenv(ah.REPO / ".env")
+
     if not ah.SELF_PHOTO.exists():
         log(
             f"No selfie at {ah.SELF_PHOTO} — nothing to render. "

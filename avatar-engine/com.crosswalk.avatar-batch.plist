@@ -6,6 +6,11 @@
     <string>com.crosswalk.avatar-batch</string>
     <key>WorkingDirectory</key>
     <string>/Users/toto/Claude TubeonAI/avatar-engine</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/opt/anaconda3/envs/avatar/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/caffeinate</string>
