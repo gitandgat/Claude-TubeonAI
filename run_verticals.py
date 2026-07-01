@@ -69,6 +69,40 @@ MAX_TRIES = 3
 YIELD_ORDER = ["health", "fitness", "mind", "trainer", "crosswalk"]
 
 
+def _verticals_already_posted_today() -> set:
+    """Return the set of vertical keys that already have a post scheduled for today.
+
+    Reads the per-vertical schedule_log.jsonl files, which are written immediately
+    after a successful Zernio schedule. This lets a recovery re-run skip verticals
+    that already went out and avoids double-posting crosswalk (or any other vertical)
+    when the daily run had a partial failure.
+    """
+    import json
+    from datetime import date
+    import os
+    today = date.today().isoformat()
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "linkedin_agent", "data", "verticals")
+    posted = set()
+    if not os.path.isdir(data_dir):
+        return posted
+    for key in os.listdir(data_dir):
+        log_path = os.path.join(data_dir, key, "schedule_log.jsonl")
+        if not os.path.exists(log_path):
+            continue
+        try:
+            with open(log_path) as f:
+                for line in f:
+                    entry = json.loads(line)
+                    scheduled = entry.get("scheduled_for") or ""
+                    if scheduled[:10] == today:
+                        posted.add(key)
+                        break
+        except Exception:
+            pass
+    return posted
+
+
 def _direct_posts_due_today() -> int:
     """How many direct-API (philosophy-queue) posts are scheduled for TODAY.
 
@@ -196,6 +230,15 @@ def main():
         targets = [get_vertical(args.vertical)]
     else:
         targets = list(all_verticals())
+
+        # Skip verticals that already have a post scheduled for today so a
+        # recovery re-run never double-posts (e.g. crosswalk posted OK but
+        # trainer/fitness/mind failed → re-run skips crosswalk automatically).
+        already_posted = _verticals_already_posted_today()
+        if already_posted and not args.dry_run:
+            targets = [v for v in targets if v.key not in already_posted]
+            print(f"\n↩ Skipping already-posted verticals: {', '.join(sorted(already_posted))}")
+
         # Yield a slot per direct-API post publishing today, so a philosophy
         # post never collides with / bumps a vertical (cap stays at 5).
         n_yield = _direct_posts_due_today()

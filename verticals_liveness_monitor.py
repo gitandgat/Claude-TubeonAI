@@ -12,8 +12,10 @@ Defensive: the one network call has an explicit timeout, so the monitor itself
 can't become the next silent hang.
 """
 import os
+import re
 import subprocess
 import sys
+import time
 from datetime import datetime
 
 import requests
@@ -25,17 +27,13 @@ from zernio_key import ZERNIO_API_KEY
 ET = timezone("America/New_York")
 EXPECTED = 5                      # one post per vertical
 HUNG_AFTER_SEC = 30 * 60          # a daily job running >30min is hung
-LOG = "/tmp/verticals-monitor.log"
 
 
 def log(msg: str) -> None:
+    # Print only — the launchd plist redirects stdout to StandardOutPath.
+    # Writing to the file here too would double every line in the log.
     line = f"[{datetime.now(ET):%Y-%m-%d %H:%M ET}] {msg}"
     print(line, flush=True)
-    try:
-        with open(LOG, "a") as f:
-            f.write(line + "\n")
-    except OSError:
-        pass
 
 
 def notify(title: str, msg: str) -> None:
@@ -48,6 +46,36 @@ def notify(title: str, msg: str) -> None:
         pass
 
 
+def _elapsed_seconds(pid: str) -> int | None:
+    """Return elapsed seconds for a pid using BSD ps (macOS compatible).
+
+    macOS ps does not have 'etimes' (elapsed seconds). It has 'etime' which
+    prints [[dd-]hh:]mm:ss. We parse that into seconds.
+    Returns None if the pid is no longer running.
+    """
+    try:
+        raw = subprocess.check_output(
+            ["ps", "-p", pid, "-o", "etime="], text=True
+        ).strip()
+    except subprocess.CalledProcessError:
+        return None  # pid gone
+    if not raw:
+        return None
+    # Parse [[dd-]hh:]mm:ss
+    days = 0
+    if "-" in raw:
+        d_part, raw = raw.split("-", 1)
+        days = int(d_part)
+    parts = raw.split(":")
+    if len(parts) == 3:
+        h, m, s = map(int, parts)
+    elif len(parts) == 2:
+        h, m, s = 0, int(parts[0]), int(parts[1])
+    else:
+        h, m, s = 0, 0, int(parts[0])
+    return days * 86400 + h * 3600 + m * 60 + s
+
+
 def reap_hung_process() -> None:
     """Kill a run_verticals.py that has been running too long (the 9-day hang)."""
     try:
@@ -56,16 +84,19 @@ def reap_hung_process() -> None:
     except subprocess.CalledProcessError:
         return  # not running — fine, it's a short-lived daily job
     for pid in pids:
-        try:
-            etimes = subprocess.check_output(["ps", "-p", pid, "-o", "etimes="],
-                                             text=True).strip()
-            if etimes and int(etimes) > HUNG_AFTER_SEC:
+        elapsed = _elapsed_seconds(pid)
+        if elapsed is None:
+            continue  # already gone
+        if elapsed > HUNG_AFTER_SEC:
+            try:
                 os.kill(int(pid), 9)
-                log(f"REAPED hung run_verticals.py pid={pid} (ran {int(etimes)}s)")
+                log(f"REAPED hung run_verticals.py pid={pid} (ran {elapsed}s)")
                 notify("Verticals engine was HUNG",
                        f"Killed stuck pid {pid}; launchd will re-run it.")
-        except (subprocess.CalledProcessError, ValueError, ProcessLookupError) as e:
-            log(f"reap check failed for pid {pid}: {e}")
+            except ProcessLookupError:
+                pass
+        else:
+            log(f"run_verticals.py pid={pid} still running ({elapsed}s) — normal")
 
 
 def posts_scheduled_today() -> tuple[int, str]:
