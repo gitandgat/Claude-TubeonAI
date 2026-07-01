@@ -116,10 +116,12 @@ def alpaca_get_bars(ticker: str, days: int = 60) -> Optional[dict]:
     try:
         from alpaca.data.requests import StockBarsRequest
         from alpaca.data.timeframe import TimeFrame
+        from alpaca.data.enums import Adjustment
         bars = _alpaca_client().get_stock_bars(StockBarsRequest(
             symbol_or_symbols=ticker,
             timeframe=TimeFrame.Day,
             start=datetime.now() - timedelta(days=days),
+            adjustment=Adjustment.ALL,  # split + dividend adjusted — raw splits crater MAs/RS
         ))
         if ticker not in bars.data or not bars[ticker]:
             return None
@@ -145,6 +147,7 @@ def alpaca_get_bars_batch(symbols: list, days: int = 300) -> dict:
     """
     from alpaca.data.requests import StockBarsRequest
     from alpaca.data.timeframe import TimeFrame
+    from alpaca.data.enums import Adjustment
 
     out: dict = {}
     client = _alpaca_client()
@@ -161,6 +164,7 @@ def alpaca_get_bars_batch(symbols: list, days: int = 300) -> dict:
                 symbol_or_symbols=chunk,
                 timeframe=TimeFrame.Day,
                 start=start,
+                adjustment=Adjustment.ALL,  # split+dividend adjusted — raw splits crater MAs/RS
             ))
         except Exception as e:
             if len(chunk) == 1:
