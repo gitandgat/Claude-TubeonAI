@@ -19,9 +19,12 @@ Usage:
 """
 
 import argparse
+import dataclasses
 import os
 import socket
 import sys
+import threading
+import time
 from datetime import datetime, timedelta
 
 # Bound EVERY network call. A single un-timed-out HTTPS request hung this process
@@ -54,6 +57,51 @@ from linkedin_agent.notifier import Notifier
 from linkedin_agent.experiment import EXPERIMENTS, ACTIVE_EXPERIMENT, arm_instruction
 
 _ARMS = list(EXPERIMENTS[ACTIVE_EXPERIMENT]["arms"].keys())
+
+# Hard self-imposed wall-clock cap. The launchd perl `alarm 1800` wrapper is the
+# outer backstop, but on Jul 2-3 2026 the overnight run twice hung ~2h PAST that
+# 30-min alarm and was killed only by the external monitor's SIGKILL — SIGALRM
+# never interrupted the stuck call. A daemon watchdog that force-exits is
+# independent of signal delivery: any blocking I/O (DNS, socket, subprocess)
+# releases the GIL, so this thread gets scheduled and calls os._exit() no matter
+# what the main thread is stuck on. A normal 5-vertical run finishes in minutes.
+WATCHDOG_SECONDS = 1200  # 20 min — well under the 30-min perl backstop
+
+
+def _arm_watchdog(seconds: int = WATCHDOG_SECONDS) -> None:
+    def _kill() -> None:
+        os.write(2, (
+            f"\n✗ WATCHDOG: run exceeded {seconds}s — force-exiting so "
+            "launchd re-runs tomorrow (something hung, likely a cold network "
+            "call at wake).\n"
+        ).encode())
+        os._exit(2)
+
+    t = threading.Timer(seconds, _kill)
+    t.daemon = True
+    t.start()
+
+
+def _wait_for_network(host: str = "zernio.com", port: int = 443,
+                      attempts: int = 8, delay: int = 10) -> bool:
+    """Block (bounded) until the scheduler host is reachable, or give up.
+
+    launchd fires this job at ~01:47 ET; if the Mac just woke, the network
+    interface and DNS resolver can be cold for a few seconds, and the pipeline
+    then hangs mid-flight on a getaddrinfo that isn't covered by the socket
+    default timeout (the actual trigger on Jul 2-3 2026). A short bounded probe
+    loop warms DNS and confirms reachability before any real work starts.
+    """
+    for i in range(1, attempts + 1):
+        try:
+            with socket.create_connection((host, port), timeout=10):
+                return True
+        except OSError as exc:
+            print(f"  · network not ready (try {i}/{attempts}): {exc}")
+            if i < attempts:
+                time.sleep(delay)
+    return False
+
 
 # Single-draft generation is stochastic — a draft can miss one gate (e.g. no
 # closing "?"). Each vertical owns exactly one daily slot, so we regenerate a few
@@ -146,9 +194,18 @@ def run_vertical(vertical, voice_profile: dict, scheduler: Scheduler,
     ordinal = datetime.now().date().toordinal()
     theme = vertical.theme_for(ordinal)
     # Spread experiment arms across verticals AND days (index keeps the 5 daily
-    # posts on different arms within the same run).
+    # posts on different arms within the same run). Must happen before the
+    # dataclasses.replace() below: a replaced copy has a different
+    # first_comment, so it no longer equals any ORDERED singleton and
+    # list(all_verticals()).index() raises ValueError.
     arm = _ARMS[(ordinal + list(all_verticals()).index(vertical)) % len(_ARMS)]
     slot = slot_for(vertical.slot_time)
+
+    # Some themes (e.g. the IMG Pivot Protocol rotation) route their first
+    # comment to a different landing page than the vertical's default CTA.
+    # Resolve that here and carry it via a replaced (still-immutable) copy,
+    # rather than mutating the shared vertical singleton.
+    posting_vertical = dataclasses.replace(vertical, first_comment=vertical.first_comment_for(theme))
 
     print("\n" + "=" * 64)
     print(f"VERTICAL: {vertical.key} — {vertical.name}")
@@ -186,16 +243,16 @@ def run_vertical(vertical, voice_profile: dict, scheduler: Scheduler,
         print("-" * 64)
         print(post_content)
         print("-" * 64)
-        print(f"  first comment: {vertical.first_comment[:90]}...")
+        print(f"  first comment: {posting_vertical.first_comment[:90]}...")
         return {"vertical": vertical.key, "success": True, "dry_run": True,
                 "post": post_content, "slot": slot}
 
     sched = scheduler.schedule_post(post_content, image_path=image_path,
-                                    scheduled_for=slot, vertical=vertical)
+                                    scheduled_for=slot, vertical=posting_vertical)
     if sched.get("success"):
         scheduler.log_scheduled_post(
             sched, theme, theme, post_content,
-            experiment=ACTIVE_EXPERIMENT, arm=arm, vertical=vertical,
+            experiment=ACTIVE_EXPERIMENT, arm=arm, vertical=posting_vertical,
         )
     return {"vertical": vertical.key, "success": sched.get("success", False),
             "scheduled": sched}
@@ -212,6 +269,18 @@ def main():
     args = parser.parse_args()
 
     ensure_directories()
+
+    # Real runs: arm the force-exit watchdog and make sure the network is up
+    # before doing anything, so a cold-network wake defers cleanly instead of
+    # hanging the pipeline for hours (Jul 2-3 2026). Dry-runs skip both — they
+    # must never touch the network.
+    if not args.dry_run:
+        _arm_watchdog()
+        print("\n🌐 Checking network reachability...")
+        if not _wait_for_network():
+            print("✗ Network unreachable after retries — exiting so launchd "
+                  "re-runs on the next schedule (run manually once it's back).")
+            sys.exit(1)
 
     # Refresh the learning loop before writing (skipped on dry-run so a test
     # never touches the network or the pattern files).

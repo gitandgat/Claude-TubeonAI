@@ -24,6 +24,7 @@ from linkedin_agent.config import (
     LINKEDIN_FIRST_COMMENT,
     DATA_DIR,
 )
+from linkedin_agent.verified_facts import VERIFIED_FACTS_BLOCK
 
 # ── The proven format spine ──────────────────────────────────────────────────
 # Extracted verbatim (structure-wise) from the post_writer prompt that produced
@@ -53,9 +54,19 @@ LENGTH: 150-350 words. Tight. Hard cap 3,000 characters or LinkedIn rejects it.
 VOICE: A real person who lived it. Vulnerable, specific, unhurried."""
 
 
-def _build_prompt(persona: str, hashtags: str) -> str:
-    """Compose a vertical system prompt from its persona + the shared spine."""
-    return f"{persona}\n\n{FORMAT_SPINE.format(hashtags=hashtags)}"
+def _build_prompt(persona: str, hashtags: str, facts_block: str = "") -> str:
+    """Compose a vertical system prompt from its persona + the shared spine.
+
+    facts_block is opt-in per vertical: verticals whose posts draw on
+    Sahawat's real biography (currently just Crosswalk) pass
+    VERIFIED_FACTS_BLOCK so the writer can't invent a new specific job,
+    employer, or number when a theme needs a concrete detail it doesn't have.
+    """
+    parts = [persona]
+    if facts_block:
+        parts.append(facts_block)
+    parts.append(FORMAT_SPINE.format(hashtags=hashtags))
+    return "\n\n".join(parts)
 
 
 # Cross-post targets for IMAGE posts: reuse the existing Crosswalk IG + FB
@@ -79,6 +90,16 @@ class Vertical:
     first_comment: str           # auto-posted as the first comment (the CTA path)
     cta_fallback: str            # appended only if the writer omits a CTA entirely
     crosspost: dict = field(default_factory=lambda: dict(CROSSPOST_IMAGE))
+    first_comment_overrides: dict = field(default_factory=dict)  # theme -> CTA
+
+    def first_comment_for(self, theme: str) -> str:
+        """This vertical's first-comment CTA, or a theme-specific override.
+
+        Lets a subset of themes (e.g. a specific paid-offer campaign) route
+        to a different landing page without needing a whole extra vertical
+        or a hard swap of the vertical's default CTA.
+        """
+        return self.first_comment_overrides.get(theme, self.first_comment)
 
     @property
     def data_dir(self) -> str:
@@ -99,6 +120,21 @@ class Vertical:
 
 # ── The five verticals ───────────────────────────────────────────────────────
 
+    # IMG Pivot Protocol themes (added Jul 2026): the paid Triage Call offer's
+    # recurring rotation, folded into Crosswalk's existing 08:00 slot rather
+    # than a 6th vertical, since the 5/day Zernio cap has no room for one.
+    # Every scene here must trace to VERIFIED_FACTS_BLOCK — no new invented
+    # jobs/numbers. These route their first comment to the landing page via
+    # first_comment_overrides below instead of the evergreen pivot-map guide.
+_IMG_PIVOT_PROTOCOL_THEMES = (
+    "the moment you stopped hiding the MD and started using it as leverage instead of a cage",
+    "the first time someone paid you for work that had nothing to do with medicine",
+    "what actually happened the day you called someone about your immigration status instead of googling it at 2am",
+    "the difference between the job title on your visa paperwork and the person actually doing the job",
+    "why any job is fine as long as it's yours to choose, not one you're stuck defending",
+    "what a twenty-minute conversation undid that years of silence couldn't",
+)
+
 CROSSWALK = Vertical(
     key="crosswalk",
     name="Crosswalk Wisdom (IMG career pivot)",
@@ -109,6 +145,7 @@ CROSSWALK = Vertical(
         "You are NOT a marketer. You are a person telling true stories from your "
         "life as an unmatched IMG who chose to stop and build something new.",
         "#IMG #CaRMS #MedicalCareers",
+        facts_block=VERIFIED_FACTS_BLOCK,
     ),
     draft_subject="from your life as an IMG who left the residency chase",
     themes=(
@@ -122,13 +159,20 @@ CROSSWALK = Vertical(
         "using AI to plan a new chapter in 30 minutes",
         "the first non-clinical income you ever earned",
         "what the crossing guard vest taught you about starting over",
-    ),
+    ) + _IMG_PIVOT_PROTOCOL_THEMES,
     first_comment=(
         "I put the map I wish I'd had into a free guide — The Unmatched Doctor's "
         "Pivot Map: 5 paths that use your medical degree without a residency seat, "
         "plus a 90-day plan. Grab it here: https://www.crosswalkwisdom.com/pivot-map"
     ),
     cta_fallback="If this hit home, share it with one IMG who needs to hear it.",
+    first_comment_overrides={
+        theme: (
+            "I built a Triage Call around this exact permission — 20 minutes, "
+            "no pitch, no pressure, just a real answer: https://img-pivot-protocol.vercel.app"
+        )
+        for theme in _IMG_PIVOT_PROTOCOL_THEMES
+    },
 )
 
 TRAINER = Vertical(
