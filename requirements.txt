@@ -4,3 +4,12 @@ pydantic==2.5.0
 pydantic[email]==2.5.0
 python-dotenv==1.0.0
 requests==2.31.0
+
+# Email & File Organizer Agents — Gmail
+google-auth==2.29.0
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+google-api-python-client==2.127.0
+
+# Email & File Organizer Agents — Outlook
+msal==1.28.0

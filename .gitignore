@@ -1,4 +1,5 @@
 .env
+.env.*
 node_modules/
 prompt_ids.json
 *.txt
@@ -7,3 +8,45 @@ prompt_ids.json
 __pycache__/
 lead-magnets/leads_state.json
 lead-magnets/*.html
+
+# Glute intro video — large media (host on YouTube/Loom, don't commit)
+GLUTE-INTRO-VIDEO.mov
+glute-intro-final.mp4
+
+# Physical Assessment App — its own git repo (github.com/gitandgat/Physical-Assessment-App)
+physical-assessment-app/
+
+# Job Bank Direct Apply session cookie — real authenticated session, never commit
+ottawa-job-agent/.jobbank_session.json
+
+# OS / editor noise
+.DS_Store
+
+# Email/LinkedIn OAuth tokens and credentials — never commit, one leak rotates every account
+gmail_token*.json
+gmail_credentials.json
+outlook_token*.json
+.linkedin_token
+keychain_secrets.py
+
+# Runtime logs, caches, state — regenerate, don't version
+logs/
+trading-bot/bot/.sector_cache.json
+trading-bot/bot/last_run.json
+trading-bot/bot/universe_cache.json
+trading-bot/trading_bot.db
+linkedin_agent/data/
+linkedin_agent/clients/*/data/
+ottawa-job-agent/*.log
+ottawa-job-agent/automation_runs.jsonl
+ottawa-job-agent/web_apply_screenshots/
+ottawa-job-agent/seen_jobs.json
+ottawa-job-agent/applications.json
+
+# Finished video/audio renders — large binaries, not source; host externally
+identity-audit-intro-*.mp4
+identity-audit-intro-*.mov
+"Fiverr- starts with \"I will\".mov"
+videos/
+avatar-engine/ship/*.mp4
+crosswalk-remotion/public/avatar-career-pivot.mp4
