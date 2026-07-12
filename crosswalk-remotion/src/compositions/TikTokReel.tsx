@@ -6,6 +6,8 @@
 import React from 'react';
 import {
   useCurrentFrame,
+  useVideoConfig,
+  spring,
   interpolate,
   Easing,
   Sequence,
@@ -475,96 +477,124 @@ const scripts: Record<string, { title: string; segments: ScriptSegment[] }> = {
 
 // ─── Caption component ──────────────────────────────────────────────────────────
 
+// Kinetic word-by-word reveal — each word springs up into place, staggered.
+// This is the core "stop the scroll" motion: text is never static.
+const AnimatedWords: React.FC<{
+  text: string;
+  fps: number;
+  localFrame: number;
+  wordStyle: React.CSSProperties;
+  stagger?: number;
+}> = ({ text, fps, localFrame, wordStyle, stagger = 1.5 }) => (
+  <>
+    {text.split(' ').map((word, i) => {
+      const s = spring({
+        frame: localFrame - i * stagger,
+        fps,
+        config: { damping: 13, stiffness: 220, mass: 0.5 },
+      });
+      const ty = interpolate(s, [0, 1], [40, 0]);
+      const sc = interpolate(s, [0, 1], [0.7, 1]);
+      return (
+        <span
+          key={i}
+          style={{
+            display: 'inline-block',
+            opacity: s,
+            transform: `translateY(${ty}px) scale(${sc})`,
+            marginRight: '0.26em',
+            ...wordStyle,
+          }}
+        >
+          {word}
+        </span>
+      );
+    })}
+  </>
+);
+
 const Caption: React.FC<{ segment: ScriptSegment; localFrame: number }> = ({
   segment,
   localFrame,
 }) => {
-  const fadeIn = Math.min(8, Math.floor(segment.durationFrames / 2));
-  const fadeOut = Math.max(segment.durationFrames - fadeIn, fadeIn + 1);
-  const opacity = interpolate(localFrame, [0, fadeIn, fadeOut, segment.durationFrames], [0, 1, 1, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-    easing: Easing.out(Easing.quad),
-  });
-  const scale = interpolate(localFrame, [0, 10], [0.94, 1], {
-    extrapolateRight: 'clamp',
-    easing: Easing.out(Easing.back(1.2)),
-  });
+  const { fps } = useVideoConfig();
 
   if (segment.type === 'pause' || !segment.text) return null;
 
   const isHook = segment.type === 'hook';
   const isCta = segment.type === 'cta';
 
+  // Quick exit in the last 5 frames; entrance is handled per-word (spring).
+  const opacity = interpolate(
+    localFrame,
+    [segment.durationFrames - 5, segment.durationFrames],
+    [1, 0],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+  // Gentle continuous upward drift so the frame is never frozen.
+  const drift = interpolate(localFrame, [0, segment.durationFrames], [6, -6]);
+
   return (
     <div
       style={{
         opacity,
-        transform: `scale(${scale})`,
+        transform: `translateY(${drift}px)`,
         textAlign: 'center',
-        padding: '0 60px',
+        padding: '0 50px',
       }}
     >
-      {/* Highlight bar for hook lines */}
+      {/* HOOK — huge amber-block words, maximum scroll-stop */}
       {isHook && (
-        <div
-          style={{
-            display: 'inline-block',
-            backgroundColor: theme.colors.amber,
-            borderRadius: 4,
-            padding: '6px 20px',
-            marginBottom: 8,
-          }}
-        >
-          <span
-            style={{
+        <div style={{ display: 'inline-block', backgroundColor: theme.colors.amber, borderRadius: 8, padding: '10px 24px' }}>
+          <AnimatedWords
+            text={segment.text}
+            fps={fps}
+            localFrame={localFrame}
+            stagger={1.2}
+            wordStyle={{
               fontFamily: theme.fonts.serif,
-              fontSize: 52,
-              fontWeight: 700,
+              fontSize: 86,
+              fontWeight: 800,
               color: theme.colors.charcoal,
-              lineHeight: 1.2,
+              lineHeight: 1.05,
+              letterSpacing: '-0.02em',
             }}
-          >
-            {segment.text}
-          </span>
+          />
         </div>
       )}
 
+      {/* BODY — big bold warm-white words */}
       {!isHook && !isCta && (
-        <span
-          style={{
+        <AnimatedWords
+          text={segment.text}
+          fps={fps}
+          localFrame={localFrame}
+          wordStyle={{
             fontFamily: theme.fonts.sans,
-            fontSize: 46,
-            fontWeight: 400,
+            fontSize: 64,
+            fontWeight: 700,
             color: theme.colors.warmWhite,
-            lineHeight: 1.3,
-            textShadow: '0 2px 12px rgba(0,0,0,0.6)',
+            lineHeight: 1.15,
+            textShadow: '0 3px 18px rgba(0,0,0,0.75)',
           }}
-        >
-          {segment.text}
-        </span>
+        />
       )}
 
+      {/* CTA — amber bordered box */}
       {isCta && (
-        <div
-          style={{
-            backgroundColor: 'rgba(212,168,67,0.15)',
-            border: `2px solid ${theme.colors.amber}`,
-            borderRadius: 12,
-            padding: '20px 32px',
-          }}
-        >
-          <span
-            style={{
+        <div style={{ backgroundColor: 'rgba(212,168,67,0.18)', border: `3px solid ${theme.colors.amber}`, borderRadius: 16, padding: '24px 34px' }}>
+          <AnimatedWords
+            text={segment.text}
+            fps={fps}
+            localFrame={localFrame}
+            wordStyle={{
               fontFamily: theme.fonts.sans,
-              fontSize: 40,
-              fontWeight: 600,
+              fontSize: 54,
+              fontWeight: 700,
               color: theme.colors.amber,
-              lineHeight: 1.4,
+              lineHeight: 1.2,
             }}
-          >
-            {segment.text}
-          </span>
+          />
         </div>
       )}
     </div>
@@ -573,12 +603,26 @@ const Caption: React.FC<{ segment: ScriptSegment; localFrame: number }> = ({
 
 // ─── Main composition ───────────────────────────────────────────────────────────
 
-export const TikTokReel: React.FC<{ scriptId?: string }> = ({
+export const TikTokReel: React.FC<{
+  scriptId?: string;
+  // Dynamic mode: the agent passes generated segments + background directly via
+  // --props, overriding the hardcoded scriptId map. Enables autonomous video.
+  segments?: ScriptSegment[];
+  background?: string;
+  handle?: string;
+}> = ({
   scriptId = 'pov-doctor-crossing-guard',
+  segments: segmentsProp,
+  background,
+  handle = '@crosswalkwisdom',
 }) => {
   const frame = useCurrentFrame();
   const script = scripts[scriptId] ?? scripts['pov-doctor-crossing-guard'];
-  const segments = script.segments;
+  const segments =
+    segmentsProp && segmentsProp.length > 0 ? segmentsProp : script.segments;
+  const backgroundSrc = background
+    ? staticFile(background)
+    : (PHOTO_BACKGROUNDS[scriptId] ?? PHOTO_BACKGROUNDS['pov-doctor-crossing-guard']);
 
   // Compute start frame for each segment
   let accumulated = 0;
@@ -597,6 +641,19 @@ export const TikTokReel: React.FC<{ scriptId?: string }> = ({
   const currentSeg = segments[currentSegIdx];
   const localFrame = currentSegIdx >= 0 ? frame - segmentStarts[currentSegIdx] : 0;
 
+  // Background motion: a fast zoom-PUNCH at every cut (1.12 → 1.0 over 12f) on
+  // top of a slow whole-video drift — so it reads as a scene change and never
+  // sits still.
+  const bgPunch = interpolate(localFrame, [0, 12], [1.12, 1.0], {
+    extrapolateRight: 'clamp',
+    easing: Easing.out(Easing.cubic),
+  });
+  const bgDrift = interpolate(frame, [0, accumulated || 1], [1.0, 1.09]);
+  const bgScale = bgPunch * bgDrift;
+
+  // Brief flash on each cut — the "quick transition" punch (strongest early).
+  const flash = interpolate(localFrame, [0, 4], [0.32, 0], { extrapolateRight: 'clamp' });
+
   return (
     <div
       style={{
@@ -606,11 +663,18 @@ export const TikTokReel: React.FC<{ scriptId?: string }> = ({
         overflow: 'hidden',
       }}
     >
-      <PhotoBackground
-        src={PHOTO_BACKGROUNDS[scriptId] ?? PHOTO_BACKGROUNDS['pov-doctor-crossing-guard']}
-        overlayOpacity={0.58}
-        parallax
-      />
+      <div style={{ position: 'absolute', inset: 0, transform: `scale(${bgScale})`, transformOrigin: 'center' }}>
+        <PhotoBackground
+          src={backgroundSrc}
+          overlayOpacity={0.58}
+          parallax
+        />
+      </div>
+
+      {/* Cut flash */}
+      {flash > 0.01 && (
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: theme.colors.warmWhite, opacity: flash, zIndex: 5, pointerEvents: 'none' }} />
+      )}
 
       {/* Logo — top */}
       <div style={{ position: 'absolute', top: 80, left: 60, zIndex: 10 }}>
@@ -630,19 +694,21 @@ export const TikTokReel: React.FC<{ scriptId?: string }> = ({
           textTransform: 'uppercase',
         }}
       >
-        @crosswalkwisdom
+        {handle}
       </div>
 
-      {/* Caption — centered vertically toward bottom third */}
+      {/* Caption — vertically centered so the bigger text is well framed */}
       <div
         style={{
           position: 'absolute',
-          bottom: 200,
+          top: 0,
+          bottom: 0,
           left: 0,
           right: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          zIndex: 8,
         }}
       >
         {currentSeg && <Caption segment={currentSeg} localFrame={localFrame} />}
