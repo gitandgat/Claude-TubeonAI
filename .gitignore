@@ -43,6 +43,16 @@ ottawa-job-agent/web_apply_screenshots/
 ottawa-job-agent/seen_jobs.json
 ottawa-job-agent/applications.json
 
+# Ottawa job agent — generated PII/output (resumes, cover letters, autofill data,
+# microsites, dashboard), not source; regenerate, don't version
+ottawa-job-agent/application_autofill.json
+ottawa-job-agent/application_autofill.html
+ottawa-job-agent/tracker_dashboard.html
+ottawa-job-agent/resumes/
+ottawa-job-agent/cover_letters/
+ottawa-job-agent/microsites/
+ottawa-job-agent/jobbank_resume_upload_result.png
+
 # Finished video/audio renders — large binaries, not source; host externally
 identity-audit-intro-*.mp4
 identity-audit-intro-*.mov
