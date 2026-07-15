@@ -64,8 +64,17 @@ def main() -> None:
     with open(LEADS_FILE) as f:
         leads = json.load(f)
 
+    # Daily quota guard: a manual run and the launchd run on the same day
+    # share the N/day budget instead of stacking (LinkedIn invite pacing).
+    today = time.strftime("%Y-%m-%d")
+    sent_today = sum(1 for l in leads
+                     if l.get("connect_sent") and l.get("connect_date") == today)
+    budget = max(0, args.n - sent_today)
+    if sent_today:
+        print(f"{sent_today} connects already sent today; budget now {budget}")
+
     pending = [l for l in leads if not l.get("connect_sent")]
-    batch = pending[: args.n]
+    batch = pending[:budget]
     print(f"{len(leads)} total | {len(pending)} not yet contacted | "
           f"sending {len(batch)} this run{' (DRY RUN)' if args.dry_run else ''}\n")
 
