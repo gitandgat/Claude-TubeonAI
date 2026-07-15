@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --amber:#D4A843; --charcoal:#2C2C2C; --warm:#FAF7F2; --orange:#E8834A; --teal:#5B9A8B;
+  --surface:rgba(250,247,242,0.05); --line:rgba(250,247,242,0.10); --muted:rgba(250,247,242,0.72);
+}
+html,body{ width:1080px; }
+body{ font-family:'Inter',system-ui,sans-serif; background:var(--charcoal); color:var(--warm);
+  -webkit-print-color-adjust:exact; padding:84px 84px 0; position:relative; overflow:hidden;
+  min-height:1350px; display:flex; flex-direction:column; }
+body::before{ content:""; position:absolute; top:-160px; right:-160px; width:520px; height:520px;
+  border-radius:50%; background:radial-gradient(circle, rgba(212,168,67,0.16), transparent 70%); }
+
+.logo{ display:flex; align-items:center; gap:16px; z-index:1; position:relative; }
+.logo .stripes{ display:flex; flex-direction:column; gap:6px; }
+.logo .stripes span{ display:block; width:54px; height:11px; border-radius:3px; background:var(--amber); }
+.logo .stripes span:nth-child(even){ opacity:.6; }
+.logo .word{ font-family:'Playfair Display',serif; font-weight:700; font-size:36px;
+  letter-spacing:-0.02em; color:var(--amber); }
+
+.badge{ display:inline-block; align-self:flex-start; margin:54px 0 20px; background:var(--teal);
+  color:var(--warm); font-weight:600; font-size:21px; letter-spacing:.16em; text-transform:uppercase;
+  padding:11px 22px; border-radius:999px; z-index:1; position:relative; }
+h1{ font-family:'Playfair Display',serif; font-weight:800; font-size:74px; line-height:1.02;
+  letter-spacing:-0.02em; z-index:1; position:relative; }
+.lede{ color:var(--muted); font-size:25px; margin-top:18px; line-height:1.4; z-index:1; position:relative;
+  max-width:760px; }
+
+.steps{ margin-top:54px; display:flex; flex-direction:column; gap:22px; z-index:1; position:relative; }
+.step{ display:flex; gap:30px; align-items:flex-start; background:var(--surface);
+  border:1px solid var(--line); border-radius:18px; padding:34px 36px; }
+.step .num{ font-family:'Playfair Display',serif; font-weight:800; font-size:66px; color:var(--amber);
+  line-height:.9; min-width:92px; }
+.step .body{ flex:1; }
+.step .label{ font-size:17px; letter-spacing:.18em; text-transform:uppercase; color:var(--teal);
+  font-weight:700; margin-bottom:10px; }
+.step h2{ font-family:'Playfair Display',serif; font-weight:700; font-size:40px; margin-bottom:12px; }
+.step p{ font-size:23px; line-height:1.4; color:var(--warm); }
+
+.outcome{ margin-top:34px; background:linear-gradient(120deg, rgba(212,168,67,0.16), rgba(212,168,67,0.04));
+  border:1px solid rgba(212,168,67,0.45); border-radius:18px; padding:34px 38px; z-index:1; position:relative; }
+.outcome .k{ font-size:17px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber);
+  font-weight:700; margin-bottom:12px; }
+.outcome .v{ font-family:'Playfair Display',serif; font-size:34px; line-height:1.3; }
+
+.foot{ margin-top:auto; padding:46px 0 56px; display:flex; align-items:center; justify-content:space-between;
+  z-index:1; position:relative; }
+.foot .tag{ font-family:'Playfair Display',serif; font-style:italic; font-size:30px; color:var(--amber); }
+.foot .by{ font-size:19px; color:var(--muted); }
+
+.stripe-motif{ position:absolute; left:0; bottom:0; width:100%; height:14px; display:flex; }
+.stripe-motif span{ flex:1; background:var(--amber); }
+.stripe-motif span:nth-child(even){ background:transparent; }
+</style></head>
+<body>
+  <div class="logo">
+    <div class="stripes"><span></span><span></span><span></span><span></span></div>
+    <div class="word">Crosswalk Wisdom</div>
+  </div>
+
+  <span class="badge">The Process</span>
+  <h1>What an Identity<br>Audit looks like</h1>
+  <div class="lede">One focused session. A written map after. No hustle clichés, no one-size-fits-all worksheets — just honest, grounded work.</div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num">01</div>
+      <div class="body">
+        <div class="label">Strip away the noise</div>
+        <h2>Whose voice is it?</h2>
+        <p>Name the beliefs, scripts, and expectations that belong to other people — not you.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">02</div>
+      <div class="body">
+        <div class="label">Define your boundaries</div>
+        <h2>Where energy leaks</h2>
+        <p>Find where your time and peace drain away, and map the boundaries that protect them.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">03</div>
+      <div class="body">
+        <div class="label">Find your true north</div>
+        <h2>What's actually yours</h2>
+        <p>Reconnect with what genuinely gives you vitality — and the first real step toward it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="outcome">
+    <div class="k">What you walk away with</div>
+    <div class="v">Grounded clarity on your current season of life — and a clear sense of what's actually yours to build next.</div>
+  </div>
+
+  <div class="foot">
+    <span class="tag">From the Ward to the World</span>
+    <span class="by">Crosswalk Wisdom · Identity Audit</span>
+  </div>
+
+  <div class="stripe-motif">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+</body></html>

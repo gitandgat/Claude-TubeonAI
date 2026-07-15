@@ -56,7 +56,30 @@ ottawa-job-agent/jobbank_resume_upload_result.png
 # Finished video/audio renders — large binaries, not source; host externally
 identity-audit-intro-*.mp4
 identity-audit-intro-*.mov
-"Fiverr- starts with \"I will\".mov"
+Fiverr- starts with "I will".mov
 videos/
 avatar-engine/ship/
 crosswalk-remotion/public/avatar-career-pivot.mp4
+pipeline-output/
+img-pivot-protocol/
+
+# Local machine/session config — not project source
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# LinkedIn CDN upload URLs with embedded signed/expiring tokens
+linkedin_assets.json
+
+# Rebel campaign: keep source + carousels + freepik stills, drop rendered/runtime output
+rebel-campaign/reels/
+rebel-campaign/__pycache__/
+rebel-campaign/.DS_Store
+rebel-campaign/*.log
+rebel-campaign/*.pid
+
+# Per-run generated reports (email/file organizer, bulk cleanup, etc.)
+reports/
+
+# Runtime state, not source
+moveassess-content/scheduled_log.json
+CROSSING-SESSION-LAUNCH/.execution_state.json

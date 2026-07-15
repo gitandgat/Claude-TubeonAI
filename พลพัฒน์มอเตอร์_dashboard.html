@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พลพัฒน์มอเตอร์ จำกัด — สรุปงบการเงิน 2568</title>
+<style>
+  :root{
+    --green:#1e8e5a; --green-bg:#e8f7ef;
+    --red:#d64545; --red-bg:#fcebeb;
+    --blue:#2f6fed; --blue-bg:#eaf1ff;
+    --amber:#e0962a; --amber-bg:#fdf3e3;
+    --ink:#1f2430; --muted:#6b7280; --line:#e6e8ec; --card:#ffffff; --bg:#f4f6f9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Segoe UI', 'Noto Sans Thai', system-ui, sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.5; padding:24px;
+  }
+  .wrap{max-width:1100px; margin:0 auto;}
+  header{margin-bottom:28px;}
+  header h1{font-size:26px; font-weight:700;}
+  header p{color:var(--muted); margin-top:6px; font-size:15px;}
+  .badge{
+    display:inline-block; padding:4px 12px; border-radius:20px; font-size:13px; font-weight:600;
+    margin-top:10px;
+  }
+  .badge.warn{background:var(--red-bg); color:var(--red);}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:16px; margin-bottom:24px;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.03);
+  }
+  .card .label{font-size:13px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.03em;}
+  .card .value{font-size:28px; font-weight:800; margin-top:6px;}
+  .card .sub{font-size:13px; margin-top:8px; color:var(--muted);}
+  .card .change{font-weight:700; font-size:13px; display:inline-flex; align-items:center; gap:4px; margin-top:6px;}
+  .up{color:var(--green);}
+  .down{color:var(--red);}
+
+  .section{
+    background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin-bottom:20px;
+  }
+  .section h2{font-size:18px; margin-bottom:4px;}
+  .section .desc{color:var(--muted); font-size:14px; margin-bottom:18px;}
+
+  /* bar comparison */
+  .bar-row{margin-bottom:18px;}
+  .bar-row .top{display:flex; justify-content:space-between; font-size:14px; margin-bottom:6px;}
+  .bar-row .top .name{font-weight:600;}
+  .bar-track{display:flex; gap:8px; align-items:center;}
+  .bar-bg{flex:1; background:#eef0f3; border-radius:8px; height:14px; overflow:hidden;}
+  .bar-fill{height:100%; border-radius:8px;}
+  .bar-num{font-size:13px; font-weight:700; min-width:110px; text-align:right;}
+  .legend{display:flex; gap:18px; font-size:12px; color:var(--muted); margin-bottom:14px;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .dot{width:10px; height:10px; border-radius:50%; display:inline-block;}
+
+  /* income statement waterfall-ish table */
+  table{width:100%; border-collapse:collapse; font-size:14px;}
+  th, td{padding:10px 8px; text-align:left; border-bottom:1px solid var(--line);}
+  th{color:var(--muted); font-weight:600; font-size:13px;}
+  td.num, th.num{text-align:right; font-variant-numeric:tabular-nums;}
+  tr.total td{font-weight:800; border-top:2px solid var(--ink); border-bottom:none;}
+  tr.profit td{font-weight:800; color:var(--green);}
+  tr.indent td:first-child{padding-left:24px; color:var(--muted);}
+
+  .flow{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:16px;}
+  .flow .box{
+    background:var(--blue-bg); color:var(--blue); border-radius:10px; padding:10px 16px;
+    font-weight:700; font-size:14px; text-align:center; flex:1; min-width:140px;
+  }
+  .flow .box.out{background:var(--red-bg); color:var(--red);}
+  .flow .box.result{background:var(--green-bg); color:var(--green);}
+  .flow .arrow{font-size:20px; color:var(--muted);}
+
+  .callout{
+    border-radius:12px; padding:16px 18px; font-size:14px; margin-top:16px; border:1px solid;
+  }
+  .callout.good{background:var(--green-bg); border-color:#bfe6cf; color:#155c3c;}
+  .callout.bad{background:var(--red-bg); border-color:#f3cccc; color:#8c2c2c;}
+  .callout.info{background:var(--blue-bg); border-color:#cfe0fb; color:#1d4ba6;}
+  .callout b{display:block; margin-bottom:4px; font-size:15px;}
+
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:720px){ .two-col{grid-template-columns:1fr;} }
+
+  footer{text-align:center; color:var(--muted); font-size:12px; margin-top:30px; padding-top:16px; border-top:1px solid var(--line);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>บริษัท พลพัฒน์มอเตอร์ จำกัด</h1>
+    <p>สรุปภาพรวมการเงิน ปี 2568 เทียบกับ ปี 2567 (เข้าใจง่าย ไม่ต้องมีพื้นฐานบัญชี)</p>
+    <span class="badge warn">⚠ ส่วนของผู้ถือหุ้นยังติดลบ — บริษัทยังมีหนี้สินมากกว่าทรัพย์สินตามบัญชี</span>
+  </header>
+
+  <!-- TOP METRICS -->
+  <div class="grid">
+    <div class="card">
+      <div class="label">กำไร (ขาดทุน) สุทธิ ปี 2568</div>
+      <div class="value up">+519,037 บาท</div>
+      <div class="change up">▲ พลิกจากขาดทุน 2.73 ล้านบาท ในปี 2567</div>
+      <div class="sub">ปีนี้เริ่ม "มีกำไร" เป็นครั้งแรกในรอบหลายปี</div>
+    </div>
+    <div class="card">
+      <div class="label">เงินสดในมือ + ธนาคาร</div>
+      <div class="value up">1,352,594 บาท</div>
+      <div class="change up">▲ เพิ่มขึ้นกว่า 3 เท่า จาก 412,390 บาท</div>
+      <div class="sub">สภาพคล่องดีขึ้นมากเมื่อเทียบปีก่อน</div>
+    </div>
+    <div class="card">
+      <div class="label">สินทรัพย์รวม</div>
+      <div class="value down">5,042,889 บาท</div>
+      <div class="change down">▼ ลดลงจาก 7,052,002 บาท</div>
+      <div class="sub">ลดลงเพราะ "สต๊อกสินค้า" ลดลงมาก</div>
+    </div>
+    <div class="card">
+      <div class="label">ส่วนของผู้ถือหุ้น (สุทธิ)</div>
+      <div class="value down">-7,638,815 บาท</div>
+      <div class="change up">▲ ขาดทุนสะสมลดลงเล็กน้อยจาก -8.16 ล้าน</div>
+      <div class="sub">ยังติดลบมาก แต่ "ทิศทาง" ดีขึ้น</div>
+    </div>
+  </div>
+
+  <!-- ASSETS VS LIABILITIES -->
+  <div class="section">
+    <h2>บริษัทมีอะไร และเป็นหนี้ใคร?</h2>
+    <div class="desc">เปรียบเทียบ "สิ่งที่บริษัทมี" (สินทรัพย์) กับ "สิ่งที่บริษัทเป็นหนี้" (หนี้สิน) — ปี 2568</div>
+
+    <div class="legend">
+      <span><span class="dot" style="background:var(--blue)"></span> สินทรัพย์ (สิ่งที่มี)</span>
+      <span><span class="dot" style="background:var(--red)"></span> หนี้สิน (สิ่งที่เป็นหนี้)</span>
+    </div>
+
+    <div class="bar-row">
+      <div class="top"><span class="name">เงินสด & เงินในธนาคาร</span></div>
+      <div class="bar-track">
+        <div class="bar-bg"><div class="bar-fill" style="width:19%; background:var(--blue);"></div></div>
+        <div class="bar-num">1,352,594 บาท</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="top"><span class="name">ลูกหนี้ (เงินที่คนอื่นยังไม่จ่ายเรา)</span></div>
+      <div class="bar-track">
+        <div class="bar-bg"><div class="bar-fill" style="width:19%; background:var(--blue);"></div></div>
+        <div class="bar-num">1,327,968 บาท</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="top"><span class="name">สินค้าคงเหลือ (สต๊อกรถ/อุปกรณ์)</span></div>
+      <div class="bar-track">
+        <div class="bar-bg"><div class="bar-fill" style="width:43%; background:var(--blue);"></div></div>
+        <div class="bar-num">3,046,676 บาท</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="top"><span class="name">ที่ดิน อาคาร อุปกรณ์</span></div>
+      <div class="bar-track">
+        <div class="bar-bg"><div class="bar-fill" style="width:4%; background:var(--blue);"></div></div>
+        <div class="bar-num">266,698 บาท</div>
+      </div>
+    </div>
+
+    <div style="height:14px;"></div>
+
+    <div class="bar-row">
+      <div class="top"><span class="name">เจ้าหนี้การค้า (ที่ต้องจ่ายซัพพลายเออร์)</span></div>
+      <div class="bar-track">
+        <div class="bar-bg"><div class="bar-fill" style="width:10%; background:var(--red);"></div></div>
+        <div class="bar-num">1,490,817 บาท</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="top"><span class="name">เงินกู้ยืมจากกรรมการ/ผู้ถือหุ้น (ระยะยาว)</span></div>
+      <div class="bar-track">
+        <div class="bar-bg"><div class="bar-fill" style="width:90%; background:var(--red);"></div></div>
+        <div class="bar-num">13,200,000 บาท</div>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <b>แปลเป็นภาษาคน:</b>
+      บริษัทมีของรวมมูลค่าประมาณ 5 ล้านบาท แต่เป็นหนี้รวมประมาณ 14.7 ล้านบาท
+      — ส่วนต่างนี้ (เกือบ 9.6 ล้านบาท) คือ "ขาดทุนสะสม" ที่ผ่านมา
+      ซึ่งส่วนใหญ่บริษัทเป็นหนี้ <b>กรรมการ/ผู้ถือหุ้นใหญ่ของตัวเอง</b> (ไม่ใช่หนี้ธนาคารหรือบุคคลภายนอก)
+      และผู้ถือหุ้นใหญ่ก็รับปากว่าจะสนับสนุนเงินต่อไป (ดูหมายเหตุ 10)
+    </div>
+  </div>
+
+  <!-- INCOME STATEMENT -->
+  <div class="section">
+    <h2>ปีนี้ทำเงินได้เท่าไหร่ และเงินหายไปไหน?</h2>
+    <div class="desc">รายได้ทั้งหมด → หักต้นทุน/ค่าใช้จ่าย → เหลือเป็นกำไรหรือขาดทุน</div>
+
+    <div class="flow">
+      <div class="box">รายได้รวม<br>36,835,509 บาท</div>
+      <div class="arrow">−</div>
+      <div class="box out">ต้นทุนสินค้าที่ขาย<br>34,413,185 บาท</div>
+      <div class="arrow">−</div>
+      <div class="box out">ค่าใช้จ่ายขาย+บริหาร<br>5,152,407 บาท</div>
+      <div class="arrow">=</div>
+      <div class="box result">กำไรสุทธิ<br>+519,037 บาท</div>
+    </div>
+
+    <table style="margin-top:24px;">
+      <thead>
+        <tr><th>รายการ</th><th class="num">ปี 2568</th><th class="num">ปี 2567</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>รายได้จากการขาย</td><td class="num">36,232,314</td><td class="num">32,149,808</td></tr>
+        <tr class="indent"><td>+ รายได้จากบริการ & อื่นๆ</td><td class="num">603,195</td><td class="num">122,304</td></tr>
+        <tr class="total"><td>รวมรายได้</td><td class="num">36,835,509</td><td class="num">32,272,111</td></tr>
+        <tr><td>ต้นทุนขาย (ราคาซื้อรถ/สินค้า)</td><td class="num">-34,413,185</td><td class="num">-27,873,770</td></tr>
+        <tr><td>ค่าใช้จ่ายในการขาย</td><td class="num">-57,272</td><td class="num">-101,367</td></tr>
+        <tr><td>ค่าใช้จ่ายในการบริหาร</td><td class="num">-5,095,135</td><td class="num">-3,777,938</td></tr>
+        <tr class="profit"><td>กำไร (ขาดทุน) สุทธิสำหรับปี</td><td class="num">519,037</td><td class="num">-2,730,083</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout good">
+      <b>ข่าวดี:</b>
+      ปีนี้ขายของได้มากขึ้น (~36.2 ล้าน เทียบกับ ~32.1 ล้านบาท ปีก่อน) และคุมค่าใช้จ่ายดีขึ้น
+      ทำให้พลิกจาก "ขาดทุน 2.73 ล้านบาท" เป็น "กำไร 519,037 บาท"
+    </div>
+  </div>
+
+  <!-- TWO COLUMN: COSTS & CASH -->
+  <div class="two-col">
+    <div class="section">
+      <h2>ค่าใช้จ่ายบริหาร — เงินไปไหนมากที่สุด?</h2>
+      <div class="desc">ปี 2568 รวม 3,777,938 บาท</div>
+
+      <div class="bar-row">
+        <div class="top"><span class="name">เงินเดือนพนักงาน</span></div>
+        <div class="bar-track">
+          <div class="bar-bg"><div class="bar-fill" style="width:56%; background:var(--amber);"></div></div>
+          <div class="bar-num">2,112,500 บาท</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="top"><span class="name">ค่าภาษียานพาหนะ</span></div>
+        <div class="bar-track">
+          <div class="bar-bg"><div class="bar-fill" style="width:7%; background:var(--amber);"></div></div>
+          <div class="bar-num">258,928 บาท</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="top"><span class="name">ค่าสาธารณูปโภค (น้ำ/ไฟ/เน็ต)</span></div>
+        <div class="bar-track">
+          <div class="bar-bg"><div class="bar-fill" style="width:7%; background:var(--amber);"></div></div>
+          <div class="bar-num">253,702 บาท</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="top"><span class="name">ค่าเบี้ยประกันภัย</span></div>
+        <div class="bar-track">
+          <div class="bar-bg"><div class="bar-fill" style="width:7%; background:var(--amber);"></div></div>
+          <div class="bar-num">281,105 บาท</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="top"><span class="name">ค่าใช้จ่ายเกี่ยวกับยานพาหนะ</span></div>
+        <div class="bar-track">
+          <div class="bar-bg"><div class="bar-fill" style="width:6%; background:var(--amber);"></div></div>
+          <div class="bar-num">241,188 บาท</div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="top"><span class="name">อื่นๆ (เช่า, บัญชี, ค่าบริการ ฯลฯ)</span></div>
+        <div class="bar-track">
+          <div class="bar-bg"><div class="bar-fill" style="width:17%; background:var(--amber);"></div></div>
+          <div class="bar-num">630,515 บาท</div>
+        </div>
+      </div>
+      <div class="callout info" style="margin-top:18px;">
+        <b>หมายเหตุ:</b>
+        เงินเดือนคือค่าใช้จ่ายก้อนใหญ่ที่สุด คิดเป็นกว่า 55% ของค่าใช้จ่ายบริหารทั้งหมด
+        — และลดลงจาก 3.2 ล้านบาท (ปี 2567) เหลือ 2.1 ล้านบาท (ปี 2568)
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>สุขภาพการเงินโดยรวม — ต้องระวังอะไร?</h2>
+
+      <div class="callout good">
+        <b>✓ จุดที่ดีขึ้น</b>
+        • มีเงินสดเพิ่มขึ้น 3 เท่า (จาก 412K → 1.35 ล้านบาท)<br>
+        • กลับมามีกำไรเป็นปีแรก<br>
+        • ขาดทุนสะสมลดลงจาก -8.16 ล้าน → -7.64 ล้านบาท
+      </div>
+
+      <div class="callout bad" style="margin-top:14px;">
+        <b>⚠ จุดที่ต้องระวัง</b>
+        • <b>ส่วนของผู้ถือหุ้นติดลบ 7.64 ล้านบาท</b> — แปลว่าหากปิดบริษัทวันนี้และขายทุกอย่าง
+        ก็ยังไม่พอใช้หนี้ทั้งหมด<br>
+        • หนี้ก้อนใหญ่ที่สุด (13.2 ล้านบาท) คือเงินที่บริษัท "ยืมจากกรรมการ/ผู้ถือหุ้น"
+        — ถ้าผู้ถือหุ้นเรียกคืนเงินกู้นี้พร้อมกัน บริษัทจะมีปัญหาสภาพคล่องทันที<br>
+        • สินค้าคงเหลือ (สต๊อก) ลดลงจาก 4.1 ล้าน → 3.0 ล้านบาท — ควรตรวจสอบว่าลดลง
+        เพราะ "ขายได้ดี" หรือเพราะ "สต๊อกขาด/หมดเครดิตซื้อสินค้า"
+      </div>
+
+      <div class="callout info" style="margin-top:14px;">
+        <b>ทำไมรายงานผู้สอบบัญชีเขียนเรื่อง "การดำเนินงานต่อเนื่อง"?</b>
+        เพราะส่วนของผู้ถือหุ้นติดลบมาตลอด (ขาดทุนสะสมเกินทุนจดทะเบียน)
+        ผู้สอบบัญชีจึงต้องเปิดเผยความไม่แน่นอนนี้ตามมาตรฐาน — แต่บริษัทยังเดินหน้าต่อได้
+        เพราะผู้ถือหุ้นใหญ่ยืนยันจะสนับสนุนทางการเงินต่อไป (หมายเหตุ 10)
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM LINE -->
+  <div class="section">
+    <h2>สรุปภาพใหญ่ใน 3 ประโยค</h2>
+    <table>
+      <tbody>
+        <tr><td style="width:30px; font-weight:800; color:var(--blue);">1</td>
+            <td>ปี 2568 บริษัท <b>กลับมามีกำไร</b> (+519,037 บาท) เป็นครั้งแรกหลังจากขาดทุนปีก่อนกว่า 2.7 ล้านบาท
+            เพราะขายได้มากขึ้นและคุมต้นทุน/เงินเดือนได้ดีขึ้น</td></tr>
+        <tr><td style="font-weight:800; color:var(--blue);">2</td>
+            <td><b>เงินสดในมือดีขึ้นมาก</b> (เพิ่มขึ้น 3 เท่า) ทำให้หมุนเงินในแต่ละวันง่ายขึ้น</td></tr>
+        <tr><td style="font-weight:800; color:var(--blue);">3</td>
+            <td>แต่บริษัทยัง<b>"ติดลบ" สะสม 7.64 ล้านบาท</b> และพึ่งพาเงินกู้จากผู้ถือหุ้นเป็นหลัก
+            — กำไรปีนี้เป็นสัญญาณที่ดี แต่ต้องทำกำไรแบบนี้ต่อเนื่องอีกหลายปีจึงจะ "พลิกกลับมาเป็นบวก" ได้จริง</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    จัดทำจากงบการเงินที่ตรวจสอบแล้ว สำหรับปีสิ้นสุดวันที่ 31 ธันวาคม 2568 (ลงนามโดย กรรณิกา พระพิทักษ์ ผู้สอบบัญชีรับอนุญาตเลขที่ 10164)<br>
+    เอกสารนี้จัดทำเพื่อความเข้าใจง่ายเท่านั้น ไม่ใช่เอกสารทางบัญชีที่ใช้ยื่นหน่วยงานราชการ
+  </footer>
+
+</div>
+</body>
+</html>
