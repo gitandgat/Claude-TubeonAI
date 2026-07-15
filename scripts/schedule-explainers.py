@@ -7,9 +7,12 @@ Platforms: LinkedIn, Instagram, Facebook, TikTok, YouTube
 
 import requests
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from zernio_key import ZERNIO_API_KEY
 
 BASE    = "https://zernio.com/api/v1"
-HEADERS = {"Authorization": "Bearer ***REMOVED-ZERNIO-KEY***"}
+HEADERS = {"Authorization": f"Bearer {ZERNIO_API_KEY}"}
 OUT_DIR = "/Users/toto/Claude TubeonAI/crosswalk-remotion/out/explainers"
 
 ACCOUNT_IDS = {
