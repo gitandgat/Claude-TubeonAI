@@ -1,0 +1,46 @@
+{
+  "post_id": "weak_post",
+  "score": 46.5,
+  "passing": true,
+  "scores": {
+    "directness": 10,
+    "rhythm": 10,
+    "trust": 8.5,
+    "authenticity": 8,
+    "density": 10
+  },
+  "issues": {
+    "adverbs": 1,
+    "throat_clearing": 0,
+    "passive_voice": 0,
+    "vague_declaratives": 0,
+    "inanimate_actions": 0,
+    "extremes": 1,
+    "em_dashes": 0,
+    "whquestion_starts": 0,
+    "meta_joiners": 0
+  },
+  "recommendations": [
+    "Remove 1 adverbs (really, truly, literally, etc.)",
+    "Replace 1 lazy extremes (always, never, every)"
+  ],
+  "virality": {
+    "score": 23.5,
+    "pass": false,
+    "dims": {
+      "hook": 1,
+      "curiosity": 2,
+      "emotion": 4,
+      "share": 5,
+      "polarity": 2,
+      "platform": 6
+    },
+    "fixes": [
+      "Opening is second-person advice \u2014 rewrite line 1 as a first-person scene with a real number (50% of the score).",
+      "Add real specifics \u2014 dollars, years, the exact object in the room.",
+      "Close with a comment-driving question or an explicit share/DM cue.",
+      "Name the feeling from inside the moment (the turn that flips meaning).",
+      "Fix length/hashtags for LinkedIn (enough body, 1-5 topic tags)."
+    ]
+  }
+}

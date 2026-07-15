@@ -33,15 +33,18 @@ def _fmt_deadline(job: dict) -> str:
         return str(deadline)
 
 
+SMTP_TIMEOUT_SEC = 30
+
+
 def _gmail_smtp():
-    s = smtplib.SMTP("smtp.gmail.com", 587)
+    s = smtplib.SMTP("smtp.gmail.com", 587, timeout=SMTP_TIMEOUT_SEC)
     s.starttls()
     s.login(NOTIFY_FROM, os.environ["GMAIL_APP_PASSWORD"])
     return s
 
 
 def _outlook_smtp():
-    s = smtplib.SMTP("smtp-mail.outlook.com", 587)
+    s = smtplib.SMTP("smtp-mail.outlook.com", 587, timeout=SMTP_TIMEOUT_SEC)
     s.starttls()
     s.login(APPLY_FROM, os.environ["OUTLOOK_APP_PASSWORD"])
     return s

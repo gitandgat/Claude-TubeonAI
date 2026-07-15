@@ -83,3 +83,8 @@ reports/
 # Runtime state, not source
 moveassess-content/scheduled_log.json
 CROSSING-SESSION-LAUNCH/.execution_state.json
+
+# Ottawa rental search — real full name + personal phone number, meant to be
+# pasted into outbound emails to landlords; same PII class as the already-
+# excluded ottawa-job-agent/application_autofill.json
+ottawa-rental-application-packet.md

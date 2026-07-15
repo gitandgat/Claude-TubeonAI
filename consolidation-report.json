@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-06-07T06:36:33.113593",
+  "action": "consolidate_duplicates",
+  "total_duplicates": 20,
+  "posts_deleted": 5,
+  "posts_failed": 0,
+  "posts_kept": 20,
+  "final_post_count": 457,
+  "efficiency": "1.1% reduction"
+}

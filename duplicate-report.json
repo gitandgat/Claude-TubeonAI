@@ -1,0 +1,188 @@
+{
+  "timestamp": "2026-06-07T06:25:48.329435",
+  "total_posts": 462,
+  "duplicates_found": 170,
+  "threshold": 0.85,
+  "duplicates": [
+    {
+      "post1_id": "6a0149f6d878f3299df09b53",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T08:00:00.000Z",
+      "post2_id": "6a17e685ed53a323768d3d07",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-21T21:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a0149f6d878f3299df09b53",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T08:00:00.000Z",
+      "post2_id": "69cc70752fb56243f461532f",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-16T15:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a0149f6d878f3299df09b53",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T08:00:00.000Z",
+      "post2_id": "69cc70d8c77bb52cf8c05008",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-11T00:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014aece5af7edb519406c3",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T00:00:00.000Z",
+      "post2_id": "6a0a51a78d9a5d92cf3aa7c0",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-21T18:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014aece5af7edb519406c3",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T00:00:00.000Z",
+      "post2_id": "69cc7075c77bb52cf8c04332",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-16T12:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014aece5af7edb519406c3",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T00:00:00.000Z",
+      "post2_id": "69cc71422fb56243f4616883",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-10T21:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014aece5af7edb519406c3",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T00:00:00.000Z",
+      "post2_id": "69cc6e0aaff121b30936740a",
+      "post2_status": "published",
+      "post2_scheduled": "2026-05-18T19:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014aece5af7edb519406c3",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-27T00:00:00.000Z",
+      "post2_id": "69cc6e04aff121b309367367",
+      "post2_status": "published",
+      "post2_scheduled": "2026-05-18T19:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014af699db89362b36bbe9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T21:00:00.000Z",
+      "post2_id": "6a0a51bbfb2c42d93172b5aa",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-21T15:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014af699db89362b36bbe9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T21:00:00.000Z",
+      "post2_id": "6a17c7770d1baf9ac1c15648",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-16T00:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014af699db89362b36bbe9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T21:00:00.000Z",
+      "post2_id": "69cc71452fb56243f46168b1",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-10T18:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014af699db89362b36bbe9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T21:00:00.000Z",
+      "post2_id": "69cc6df7aff121b309367113",
+      "post2_status": "published",
+      "post2_scheduled": "2026-05-11T19:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a014af699db89362b36bbe9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T21:00:00.000Z",
+      "post2_id": "69cc6df1aff121b3093670ac",
+      "post2_status": "published",
+      "post2_scheduled": "2026-05-11T19:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a02f35b790e1658148940b9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T18:00:00.000Z",
+      "post2_id": "6a0a51cd8d9a5d92cf3aaaa4",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-21T12:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a02f35b790e1658148940b9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T18:00:00.000Z",
+      "post2_id": "6a17c83514150d1d12abc5c3",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-15T21:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a02f35b790e1658148940b9",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T18:00:00.000Z",
+      "post2_id": "69cc7148c77bb52cf8c057f9",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-10T15:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a17c5b7b5472ed3b49f4582",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T12:00:00.000Z",
+      "post2_id": "6a0a51f5cbf1ae0d37eb6a12",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-20T21:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a17c5b7b5472ed3b49f4582",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T12:00:00.000Z",
+      "post2_id": "6a17c8f9e045761236a62e4f",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-15T15:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a17c5b7b5472ed3b49f4582",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T12:00:00.000Z",
+      "post2_id": "69cc71582fb56243f4616b76",
+      "post2_status": "scheduled",
+      "post2_scheduled": "2026-06-10T00:00:00.000Z",
+      "similarity": 1.0
+    },
+    {
+      "post1_id": "6a17c5b7b5472ed3b49f4582",
+      "post1_status": "scheduled",
+      "post1_scheduled": "2026-06-26T12:00:00.000Z",
+      "post2_id": "69d18c3799319eeb31e09e1b",
+      "post2_status": "published",
+      "post2_scheduled": "2026-05-06T13:00:00.000Z",
+      "similarity": 1.0
+    }
+  ]
+}

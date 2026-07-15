@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "timestamp": "2026-06-06T09:10:40.843273",
+      "agent": "performance_monitor",
+      "output_id": "report-001",
+      "rating": 9,
+      "feedback": "Great insights, very useful for strategy. Accurate metrics.",
+      "metrics": {}
+    },
+    {
+      "timestamp": "2026-06-06T09:10:40.843490",
+      "agent": "prepublish_gate",
+      "output_id": "gate-001",
+      "rating": 3,
+      "feedback": "Too strict on /stop-slop. Blocking quality content. Threshold too strict.",
+      "metrics": {}
+    },
+    {
+      "timestamp": "2026-06-06T09:10:40.843742",
+      "agent": "duplicate_detector",
+      "output_id": "dupe-001",
+      "rating": 4,
+      "feedback": "Missed several duplicates. Similar content not caught.",
+      "metrics": {}
+    }
+  ]
+}

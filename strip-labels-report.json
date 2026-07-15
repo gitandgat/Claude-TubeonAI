@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-06-06T09:05:56.967098",
+  "total_posts": 462,
+  "posts_with_labels": 8,
+  "successful": 8,
+  "failed": 0,
+  "cleaned_posts": [
+    {
+      "post_id": "6a17c5b7b5472ed3b49f4582",
+      "original_length": 1043,
+      "cleaned_length": 1026,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "6a0a50f4fbbfb3adff321dd2",
+      "original_length": 1222,
+      "cleaned_length": 1205,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "6a0a51f5cbf1ae0d37eb6a12",
+      "original_length": 1043,
+      "cleaned_length": 1026,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "6a0a52c4dcb8fb3bac4697e4",
+      "original_length": 1222,
+      "cleaned_length": 1205,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "6a17c8f9e045761236a62e4f",
+      "original_length": 1043,
+      "cleaned_length": 1026,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "69cc709dc77bb52cf8c047af",
+      "original_length": 1222,
+      "cleaned_length": 1205,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "69cc71582fb56243f4616b76",
+      "original_length": 1043,
+      "cleaned_length": 1026,
+      "bytes_removed": 17
+    },
+    {
+      "post_id": "69cc718ac77bb52cf8c05d43",
+      "original_length": 1222,
+      "cleaned_length": 1205,
+      "bytes_removed": 17
+    }
+  ]
+}
