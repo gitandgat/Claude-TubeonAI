@@ -1,0 +1,63 @@
+{
+  "campaign": "moveassess-case-of-day",
+  "batch": 1,
+  "notes": "Each post teaches one check from the 60-Second Movement Self-Test and links to that case's 3D result in MoveAssess (email captured at /self-test or the in-app protocol gate). Feeds the glute/longevity vertical via the existing 5/day Zernio engine. House rules honored: first-person, contrarian reframe (varied, not the repeated 'here's what I'd do' opener), no source-video reference, link in FIRST COMMENT, 5 platforms. TikTok photo captions <=90 chars. All bodies passed /stop-slop (min 35/50) on 2026-07-03. Scores per post below.",
+  "platforms": ["linkedin", "instagram", "facebook", "tiktok", "youtube"],
+  "posts": [
+    {
+      "id": "cod-01-hip-drop",
+      "case": "right-hip-drop-left-shoulder",
+      "image": "physical-assessment-app/public/images/cases/right-hip-drop-left-shoulder.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=right-hip-drop-left-shoulder&utm_campaign=case-of-day",
+      "hook": "Your knee pain probably isn't a knee problem.",
+      "body": "Your knee pain probably isn't a knee problem.\n\nStand on one leg for ten seconds. Watch the hip on the side you lifted.\n\nIf it drops, or your torso swings out to keep you upright, you found the real issue. The glute on your standing leg has gone quiet, and the pelvis can't stay level without it. The knee pays for that. So does the low back.\n\nI spent years as a physician watching this one leak end people's mobility a decade early. The fix isn't more knee work. It's the hip that stopped doing its job.\n\nOne test won't map your whole chain. Ten seconds tells you if you've got a weak link in it.",
+      "tiktok_caption": "Stand on one leg 10 sec. Hip drops? Your knee pain isn't a knee problem.",
+      "first_comment": "See exactly which side is compensating, free and in 3D: https://physical-assessment-app.vercel.app/?case=right-hip-drop-left-shoulder&utm_campaign=case-of-day\n\nIt's check #3 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 9, "rhythm": 8, "trust": 9, "authenticity": 9, "density": 8, "total": 43 }
+    },
+    {
+      "id": "cod-02-knee-cave",
+      "case": "patellofemoral-pain",
+      "image": "physical-assessment-app/public/images/cases/patellofemoral-pain.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=patellofemoral-pain&utm_campaign=case-of-day",
+      "hook": "'Strengthen your knees' is some of the worst advice in fitness.",
+      "body": "'Strengthen your knees' is some of the worst advice in fitness.\n\nFeet shoulder-width, arms straight overhead, squat while you watch your knees in a mirror.\n\nIf one or both cave inward, past the line of your big toe, the knee is only doing what it's told. It collapses because the hip above it isn't steering the leg. You can load that knee for a year and it won't hold, because the knee was never the problem.\n\nI see this pattern behind more stalled running and hiking than anything else, and it surfaces in the fifties, right when people blame the calendar.\n\nTrain the hip to steer the leg. The cave disappears.",
+      "tiktok_caption": "Arms up, squat. Knees cave in? Your knee isn't weak, your hip is.",
+      "first_comment": "Watch the pattern in 3D and get the fix, free: https://physical-assessment-app.vercel.app/?case=patellofemoral-pain&utm_campaign=case-of-day\n\nIt's check #2 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 9, "rhythm": 8, "trust": 8, "authenticity": 9, "density": 8, "total": 42 }
+    },
+    {
+      "id": "cod-03-forward-head",
+      "case": "forward-head-posture",
+      "image": "physical-assessment-app/public/images/cases/forward-head-posture.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=forward-head-posture&utm_campaign=case-of-day",
+      "hook": "You can't 'sit up straight' your way out of tech neck.",
+      "body": "You can't 'sit up straight' your way out of tech neck.\n\nPut your heels, backside, and shoulder blades against a wall. Keep your chin level and touch the back of your head to the wall, without tipping your face up.\n\nCan't reach it? Your head has drifted forward of your spine. Reminding yourself to have good posture won't pull it back, because willpower isn't the thing that's missing. Every inch of forward drift multiplies the load your neck carries all day. That's the stiff neck, and the headaches that follow it.\n\nThe head sits forward because the deep muscles that hold it back have switched off. Rebuild those and it comes home on its own.\n\nGood posture isn't discipline. It's capacity you trained or didn't.",
+      "tiktok_caption": "Back to wall. Can't touch your head without craning up? Tech neck is real.",
+      "first_comment": "See which muscles went quiet, free and in 3D: https://physical-assessment-app.vercel.app/?case=forward-head-posture&utm_campaign=case-of-day\n\nIt's check #1 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 8, "rhythm": 8, "trust": 9, "authenticity": 9, "density": 8, "total": 42 }
+    },
+    {
+      "id": "cod-04-chair-rise",
+      "case": "flat-back-posture",
+      "image": "physical-assessment-app/public/images/cases/flat-back-posture.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=flat-back-posture&utm_campaign=case-of-day",
+      "hook": "One of the best predictors of your independence at 75 is the chair you're sitting in.",
+      "body": "One of the best predictors of your independence at 75 is the chair you're sitting in right now.\n\nStand up from it without your hands. No rocking forward, no push off the thighs.\n\nIf you can't, take it seriously. Your glutes and core aren't producing the power to move your own bodyweight, so you've handed the job to momentum. Momentum works until it doesn't, and the day it doesn't is usually the day someone falls.\n\nI watched this on hospital wards for years. The fall was never the start. The start was a chair, a decade earlier, that needed hands.\n\nRebuild the power to rise while you still have the reserve to build it on.\n\nYou don't lose independence to age. You lose it to the strength you stopped training.",
+      "tiktok_caption": "Stand from a chair, no hands. Can't? It predicts your independence at 75.",
+      "first_comment": "Find the pattern behind it, free and in 3D: https://physical-assessment-app.vercel.app/?case=flat-back-posture&utm_campaign=case-of-day\n\nIt's check #7 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 9, "rhythm": 9, "trust": 8, "authenticity": 9, "density": 8, "total": 43 }
+    },
+    {
+      "id": "cod-05-tight-hamstrings",
+      "case": "apt-tight-hamstrings",
+      "image": "physical-assessment-app/public/images/cases/apt-tight-hamstrings.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=apt-tight-hamstrings&utm_campaign=case-of-day",
+      "hook": "Your hamstrings aren't tight. They're stretched, and stretching them more is why they never let go.",
+      "body": "Your hamstrings aren't tight. They're stretched, and stretching them more is why they never let go.\n\nStand sideways to a mirror and look at your belt line. If the front tips down and forward and your low back arches hard, your pelvis is tilted forward.\n\nThat tilt anchors the top of your hamstrings and holds them long all day. So they feel tight. And every stretch you do drags on a muscle already at the end of its range. You're pulling on the victim.\n\nThe pelvis tips because tight hip flexors haul it down in front while sleepy glutes fail to hold it from behind. Fix that balance and the hamstrings let go without a single hamstring stretch.\n\nChase the tight muscle and you'll stretch forever. Fix the tilt and it clears in weeks.",
+      "tiktok_caption": "Hamstrings always tight? They're not tight. They're stretched.",
+      "first_comment": "See the tilt and the fix in 3D, free: https://physical-assessment-app.vercel.app/?case=apt-tight-hamstrings&utm_campaign=case-of-day\n\nIt's check #4 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 9, "rhythm": 8, "trust": 8, "authenticity": 9, "density": 8, "total": 42 }
+    }
+  ]
+}

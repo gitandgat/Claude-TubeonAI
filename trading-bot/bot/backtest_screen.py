@@ -87,6 +87,7 @@ def _fetch_dated(symbols: list, days: int) -> dict:
     from alpaca.data.historical import StockHistoricalDataClient
     from alpaca.data.requests import StockBarsRequest
     from alpaca.data.timeframe import TimeFrame
+    from alpaca.data.enums import Adjustment
     import os
 
     client = StockHistoricalDataClient(
@@ -103,6 +104,7 @@ def _fetch_dated(symbols: list, days: int) -> dict:
         try:
             bars = client.get_stock_bars(StockBarsRequest(
                 symbol_or_symbols=chunk, timeframe=TimeFrame.Day, start=start,
+                adjustment=Adjustment.ALL,  # split+dividend adjusted (raw splits = fake -95% crashes)
             ))
         except Exception:
             if len(chunk) == 1:
@@ -386,7 +388,87 @@ def _report(equity_curve, trades, spy, master, start_idx, months) -> dict:
     print("=" * 64 + "\n")
 
     return {"return": ret, "spy_return": spy_ret, "sharpe": sharpe, "max_dd": max_dd,
-            "trades": len(trades), "win_rate": win_rate, "profit_factor": pf}
+            "trades": len(trades), "win_rate": win_rate, "profit_factor": pf,
+            "trade_pnls": [t["pnl_pct"] for t in trades],
+            "equity_curve": list(eq.items()), "spy_window": list(spy_win.items())}
+
+
+def monte_carlo(trade_pnls, n_sims: int = 5000, seed: int = 42) -> dict:
+    """
+    Bootstrap the trade returns to test whether the EDGE is robust or luck.
+    Resamples trades WITH replacement n_sims times. We report per-trade
+    EXPECTANCY (mean return per trade) with a confidence interval and the
+    probability the edge is positive — NOT a compounded total return, because
+    positions run concurrently (≤5 at once) so sequential compounding would
+    massively overstate the outcome. Expectancy is the honest, size-agnostic
+    measure of whether there's a real edge.
+    """
+    pnls = np.array(trade_pnls)  # in %
+    n = len(pnls)
+    if n < 10:
+        print("\n  Monte Carlo skipped — need >=10 trades.\n")
+        return {}
+    rng = np.random.default_rng(seed)
+    means, path_dds = [], []
+    for _ in range(n_sims):
+        sample = rng.choice(pnls, size=n, replace=True)
+        means.append(sample.mean())
+        # Equal-weight equity path (each trade = one unit) for a drawdown read
+        equity = np.cumprod(1 + sample / 100.0)
+        peak = np.maximum.accumulate(equity)
+        path_dds.append(((equity - peak) / peak).min() * 100)
+    means, path_dds = np.array(means), np.array(path_dds)
+    out = {
+        "exp_p5": np.percentile(means, 5), "exp_p50": np.percentile(means, 50),
+        "exp_p95": np.percentile(means, 95),
+        "prob_edge_positive": (means > 0).mean() * 100,
+    }
+    print("\n" + "=" * 64)
+    print(f"  MONTE CARLO — {n_sims} bootstraps of {n} trades")
+    print("=" * 64)
+    print(f"  Expectancy per trade:  p5 {out['exp_p5']:+.2f}%   "
+          f"median {out['exp_p50']:+.2f}%   p95 {out['exp_p95']:+.2f}%")
+    print(f"  Probability edge is positive: {out['prob_edge_positive']:.0f}%")
+    print("  (Edge is real only if the p5 expectancy stays clearly positive.)")
+    print("=" * 64 + "\n")
+    return out
+
+
+def walk_forward(equity_curve, spy_window) -> dict:
+    """
+    Per-calendar-year consistency check (the meaningful form of walk-forward for
+    a PARAMETER-FREE strategy — there's nothing to re-optimize, so what matters
+    is whether the edge shows up period after period, not in one lucky stretch).
+    """
+    # Build clean, chronologically-sorted series with proper DatetimeIndex
+    eq = pd.Series(dict(equity_curve))
+    eq.index = pd.to_datetime(eq.index)
+    eq = eq[~eq.index.duplicated()].sort_index().dropna()
+    spy = pd.Series(dict(spy_window))
+    spy.index = pd.to_datetime(spy.index)
+    spy = spy[~spy.index.duplicated()].sort_index().reindex(eq.index).ffill()
+    print("\n" + "=" * 64)
+    print("  WALK-FORWARD — return by calendar year (out-of-sample by period)")
+    print("=" * 64)
+    print(f"  {'Year':<8}{'SCREEN':>12}{'SPY':>12}{'Edge':>12}{'':>6}")
+    print("-" * 64)
+    wins = 0
+    rows = {}
+    for y in sorted(eq.index.year.unique()):
+        seg = eq[eq.index.year == y]
+        sseg = spy[spy.index.year == y]
+        if len(seg) < 2 or len(sseg) < 2:
+            continue
+        scr = (seg.iloc[-1] / seg.iloc[0] - 1) * 100
+        spr = (sseg.iloc[-1] / sseg.iloc[0] - 1) * 100
+        flag = "✓" if scr > spr else " "
+        wins += scr > spr
+        rows[y] = (scr, spr)
+        print(f"  {y:<8}{scr:>11.1f}%{spr:>11.1f}%{scr-spr:>+11.1f}%{flag:>4}")
+    print("-" * 64)
+    print(f"  Screen beat SPY in {wins}/{len(rows)} years")
+    print("=" * 64 + "\n")
+    return rows
 
 
 if __name__ == "__main__":
@@ -398,6 +480,11 @@ if __name__ == "__main__":
     ap.add_argument("--trail", action="store_true", help="enable tight trailing stop (default: off, matches live)")
     ap.add_argument("--end-date", type=str, default=None,
                     help="hard cutoff YYYY-MM-DD for out-of-sample testing (e.g. 2023-12-31)")
+    ap.add_argument("--validate", action="store_true",
+                    help="also run walk-forward (per-year) + Monte Carlo bootstrap")
     args = ap.parse_args()
-    run_backtest(months=args.months, rebalance_days=args.rebalance_days,
-                 use_trail=args.trail, end_date=args.end_date)
+    res = run_backtest(months=args.months, rebalance_days=args.rebalance_days,
+                       use_trail=args.trail, end_date=args.end_date)
+    if args.validate:
+        walk_forward(res["equity_curve"], res["spy_window"])
+        monte_carlo(res["trade_pnls"])

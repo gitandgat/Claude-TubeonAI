@@ -1,0 +1,8 @@
+{
+  "stop_slop_threshold": 33,
+  "duplicate_similarity": 0.8,
+  "hashtag_coverage_target": 95,
+  "engagement_forecast_confidence": 0.6,
+  "archive_days": 90,
+  "max_posts_per_hour": 5
+}

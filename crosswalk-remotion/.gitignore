@@ -1,0 +1,10 @@
+node_modules/
+
+# Render outputs (host elsewhere, don't commit)
+out/
+
+# Glute intro video build artifacts (regenerable)
+whisper.cpp/
+tmp.json
+public/glute-intro-raw.mov
+public/glute-intro-16k.wav

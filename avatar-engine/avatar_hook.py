@@ -151,7 +151,9 @@ def render_talking_head(photo: Path, wav: Path, enhancer: bool) -> Path:
 # ── Orchestration ─────────────────────────────────────────────────────────────
 def resolve_photo(override: str | None) -> Path:
     if override:
-        p = Path(override).expanduser()
+        # Resolve to absolute: SadTalker's inference.py runs with cwd=SADTALKER,
+        # so a relative --photo would resolve against the wrong directory.
+        p = Path(override).expanduser().resolve()
         if not p.exists():
             raise SystemExit(f"--photo not found: {p}")
         return p

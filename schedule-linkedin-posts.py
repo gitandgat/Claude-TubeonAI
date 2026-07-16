@@ -7,7 +7,7 @@ import requests
 import json
 import os
 
-API_KEY = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as API_KEY
 BASE_URL = "https://zernio.com/api/v1"
 LINKEDIN_ACCOUNT_ID = "690940455f6fbb9ef8323070"
 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --amber:#D4A843; --charcoal:#2C2C2C; --warm:#FAF7F2; --orange:#E8834A; --teal:#5B9A8B;
+  --surface:rgba(250,247,242,0.045); --line:rgba(250,247,242,0.10); --muted:rgba(250,247,242,0.72);
+}
+html,body{ width:1080px; }
+body{ font-family:'Inter',system-ui,sans-serif; background:var(--charcoal); color:var(--warm);
+  -webkit-print-color-adjust:exact; padding:74px 80px 70px; position:relative; overflow:hidden; }
+body::before{ content:""; position:absolute; top:-180px; right:-180px; width:520px; height:520px;
+  border-radius:50%; background:radial-gradient(circle, rgba(212,168,67,0.16), transparent 70%); }
+
+.top{ display:flex; align-items:flex-start; justify-content:space-between; z-index:1; position:relative; }
+.logo{ display:flex; align-items:center; gap:16px; }
+.logo .stripes{ display:flex; flex-direction:column; gap:6px; }
+.logo .stripes span{ display:block; width:52px; height:10px; border-radius:3px; background:var(--amber); }
+.logo .stripes span:nth-child(even){ opacity:.6; }
+.logo .word{ font-family:'Playfair Display',serif; font-weight:700; font-size:34px;
+  letter-spacing:-0.02em; color:var(--amber); }
+.tag{ font-size:15px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+  border:1px solid var(--line); padding:8px 14px; border-radius:999px; }
+
+.badge{ display:inline-block; margin:46px 0 18px; background:var(--teal); color:var(--warm);
+  font-weight:600; font-size:19px; letter-spacing:.16em; text-transform:uppercase;
+  padding:10px 20px; border-radius:999px; z-index:1; position:relative; }
+h1{ font-family:'Playfair Display',serif; font-weight:800; font-size:76px; line-height:1.02;
+  letter-spacing:-0.02em; z-index:1; position:relative; }
+h1 em{ color:var(--amber); font-style:italic; }
+.lede{ color:var(--muted); font-size:24px; margin-top:18px; line-height:1.45;
+  z-index:1; position:relative; max-width:840px; }
+
+.proof{ margin:44px 0 10px; z-index:1; position:relative; }
+.proof .k{ font-size:16px; letter-spacing:.2em; text-transform:uppercase; color:var(--orange);
+  font-weight:700; margin-bottom:18px; }
+.card{ background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--amber);
+  border-radius:14px; padding:24px 28px; margin-bottom:16px; display:flex; gap:30px; align-items:center; }
+.card .n{ font-family:'Playfair Display',serif; font-weight:800; font-size:44px; color:var(--amber);
+  min-width:210px; line-height:1; }
+.card .n small{ display:block; font-family:'Inter',sans-serif; font-weight:600; font-size:14px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:8px; }
+.card .q{ font-size:21px; line-height:1.4; color:var(--warm); font-style:italic; }
+.footnote{ font-size:16px; color:var(--muted); margin-top:4px; }
+
+.how{ margin:46px 0 0; z-index:1; position:relative; }
+.how .k{ font-size:16px; letter-spacing:.2em; text-transform:uppercase; color:var(--teal);
+  font-weight:700; margin-bottom:8px; }
+.step{ display:flex; gap:26px; padding:26px 0; border-bottom:1px solid var(--line); }
+.step:last-of-type{ border-bottom:none; }
+.step .num{ font-family:'Playfair Display',serif; font-weight:800; font-size:52px; color:var(--amber);
+  line-height:1; min-width:80px; }
+.step h2{ font-family:'Playfair Display',serif; font-weight:700; font-size:30px; margin-bottom:8px; }
+.step p{ font-size:21px; line-height:1.45; color:var(--muted); }
+
+.tiers{ display:flex; gap:18px; margin:44px 0 0; z-index:1; position:relative; }
+.tier{ flex:1; background:var(--surface); border:1px solid var(--line); border-radius:16px;
+  padding:26px 24px; }
+.tier.mid{ border-color:rgba(212,168,67,0.55); background:linear-gradient(160deg, rgba(212,168,67,0.14), rgba(212,168,67,0.03)); }
+.tier .name{ font-size:15px; letter-spacing:.2em; text-transform:uppercase; color:var(--teal);
+  font-weight:700; margin-bottom:10px; }
+.tier.mid .name{ color:var(--amber); }
+.tier .price{ font-family:'Playfair Display',serif; font-weight:800; font-size:44px; }
+.tier .price small{ font-family:'Inter',sans-serif; font-size:17px; font-weight:500; color:var(--muted); }
+.tier ul{ list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:10px; }
+.tier li{ font-size:18px; line-height:1.35; color:var(--warm); padding-left:22px; position:relative; }
+.tier li::before{ content:""; position:absolute; left:0; top:9px; width:9px; height:9px;
+  border-radius:50%; background:var(--amber); }
+
+.cta{ margin:44px 0 0; background:linear-gradient(120deg, rgba(212,168,67,0.16), rgba(212,168,67,0.04));
+  border:1px solid rgba(212,168,67,0.45); border-radius:16px; padding:30px 34px; z-index:1; position:relative; }
+.cta .k{ font-size:16px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber);
+  font-weight:700; margin-bottom:12px; }
+.cta .v{ font-family:'Playfair Display',serif; font-size:29px; line-height:1.35; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="logo">
+      <div class="stripes"><span></span><span></span><span></span></div>
+      <div class="word">Sahawat</div>
+    </div>
+    <div class="tag">Former Physician &middot; Content Engineer</div>
+  </div>
+
+  <div class="badge">The Content Engine</div>
+  <h1>Your expertise posts daily. <em>You approve it in minutes.</em></h1>
+  <p class="lede">A done-for-you LinkedIn content system for health coaches and clinicians.
+  I built it to rebuild my own presence after leaving medicine. Now it runs my account
+  every day, and it can run yours.</p>
+
+  <div class="proof">
+    <div class="k">Real posts, real numbers, from my own account</div>
+    <div class="card">
+      <div class="n">14,383<small>impressions</small></div>
+      <div class="q">&ldquo;My parents flew 13 hours to visit me in Canada. I spent 6 weeks
+      rehearsing how to say &lsquo;I&rsquo;m not a doctor here.&rsquo;&rdquo;</div>
+    </div>
+    <div class="card">
+      <div class="n">4,885<small>impressions</small></div>
+      <div class="q">&ldquo;I spent $18,000 and 11 years becoming a doctor.&rdquo;</div>
+    </div>
+    <div class="card">
+      <div class="n">4,576<small>impressions</small></div>
+      <div class="q">&ldquo;Eight years of medical school. Three years of residency in India.
+      Two failed CaRMS cycles in Canada.&rdquo;</div>
+    </div>
+    <p class="footnote">Account average is roughly 600 impressions per post. The system exists
+    to find and repeat what beats that.</p>
+  </div>
+
+  <div class="how">
+    <div class="k">How it works</div>
+    <div class="step">
+      <div class="num">1</div>
+      <div><h2>We capture your voice</h2>
+      <p>One interview about your work, your clients, and the stories only you can tell.
+      That becomes a voice profile the engine writes from. No templates, no borrowed opinions.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <div><h2>The engine drafts, a quality gate filters</h2>
+      <p>Every post is written in your voice, then scored against a strict quality gate
+      before you ever see it. Anything that reads like AI filler gets rewritten or killed.</p></div>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <div><h2>It learns from your numbers</h2>
+      <p>The system tracks what your audience responds to and feeds that back into the
+      next week's writing. You approve posts in a few minutes a day. That is your whole job.</p></div>
+    </div>
+  </div>
+
+  <div class="tiers">
+    <div class="tier">
+      <div class="name">Presence</div>
+      <div class="price">$300<small>/mo</small></div>
+      <ul><li>3 posts per week in your voice</li><li>Quality gate on every post</li><li>Monthly performance recap</li></ul>
+    </div>
+    <div class="tier mid">
+      <div class="name">Growth</div>
+      <div class="price">$500<small>/mo</small></div>
+      <ul><li>Daily posting, 5 days a week</li><li>Learning loop tuned to your analytics</li><li>Comment and reply suggestions</li></ul>
+    </div>
+    <div class="tier">
+      <div class="name">Authority</div>
+      <div class="price">$900<small>/mo</small></div>
+      <ul><li>Everything in Growth</li><li>Monthly strategy call</li><li>Lead capture wired to your offer</li></ul>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="k">Next step</div>
+    <div class="v">DM me on LinkedIn or write sahawat@crosswalkwisdom.com.
+    Fifteen minutes and I will show you exactly how it would write as you.</div>
+  </div>
+</body></html>

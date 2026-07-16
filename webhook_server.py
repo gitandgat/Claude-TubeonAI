@@ -95,6 +95,8 @@ async def encharge_subscribe(request_data: dict):
     # Check if this is a Fear Audit result (has primaryFear field)
     if "primaryFear" in request_data:
         return await handle_fear_audit_result(request_data, api_key)
+    elif request_data.get("source") == "glute":
+        return await handle_glute_signup(request_data, api_key)
     else:
         return await handle_challenge_signup(request_data, api_key)
 
@@ -156,6 +158,39 @@ async def handle_challenge_signup(data: dict, api_key: str) -> dict:
         "contact_id": signup.email,
         "email": signup.email,
         "sequence": "7-Day IMG Pivot Challenge",
+        "first_email_delay_minutes": 5,
+    }
+
+
+async def handle_glute_signup(data: dict, api_key: str) -> dict:
+    """Handle Glute Longevity landing page application (source == "glute").
+
+    Tags the lead `glute-longevity-applicant`, which triggers the 3-email
+    nurture built in setup-glute-encharge.py (received+intro / enrollment /
+    last-call). Reuses ChallengeSignup (firstName, email); the extra `source`
+    field is ignored by the model.
+    """
+    try:
+        signup = ChallengeSignup(**data)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=f"Invalid Glute signup data: {str(e)}")
+
+    logger.info(f"Glute Longevity application: {signup.email} ({signup.firstName})")
+
+    client = EnchargeClient(api_key)
+    client.add_subscriber(
+        email=signup.email,
+        name=signup.firstName,
+        tags=["glute-longevity-applicant"],
+    )
+
+    logger.info(f"Encharge: {signup.email} tagged glute-longevity-applicant, enrolled in Glute Longevity nurture")
+    return {
+        "success": True,
+        "message": f"Got it, {signup.firstName} — check your email for the 2-minute intro and your next steps.",
+        "contact_id": signup.email,
+        "email": signup.email,
+        "sequence": "Glute Longevity Application Nurture",
         "first_email_delay_minutes": 5,
     }
 

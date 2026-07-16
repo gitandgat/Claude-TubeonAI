@@ -11,7 +11,7 @@ import requests
 
 # ─── API CONFIG ───────────────────────────────────────────────────────────────
 BASE_URL = "https://zernio.com/api/v1"
-API_KEY  = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as API_KEY
 
 LINKEDIN_ACCOUNT_ID  = "690940455f6fbb9ef8323070"
 INSTAGRAM_ACCOUNT_ID = "690940655f6fbb9ef8323072"

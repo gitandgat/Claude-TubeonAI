@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viral Hooks — Crosswalk Wisdom</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap');
+    * { font-family: 'DM Sans', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+    body { background-color: #f5f0e8; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+const { useState, useRef, useEffect } = React;
+
+const BRAND_VOICE = `You are a creative content strategist for Crosswalk Wisdom — a wellness and storytelling brand built by Sahawat, a former physician from Thailand who left clinical medicine, worked as a crossing guard in Toronto, and now helps burned-out high achievers navigate identity and career transitions.
+
+Voice: Warm, grounded, a little playful. Elizabeth Gilbert's register — story-first, accessible, no jargon. Short sentences. Punchy and honest.
+
+Key story assets:
+- COVID night shifts as a physician
+- First week after leaving medicine
+- The crosswalk moment in a yellow vest holding a stop sign
+- The fear of disappointing his younger self
+
+Target audience: Burned-out high achievers (doctors, lawyers, engineers) who feel trapped in the identity they built to survive.
+
+Write in this voice. Be specific, avoid generic wellness platitudes. Use the story assets when they fit naturally.`;
+
+const PLATFORMS = {
+  all: 'All platforms (YouTube Shorts, TikTok, Instagram Reels)',
+  youtube: 'YouTube Shorts (vertical, 15-60s)',
+  tiktok: 'TikTok (9:16, 0-60s)',
+  instagram: 'Instagram Reels (9:16, 15-90s)'
+};
+
+const API_BASE = 'http://localhost:3001';
+
+function ViralHooksApp() {
+  const [mode, setMode] = useState('topic');
+  const [input, setInput] = useState('');
+  const [platform, setPlatform] = useState('all');
+  const [loading, setLoading] = useState(false);
+  const [loadingStage, setLoadingStage] = useState('');
+  const [stage1Results, setStage1Results] = useState(null);
+  const [stage2Results, setStage2Results] = useState(null);
+  const [videoScript, setVideoScript] = useState('');
+  const [generateScript, setGenerateScript] = useState(false);
+  const [error, setError] = useState('');
+  const resultsRef = useRef(null);
+
+  const callApi = async (prompt, maxTokens = 1000) => {
+    try {
+      const response = await fetch(`${API_BASE}/api/hooks`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt,
+          maxTokens,
+          system: BRAND_VOICE
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.text || '';
+    } catch (err) {
+      setError(`API Error: ${err.message}`);
+      return null;
+    }
+  };
+
+  const parseJsonResponse = (text) => {
+    try {
+      const jsonMatch = text.match(/\[[\s\S]*\]|\{[\s\S]*\}/);
+      if (!jsonMatch) throw new Error('No JSON found');
+      return JSON.parse(jsonMatch[0]);
+    } catch (err) {
+      setError(`Parse error: ${err.message}`);
+      return null;
+    }
+  };
+
+  const handleTopicMode = async () => {
+    if (!input.trim()) {
+      setError('Please enter a topic');
+      return;
+    }
+
+    setError('');
+    setLoading(true);
+    setStage1Results(null);
+    setStage2Results(null);
+    setVideoScript('');
+
+    setLoadingStage('Researching patterns...');
+    const stage1Prompt = `Research 5 viral hook structures from wellness/identity/career creators related to: "${input}"
+Return ONLY valid JSON array: [{"pattern":"...","example":"...","why":"..."}]`;
+
+    const stage1Text = await callApi(stage1Prompt);
+    if (!stage1Text) { setLoading(false); return; }
+    const stage1Data = parseJsonResponse(stage1Text);
+    if (!stage1Data) { setLoading(false); return; }
+    setStage1Results(stage1Data);
+
+    setLoadingStage('Repurposing into Crosswalk Wisdom voice...');
+    const stage2Prompt = `Rewrite these patterns in Crosswalk Wisdom voice:
+${stage1Data.map((h, i) => `${i+1}. ${h.pattern}`).join('\n')}
+Topic: "${input}"
+Return ONLY valid JSON array: ["Hook1","Hook2","Hook3","Hook4","Hook5"]`;
+
+    const stage2Text = await callApi(stage2Prompt);
+    if (!stage2Text) { setLoading(false); return; }
+    const stage2Data = parseJsonResponse(stage2Text);
+    if (!stage2Data) { setLoading(false); return; }
+    setStage2Results(stage2Data);
+
+    if (generateScript && stage2Data[0]) {
+      setLoadingStage('Generating video script...');
+      const scriptPrompt = `Hook: "${stage2Data[0]}"
+Write a 60-second script with [Hook 0-3s], [Story 3-30s], [Insight 30-45s], [CTA 45-60s]. Max 180 words.`;
+      const scriptText = await callApi(scriptPrompt, 500);
+      if (scriptText) setVideoScript(scriptText);
+    }
+
+    setLoading(false);
+    setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  const resetForm = () => {
+    setInput('');
+    setStage1Results(null);
+    setStage2Results(null);
+    setVideoScript('');
+    setError('');
+  };
+
+  return React.createElement('div', { style: { minHeight: '100vh', padding: '1.5rem' } },
+    React.createElement('div', { style: { maxWidth: '768px', margin: '0 auto' } },
+      React.createElement('div', { style: { marginBottom: '2rem' } },
+        React.createElement('h1', { style: { fontSize: '2.25rem', marginBottom: '0.5rem', color: '#1a1a1a' } }, 'Viral Hooks'),
+        React.createElement('p', { style: { fontSize: '0.875rem', color: '#666' } }, 'Research & repurpose. Crosswalk Wisdom voice.')
+      ),
+
+      React.createElement('div', { style: { display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' } },
+        React.createElement('button', {
+          onClick: () => { setMode('topic'); resetForm(); },
+          style: {
+            padding: '0.5rem 1rem',
+            backgroundColor: mode === 'topic' ? '#b8860b' : 'white',
+            color: mode === 'topic' ? 'white' : '#1a1a1a',
+            border: mode === 'topic' ? 'none' : '2px solid #ccc',
+            borderRadius: '0.5rem',
+            fontWeight: '500',
+            cursor: 'pointer'
+          }
+        }, 'Topic Mode'),
+        React.createElement('button', {
+          onClick: () => { setMode('paste'); resetForm(); },
+          style: {
+            padding: '0.5rem 1rem',
+            backgroundColor: mode === 'paste' ? '#b8860b' : 'white',
+            color: mode === 'paste' ? 'white' : '#1a1a1a',
+            border: mode === 'paste' ? 'none' : '2px solid #ccc',
+            borderRadius: '0.5rem',
+            fontWeight: '500',
+            cursor: 'pointer'
+          }
+        }, 'Paste Hook')
+      ),
+
+      React.createElement('div', { style: { backgroundColor: 'white', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '1.5rem' } },
+        React.createElement('label', { style: { display: 'block', fontWeight: '500', marginBottom: '0.5rem', color: '#1a1a1a' } },
+          mode === 'topic' ? 'Enter a topic or theme' : 'Paste a hook or transcript'
+        ),
+        React.createElement('textarea', {
+          value: input,
+          onChange: (e) => setInput(e.target.value),
+          placeholder: mode === 'topic' ? 'E.g., Identity transition, fear of failure...' : 'Paste here...',
+          style: {
+            width: '100%',
+            height: '6rem',
+            padding: '0.75rem',
+            border: '1px solid #ddd',
+            borderRadius: '0.5rem',
+            fontFamily: 'inherit',
+            color: '#1a1a1a',
+            fontSize: '1rem'
+          }
+        })
+      ),
+
+      React.createElement('div', { style: { backgroundColor: 'white', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '1.5rem' } },
+        React.createElement('label', { style: { display: 'block', fontWeight: '500', marginBottom: '0.75rem', color: '#1a1a1a' } }, 'Platform Focus'),
+        React.createElement('select', {
+          value: platform,
+          onChange: (e) => setPlatform(e.target.value),
+          style: { width: '100%', padding: '0.5rem', border: '1px solid #ddd', borderRadius: '0.5rem', color: '#1a1a1a' }
+        },
+          Object.entries(PLATFORMS).map(([key, label]) =>
+            React.createElement('option', { key, value: key }, label)
+          )
+        )
+      ),
+
+      React.createElement('div', { style: { backgroundColor: 'white', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '1.5rem' } },
+        React.createElement('label', { style: { display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', color: '#1a1a1a' } },
+          React.createElement('input', {
+            type: 'checkbox',
+            checked: generateScript,
+            onChange: (e) => setGenerateScript(e.target.checked),
+            style: { width: '1rem', height: '1rem' }
+          }),
+          'Generate 60-second video script from first hook'
+        )
+      ),
+
+      error && React.createElement('div', { style: { padding: '1rem', backgroundColor: '#fee', border: '1px solid #fcc', borderRadius: '0.5rem', marginBottom: '1.5rem', color: '#c53030' } },
+        React.createElement('p', { style: { fontWeight: '500', marginBottom: '0.25rem' } }, 'Error'),
+        React.createElement('p', { style: { fontSize: '0.875rem' } }, error)
+      ),
+
+      loading && React.createElement('div', { style: { padding: '1.5rem', backgroundColor: 'white', borderRadius: '0.5rem', textAlign: 'center', marginBottom: '1.5rem' } },
+        React.createElement('div', { style: { display: 'inline-block', width: '2rem', height: '2rem', border: '4px solid #ddd', borderTopColor: '#b8860b', borderRadius: '50%', animation: 'spin 1s linear infinite', marginBottom: '1rem' } }),
+        React.createElement('p', { style: { color: '#1a1a1a' } }, loadingStage)
+      ),
+
+      !loading && React.createElement('button', {
+        onClick: mode === 'topic' ? handleTopicMode : handleTopicMode,
+        disabled: !input.trim(),
+        style: {
+          width: '100%',
+          padding: '0.75rem 1.5rem',
+          backgroundColor: '#b8860b',
+          color: 'white',
+          fontWeight: '700',
+          borderRadius: '0.5rem',
+          border: 'none',
+          cursor: 'pointer',
+          marginBottom: '1.5rem',
+          opacity: !input.trim() ? '0.5' : '1'
+        }
+      }, mode === 'topic' ? 'Research Hooks' : 'Analyze & Repurpose'),
+
+      (stage1Results || stage2Results) && React.createElement('div', { ref: resultsRef, style: { marginTop: '2rem' } },
+        stage1Results && React.createElement('div', { style: { backgroundColor: 'white', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '1.5rem' } },
+          React.createElement('h2', { style: { fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1a1a1a' } }, 'Viral Patterns Found'),
+          stage1Results.map((item, idx) =>
+            React.createElement('div', { key: idx, style: { padding: '1rem', border: '1px solid #ddd', borderRadius: '0.5rem', marginBottom: '1rem' } },
+              React.createElement('h3', { style: { fontWeight: '600', marginBottom: '0.5rem', color: '#b8860b' } }, item.pattern),
+              React.createElement('p', { style: { fontSize: '0.875rem', marginBottom: '0.5rem', color: '#1a1a1a' } },
+                React.createElement('span', { style: { fontWeight: '500' } }, 'Example: '), item.example
+              ),
+              React.createElement('p', { style: { fontSize: '0.875rem', color: '#666' } },
+                React.createElement('span', { style: { fontWeight: '500' } }, 'Why: '), item.why
+              )
+            )
+          )
+        ),
+
+        stage2Results && React.createElement('div', { style: { backgroundColor: 'white', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '1.5rem' } },
+          React.createElement('h2', { style: { fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1a1a1a' } }, 'Repurposed Hooks'),
+          stage2Results.map((hook, idx) =>
+            React.createElement('div', { key: idx, style: { display: 'flex', gap: '0.75rem', padding: '0.75rem', backgroundColor: '#f9f9f9', borderRadius: '0.5rem', marginBottom: '0.75rem', border: '1px solid #ddd', alignItems: 'flex-start' } },
+              React.createElement('span', { style: { fontWeight: '600', fontSize: '0.875rem', color: '#b8860b', marginTop: '0.25rem', minWidth: '1.5rem' } }, idx + 1),
+              React.createElement('p', { style: { flex: 1, color: '#1a1a1a', margin: 0 } }, hook),
+              React.createElement('button', {
+                onClick: () => copyToClipboard(hook),
+                style: { padding: '0.25rem 0.5rem', fontSize: '0.75rem', fontWeight: '500', border: '1px solid #ddd', backgroundColor: 'white', borderRadius: '0.5rem', cursor: 'pointer', whiteSpace: 'nowrap' }
+              }, 'Copy')
+            )
+          )
+        ),
+
+        videoScript && React.createElement('div', { style: { backgroundColor: 'white', padding: '1.5rem', borderRadius: '0.5rem', marginBottom: '1.5rem' } },
+          React.createElement('h2', { style: { fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '1rem', color: '#1a1a1a' } }, '60-Second Video Script'),
+          React.createElement('div', { style: { padding: '1rem', backgroundColor: '#f9f9f9', borderRadius: '0.5rem', border: '1px solid #ddd', marginBottom: '1rem' } },
+            React.createElement('p', { style: { color: '#1a1a1a', fontSize: '0.875rem', whiteSpace: 'pre-wrap', margin: 0 } }, videoScript)
+          ),
+          React.createElement('button', {
+            onClick: () => copyToClipboard(videoScript),
+            style: { padding: '0.5rem 1rem', fontSize: '0.875rem', fontWeight: '500', border: '2px solid #b8860b', color: '#b8860b', backgroundColor: 'white', borderRadius: '0.5rem', cursor: 'pointer' }
+          }, 'Copy Script')
+        ),
+
+        React.createElement('button', {
+          onClick: resetForm,
+          style: { width: '100%', padding: '0.75rem 1rem', fontWeight: '700', border: '2px solid #b8860b', color: '#b8860b', backgroundColor: 'white', borderRadius: '0.5rem', cursor: 'pointer' }
+        }, 'Start Over')
+      )
+    ),
+
+    React.createElement('style', null, `
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    `)
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(ViralHooksApp));
+  </script>
+</body>
+</html>

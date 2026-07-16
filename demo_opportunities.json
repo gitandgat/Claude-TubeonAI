@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-06-08T07:24:26.116605",
+  "mode": "DEMO",
+  "note": "This demo uses realistic Reddit patterns. Real discovery scans live Reddit.",
+  "total_opportunities": 10,
+  "top_opportunities": [
+    {
+      "rank": 1,
+      "title": "My YouTube channel gets 10K views but I have 200 subscribers. How do I convert viewers to followers?",
+      "score": 384,
+      "services": [
+        "content_audit",
+        "brand_positioning"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    },
+    {
+      "rank": 2,
+      "title": "How do creators turn YouTube videos into TikTok/Instagram clips without spending 8 hours editing?",
+      "score": 348,
+      "services": [
+        "youtube_repurposing"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    },
+    {
+      "rank": 3,
+      "title": "I'm an expert in my field but I'm invisible online. How do I position myself as THE go-to person?",
+      "score": 329,
+      "services": [
+        "brand_positioning"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    },
+    {
+      "rank": 4,
+      "title": "Want to build a TikTok/Reels strategy but have zero video editing skills",
+      "score": 268,
+      "services": [
+        "video_templates"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    },
+    {
+      "rank": 5,
+      "title": "Been posting LinkedIn content for 3 months. Engagement sucks. What am I doing wrong?",
+      "score": 215,
+      "services": [
+        "content_audit"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    },
+    {
+      "rank": 6,
+      "title": "Day traders: How do you catch Minervini setups without staring at charts all day?",
+      "score": 193,
+      "services": [
+        "trading_signals"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    },
+    {
+      "rank": 7,
+      "title": "I'm an AI founder with 2K LinkedIn followers. Want 10K by year end but content writing kills my productivity",
+      "score": 192,
+      "services": [
+        "linkedin_content"
+      ],
+      "problem": "Needs your service",
+      "willingness_to_pay": "See price range",
+      "first_message": "Message them"
+    }
+  ]
+}

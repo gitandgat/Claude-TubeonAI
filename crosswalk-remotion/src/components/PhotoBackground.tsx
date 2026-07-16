@@ -6,11 +6,15 @@ import React from 'react';
 import { Img, useCurrentFrame, interpolate, Easing } from 'remotion';
 import { theme } from '../theme';
 
+type Motion = 'zoom-in' | 'zoom-out' | 'pan-left' | 'pan-right';
+
 interface Props {
   src: string;           // e.g. staticFile('assets/bg-carousel-md-to-crossing-guard.jpg')
   overlayOpacity?: number; // 0–1, default 0.55
   overlayColor?: string;   // default charcoal
-  parallax?: boolean;      // subtle Ken Burns pan, default true
+  parallax?: boolean;      // subtle Ken Burns motion, default true
+  motion?: Motion;         // motion style, default 'zoom-in' (matches legacy behavior)
+  durationInFrames?: number; // easing window for the motion, default 600 (legacy default)
 }
 
 export const PhotoBackground: React.FC<Props> = ({
@@ -18,15 +22,46 @@ export const PhotoBackground: React.FC<Props> = ({
   overlayOpacity = 0.55,
   overlayColor = theme.colors.charcoal,
   parallax = true,
+  motion = 'zoom-in',
+  durationInFrames = 600,
 }) => {
   const frame = useCurrentFrame();
+  const easing = Easing.out(Easing.quad);
 
-  const scale = parallax
-    ? interpolate(frame, [0, 600], [1.0, 1.06], {
-        extrapolateRight: 'clamp',
-        easing: Easing.out(Easing.quad),
-      })
-    : 1;
+  let scale = 1;
+  let panPercent = 0;
+
+  if (parallax) {
+    switch (motion) {
+      case 'zoom-out':
+        scale = interpolate(frame, [0, durationInFrames], [1.08, 1.0], {
+          extrapolateRight: 'clamp',
+          easing,
+        });
+        break;
+      case 'pan-left':
+        scale = 1.1;
+        panPercent = interpolate(frame, [0, durationInFrames], [2, -2], {
+          extrapolateRight: 'clamp',
+          easing,
+        });
+        break;
+      case 'pan-right':
+        scale = 1.1;
+        panPercent = interpolate(frame, [0, durationInFrames], [-2, 2], {
+          extrapolateRight: 'clamp',
+          easing,
+        });
+        break;
+      case 'zoom-in':
+      default:
+        scale = interpolate(frame, [0, durationInFrames], [1.0, 1.06], {
+          extrapolateRight: 'clamp',
+          easing,
+        });
+        break;
+    }
+  }
 
   return (
     <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
@@ -40,7 +75,7 @@ export const PhotoBackground: React.FC<Props> = ({
           height: '100%',
           objectFit: 'cover',
           objectPosition: 'center',
-          transform: `scale(${scale})`,
+          transform: `translateX(${panPercent}%) scale(${scale})`,
           transformOrigin: 'center center',
         }}
       />

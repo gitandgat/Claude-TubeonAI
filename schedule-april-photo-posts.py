@@ -8,7 +8,7 @@ Add a photo-only post for every April date (skip Apr 1, 8, 17 — already have i
 import os, requests, time
 
 BASE    = "https://zernio.com/api/v1"
-API_KEY = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as API_KEY
 HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
 LINKEDIN_ID  = "690940455f6fbb9ef8323070"
