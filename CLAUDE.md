@@ -23,6 +23,17 @@ Requires a `.env` file at the repo root. Key variables (see `.env.example` for t
 
 **Never hardcode the Zernio key** — import it from `zernio_key.py` (`from zernio_key import ZERNIO_API_KEY`). Every scheduling script in this repo follows this pattern; it's the one convention shared across systems.
 
+## Secrets policy
+
+This repo is **public**. All API keys must come from `.env` via `os.getenv()`/`os.environ` (or the centralized `zernio_key.py` for Zernio) — never a literal string in source. A Jul 2026 incident found 4 keys (Zernio, Anthropic, OpenAI, Freepik) hardcoded and committed in early scripts; all were purged from git history via `git filter-repo` and force-pushed, and all 4 were confirmed dead before the cleanup (no live compromise).
+
+Guardrails now in place:
+- **`git config core.hooksPath .githooks`** is set on this clone — `.githooks/pre-commit` runs `gitleaks protect --staged` and blocks any commit containing a likely secret. If you clone this repo fresh, run that config command once (`brew install gitleaks` first if needed).
+- **`.gitleaks.toml`** at repo root allowlists the 2 known false positives (LinkedIn docs placeholder, the `whisper-large-v3` model name) — extend it rather than disabling the hook if a new false positive shows up.
+- **GitHub secret scanning + push protection** are enabled on the repo as a second line of defense.
+
+If a hook blocks a commit and it's a real secret: remove it, use `.env` instead, and if the key was ever pushed before, rotate it (don't assume history rewrite alone is enough once something's been public).
+
 ## Python pipeline commands
 
 ```bash
