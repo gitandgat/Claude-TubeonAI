@@ -71,6 +71,13 @@ def get_field(p: dict, key: str):
     return p.get(key) or (p.get("person") or {}).get(key)
 
 
+def is_excluded(email: str) -> bool:
+    """Own/test address? Plus-aliases (totomakus+test@...) count as the base."""
+    local, _, domain = email.partition("@")
+    canonical = f"{local.split('+', 1)[0]}@{domain}"
+    return canonical in EXCLUDED_EMAILS or domain in EXCLUDED_DOMAINS
+
+
 def fetch_recent_people(hours: int) -> dict[str, dict]:
     cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
     found: dict[str, dict] = {}
@@ -86,9 +93,7 @@ def fetch_recent_people(hours: int) -> dict[str, dict]:
             break
         for p in batch:
             email = (get_field(p, "email") or "").strip().lower()
-            if not email or email in EXCLUDED_EMAILS:
-                continue
-            if email.rsplit("@", 1)[-1] in EXCLUDED_DOMAINS:
+            if not email or is_excluded(email):
                 continue
             seen = max(p.get("createdAt") or "", p.get("lastActivity") or "")
             if seen < cutoff:

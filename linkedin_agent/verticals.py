@@ -238,6 +238,32 @@ FITNESS = Vertical(
         "injury-free. Grab it here: https://www.crosswalkwisdom.com/train-like-a-clinician"
     ),
     cta_fallback="Follow along if a clinical take on training is useful to you.",
+    # Movement/pain and glute themes route to the paid funnels instead of the
+    # evergreen guide — these posts pre-qualify the exact buyer each funnel wants.
+    first_comment_overrides={
+        **{
+            theme: (
+                "I built MoveAssess for exactly this — a clinical movement assessment "
+                "you do from home that shows what to fix first, before it becomes an "
+                "injury: https://physical-assessment-app.vercel.app"
+            )
+            for theme in (
+                "the squat tweak that quietly fixed someone's low-back pain",
+                "the difference between sore and injured, from a clinician's eyes",
+            )
+        },
+        **{
+            theme: (
+                "I turned this into a full program, Glute Longevity — clinically "
+                "grounded lower-body strength for the decades ahead. Start here: "
+                "https://glute.crosswalkwisdom.com"
+            )
+            for theme in (
+                "why glute strength changes how a person moves through the world",
+                "why you program lower body the way you do",
+            )
+        },
+    },
 )
 
 MIND = Vertical(
@@ -302,6 +328,19 @@ HEALTH = Vertical(
         "lost. Grab it here: https://www.crosswalkwisdom.com/marginal-decade"
     ),
     cta_fallback="Follow for clinically-grounded, no-hype health writing.",
+    # Longevity-through-strength themes route to the Glute Longevity funnel —
+    # the reader those posts attract is that program's exact buyer.
+    first_comment_overrides={
+        theme: (
+            "This is why I built Glute Longevity — a clinically grounded "
+            "lower-body strength program for the decades ahead. Start here: "
+            "https://glute.crosswalkwisdom.com"
+        )
+        for theme in (
+            "strength training as the most underrated health intervention",
+            "the difference between living longer and living well",
+        )
+    },
 )
 
 
