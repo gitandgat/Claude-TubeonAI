@@ -36,16 +36,19 @@ CATEGORIES = [
         "category": "healthcare_pt",
         "query": "personal trainer health coach wellness coordinator fitness instructor community health Ottawa Ontario jobs 2025 2026",
         "extra_query": "\"personal trainer\" OR \"health coach\" OR \"wellness\" Ottawa Ontario job posting",
+        "ats_query": "\"personal trainer\" OR \"health coach\" OR \"wellness coordinator\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "health_promotion",
         "query": "health promotion specialist health educator public health educator community health promoter wellness program coordinator Ottawa Public Health CHEO community health centre Ottawa Ontario jobs 2025 2026",
         "extra_query": "\"health promotion\" OR \"health educator\" OR \"health promotion specialist\" Ottawa Ontario Canadian Cancer Society OR \"Heart and Stroke\" OR \"Diabetes Canada\" OR university jobs hiring",
+        "ats_query": "\"health promotion\" OR \"health educator\" OR \"community health\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "outreach_sales",
         "query": "outreach coordinator community outreach health sales representative business development community liaison Ottawa Ontario jobs 2025 2026",
         "extra_query": "\"outreach\" OR \"sales representative\" Ottawa Ontario healthcare community job",
+        "ats_query": "\"outreach coordinator\" OR \"business development\" OR \"sales representative\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "goodlife",
@@ -57,26 +60,31 @@ CATEGORIES = [
         "category": "business_startup",
         "query": "business operations coordinator OR administrative coordinator OR junior business analyst OR entry-level business development OR startup operations associate jobs Ottawa Ontario Canada OR remote Canada 2025 2026",
         "extra_query": "\"operations coordinator\" OR \"business development\" OR \"startup\" jobs Ottawa OR remote Canada hiring",
+        "ats_query": "\"operations coordinator\" OR \"business development\" OR \"startup\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "admin_office",
         "query": "administrative assistant OR executive assistant OR office administrator OR virtual assistant OR data entry clerk OR medical office assistant jobs Ottawa Ontario Canada OR remote Canada 2025 2026",
         "extra_query": "\"administrative assistant\" OR \"virtual assistant\" OR \"data entry\" Ottawa OR remote Canada job posting hiring",
+        "ats_query": "\"administrative assistant\" OR \"executive assistant\" OR \"virtual assistant\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "customer_service",
         "query": "customer service representative OR client support specialist OR customer success associate OR call centre representative jobs Ottawa Ontario Canada OR remote Canada 2025 2026",
         "extra_query": "\"customer service\" OR \"customer support\" Ottawa OR remote Canada hiring day shift",
+        "ats_query": "\"customer service representative\" OR \"customer support\" OR \"customer success\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "sustainability_nonprofit",
         "query": "sustainability coordinator OR environmental program coordinator OR nonprofit program coordinator OR community engagement coordinator OR volunteer coordinator jobs Ottawa Ontario Canada OR remote Canada 2025 2026",
         "extra_query": "\"sustainability\" OR \"environmental\" OR \"nonprofit\" OR \"community engagement\" Ottawa OR remote Canada hiring coordinator",
+        "ats_query": "\"sustainability coordinator\" OR \"nonprofit program coordinator\" OR \"community engagement\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
     {
         "category": "general_labor",
         "query": "warehouse associate OR general labourer OR delivery driver OR retail associate OR landscaping labourer jobs Ottawa Ontario Canada 2025 2026 day shift",
         "extra_query": "\"warehouse\" OR \"general labour\" OR \"retail associate\" Ottawa Ontario day shift hiring",
+        "ats_query": "\"warehouse associate\" OR \"general labourer\" OR \"retail associate\" (site:boards.greenhouse.io OR site:jobs.lever.co)",
     },
 ]
 
@@ -197,6 +205,20 @@ class JobSources:
                     extra_raw = []
                 if extra_raw:
                     structured += _structure_jobs(ollama, extra_raw, cat["extra_query"])
+
+            # ATS-biased search, run every time (not just on thin results): jobs
+            # hosted on Greenhouse/Lever are the only ones web_applier.py can
+            # reliably auto-submit (known field selectors), so deliberately
+            # over-sample them to raise the auto-submit rate vs. generic sites.
+            if cat.get("ats_query"):
+                try:
+                    ats_raw = serper.search(cat["ats_query"])
+                except SerperCreditsExhausted as e:
+                    print(f"[job_sources] {e}")
+                    self.credits_exhausted = True
+                    ats_raw = []
+                if ats_raw:
+                    structured += _structure_jobs(ollama, ats_raw, cat["ats_query"])
 
             for item in structured:
                 title = str(item.get("title", "")).strip()
