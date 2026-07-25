@@ -1,0 +1,18 @@
+# Keep only the pipeline code under version control.
+# Everything below is heavy (1.8GB SadTalker + weights), generated, or personal.
+
+# cloned third-party engine + ~1.5GB checkpoints (see README)
+SadTalker/
+# facexlib/GFPGAN weights (auto-downloaded)
+gfpgan/
+# stray model dir
+checkpoints/
+# rendered avatar mp4s + cached voiceovers
+out/
+# personal source photos (selfie / passport) — never commit
+faces/
+results/
+__pycache__/
+*.pyc
+*.wav
+*.mp4
