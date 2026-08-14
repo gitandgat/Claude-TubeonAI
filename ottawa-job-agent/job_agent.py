@@ -21,7 +21,9 @@ if missing:
     print(f"[job_agent] Missing env vars: {', '.join(missing)}")
     sys.exit(1)
 
+from agent_config import is_review_only
 from autofill_sheet import build_autofill_sheet
+from ats_boards import AtsBoardsSource, discover_boards_from_jobs
 from content_generator import score_fit, tailor_resume, write_cover_letter, write_email_subject
 from email_sender import send_application, send_digest
 from job_sources import JobSources
@@ -35,7 +37,6 @@ import tracker
 from run_history import record_run
 
 SEEN_FILE = Path(__file__).parent / "seen_jobs.json"
-LOG_FILE = Path(__file__).parent / "job_agent.log"
 
 # Minimum fit score to act on a job (0–10)
 MIN_SCORE = 5
@@ -74,8 +75,6 @@ def log(msg: str):
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     line = f"[{ts}] {msg}"
     print(line)
-    with open(LOG_FILE, "a") as f:
-        f.write(line + "\n")
 
 
 def load_seen() -> dict:
@@ -98,6 +97,9 @@ def run():
 
     alerts = []
 
+    if is_review_only():
+        log("  ⚠ REVIEW-ONLY mode active — forms will be filled but not submitted (toggle: python3 agent_config.py off)")
+
     log("Fetching jobs from all sources...")
     sources = JobSources()
     all_jobs = sources.fetch_all()
@@ -106,6 +108,20 @@ def run():
         msg = "Serper search credits ran out mid-run — some categories were skipped today. Top up at serper.dev or wait for next month's allotment."
         log(f"  ⚠ {msg}")
         alerts.append(msg)
+
+    # Direct-ATS boards (Greenhouse/Lever public JSON APIs). Grows its own token
+    # registry from today's web-search hits, then polls every known token directly
+    # for the full, exact, structured listing — no LLM parsing, no extra Serper
+    # cost. Wrapped like Job Bank so an outage here can't take down the run.
+    try:
+        new_boards = discover_boards_from_jobs(all_jobs)
+        if new_boards:
+            log(f"  ATS boards: discovered {new_boards} new board(s)")
+        ats_jobs = AtsBoardsSource().fetch_all(skip_ids=set(seen))
+        log(f"  ATS Direct: {len(ats_jobs)} jobs")
+        all_jobs = all_jobs + ats_jobs
+    except Exception as e:
+        log(f"  ATS boards source failed (continuing without it): {e}")
 
     # Job Bank (real government listings, no bot-block). Wrapped so an outage here
     # never takes down the daily run — web search still carries it.
@@ -171,6 +187,7 @@ def run():
                 "title": job["title"],
                 "company": job["company"],
             }
+            save_seen(seen)
             skipped += 1
             continue
 
@@ -191,7 +208,11 @@ def run():
         if job.get("no_auto_apply") and not jobbank_attemptable:
             reason = job.get("no_apply_reason", "manual application required")
             log(f"  Not auto-appliable — {reason}")
-            notify.append({**job, "score": score, "rare_category": is_special})
+            notify.append({
+                **job, "score": score, "rare_category": is_special,
+                "next_step": "Open the posting and apply directly — no resume or cover "
+                             "letter was generated for this one.",
+            })
             seen[job["id"]] = {
                 "status": "manual_only",
                 "score": score,
@@ -199,6 +220,7 @@ def run():
                 "title": job["title"],
                 "company": job["company"],
             }
+            save_seen(seen)
             continue
 
         # Generate cover letter + resume — but skip the per-job Haiku tailoring
@@ -262,11 +284,16 @@ def run():
                     "company": job["company"],
                     "applied_to": job["apply_email"],
                 }
+                save_seen(seen)
                 tracker.record_application(job_with_content, job["apply_email"])
                 applied.append(job_with_content)
             else:
                 log(f"  ✗ Failed to send to {job['apply_email']}")
                 job_with_content["no_apply_reason"] = "application email failed to send"
+                job_with_content["next_step"] = (
+                    f"Copy the cover letter below and email it yourself to {job['apply_email']} "
+                    "— resume attached to this email."
+                )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
                     "status": "notify_send_failed",
@@ -275,6 +302,7 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
         elif jobbank_attemptable:
             # Direct Apply on Job Bank itself, using the saved session — never
             # Sahawat's password (see jobbank_session.py's docstring).
@@ -293,6 +321,7 @@ def run():
                     "company": job["company"],
                     "applied_via": "jobbank_direct",
                 }
+                save_seen(seen)
                 tracker.record_application(job_with_content, "jobbank_direct")
                 applied.append(job_with_content)
             elif result["status"] == "submit_unconfirmed":
@@ -300,6 +329,10 @@ def run():
                 job_with_content["no_apply_reason"] = (
                     "Direct Apply was clicked on Job Bank, but the confirmation text didn't "
                     "appear afterward — it may or may not have gone through, check manually"
+                )
+                job_with_content["next_step"] = (
+                    "Check your Job Bank account's Applications tab — if this posting isn't "
+                    "listed there, open it and click Direct Apply again."
                 )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
@@ -309,12 +342,16 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
             else:
                 # "blocked", "failed", or the session expired mid-run ("no_session") —
                 # fall back to the same honest FYI path as any other manual_only job.
                 log(f"  ~ Job Bank Direct Apply couldn't be completed ({result['status']}) — falling back to FYI")
                 job_with_content["no_apply_reason"] = job.get(
                     "no_apply_reason", "Job Bank Direct Apply — requires your Job Bank sign-in"
+                )
+                job_with_content["next_step"] = (
+                    "Open the posting on Job Bank, sign in, and click Direct Apply yourself."
                 )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
@@ -324,6 +361,7 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
         else:
             # No apply-email — attempt the company's website application form
             log("  Attempting website auto-apply...")
@@ -341,13 +379,37 @@ def run():
                     "company": job["company"],
                     "applied_via": result["ats"],
                 }
+                save_seen(seen)
                 tracker.record_application(job_with_content, result["ats"])
                 applied.append(job_with_content)
+            elif result["status"] == "captcha_gate":
+                log(f"  ✋ Captcha gate ({result['ats']}) — form fully pre-filled, needs one human click")
+                job_with_content["no_apply_reason"] = (
+                    "everything is filled in — the site demands a captcha, which only a human "
+                    "may answer. Open the link, solve it, click Submit: ~10 seconds"
+                )
+                job_with_content["next_step"] = (
+                    "Open the posting — the form is already filled in. Solve the captcha and "
+                    "click Submit: about 10 seconds."
+                )
+                notify.append(job_with_content)
+                seen[job["id"]] = {
+                    "status": "captcha_gate",
+                    "score": score,
+                    "date": str(datetime.now().date()),
+                    "title": job["title"],
+                    "company": job["company"],
+                }
+                save_seen(seen)
             elif result["status"] == "submit_unconfirmed":
                 log(f"  ~ Form filled + Submit clicked ({result['ats']}) — no confirmation text appeared")
                 job_with_content["no_apply_reason"] = (
                     "form filled and Submit clicked, but the site showed no confirmation — "
                     "it may or may not have gone through"
+                )
+                job_with_content["next_step"] = (
+                    "Open the posting and check whether the form still shows your info "
+                    "filled in — if so, click Submit again to be sure."
                 )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
@@ -357,11 +419,54 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
+            elif result["status"] == "prefilled_pending_review" and result.get("found_email"):
+                # The form wasn't submittable, but the posting page names an
+                # application inbox — the captcha-free email lane can finish
+                # the job fully autonomously instead.
+                job["apply_email"] = result["found_email"]
+                subject = write_email_subject(job)
+                sent = send_application(job, cover_letter, resume_pdf, subject)
+                if sent:
+                    log(f"  ✓ Application emailed to {result['found_email']} (address found on posting page)")
+                    seen[job["id"]] = {
+                        "status": "applied",
+                        "score": score,
+                        "date": str(datetime.now().date()),
+                        "title": job["title"],
+                        "company": job["company"],
+                        "applied_to": result["found_email"],
+                    }
+                    save_seen(seen)
+                    tracker.record_application(job_with_content, result["found_email"])
+                    applied.append(job_with_content)
+                else:
+                    log(f"  ✗ Email to harvested address {result['found_email']} failed to send")
+                    job_with_content["no_apply_reason"] = (
+                        f"posting page names {result['found_email']} but the email failed to send"
+                    )
+                    job_with_content["next_step"] = (
+                        f"Copy the cover letter below and email it yourself to "
+                        f"{result['found_email']} — resume attached to this email."
+                    )
+                    notify.append(job_with_content)
+                    seen[job["id"]] = {
+                        "status": "notify_send_failed",
+                        "score": score,
+                        "date": str(datetime.now().date()),
+                        "title": job["title"],
+                        "company": job["company"],
+                    }
+                    save_seen(seen)
             elif result["status"] == "prefilled_pending_review":
                 log(f"  ~ Form pre-filled ({result['ats']}) — no resume-upload field, not safe to auto-submit")
                 job_with_content["no_apply_reason"] = (
                     "non-standard form without a resume-upload field — auto-submitting "
                     "couldn't be verified as a real application"
+                )
+                job_with_content["next_step"] = (
+                    "Open the posting, upload the attached resume, and use the attached "
+                    "autofill sheet to copy-paste your info into the form fields."
                 )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
@@ -371,12 +476,17 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
             elif result["status"] == "blocked":
                 log(f"  ✗ Posting URL is a job-board bot-check ({result['ats']}) — nothing could be filled")
                 job_with_content["web_apply_blocked"] = True
                 job_with_content["no_apply_reason"] = (
                     "job-board bot-check page (Glassdoor/ZipRecruiter/Indeed) — "
                     "no real application form reachable by automation"
+                )
+                job_with_content["next_step"] = (
+                    "Open the posting directly in your browser and apply there — the "
+                    "attached resume and autofill sheet cover the rest."
                 )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
@@ -386,9 +496,14 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
             else:
                 log("  ✗ Website auto-apply failed")
                 job_with_content["no_apply_reason"] = "page or form automation failed"
+                job_with_content["next_step"] = (
+                    "Open the posting and apply directly — the attached resume and "
+                    "autofill sheet cover the rest."
+                )
                 notify.append(job_with_content)
                 seen[job["id"]] = {
                     "status": "notified",
@@ -397,6 +512,7 @@ def run():
                     "title": job["title"],
                     "company": job["company"],
                 }
+                save_seen(seen)
 
     save_seen(seen)
 
@@ -425,11 +541,19 @@ def run():
 
     # Refresh the one-click application autofill sheet (kept locally; the web
     # applier's screening answers come from the same source data)
+    autofill_html = None
     try:
         autofill = build_autofill_sheet()
-        log(f"Autofill sheet refreshed: {autofill['html']}")
+        autofill_html = autofill["html"]
+        log(f"Autofill sheet refreshed: {autofill_html}")
     except Exception as e:
         log(f"Autofill sheet failed: {e}")
+
+    for j in notify:
+        try:
+            tracker.record_pending(j)
+        except Exception as e:
+            log(f"tracker.record_pending failed for {j.get('title')}: {e}")
 
     newly_ghosted = []
     try:
@@ -452,7 +576,7 @@ def run():
     send_digest(
         applied, notify, len(all_jobs),
         tracker_html=tracker_html, newly_ghosted=newly_ghosted, skipped=skipped,
-        alerts=alerts,
+        alerts=alerts, autofill_html=autofill_html,
     )
     log("Summary sent.")
 
@@ -470,7 +594,28 @@ def run():
     log("=== Done ===\n")
 
 
+WATCHDOG_SEC = 90 * 60  # generous: normal runs take 3-50 min
+
+
+def _arm_watchdog():
+    """Hard cap on total run time, mirroring run_verticals.py's fix for the
+    same incident class: one hung/glacial network call (SMTP Jul 13, wedged
+    Ollama Jul 18) must never be able to eat the schedule — launchd won't
+    start the next fire while a previous instance is still alive."""
+    import threading
+
+    def _kill():
+        log(f"WATCHDOG: run exceeded {WATCHDOG_SEC}s — hard-exiting to protect the schedule")
+        sys.stdout.flush()
+        os._exit(70)
+
+    t = threading.Timer(WATCHDOG_SEC, _kill)
+    t.daemon = True
+    t.start()
+
+
 if __name__ == "__main__":
+    _arm_watchdog()
     _start = time.time()
     try:
         run()
