@@ -39,7 +39,15 @@ class SerperClient:
             print(f"[serper_client] Network error: {e}")
             return []
 
-        if r.status_code in (401, 402, 403):
+        # Serper reports "out of credits" as a plain HTTP 400 ({"message":"Not
+        # enough credits","statusCode":400}), not the 401/402/403 you'd expect —
+        # confirmed live on 2026-08-25. Checking the body for credit-related
+        # wording regardless of status code (rather than gating on 401/402/403
+        # first) is what makes this fire: the old status-code gate never saw a
+        # 400 as a candidate, so every query silently returned [] instead of
+        # raising, and job_agent.py's credits_exhausted alert never fired for
+        # a full day+ of runs.
+        if r.status_code in (400, 401, 402, 403):
             body = (r.text or "").lower()
             if any(w in body for w in ("credit", "quota", "insufficient", "payment")):
                 raise SerperCreditsExhausted(

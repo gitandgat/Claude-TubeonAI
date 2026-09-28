@@ -27,6 +27,10 @@ from typing import Optional
 
 import requests
 
+from employer_site import is_job_board_url
+from job_sources import _OTTAWA_AREA_TERMS
+from workday_source import is_health_informatics_text
+
 BASE = "https://www.jobbank.gc.ca"
 SEARCH_URL = BASE + "/jobsearch/jobsearch"
 UA = (
@@ -35,26 +39,107 @@ UA = (
 )
 HEADERS = {"User-Agent": UA}
 
-# Job Bank searches take a single free-text string; keep these short and broad.
+# Job Bank searches take a single free-text string over NOC titles, and the
+# matching is quirky: probed 2026-09-07 with the real city filter, "health
+# information", "medical records" and "fitness instructor" return zero Ottawa
+# cards while "informatics", "data analyst" and "fitness" return real ones. A
+# category that starved on one string therefore carries a list ("queries") that
+# is run in turn and deduped under one per-category resolve cap; a single "q"
+# is still fine for the broad ones. Keep every string short.
 # category + always_notify mirror job_sources.CATEGORIES so downstream code is uniform.
 QUERIES = [
     {"category": "crossing_guard", "q": "crossing guard"},
     {"category": "thai_embassy", "q": "consular embassy", "always_notify": True},
-    {"category": "healthcare_pt", "q": "personal trainer"},
-    {"category": "health_promotion", "q": "health promotion"},
+    {"category": "healthcare_pt", "queries": ["personal trainer", "kinesiologist"]},
+    {"category": "health_promotion", "queries": ["health promotion", "health educator", "community health"]},
+    {"category": "health_informatics", "always_notify": True,
+     "queries": ["health informatics", "informatics", "data analyst", "clinical informatics", "database"]},
     {"category": "outreach_sales", "q": "outreach coordinator"},
-    {"category": "goodlife", "q": "fitness instructor", "always_notify": True},
+    # "fitness advisor" is GoodLife's own title but Job Bank fuzzes "advisor" into
+    # attorneys and corporate counsel (7 of 8 hits, 2026-09-07) — left out.
+    {"category": "goodlife", "queries": ["fitness instructor", "fitness"], "always_notify": True},
     {"category": "business_startup", "q": "operations coordinator"},
     {"category": "admin_office", "q": "administrative assistant"},
     {"category": "customer_service", "q": "customer service"},
+    {"category": "hospitality_hotel", "q": "hotel front desk", "always_notify": True},
     {"category": "sustainability_nonprofit", "q": "community coordinator"},
     {"category": "general_labor", "q": "general labour"},
 ]
 
+
+def queries_for(spec: dict) -> list:
+    """A category's search strings: `queries` when it has several, else `[q]`."""
+    return list(spec.get("queries") or [spec["q"]])
+
+# always_notify makes a posting bypass MIN_SCORE entirely, so it has to be earned.
+# A Job Bank search is loose full text over NOC titles, not a classification: the
+# "consular embassy" query returns a PSW at *Embassy West Senior Living*, "health
+# informatics" returns a pathologists' assistant at a bakery, and Chipotle service
+# leaders come back under the NOC title "manager, hotel front office". Same lesson
+# as the Workday location filter — a search match is a hint, and the bucket label
+# has to be confirmed against the posting before anything downstream trusts it.
+#
+# Only the four always_notify buckets need an entry; every other category is
+# score-gated already. `fields` names what to confirm against, because for hotels
+# the NOC *title* is exactly where the false match comes from (see above), so that
+# one is judged on company + description alone.
+_ALL_FIELDS = ("title", "company", "description")
+_NOT_TITLE = ("company", "description")
+
+_ALWAYS_NOTIFY_CONFIRM = {
+    # The Serper query for this category names the Royal Thai Embassy outright;
+    # Job Bank's "consular embassy" can't, so require diplomatic context.
+    "thai_embassy": (re.compile(r"thai|consular|consulate|diplomatic|high commission",
+                                re.IGNORECASE), _ALL_FIELDS),
+    # One definition of the health-data track across every source.
+    "health_informatics": (None, _ALL_FIELDS),
+    "goodlife": (re.compile(r"fitness|trainer|instructor|gym|wellness|coach|yoga|pilates",
+                            re.IGNORECASE), _ALL_FIELDS),
+    "hospitality_hotel": (re.compile(r"hotel|motel|inn\b|resort|hospitality|front desk|"
+                                     r"guest service|concierge", re.IGNORECASE), _NOT_TITLE),
+}
+
+
+def _confirms_always_notify(category: str, job: dict) -> bool:
+    """Does the posting actually back up the always_notify claim its search bucket
+    made? Unknown categories are trusted as-is — this only guards the loose ones."""
+    rule = _ALWAYS_NOTIFY_CONFIRM.get(category)
+    if rule is None:
+        return True
+    pattern, fields = rule
+    text = " ".join(str(job.get(f) or "") for f in fields)
+    if pattern is None:  # health track owns its own matcher
+        return is_health_informatics_text(text)
+    return bool(pattern.search(text))
+
 # Max postings resolved per category per run (bounds request volume + runtime).
-MAX_PER_CATEGORY = 6
+# Raised from 6 (2026-09-02): with Serper permanently off, Job Bank + ATS Direct
+# are the only two sources left, so each category's Ottawa/remote-filtered results
+# get pulled deeper before the per-category cap kicks in.
+MAX_PER_CATEGORY = 10
 # Politeness delay between postings.
 SLEEP_BETWEEN = 0.4
+
+# Job Bank's real city filter. `locationstring` is only the human-readable echo
+# of what you typed — the actual server-side filter is `locationparam`, an
+# internal numeric location id that the search page's typeahead fills in behind
+# the scenes when you pick a suggestion. Captured 2026-09-04 with Playwright:
+# loaded /jobsearch/, dismissed the on-load modal, typed "Ottawa", clicked the
+# "Ottawa, ON" suggestion, and read the hidden field — locationparam=22409.
+# Verified with plain requests the same day: results come back Ottawa/Orleans/
+# Nepean/Gatineau/Kemptville instead of the nationwide Toronto/Kingston/
+# Burlington mix that locationstring+fprov=ON returned. Re-capture with
+# scripts/ or the same Playwright recipe if Job Bank ever renumbers its ids.
+OTTAWA_LOCATION_PARAM = "22409"
+
+# Job Bank pages 25 cards at a time and simply returns an empty result list past
+# the end, so the loop stops on the first empty page rather than always burning
+# five requests. Five is the ceiling, not the target.
+MAX_SEARCH_PAGES = 5
+
+# How many cards to collect per category relative to MAX_PER_CATEGORY, so the
+# already-seen filter has headroom before the expensive resolve loop starts.
+CARD_OVERSAMPLE = 3
 
 # External destinations we can't honestly auto-apply to: aggregators that block bots,
 # and social/auth hosts. A reveal pointing here is surfaced FYI, never web-applied.
@@ -78,8 +163,16 @@ def _clean(fragment: Optional[str]) -> str:
 
 
 def _is_ottawa_or_remote(location: str) -> bool:
+    """Job Bank labels real Ottawa-area postings by their own municipality —
+    "Orleans South (ON)", "Nepean (ON)", "Gatineau (QC)" — so matching only the
+    literal "ottawa" dropped genuine walk/transit-range jobs. Share
+    job_sources._OTTAWA_AREA_TERMS so both sources agree on what counts as the
+    Ottawa area; the commute classifier de-ranks the far suburbs afterwards
+    instead of this filter silently losing them."""
     low = location.lower()
-    return "ottawa" in low or "remote" in low or "télétravail" in low or "teletravail" in low
+    if "remote" in low or "télétravail" in low or "teletravail" in low:
+        return True
+    return any(term in low for term in _OTTAWA_AREA_TERMS)
 
 
 def _parse_cards(search_html: str) -> list:
@@ -104,6 +197,45 @@ def _parse_cards(search_html: str) -> list:
             "salary": salary,
         })
     return cards
+
+
+def _search_ottawa_cards(session: requests.Session, query: str, want: int) -> list:
+    """Paginate the search until `want` Ottawa-area cards are collected or the
+    results run out.
+
+    Page 1 alone is not enough even with the real city filter: a broad query
+    spreads its Ottawa results across two or three pages, and Job Bank sorts by
+    date, not distance. Stops early on the first empty page (Job Bank returns
+    zero cards past the end rather than an error), so a narrow query still costs
+    one request, not five.
+    """
+    cards = []
+    for page in range(1, MAX_SEARCH_PAGES + 1):
+        params = {
+            "searchstring": query,
+            "locationstring": "Ottawa, ON",
+            "locationparam": OTTAWA_LOCATION_PARAM,
+            "sort": "D",
+            "page": page,
+        }
+        try:
+            sr = session.get(SEARCH_URL, params=params, headers=HEADERS, timeout=30)
+        except requests.RequestException as e:
+            print(f"[jobbank]   search page {page} failed: {e}")
+            break
+        if sr.status_code != 200:
+            print(f"[jobbank]   search page {page} HTTP {sr.status_code}")
+            break
+
+        page_cards = _parse_cards(sr.text)
+        if not page_cards:
+            break
+        cards.extend(c for c in page_cards if _is_ottawa_or_remote(c["location"]))
+        if len(cards) >= want:
+            break
+        time.sleep(SLEEP_BETWEEN)
+
+    return cards[:want]
 
 
 def _fetch_detail(session: requests.Session, pid: str) -> str:
@@ -187,9 +319,11 @@ def _classify_apply(reveal_html: str) -> dict:
 
 
 class JobBankSource:
-    def fetch_all(self, skip_ids: Optional[set] = None) -> list:
+    def fetch_all(self, skip_ids: Optional[set] = None, categories: Optional[set] = None) -> list:
         """Return Job Bank job dicts in the pipeline's shape. Pass `skip_ids` (already
-        seen ids) to avoid spending reveal requests on jobs the pipeline will skip."""
+        seen ids) to avoid spending reveal requests on jobs the pipeline will skip.
+        Pass `categories` (e.g. {"hospitality_hotel"}) to scope a run to specific
+        categories instead of every entry in QUERIES."""
         skip_ids = skip_ids or set()
         session = requests.Session()
         jobs = []
@@ -197,23 +331,27 @@ class JobBankSource:
 
         for spec in QUERIES:
             category = spec["category"]
-            print(f"[jobbank] Searching: {category} ('{spec['q']}')...")
-            try:
-                params = {"searchstring": spec["q"], "locationstring": "Ottawa, ON", "sort": "D"}
-                sr = session.get(SEARCH_URL, params=params, headers=HEADERS, timeout=30)
-            except requests.RequestException as e:
-                print(f"[jobbank]   search failed: {e}")
+            if categories and category not in categories:
                 continue
-            if sr.status_code != 200:
-                print(f"[jobbank]   search HTTP {sr.status_code}")
-                continue
+            queries = queries_for(spec)
+            print(f"[jobbank] Searching: {category} ({', '.join(repr(q) for q in queries)})...")
+            # Oversample the card list: already-seen postings are cheap to skip
+            # but still consume supply, so collecting only MAX_PER_CATEGORY
+            # cards would leave a category short of new jobs on the second run
+            # of the day. The expensive per-posting work below is still capped.
+            # Several queries for one category share that cap and dedupe on
+            # posting id, so a card that two queries both return is resolved once.
+            search_cards, seen_pids = [], set()
+            for query in queries:
+                for card in _search_ottawa_cards(session, query, MAX_PER_CATEGORY * CARD_OVERSAMPLE):
+                    if card["pid"] not in seen_pids:
+                        seen_pids.add(card["pid"])
+                        search_cards.append(card)
 
             resolved = 0
-            for card in _parse_cards(sr.text):
+            for card in search_cards:
                 if resolved >= MAX_PER_CATEGORY:
                     break
-                if not _is_ottawa_or_remote(card["location"]):
-                    continue
 
                 posting_url = f"{BASE}/jobsearch/jobposting/{card['pid']}"
                 job_id = make_id(card["title"], card["company"], posting_url)
@@ -252,17 +390,37 @@ class JobBankSource:
                     "salary": card["salary"],
                 }
 
+                # The search bucket claimed always_notify; the posting itself has
+                # to back that up before it gets to skip MIN_SCORE.
+                if job["always_notify"] and not _confirms_always_notify(category, job):
+                    job["always_notify"] = False
+
+                # apply_target tells job_agent.py where the application actually
+                # has to happen, so employer_site.resolve_employer_apply_url()
+                # doesn't have to re-derive it from the mutated `source` string.
+                # Only the third branch is a genuine Job Bank Direct Apply — the
+                # reveal handed us an employer email or an employer site in the
+                # other two, which is exactly the "employer first" route.
                 if route["mode"] == "email":
                     job["apply_email"] = route["email"]
                     job["source"] = "Job Bank (email)"
+                    job["apply_target"] = "employer_site"
                 elif route["mode"] == "external":
                     job["url"] = route["url"]
                     job["jobbank_url"] = posting_url
                     job["source"] = "Job Bank -> company site"
+                    # The reveal sometimes points at *another* aggregator
+                    # (Jobillico, lavente.ca) instead of the employer's own
+                    # site — confirmed in a live run. Same host rule as the
+                    # resolver so both agree on what is worth a real attempt.
+                    job["apply_target"] = (
+                        "job_board" if is_job_board_url(route["url"]) else "employer_site"
+                    )
                 else:
                     job["no_auto_apply"] = True
                     job["no_apply_reason"] = route["reason"]
                     job["jobbank_direct_apply"] = route.get("direct_apply", False)
+                    job["apply_target"] = "jobbank_direct"
 
                 jobs.append(job)
 

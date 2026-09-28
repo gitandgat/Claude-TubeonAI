@@ -1,0 +1,22 @@
+{
+  "tenants": [
+    {
+      "auto_apply": true,
+      "category": "goodlife",
+      "company_name": "GoodLife Fitness",
+      "search_text": "Ottawa",
+      "site": "Careers",
+      "tenant": "goodlifefitness",
+      "wd_host": "wd3"
+    },
+    {
+      "auto_apply": false,
+      "category": "health",
+      "company_name": "CHEO",
+      "search_text": "Ottawa",
+      "site": "External_Site",
+      "tenant": "cheo",
+      "wd_host": "wd10"
+    }
+  ]
+}

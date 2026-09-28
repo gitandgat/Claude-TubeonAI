@@ -1,12 +1,12 @@
 PROFILE = {
     "name": "Sahawat Nilwatcharamanee",
     # Full address — used on application forms / autofill (local Ottawa address)
-    "address": "214 Metcalfe St, Ottawa, ON K2P 1P7",
+    "address": "335 Cooper St, Ottawa, ON K2P 0G6",
     "address_components": {
-        "street": "214 Metcalfe St",
+        "street": "335 Cooper St",
         "city": "Ottawa",
         "province": "ON",
-        "postal_code": "K2P 1P7",
+        "postal_code": "K2P 0G6",
         "country": "Canada",
     },
     # Short form shown on the resume header (city/province only)
@@ -94,8 +94,8 @@ PROFILE = {
         "Health Technology Diploma – Bitelab (UK)",
         "Educational Credential Assessment (ECA) – PhysiciansApply Canada",
         "Google AI Essentials",
-        "The Science of Well-Being – Yale University",
-        "Mindshift: Break Through Obstacles to Learning – McMaster University",
+        "The Science of Well-Being – Yale University (Coursera)",
+        "Mindshift: Break Through Obstacles to Learning – McMaster University (Coursera)",
     ],
 
     # Community / leadership programs Sahawat participated in.
@@ -181,6 +181,14 @@ PROFILE = {
             "Bilingual English/Thai",
             "Health coaching background — active listening and behaviour-change conversations",
         ],
+        "hospitality_hotel": [
+            "Guest-facing, high-volume front-desk-style experience (hospital volunteer liaison)",
+            "Postgraduate Diploma, Health Care Administration & Management — operations knowledge transfers directly to front-office work",
+            "Calm, professional communicator under pressure (physician background)",
+            "Bilingual English/Thai — an asset with international guests",
+            "Comfortable with confidential records, check-in/check-out-style documentation, and scheduling",
+            "Reliable and available for shift work, including evenings and weekends",
+        ],
         "sustainability_nonprofit": [
             "Canada Service Corps — national youth service and community engagement program",
             "Regenesis Eco Leader Placement Program — environmental leadership placement",
@@ -194,6 +202,24 @@ PROFILE = {
             "Valid Ontario driver's licence",
             "Calm under pressure, safety-conscious (MD background)",
             "Team-oriented and dependable",
+        ],
+        "health_informatics_cihi": [
+            "Postgraduate Diploma, Health Informatics — Sault College",
+            "Postgraduate Diploma, Health Care Administration & Management — Sault College",
+            "Medical doctor (MD) background — clinical documentation, patient records, evidence-based care",
+            "Hospital administrative experience — data entry, filing, staff support (Sault Area Hospital)",
+            "Venture for Canada Entrepreneurship & Innovation Fellowship — structured problem-solving in ambiguous environments",
+            "ECA credential assessment completed – PhysiciansApply Canada",
+            "Bilingual English/Thai",
+        ],
+        "health_informatics": [
+            "Postgraduate Diploma, Health Informatics — Sault College",
+            "Postgraduate Diploma, Health Care Administration & Management — Sault College",
+            "Medical doctor (MD) background — clinical documentation, patient records, evidence-based care",
+            "Hospital administrative experience — data entry, filing, staff support (Sault Area Hospital)",
+            "Venture for Canada Entrepreneurship & Innovation Fellowship — structured problem-solving in ambiguous environments",
+            "ECA credential assessment completed – PhysiciansApply Canada",
+            "Bilingual English/Thai",
         ],
         # Not tied to a search category — used for the one account-level resume
         # stored on Job Bank, since Direct Apply reuses whatever's on file rather
@@ -214,6 +240,14 @@ PROFILE = {
 
 # Summaries tailored by job category
 SUMMARIES = {
+    "health_informatics": (
+        "Former physician (MD) with postgraduate diplomas in Health Informatics and Health Care "
+        "Administration & Management from Sault College. Clinical background brings first-hand "
+        "understanding of medical documentation, patient records, and how health data is created "
+        "and used at the point of care. Hospital administrative experience (data entry, records, "
+        "staff support) as a volunteer liaison. Canadian Permanent Resident, Ottawa-based, "
+        "bilingual English/Thai. Available from October 13, 2026."
+    ),
     "crossing_guard": (
         "Crossing guard with about a year and a half of service helping children and pedestrians cross "
         "safely at busy intersections in Toronto. Canadian Permanent Resident with a valid Ontario driver's "
@@ -278,6 +312,15 @@ SUMMARIES = {
         "strangers. Bilingual English/Thai. Canadian Permanent Resident, Ottawa-based, available from "
         "October 13, 2026."
     ),
+    "hospitality_hotel": (
+        "Former physician (MD) with hands-on guest-facing and administrative experience as a hospital "
+        "volunteer liaison — directing patients and visitors, handling front-desk-style inquiries, and "
+        "staying calm and professional in a high-volume, fast-paced environment. Postgraduate diploma in "
+        "Health Care Administration & Management brings real operations and process knowledge. Bilingual "
+        "English/Thai, comfortable with people from all backgrounds, and looking to build a long-term "
+        "career from front desk into hotel management. Canadian Permanent Resident, Ottawa-based, "
+        "available from October 13, 2026."
+    ),
     "sustainability_nonprofit": (
         "Former physician (MD) with hands-on community and environmental leadership experience through the "
         "Canada Service Corps, the Regenesis Eco Leader Placement Program, and LEAF's Young Urban Forest "
@@ -306,7 +349,7 @@ SUMMARIES = {
 INVOLVEMENT_CATEGORIES = {
     "outreach_sales", "healthcare_pt", "crossing_guard", "thai_embassy", "goodlife", "personal_trainer",
     "health_promotion", "business_startup", "admin_office", "customer_service", "sustainability_nonprofit",
-    "general_labor", "universal",
+    "general_labor", "universal", "hospitality_hotel",
 }
 
 # Job search targets

@@ -35,7 +35,11 @@ class OllamaClient:
         }
 
         try:
-            response = requests.post(self.endpoint, json=payload, timeout=300)
+            # 60s, not minutes: a healthy llama3.1:8b answers these prompts in
+            # seconds. When the runner is wedged/swap-thrashing (Jul 18: three
+            # hours of a run lost to calls crawling toward a 300s cap × ~33
+            # calls), a tight cap turns a lost evening into a skipped category.
+            response = requests.post(self.endpoint, json=payload, timeout=60)
             response.raise_for_status()
             result = response.json()
             return result.get("response", "").strip()

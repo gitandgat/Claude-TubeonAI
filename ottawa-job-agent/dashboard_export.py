@@ -60,6 +60,11 @@ def export_applications() -> None:
 
     apps = []
     for job_id, entry in data.items():
+        # "pending" (not yet actioned) and "not_interested" aren't part of the
+        # applied lineage this dashboard shows, and the TS side has no status
+        # for them — skip rather than mislabel via STATUS_MAP's fallback.
+        if entry.get("status") in ("pending", "not_interested"):
+            continue
         history = entry.get("history", [])
         last_updated = history[-1]["date"] if history else entry.get("applied_date", "")
 
@@ -90,6 +95,10 @@ def export_applications() -> None:
             "appliedDate": entry.get("applied_date", ""),
             "lastUpdated": last_updated,
             "jobPostingUrl": entry.get("url"),
+            # The resolved form URL, when the applier got far enough to find one.
+            # Distinct from jobPostingUrl, which usually lands on a description
+            # page several redirects short of the actual form.
+            "applyUrl": entry.get("apply_url") or None,
             "notes": entry.get("notes", ""),
             "micrositeId": microsite_id,
             "timeline": timeline,

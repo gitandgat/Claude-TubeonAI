@@ -57,8 +57,9 @@ def score_fit(job: dict) -> int:
 
 Name: {PROFILE['name']}
 Background: Former physician (MD), crossing guard (nearly 2 years), NASM CPT, health coach, postgraduate diplomas in Health Informatics and Health Care Administration & Management, Venture for Canada Entrepreneurship & Innovation Fellow, Canada Service Corps / Regenesis Eco Leader / LEAF community-environmental leadership programs, Canadian PR, bilingual Thai/English
-Target roles: crossing guard, Thai embassy, personal trainer/health coach, health promotion/health educator, outreach/sales, business/startup operations & administrative support, customer service, sustainability/nonprofit/community coordination, general labour
+Target roles: health informatics / health information management / health data analyst (TOP priority — score these 8+ when qualifications plausibly fit), crossing guard, Thai embassy, personal trainer/health coach, health promotion/health educator, outreach/sales, business/startup operations & administrative support, customer service, sustainability/nonprofit/community coordination, general labour
 Constraints: candidate does NOT want night-shift or overnight-only roles. If this posting is night-shift-only or overnight-only, score it no higher than 2 regardless of other fit.
+Candidate does NOT hold CHIM (Certified Health Information Management) certification or CHIMA membership, and is not currently eligible for it (the credential requires ~5 years of work experience in the field first, which he doesn't have yet). If this posting states CHIM certification, CHIMA membership, RHIT, or equivalent as a MANDATORY/required credential (not listed as "an asset" or "preferred"), score it no higher than 3 regardless of other fit, since he cannot meet a hard licensing requirement. Junior/analyst-level health-informatics postings that don't require certification remain TOP priority.
 
 Job posting:
 Title: {job['title']}
@@ -74,9 +75,9 @@ Score this job from 0–10 for fit. Only reply with the integer score. No explan
         # Extract first integer found
         import re
         m = re.search(r"\d+", text)
-        return int(m.group()) if m else 5
+        return int(m.group()) if m else 0
     except (ValueError, AttributeError):
-        return 5
+        return 0
 
 
 def write_cover_letter(job: dict) -> str:
@@ -250,6 +251,11 @@ GROUNDING = (
     "as participation — do not invent his specific duties or titles within them.\n"
     "- Do NOT invent or imply experience he lacks: he has NOT worked at a gym, has no prior "
     "personal-training clients, no sales/quota history, and no specific follower or revenue numbers.\n"
+    "- He does NOT hold CHIM (Certified Health Information Management) certification or CHIMA "
+    "membership, and is not currently pursuing it. Never state or imply he is certified/registered in "
+    "health information management, a CHIMA member, or CHIM-eligible right now. His health-informatics "
+    "candidacy rests on the Sault College postgraduate diploma and his hands-on hospital/clinical "
+    "background, not a professional certification he doesn't have — frame it that way.\n"
     "- Do NOT promise specific outcomes, client counts, timelines, or numbers he will deliver.\n"
     "- Do NOT overstate. If unsure whether he has done something, do not claim it.\n"
     "- Align everything to what THIS job posting actually asks for. Be modest, concrete, and honest.\n"

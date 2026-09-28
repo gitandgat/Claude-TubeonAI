@@ -1,6 +1,17 @@
 .env
 .env.*
+!.env.example
+!*/.env.example
 node_modules/
+
+# Crosswalk Wisdom Studio archive — raw personal notes, incl. notes about
+# identifiable people. Code and migrations are committed; the database is not.
+crosswalk-wisdom-studio/*.db
+crosswalk-wisdom-studio/prisma/*.db
+crosswalk-wisdom-studio/prisma/*.db-journal
+crosswalk-wisdom-studio/prisma/*.db-wal
+crosswalk-wisdom-studio/prisma/*.db-shm
+crosswalk-wisdom-studio/exports/
 prompt_ids.json
 *.txt
 
@@ -16,8 +27,20 @@ glute-intro-final.mp4
 # Physical Assessment App — its own git repo (github.com/gitandgat/Physical-Assessment-App)
 physical-assessment-app/
 
+# Wayfinder app — its own git repo (github.com/gitandgat/wayfinder)
+wayfinder/
+
+# MoneyPrinterTurbo — its own git repo (github.com/harry0703/MoneyPrinterTurbo)
+money-printer-turbo/
+
+# Vivante French — its own git repo (github.com/gitandgat/Vivante-French)
+Vivante-French/
+
 # Job Bank Direct Apply session cookie — real authenticated session, never commit
 ottawa-job-agent/.jobbank_session.json
+
+# Workday candidate-account session cookies (per tenant) — real authenticated sessions, never commit
+ottawa-job-agent/.workday_session_*.json
 
 # OS / editor noise
 .DS_Store
@@ -26,6 +49,8 @@ ottawa-job-agent/.jobbank_session.json
 gmail_token*.json
 gmail_credentials.json
 outlook_token*.json
+.outlook_auth_flow.json
+.outlook_*_auth_flow.json
 .linkedin_token
 keychain_secrets.py
 
@@ -42,6 +67,8 @@ ottawa-job-agent/automation_runs.jsonl
 ottawa-job-agent/web_apply_screenshots/
 ottawa-job-agent/seen_jobs.json
 ottawa-job-agent/applications.json
+ottawa-job-agent/known_boards.json
+ottawa-job-agent/agent_config.json
 
 # Ottawa job agent — generated PII/output (resumes, cover letters, autofill data,
 # microsites, dashboard), not source; regenerate, don't version
@@ -51,7 +78,27 @@ ottawa-job-agent/tracker_dashboard.html
 ottawa-job-agent/resumes/
 ottawa-job-agent/cover_letters/
 ottawa-job-agent/microsites/
+ottawa-job-agent/manual_applications/
+ottawa-job-agent/archive/
 ottawa-job-agent/jobbank_resume_upload_result.png
+# Prefilled application packages: every one embeds his name, phone, email, home
+# address and a cover letter. Same class as resumes/ and cover_letters/ above — this
+# directory was simply missed when the prefill engine landed, and the repo is public.
+ottawa-job-agent/prefilled/
+
+# Timestamped safety copies the tracker/board scripts write before a bulk edit. They
+# are snapshots of gitignored state files (applications.json, seen_jobs.json,
+# known_boards.json), so versioning them would commit the very data those files are
+# ignored for.
+ottawa-job-agent/*.bak-*
+ottawa-job-agent/*.bak-before-*
+ottawa-job-agent/*.backup-*
+ottawa-job-agent/seen_jobs.json.bak-*
+
+# Job Pilot Telegram bot — dedicated Python 3.13 venv (anaconda base is 3.8,
+# too old for claude-agent-sdk / python-telegram-bot); not source, reinstall
+# with: python3.13 -m venv telegram_venv && telegram_venv/bin/pip install -r telegram_requirements.txt
+ottawa-job-agent/telegram_venv/
 
 # Finished video/audio renders — large binaries, not source; host externally
 identity-audit-intro-*.mp4
@@ -88,3 +135,6 @@ CROSSING-SESSION-LAUNCH/.execution_state.json
 # pasted into outbound emails to landlords; same PII class as the already-
 # excluded ottawa-job-agent/application_autofill.json
 ottawa-rental-application-packet.md
+
+# Supabase CLI scratch state (links this dir to an unrelated project), not source
+ottawa-job-agent/supabase/.temp/

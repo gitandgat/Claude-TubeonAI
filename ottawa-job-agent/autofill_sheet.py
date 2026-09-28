@@ -19,7 +19,7 @@ SCREENING = {
     "Legally authorized to work in Canada?": "Yes — Canadian Permanent Resident",
     "Do you require sponsorship?": "No",
     "Available start date": "October 13, 2026",
-    "Located in Ottawa?": "Yes — based in Ottawa (214 Metcalfe St)",
+    "Located in Ottawa?": "Yes — based in Ottawa (335 Cooper St, Centretown)",
     "Valid driver's licence?": "Yes — valid Ontario driver's licence",
     "Languages": ", ".join(PROFILE["languages"]),
     "Highest education": "Doctor of Medicine (MD), Thammasat University",

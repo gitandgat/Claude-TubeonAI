@@ -231,6 +231,12 @@ _JUNK_TITLE_PATTERN = re.compile(
 # can't get past.
 _NOT_A_POSTING_PATTERN = re.compile(
     r"indeed\.\w+/jobs\?|indeed\.\w+/q-.*-jobs\.html|linkedin\.com/jobs/search|/jobs/search|/search\?"
+    # linkedin.com/jobs/<topic>-jobs is LinkedIn's category landing page (e.g.
+    # /jobs/health-information-technology-jobs) — a directory of many roles, not one
+    # posting. A real posting is always linkedin.com/jobs/view/<id>, which has no
+    # "-jobs" segment, so this can't swallow a genuine one. Found Sep 27 2026 when a
+    # swiped-right CIHI job turned out to point at this URL shape.
+    r"|linkedin\.com/jobs/[^/?]*-jobs\b"
     # workopolis.com/jobsearch/<category-slug> is a listing page; distinct from
     # jobbank.gc.ca/jobsearch/jobposting/<id>, which IS a real single posting.
     r"|workopolis\.com/jobsearch/"
