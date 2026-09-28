@@ -28,9 +28,12 @@ half-filled form left on someone's careers site.
 This module never emails an employer. Email drafts are a separate, human-reviewed step.
 """
 
+import re
 import sys
 from pathlib import Path
 from typing import List, Optional, Tuple
+
+import requests
 
 import tracker
 from application_prefill import build_prefill
@@ -92,6 +95,133 @@ def _unactionable_reason(job: dict) -> Optional[str]:
     return None
 
 
+# ---------------------------------------------------------------------------
+# Liveness
+#
+# A swipe and the run that acts on it are days apart, and postings close in that
+# window: of the first four packages built here, three pointed at jobs that had
+# already closed (two CHEO reqs and a Jobvite posting), which is only visible once
+# you click. Worse, none of them 404s. Workday serves HTTP 200 with an empty shell
+# and renders "The page you are looking for doesn't exist" in JavaScript; Jobvite
+# quietly falls back to the board's landing page. So a status-code check sees four
+# healthy pages. Each ATS needs asking in the one way it answers honestly.
+#
+# Every check fails OPEN on a network error — same convention as
+# job_sources._greenhouse_board_is_live. A flaky fetch must not silently drop a real
+# job; the cost of a wrong "live" is one dead link, the cost of a wrong "closed" is
+# a missed application.
+# ---------------------------------------------------------------------------
+
+_WORKDAY_URL = re.compile(
+    r"https?://(?P<tenant>[^.]+)\.(?P<host>wd\d+)\.myworkdayjobs\.com/"
+    r"(?:\w\w-\w\w/)?(?P<site>[^/]+)/job/.*?_(?P<req>[A-Z]+[\d-]+)", re.I)
+
+_LIVENESS_TIMEOUT = 30
+_BROWSER_UA = {"User-Agent": "Mozilla/5.0"}
+
+# Cache per (tenant, host, site) so a run with several jobs at one employer pulls the
+# posting list once instead of once per job.
+_workday_list_cache = {}
+
+
+# A bot wall is not an answer. Njoyn (CIHI) serves Radware's CAPTCHA page with HTTP
+# 200 and no job content on it, which the title check below reads as "this posting is
+# gone" unless it is recognised for what it is. Same for Cloudflare, Imperva/Distil,
+# PerimeterX and Akamai. When one of these is what came back, the check is
+# inconclusive, so it fails open like a network error rather than closing a live job.
+_BOT_WALL_PATTERN = re.compile(
+    r"radware captcha|just a moment|attention required|pardon our interruption|"
+    r"checking your browser|unusual traffic|enable javascript and cookies|"
+    r"access denied|request unblock|perimeterx|incapsula|imperva|distil",
+    re.I)
+
+
+def _norm_text(text: str) -> str:
+    """Lowercase, punctuation collapsed to single spaces. Lets a title with a comma
+    match the same title rendered without one."""
+    return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+
+
+def _visible_text(html: str) -> str:
+    """Normalised page text with markup removed. Tags have to go before normalising:
+    an employer that renders "Program Specialist,<span> Digital Solutions</span>"
+    holds no such phrase in its raw HTML, and the title check would miss it."""
+    body = re.sub(r"(?is)<(script|style).*?</\1>", " ", html)
+    return _norm_text(re.sub(r"<[^>]+>", " ", body))
+
+
+def _workday_live_reqs(tenant: str, host: str, site: str) -> Optional[set]:
+    """Every req id the tenant currently advertises, or None if the list couldn't be
+    fetched. The CXS /jobs POST answers honestly where the HTML route does not."""
+    key = (tenant, host, site)
+    if key in _workday_list_cache:
+        return _workday_list_cache[key]
+
+    api = f"https://{tenant}.{host}.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs"
+    reqs, offset = set(), 0
+    try:
+        while True:
+            resp = requests.post(api, json={"appliedFacets": {}, "limit": 20, "offset": offset,
+                                            "searchText": ""},
+                                 headers={**_BROWSER_UA, "Content-Type": "application/json"},
+                                 timeout=_LIVENESS_TIMEOUT)
+            resp.raise_for_status()
+            data = resp.json()
+            batch = data.get("jobPostings") or []
+            if not batch:
+                break
+            for posting in batch:
+                reqs.add(str(posting.get("externalPath", "")))
+            offset += 20
+            if offset >= int(data.get("total") or 0):
+                break
+    except (requests.RequestException, ValueError):
+        _workday_list_cache[key] = None
+        return None
+
+    _workday_list_cache[key] = reqs
+    return reqs
+
+
+def _title_probe(title: str) -> str:
+    """A distinctive phrase from the title to look for on the page: the first clause
+    (before a bracket or dash), capped at four words. Long enough to be specific to
+    this posting, short enough to survive the employer rewording the tail."""
+    clause = re.split(r"[(\[|–—]|\s-\s", title)[0]
+    words = [w for w in _norm_text(clause).split() if len(w) > 2][:4]
+    return " ".join(words)
+
+
+def _posting_is_live(job: dict, url: str) -> Tuple[bool, str]:
+    """(is_live, reason). Reason is only meaningful when is_live is False."""
+    match = _WORKDAY_URL.search(url)
+    if match:
+        reqs = _workday_live_reqs(match.group("tenant"), match.group("host"), match.group("site"))
+        if reqs is None:
+            return True, ""
+        req = match.group("req")
+        if any(req in path for path in reqs):
+            return True, ""
+        return False, f"posting {req} is no longer in {match.group('tenant')}'s live list — closed"
+
+    probe = _title_probe(job.get("title", ""))
+    if not probe:
+        return True, ""
+    try:
+        resp = requests.get(url, headers=_BROWSER_UA, timeout=_LIVENESS_TIMEOUT)
+    except requests.RequestException:
+        return True, ""
+    if resp.status_code >= 400:
+        return False, f"posting page returns HTTP {resp.status_code}"
+    page = _visible_text(resp.text)
+    if _BOT_WALL_PATTERN.search(page):
+        return True, ""
+    if probe not in page:
+        return False, (f"posting page no longer mentions {probe!r} — closed, or the URL "
+                       "now redirects to the board's landing page")
+    return True, ""
+
+
 def _build_documents(job: dict) -> Tuple[str, str]:
     """Cover letter + resume PDF path. Both run on local Ollama / fpdf, so cost is not a
     reason to skip either — the old "don't spend API calls on manual-only jobs"
@@ -135,6 +265,11 @@ def _process(job: dict, submit: bool) -> str:
     job = {**job, **resolved}
     apply_url = resolved["apply_url"]
     target = resolved["apply_target"]
+
+    live, why = _posting_is_live(job, apply_url or job.get("url", ""))
+    if not live:
+        tracker.update_status(job["id"], "not_interested", f"closed before it was actioned: {why}")
+        return f"CLOSED    {label}\n            {why}"
 
     cover_letter, resume_pdf = _build_documents(job)
 
