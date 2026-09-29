@@ -117,6 +117,7 @@ _WORKDAY_URL = re.compile(
     r"(?:\w\w-\w\w/)?(?P<site>[^/]+)/job/.*?_(?P<req>[A-Z]+[\d-]+)", re.I)
 
 _LIVENESS_TIMEOUT = 30
+_RENDER_TIMEOUT_MS = 60000
 _BROWSER_UA = {"User-Agent": "Mozilla/5.0"}
 
 # Cache per (tenant, host, site) so a run with several jobs at one employer pulls the
@@ -134,6 +135,15 @@ _BOT_WALL_PATTERN = re.compile(
     r"checking your browser|unusual traffic|enable javascript and cookies|"
     r"access denied|request unblock|perimeterx|incapsula|imperva|distil",
     re.I)
+
+
+# Positive evidence that a posting is over, which beats inferring it from the absence
+# of a title: CIHI's board answers an expired req with "Sorry, this job is no longer
+# available" on a page that still carries the employer's whole site around it.
+_CLOSED_PATTERN = re.compile(
+    r"no longer (available|accepting|active|being accepted)|"
+    r"this (job|posting|position|competition) (has |is )?(been )?(closed|filled|expired)|"
+    r"posting has (expired|closed)|applications (are |have )?closed", re.I)
 
 
 def _norm_text(text: str) -> str:
@@ -192,6 +202,34 @@ def _title_probe(title: str) -> str:
     return " ".join(words)
 
 
+def _render_visible_text(url: str) -> Optional[str]:
+    """Page text as a real browser sees it, or None if one couldn't be driven.
+
+    Only for a page that answered the cheap fetch with a bot wall. Headed on purpose:
+    Njoyn's Radware serves its CAPTCHA to requests *and* to headless Chromium, but a
+    visible window loads the posting fine — headlessness is what it detects. That makes
+    this the one check that can tell a closed Njoyn posting from a blocked one, at the
+    cost of a browser window, which is why apply_interested.py is a hand-run CLI and
+    not a launchd stage.
+    """
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return None
+    try:
+        with sync_playwright() as play:
+            browser = play.chromium.launch(headless=False)
+            try:
+                page = browser.new_page()
+                page.goto(url, wait_until="domcontentloaded", timeout=_RENDER_TIMEOUT_MS)
+                page.wait_for_timeout(4000)
+                return _norm_text(page.inner_text("body"))
+            finally:
+                browser.close()
+    except Exception:
+        return None
+
+
 def _posting_is_live(job: dict, url: str) -> Tuple[bool, str]:
     """(is_live, reason). Reason is only meaningful when is_live is False."""
     match = _WORKDAY_URL.search(url)
@@ -215,7 +253,12 @@ def _posting_is_live(job: dict, url: str) -> Tuple[bool, str]:
         return False, f"posting page returns HTTP {resp.status_code}"
     page = _visible_text(resp.text)
     if _BOT_WALL_PATTERN.search(page):
-        return True, ""
+        rendered = _render_visible_text(url)
+        if rendered is None or _BOT_WALL_PATTERN.search(rendered):
+            return True, ""   # still no answer — fail open rather than drop a live job
+        page = rendered
+    if _CLOSED_PATTERN.search(page):
+        return False, "the posting page says the job is no longer available"
     if probe not in page:
         return False, (f"posting page no longer mentions {probe!r} — closed, or the URL "
                        "now redirects to the board's landing page")

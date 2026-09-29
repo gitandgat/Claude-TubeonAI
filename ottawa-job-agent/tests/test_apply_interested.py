@@ -157,13 +157,6 @@ def test_landing_page_fallback_is_closed(monkeypatch):
     assert "manager patient care services" in why
 
 
-def test_bot_wall_fails_open(monkeypatch):
-    _stub_get(monkeypatch, _Resp("<h1>Radware Captcha Page</h1> request unblock"))
-    job = {"title": "Program Specialist, Digital Solutions"}
-    assert ai._posting_is_live(job, "https://clients.njoyn.com/cl3/xweb/xweb.asp") == \
-        (True, "")
-
-
 def test_http_error_is_closed(monkeypatch):
     _stub_get(monkeypatch, _Resp("gone", status_code=404))
     live, why = ai._posting_is_live({"title": "Nurse Practitioner"}, JOBVITE_URL)
@@ -183,3 +176,59 @@ def test_a_job_with_no_title_is_never_closed_by_this_check(monkeypatch):
         raise AssertionError("should not fetch without a probe")
     monkeypatch.setattr(ai.requests, "get", boom)
     assert ai._posting_is_live({"title": ""}, JOBVITE_URL) == (True, "")
+
+
+# --- bot wall that a real browser can see past ---------------------------
+
+NJOYN_URL = "https://clients.njoyn.com/cl3/xweb/xweb.asp?Jobid=J0926-0055"
+
+
+def test_closed_wording_is_taken_as_proof(monkeypatch):
+    # What CIHI actually served the morning after its closing date, wrapped in the
+    # employer's full site chrome — so absence-of-title is not the only signal.
+    _stub_get(monkeypatch, _Resp("<p>Sorry, this job is no longer available.</p>"))
+    live, why = ai._posting_is_live(
+        {"title": "Program Specialist, Digital Solutions"}, NJOYN_URL)
+    assert not live
+    assert "no longer available" in why
+
+
+def test_bot_wall_falls_back_to_a_rendered_page(monkeypatch):
+    _stub_get(monkeypatch, _Resp("<h1>Radware Captcha Page</h1> request unblock"))
+    monkeypatch.setattr(ai, "_render_visible_text",
+                        lambda url: "careers cihi sorry this job is no longer available")
+    live, why = ai._posting_is_live(
+        {"title": "Program Specialist, Digital Solutions"}, NJOYN_URL)
+    assert not live
+    assert "no longer available" in why
+
+
+def test_rendered_page_showing_the_job_is_live(monkeypatch):
+    _stub_get(monkeypatch, _Resp("<h1>Radware Captcha Page</h1>"))
+    monkeypatch.setattr(ai, "_render_visible_text",
+                        lambda url: "program specialist digital solutions job number j0926")
+    assert ai._posting_is_live(
+        {"title": "Program Specialist, Digital Solutions"}, NJOYN_URL) == (True, "")
+
+
+def test_wall_behind_the_wall_still_fails_open(monkeypatch):
+    _stub_get(monkeypatch, _Resp("<h1>Radware Captcha Page</h1>"))
+    monkeypatch.setattr(ai, "_render_visible_text", lambda url: "radware captcha page")
+    assert ai._posting_is_live({"title": "Program Specialist"}, NJOYN_URL) == (True, "")
+
+
+def test_browser_unavailable_fails_open(monkeypatch):
+    _stub_get(monkeypatch, _Resp("<h1>Radware Captcha Page</h1>"))
+    monkeypatch.setattr(ai, "_render_visible_text", lambda url: None)
+    assert ai._posting_is_live({"title": "Program Specialist"}, NJOYN_URL) == (True, "")
+
+
+def test_a_healthy_page_never_launches_a_browser(monkeypatch):
+    # The expensive path must stay reserved for bot walls.
+    _stub_get(monkeypatch, _Resp("<h1>Program Specialist, Digital Solutions</h1>"))
+
+    def boom(url):
+        raise AssertionError("should not render a page that fetched fine")
+    monkeypatch.setattr(ai, "_render_visible_text", boom)
+    assert ai._posting_is_live(
+        {"title": "Program Specialist, Digital Solutions"}, NJOYN_URL) == (True, "")
