@@ -157,11 +157,20 @@ def test_landing_page_fallback_is_closed(monkeypatch):
     assert "manager patient care services" in why
 
 
-def test_http_error_is_closed(monkeypatch):
-    _stub_get(monkeypatch, _Resp("gone", status_code=404))
+@pytest.mark.parametrize("status", [404, 410])
+def test_gone_statuses_are_closed(monkeypatch, status):
+    _stub_get(monkeypatch, _Resp("gone", status_code=status))
     live, why = ai._posting_is_live({"title": "Nurse Practitioner"}, JOBVITE_URL)
     assert not live
-    assert "404" in why
+    assert str(status) in why
+
+
+@pytest.mark.parametrize("status", [401, 403, 429, 500, 503])
+def test_refusal_and_server_error_fail_open(monkeypatch, status):
+    # "I won't serve you" is not "the job is gone" — 403 is bot-blocking with a status
+    # code instead of a CAPTCHA page, and condemning a posting on it loses a live job.
+    _stub_get(monkeypatch, _Resp("", status_code=status))
+    assert ai._posting_is_live({"title": "Nurse Practitioner"}, JOBVITE_URL) == (True, "")
 
 
 def test_network_error_fails_open(monkeypatch):

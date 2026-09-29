@@ -249,8 +249,15 @@ def _posting_is_live(job: dict, url: str) -> Tuple[bool, str]:
         resp = requests.get(url, headers=_BROWSER_UA, timeout=_LIVENESS_TIMEOUT)
     except requests.RequestException:
         return True, ""
-    if resp.status_code >= 400:
+    # Only "gone" means gone. 401/403 mean the server refused *this client* — the same
+    # bot-blocking that Radware does with a 200 and a CAPTCHA, just with a status code —
+    # and 429/5xx are the server having a bad day. Reading any of those as a closed
+    # posting throws away live jobs: a sweep of the backlog found 23 entries condemned
+    # on a 403 alone.
+    if resp.status_code in (404, 410):
         return False, f"posting page returns HTTP {resp.status_code}"
+    if resp.status_code >= 400:
+        return True, ""
     page = _visible_text(resp.text)
     if _BOT_WALL_PATTERN.search(page):
         rendered = _render_visible_text(url)
