@@ -241,3 +241,84 @@ def test_a_healthy_page_never_launches_a_browser(monkeypatch):
     monkeypatch.setattr(ai, "_render_visible_text", boom)
     assert ai._posting_is_live(
         {"title": "Program Specialist, Digital Solutions"}, NJOYN_URL) == (True, "")
+
+
+# ---------------------------------------------------------------------------
+# Careers-index pages and fabricated URLs
+#
+# The liveness gate cannot catch either of these, and both were found by sweeping
+# the backlog: an employer's careers *index* page passes the title probe because it
+# genuinely lists the role, and a fabricated URL passes because the page it lands on
+# is real. Neither is a posting anyone can apply to, so they belong with the rest of
+# the unactionable shapes in job_sources, not in the liveness check.
+# ---------------------------------------------------------------------------
+
+CAREERS_INDEX_URLS = [
+    "https://wabano.com/careers/job-seekers/",
+    "https://ottawa.cmha.ca/get-involved/career-opportunities/",
+    "https://goodlife.ca/jobs",
+    "https://careersatdoordash.com/job-search/",
+    "https://www.transcendvoa.ca/careers/",
+]
+
+REAL_POSTING_URLS = [
+    # A path segment that merely *contains* "careers" or "jobs" is not an index page;
+    # most real postings live under one. Only the bare index itself is unactionable.
+    "https://careers.airbnb.com/positions/7107054",
+    "https://jobs.lever.co/celerion/fa213bc3-e596-4cc4-bd42-5ad19dc7ad98",
+    "https://job-boards.greenhouse.io/koboldmetals/jobs/4731301005",
+    "https://www.jobbank.gc.ca/jobsearch/jobposting/50348327",
+    "https://cheo.wd10.myworkdayjobs.com/External_Site/job/Research-2/Clinical-Research-Coordinator_JR8123",
+    "https://clients.njoyn.com/cl3/xweb/xweb.asp?NTKN=c&clid=53103&Page=JobDetails&Jobid=J0926-0372",
+]
+
+
+@pytest.mark.parametrize("url", CAREERS_INDEX_URLS)
+def test_careers_index_url_is_unactionable(url):
+    reason = ai._unactionable_reason({"company": "Wabano", "title": "Outreach Worker", "url": url})
+    assert reason and "listing page" in reason
+
+
+@pytest.mark.parametrize("url", REAL_POSTING_URLS)
+def test_real_posting_urls_survive(url):
+    assert ai._unactionable_reason({"company": "CHEO", "title": "Clinical Research Coordinator",
+                                    "url": url}) is None
+
+
+@pytest.mark.parametrize("url", [
+    "https://ottawa.diabetes.ca/en/health-promotion-specialist-job-ot-ta-on-canada-job-id-123456",
+    "https://ottawa.heartandstroke.ca/en/health-educator-job-ot-ta-on-canada-job-id-12345",
+    "https://boards.greenhouse.io/cmhaottawa/jobs/5123456005",
+])
+def test_placeholder_ids_are_unactionable(url):
+    """These four sat at fit 7-8 in the backlog for weeks. 'job-id-123456' is a
+    placeholder and 5123456005 is not a Greenhouse id; one of them paired company
+    'University of Ottawa' with heartandstroke.ca. They are search-era fabrications."""
+    reason = ai._unactionable_reason({"company": "Diabetes Canada", "title": "Health Promotion Specialist",
+                                      "url": url})
+    assert reason and "placeholder" in reason
+
+
+def test_a_genuine_long_greenhouse_id_is_not_mistaken_for_a_placeholder():
+    """Real Greenhouse ids are also ten digits — only the 123456/12345 run is the tell."""
+    assert ai._unactionable_reason({"company": "Koboldmetals", "title": "Senior Operations Data Analyst",
+                                    "url": "https://job-boards.greenhouse.io/koboldmetals/jobs/4731301005"}) is None
+
+
+@pytest.mark.parametrize("url", [
+    "https://www.randstad.ca/jobs/q-general-labour/ontario/ottawa/",
+    "https://www.jobbank.gc.ca/marketreport/wages-occupation/296159/ottawa",
+])
+def test_search_and_report_pages_are_unactionable(url):
+    reason = ai._unactionable_reason({"company": "Randstad", "title": "General Labour", "url": url})
+    assert reason and "listing page" in reason
+
+
+def test_staffing_firm_postings_are_not_swept_up():
+    """Randstad and Robert Half post their own mandates; only their search URLs are
+    listing pages. Losing these would cost real applications, so the rules above are
+    deliberately narrower than "the whole domain"."""
+    for url in ["https://www.randstad.ca/jobs/administrative-assistant_ottawa_M12345/",
+                "https://www.roberthalf.com/ca/en/job-details/entry-level-administrative-assistant/ottawa-on"]:
+        assert ai._unactionable_reason({"company": "Randstad", "title": "Administrative Assistant",
+                                        "url": url}) is None

@@ -271,9 +271,39 @@ _NOT_A_POSTING_PATTERN = re.compile(
     r"|ziprecruiter\.\w+/Jobs/(?![^?]*[?&]jid=)"
     r"|linkedin\.com/jobs/(?!view/)"
     r"|indeed\.\w+/cmp/[^/]+/(jobs|locations)\b"
-    r"|flexjobs\.\w+/remote-jobs|jobgether\.\w+/remote-jobs|theimpactjob\.\w+/jobs/remote",
+    r"|flexjobs\.\w+/remote-jobs|jobgether\.\w+/remote-jobs|theimpactjob\.\w+/jobs/remote"
+    # An employer's own careers *index*. This is the one listing-page shape the
+    # liveness gate cannot catch, because the page genuinely lists the role — the
+    # title probe passes, and the gate calls it live. Every check there was built
+    # for a landing page that *loses* the title; an index page keeps it. Found in
+    # the Sep 29 2026 backlog sweep: 21 "live" URLs each carried several different
+    # tracked titles (59 entries), among them wabano.com/careers/job-seekers/ and
+    # goodlife.ca/jobs. Anchored at the end of the path so only the bare index
+    # matches: a real posting always has an id or slug after the keyword
+    # (careers.airbnb.com/positions/<id>, jobbank.gc.ca/jobsearch/jobposting/<id>,
+    # job-boards.greenhouse.io/<co>/jobs/<id>), which the anchor spares.
+    # randstad.ca/jobs/q-<query>/<province>/<city>/ is a search result, same "q-"
+    # marker Indeed uses above; Randstad's real single postings live at
+    # /jobs/<slug>_<id>/ and are left alone. jobbank.gc.ca/marketreport/... is a
+    # labour-market statistics page, not a posting at all (a real one is always
+    # /jobsearch/jobposting/<id>).
+    r"|randstad\.\w+/jobs/q-|jobbank\.gc\.ca/marketreport"
+    r"|/(?:career(?:s)?|jobs|job-search|jobsearch|career-opportunities|job-seekers"
+    r"|job-openings|job-opportunities|current-openings|employment|opportunities)"
+    r"/?(?:[?#]|$)",
     re.I,
 )
+
+# Fabricated ids from the Serper/LLM search era. A placeholder like "job-id-123456"
+# is what a model writes when it has a company and a title but never saw a posting,
+# and the URL it lands on is a real page, so neither the liveness gate nor
+# _greenhouse_board_is_live objects: four of these sat at fit 7-8 in the backlog for
+# weeks, one pairing company "University of Ottawa" with heartandstroke.ca. The tell
+# is the ascending 12345 run inside the id — real ids don't count upward. A genuine
+# id could contain it by luck (roughly 1 in 10^5 per position); the cost of that is
+# one posting reported as needing a look, which is why this reports SKIPPED and never
+# CLOSED.
+_PLACEHOLDER_ID_PATTERN = re.compile(r"(?:job[-_]?id[-_]?|jobs?/)\d*12345", re.I)
 
 _GREENHOUSE_DOMAIN = re.compile(r"(?:boards|job-boards)\.greenhouse\.io", re.I)
 

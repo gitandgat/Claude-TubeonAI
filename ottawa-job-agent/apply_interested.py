@@ -40,7 +40,7 @@ from application_prefill import build_prefill
 from content_generator import tailor_resume, write_cover_letter
 from employer_site import is_job_board_url, resolve_employer_apply_url
 from job_sources import (_JUNK_COMPANY_PATTERN, _JUNK_TITLE_PATTERN,
-                         _NOT_A_POSTING_PATTERN)
+                         _NOT_A_POSTING_PATTERN, _PLACEHOLDER_ID_PATTERN)
 from resume_builder import build_pdf
 from web_applier import apply_on_website
 from workday_applier import apply_on_workday, auto_apply_allowed
@@ -92,6 +92,8 @@ def _unactionable_reason(job: dict) -> Optional[str]:
         return f"title is not a job title: {job.get('title')!r}"
     if _NOT_A_POSTING_PATTERN.search(url):
         return f"URL is a search/listing page, not one posting: {url}"
+    if _PLACEHOLDER_ID_PATTERN.search(url):
+        return f"URL carries a placeholder job id — no posting was ever seen: {url}"
     return None
 
 

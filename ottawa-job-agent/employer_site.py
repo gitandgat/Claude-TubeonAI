@@ -52,7 +52,14 @@ _AGGREGATOR_DOMAINS = re.compile(
     # Quebec-side aggregators, added 2026-09-04 after a live Job Bank run
     # surfaced Gatineau postings whose "apply here" reveal pointed at these
     # rather than at the employer's own site.
-    r"|lavente\.ca|emploisadmin|quebecemploi",
+    r"|lavente\.ca|emploisadmin|quebecemploi"
+    # Found in the Sep 29 2026 backlog sweep: both republish other employers'
+    # postings under their own URL, so several tracked entries shared one link
+    # (bebee carried a "Tea & Toast Inc" role, remoterocketship three variants of
+    # one operations-coordinator listing). Staffing firms that post their own
+    # mandates -- Robert Half, Randstad -- are deliberately NOT here: their
+    # job-details pages are real, applyable postings.
+    r"|bebee|remoterocketship",
     re.I,
 )
 
