@@ -23,9 +23,19 @@ GREENHOUSE_TIMEOUT = 15
 
 _GREENHOUSE_JOB_ID_RE = re.compile(r"/jobs/(\d+)")
 
+# Greenhouse reports a question's type inside question["fields"][i]["type"], not on
+# the question itself, and its live values are these. The flat keys below them
+# ("single_select", "yes_no", "attachment") are kept because the fixtures and older
+# boards use them, but no live board has been seen to emit them: reading only the
+# flat shape is why every question on every real posting came back kind "text",
+# which meant the resume was never attached and select questions were answered as
+# free text with no option list to match against.
 _GREENHOUSE_TYPE_MAP = {
     "input_text": "text",
+    "input_file": "file",
     "textarea": "textarea",
+    "multi_value_single_select": "select",
+    "multi_value_multi_select": "checkbox",
     "single_select": "select",
     "multi_select": "checkbox",
     "yes_no": "select",
@@ -68,14 +78,32 @@ def _greenhouse_job_id(url: str) -> Optional[str]:
 
 
 def _greenhouse_field(question: dict) -> dict:
-    kind = _GREENHOUSE_TYPE_MAP.get(str(question.get("type") or ""), "text")
-    options = [str(o.get("label") or "").strip() for o in (question.get("options") or [])]
+    """One question -> one pipeline field.
+
+    A question can carry several fields: "Resume/CV" comes back as
+    ["input_file", "textarea"] because Greenhouse accepts an upload or pasted text.
+    A file is the better answer there (the pipeline always has a resume PDF and
+    never has pasted resume text), so a file field wins when one is offered.
+    """
+    sub = [f for f in (question.get("fields") or []) if isinstance(f, dict)]
+    kinds = [_GREENHOUSE_TYPE_MAP.get(str(f.get("type") or ""), "text") for f in sub]
+    if "file" in kinds:
+        chosen = sub[kinds.index("file")]
+        kind = "file"
+    elif sub:
+        chosen, kind = sub[0], kinds[0]
+    else:
+        # Flat legacy/fixture shape: type and options sit on the question itself.
+        chosen, kind = question, _GREENHOUSE_TYPE_MAP.get(str(question.get("type") or ""), "text")
+
+    raw_options = chosen.get("values") or question.get("options") or []
+    options = [str(o.get("label") or "").strip() for o in raw_options if isinstance(o, dict)]
     return {
         "label": str(question.get("label") or "").strip(),
         "kind": kind,
         "required": bool(question.get("required")),
         "options": [o for o in options if o],
-        "name": str(question.get("name") or question.get("label") or "").strip(),
+        "name": str(chosen.get("name") or question.get("name") or question.get("label") or "").strip(),
     }
 
 

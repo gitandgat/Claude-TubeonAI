@@ -39,6 +39,7 @@ import tracker
 from application_prefill import build_prefill
 from content_generator import tailor_resume, write_cover_letter
 from employer_site import is_job_board_url, resolve_employer_apply_url
+from form_schema import extract_greenhouse_fields
 from job_sources import (_JUNK_COMPANY_PATTERN, _JUNK_TITLE_PATTERN,
                          _NOT_A_POSTING_PATTERN, _PLACEHOLDER_ID_PATTERN)
 from resume_builder import build_pdf
@@ -343,7 +344,14 @@ def _process(job: dict, submit: bool) -> str:
                 f"            {prefill['n_ready']} answers ready, {prefill['n_needs_input']} need you\n"
                 f"            {prefill['apply_url']}")
 
-    prefill = build_prefill(job, None, cover_letter, resume_pdf, apply_url)
+    # Greenhouse publishes a posting's real questions over its public API, so package
+    # mode can have them without a browser and without touching the form. Worth the one
+    # request: the generic set reported "0 need you" for a Knak posting whose form
+    # actually carries a *required* "desired salary" question — exactly the kind of
+    # answer the design refuses to guess. None on any failure, which falls back to the
+    # typical set as before.
+    fields = extract_greenhouse_fields(apply_url) if apply_url else None
+    prefill = build_prefill(job, fields, cover_letter, resume_pdf, apply_url)
     reason = "aggregator URL — no employer form to submit" if target == "job_board" else \
              ("package mode" if not submit else "no verified submit path")
     tracker.update_status(job["id"], "draft_ready", f"prefilled package built ({reason})")

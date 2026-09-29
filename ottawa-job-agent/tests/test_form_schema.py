@@ -11,30 +11,41 @@ import pytest
 
 import form_schema
 
-# Shape captured from boards-api.greenhouse.io/v1/boards/<token>/jobs/<id>?questions=true
+# Real shape, dumped from boards-api.greenhouse.io/v1/boards/<token>/jobs/<id>?questions=true
+# on 2026-09-29. The type and the option list live on the *sub-fields*, not on the
+# question: a question is a label plus one or more fields, and one label can carry two
+# of them ("Resume/CV" accepts an upload or pasted text). An earlier version of this
+# fixture invented a flat {"type": ..., "options": ...} shape that the API has never
+# returned, and _greenhouse_field was written to match the fixture — so every question
+# on every real posting silently came back kind "text": the resume was never recognised
+# as an attachment and select questions arrived with no options to match an answer
+# against. Keep this fixture equal to a real dump; that is the whole point of it.
 GREENHOUSE_PAYLOAD = {
     "id": 4567890,
     "title": "Health Information Analyst",
     "questions": [
-        {"label": "First Name", "required": True, "type": "input_text", "name": "first_name"},
-        {"label": "Resume", "required": True, "type": "attachment", "name": "resume"},
+        {"label": "First Name", "required": True,
+         "fields": [{"name": "first_name", "type": "input_text", "values": []}]},
+        {"label": "Resume", "required": True,
+         "fields": [{"name": "resume", "type": "input_file", "values": []},
+                    {"name": "resume_text", "type": "textarea", "values": []}]},
         {"label": "Why do you want to work here?", "required": False,
-         "type": "textarea", "name": "question_1"},
+         "fields": [{"name": "question_1", "type": "textarea", "values": []}]},
         {"label": "Are you legally authorized to work in Canada?", "required": True,
-         "type": "yes_no", "name": "question_2",
-         "options": [{"label": "Yes", "value": 1}, {"label": "No", "value": 0}]},
+         "fields": [{"name": "question_2", "type": "multi_value_single_select",
+                     "values": [{"label": "Yes", "value": 1}, {"label": "No", "value": 0}]}]},
         {"label": "Which shifts are you available for?", "required": False,
-         "type": "multi_select", "name": "question_3",
-         "options": [{"label": "Days", "value": 1}, {"label": "Evenings", "value": 2},
-                     {"label": "Overnight", "value": 3}]},
+         "fields": [{"name": "question_3", "type": "multi_value_multi_select",
+                     "values": [{"label": "Days", "value": 1}, {"label": "Evenings", "value": 2},
+                                {"label": "Overnight", "value": 3}]}]},
         {"label": "How did you hear about us?", "required": False,
-         "type": "single_select", "name": "question_4",
-         "options": [{"label": "Company website", "value": 1},
-                     {"label": "Referral", "value": 2}]},
-        {"label": "", "required": False, "type": "input_text", "name": "spacer"},
+         "fields": [{"name": "question_4", "type": "multi_value_single_select",
+                     "values": [{"label": "Company website", "value": 1},
+                                {"label": "Referral", "value": 2}]}]},
+        {"label": "", "required": False,
+         "fields": [{"name": "spacer", "type": "input_text", "values": []}]},
     ],
 }
-
 
 class FakeResponse:
     def __init__(self, payload, status=200):
@@ -75,6 +86,23 @@ def test_greenhouse_field_keeps_required_flag_and_option_labels():
     parsed = form_schema._greenhouse_field(q)
     assert parsed["required"] is False
     assert parsed["options"] == ["Days", "Evenings", "Overnight"]
+
+
+def test_a_resume_question_offering_upload_or_paste_is_treated_as_a_file():
+    """The live API gives "Resume/CV" two fields: input_file and textarea. The
+    pipeline always has a resume PDF and never has pasted resume text, so the file
+    must win — when it didn't, the one attachment always on file was reported to him
+    as "no safe answer, fill this in yourself"."""
+    parsed = form_schema._greenhouse_field(GREENHOUSE_PAYLOAD["questions"][1])
+    assert parsed["kind"] == "file"
+    assert parsed["name"] == "resume"
+
+
+def test_a_select_question_carries_the_option_labels_it_must_be_answered_from():
+    parsed = form_schema._greenhouse_field(GREENHOUSE_PAYLOAD["questions"][3])
+    assert parsed["kind"] == "select"
+    assert parsed["options"] == ["Yes", "No"]
+    assert parsed["name"] == "question_2"
 
 
 def test_extract_greenhouse_fields_drops_unlabelled_questions(monkeypatch):
