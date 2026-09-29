@@ -69,6 +69,8 @@ ottawa-job-agent/seen_jobs.json
 ottawa-job-agent/applications.json
 ottawa-job-agent/known_boards.json
 ottawa-job-agent/agent_config.json
+# Output of audit_pending.py — derived from the gitignored applications.json.
+ottawa-job-agent/audit.json
 
 # Ottawa job agent — generated PII/output (resumes, cover letters, autofill data,
 # microsites, dashboard), not source; regenerate, don't version
