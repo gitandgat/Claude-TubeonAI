@@ -20,6 +20,7 @@ from typing import Optional
 
 import requests
 
+from non_application_inboxes import first_application_email, is_non_application_inbox
 from ollama_client import OllamaClient
 from serper_client import SerperClient, SerperCreditsExhausted
 
@@ -525,7 +526,11 @@ class JobSources:
                 # recipient and bounce with "501 5.1.3 Invalid address". Validate the
                 # shape before trusting it; fall back to scraping the description.
                 raw_apply_email = str(item.get("apply_email")).strip() if item.get("apply_email") else ""
-                apply_email = raw_apply_email if extract_email(raw_apply_email) else extract_email(description)
+                apply_email = raw_apply_email if extract_email(raw_apply_email) else first_application_email(description)
+                # An accommodation/accessibility contact is never the application inbox
+                # (see non_application_inboxes.py — the esc-cse@ottawa.ca incident).
+                if apply_email and is_non_application_inbox(apply_email, description):
+                    apply_email = first_application_email(description)
 
                 # Deliberately no `apply_target` here, unlike ats_boards.py /
                 # workday_source.py / jobbank_source.py. Those three already know

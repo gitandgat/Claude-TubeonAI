@@ -33,6 +33,7 @@ from playwright.sync_api import sync_playwright
 
 from agent_config import is_review_only
 from autofill_sheet import SCREENING
+from non_application_inboxes import is_non_application_inbox
 from resume_data import PROFILE
 from run_history import record_run
 
@@ -590,6 +591,8 @@ def _pick_apply_email(candidates: list, page_host: str) -> str:
         a = addr.strip().strip(".").lower()
         if a in seen_addrs or _JUNK_LOCALPART.search(a.split("@")[0]):
             continue
+        if is_non_application_inbox(a):  # accommodation desks etc. — see non_application_inboxes.py
+            continue
         if _BOARD_DOMAINS.search(a.split("@")[1]):
             continue
         seen_addrs.append(a)
@@ -607,6 +610,7 @@ def _harvest_apply_email(page) -> str:
     """Best-effort application email from the posting page: mailto links first
     (explicit invitation to email), then addresses in the visible text."""
     candidates = []
+    body = ""
     try:
         for href in page.eval_on_selector_all(
             "a[href^='mailto:']", "els => els.map(e => e.getAttribute('href'))"
@@ -625,6 +629,9 @@ def _harvest_apply_email(page) -> str:
         host = urlparse(page.url).netloc
     except Exception:
         host = ""
+    # Drop addresses the posting only offers for accommodation requests — they
+    # match the employer's domain but are not where applications go.
+    candidates = [c for c in candidates if not is_non_application_inbox(c, body)]
     return _pick_apply_email(candidates, host)
 
 
