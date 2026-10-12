@@ -1,12 +1,17 @@
 """Content vertical registry for the multi-vertical LinkedIn + cross-post agent.
 
-All five verticals publish to the ONE LinkedIn profile (Dr. Sahawat) — same
+Every vertical publishes to the ONE LinkedIn profile (Dr. Sahawat) — same
 person, different subject lens — so the voice stays coherent across the brand's
-"doctor who chose a new path" story. The 5/day LinkedIn cap is the design: one
-day-part slot per vertical, exactly 5.
+"doctor who chose a new path" story.
+
+TWO are in the daily rotation as of Oct 1 2026: crosswalk (08:00) and trainer
+(11:00). fitness/mind/health are RETIRED — still importable for a manual
+one-off, out of the daily run. See the ACTIVE / RETIRED block at the bottom for
+the numbers behind that call. Filling the 5/day Zernio cap was the old design
+and it cost reach: 5 posts/day median 39 impressions, 1-2/day median 55-57.
 
 Each vertical owns:
-  - its LinkedIn day-part slot (08:00 / 11:00 / 14:00 / 17:00 / 20:00 ET)
+  - its LinkedIn day-part slot (08:00 / 11:00 ET for the active pair)
   - a persona/domain system prompt (shares the proven first-person FORMAT_SPINE)
   - a rotating theme list (no Reddit research needed off the Crosswalk vertical)
   - its first-comment CTA + a fallback CTA line
@@ -36,6 +41,18 @@ THE ONE RULE THAT MATTERS (proven by this account's own data):
 Write in FIRST PERSON about a SPECIFIC MOMENT, with CONCRETE NUMBERS and SENSORY DETAIL.
 Posts that do this get 4,000-14,000 views. Abstract second-person advice ("You should...", "Discipline is a muscle") gets 15-50 views. Never write the second kind.
 
+THE FIRST TWO WORDS ARE A HARD RULE:
+The post MUST open with "I " or "My " followed by something concrete — a place, a
+time, an object, a number. Not a title. Not a label. Not a scene-setting phrase.
+The SHAPE to copy (never the contents — use only real details from the facts
+above; do not borrow any number, age, or amount from this example):
+  SHAPE: "I <was doing a specific thing> <at a real time or place>, <concrete detail>."
+  SHAPE: "My <specific thing of mine> <did something> at <a real time>."
+  BAD:  "**The Weight I Carried**" (a bold title line — LinkedIn prints the
+        asterisks literally, so the hook dies on the page)
+  BAD:  "Three years ago, something changed." (no I/My, no concrete detail)
+  BAD:  "It was October 2021 when I stopped." (starts with "It", not I/My)
+
 HOW YOUR BEST POSTS ARE BUILT:
 1. Open mid-scene, first person: a real moment with a time, place, or object.
 2. Concrete numbers and objects: dollars, reps, years, the exact thing in the room.
@@ -45,6 +62,11 @@ HOW YOUR BEST POSTS ARE BUILT:
 6. 3-5 topic hashtags ({hashtags}). Never meta-hashtags like #Hook #LinkedIn.
 
 HARD BANS:
+- NO MARKDOWN. None. LinkedIn does not render it — it prints the raw characters.
+  No **bold**, no *italics*, no `backticks`, no "# " or "## " heading lines, no
+  "---" rules, no [text](link). Write plain sentences and blank lines only.
+- No title line of any kind above the opening sentence. The first line of the
+  post IS the first sentence of the story.
 - No second-person sermons ("You need to...", "You're not...", "Your fear is...").
 - No section labels in the post (no "HOOK:", "REFRAME:", "CTA:").
 - No AI slop: unleash, dive into, game-changer, supercharge, transformative, leverage, empower, unlock, cutting edge, innovative, paradigm shift, "here's what I learned", "at the end of the day", "honestly", "literally", "let's be real".
@@ -266,36 +288,47 @@ FITNESS = Vertical(
     },
 )
 
+# Wayfinder (added Jul 2026): repoints the 17:00 slot from the old
+# physician-burnout persona to a new standalone brand — an AI companion for
+# people stuck in decision paralysis (career pivot, life direction, identity).
+# Keeps key="mind" so the existing learning-loop history in
+# data/verticals/mind/ keeps compounding rather than restarting cold.
 MIND = Vertical(
     key="mind",
-    name="Emotional / Mental Health",
+    name="Wayfinder (AI for decision paralysis)",
     slot_time="17:00",
     system_prompt=_build_prompt(
-        "You are Dr. Sahawat — a physician who burned out, left medicine, and "
-        "writes honestly about identity, fear, and mental health from the inside. "
-        "You are not a wellness influencer. You are someone who lived the parking-"
-        "lot tears and the body saying no before the mind admitted it.",
-        "#MentalHealth #Burnout #Identity",
+        "You are Sahawat — a physician who left medicine, spent months stuck in "
+        "decision paralysis about what came next, and built Wayfinder: an AI "
+        "companion for people facing that same kind of stuck moment. You write "
+        "first-person about that overwhelm — the paralysis of a career pivot, a "
+        "life direction, an identity in flux — and how using AI as a thinking "
+        "partner, not a search engine, moved you forward. You are not a "
+        "productivity guru. You are someone who was stuck and found a way through.",
+        "#DecisionParalysis #Overwhelm #AI #GettingUnstuck",
     ),
-    draft_subject="as a physician who burned out and chose to leave",
+    draft_subject="as someone who used AI to get unstuck from a decision that had you paralyzed",
     themes=(
-        "the moment your body knew before your brain did",
-        "the difference between burnout and being done",
-        "who you are when the title is gone",
-        "naming the fear that was actually running your decisions",
-        "the grief of leaving an identity you spent years building",
-        "why self-care never fixed the real problem",
-        "the permission no one gives you to stop",
-        "the smallest act of courage that started the change",
-        "what numbness was trying to tell you",
-        "the quiet relief on the other side of a hard choice",
+        "the three tabs open at 1am comparing paths you couldn't choose between",
+        "the moment you realized more research wasn't the problem",
+        "asking AI the question you were too afraid to ask a person",
+        "the difference between not knowing what you want and not letting yourself want it",
+        "the pro-con list that never once made the decision easier",
+        "what changed when you stopped asking 'what should I do' and started asking 'what am I actually afraid of'",
+        "the decision you kept deferring until it made itself, badly",
+        "the one conversation with an AI that surfaced what you'd been avoiding for months",
+        "why being stuck was never about lacking options",
+        "the smallest next step that finally broke the paralysis",
     ),
+    # Interim CTA: the Wayfinder lead magnet/landing page doesn't exist yet
+    # (see lead-magnets/ + Encharge steps). DM/comment capture until it's live,
+    # then swap this for a real link like every other vertical's first_comment.
     first_comment=(
-        "I wrote a free guide on the five inner voices that keep capable people "
-        "stuck, and how to answer each one. Read it here: "
-        "https://www.crosswalkwisdom.com/inner-voices"
+        "I'm building Wayfinder, an AI companion for exactly this kind of stuck. "
+        "If you want early access, comment 'wayfinder' or DM me and I'll add you "
+        "to the list."
     ),
-    cta_fallback="If this is where you are, share it with someone who needs to read it tonight.",
+    cta_fallback="If you've ever been stuck like this, share it with someone who needs to see it.",
 )
 
 HEALTH = Vertical(
@@ -344,21 +377,38 @@ HEALTH = Vertical(
 )
 
 
-VERTICALS = {
-    v.key: v for v in (CROSSWALK, TRAINER, FITNESS, MIND, HEALTH)
-}
+# ── Active vs retired ────────────────────────────────────────────────────────
+# Retired Oct 1 2026 on this account's own numbers: fitness + mind + health ran
+# 93 LinkedIn posts for 3,538 impressions and 24 likes combined (fitness alone:
+# 29 impressions/post, 0.15 likes/post). Crosswalk (IMG/career-pivot) does 103
+# impressions/post and the identity/family-shame cluster pulls 2.6 likes/post —
+# 4x every other topic. So the daily run publishes crosswalk + trainer only,
+# which is also the cadence the data wants: 1-2 posts/day medians 55-57
+# impressions, 5/day medians 39.
+#
+# The retired definitions stay importable on purpose: `--vertical fitness` still
+# works for a manual one-off, and data/verticals/{fitness,mind,health}/ keeps its
+# history so nothing that was learned is thrown away. They are simply no longer
+# in the daily rotation or the nightly learning sweep.
+ACTIVE = (CROSSWALK, TRAINER)
+RETIRED = (FITNESS, MIND, HEALTH)
+
+VERTICALS = {v.key: v for v in ACTIVE + RETIRED}
 
 # Daily publishing order = slot order.
-ORDERED = (CROSSWALK, TRAINER, FITNESS, MIND, HEALTH)
+ORDERED = ACTIVE
 
 
 def get(key: str) -> Vertical:
-    """Look up a vertical by key, raising a clear error on a typo."""
+    """Look up a vertical by key, raising a clear error on a typo.
+
+    Resolves retired verticals too, so a manual one-off run still works.
+    """
     if key not in VERTICALS:
         raise KeyError(f"Unknown vertical '{key}'. Known: {', '.join(VERTICALS)}")
     return VERTICALS[key]
 
 
 def all_verticals() -> tuple:
-    """All five verticals in slot order."""
+    """The verticals in the daily rotation (slot order) — active ones only."""
     return ORDERED

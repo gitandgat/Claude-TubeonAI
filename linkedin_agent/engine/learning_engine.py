@@ -173,8 +173,14 @@ class LearningEngine:
                     "n": n,
                     "avg_impressions": round(sum(r.get("impressions", 0) for r in rows) / n, 1),
                     "avg_shares": round(sum(r.get("shares", 0) for r in rows) / n, 2),
+                    # comments DELIBERATELY EXCLUDED: every post carries exactly
+                    # one comment — our own scheduled first comment (the CTA
+                    # link). 260/296 LinkedIn posts show comments == 1, so
+                    # including it added a constant ~1.0 to every arm and made
+                    # avg_engagement pure noise. Only likes + shares are
+                    # audience signal. (Verified Oct 2026 from analytics_history.)
                     "avg_engagement": round(
-                        sum(r.get("likes", 0) + r.get("comments", 0) + r.get("shares", 0)
+                        sum(r.get("likes", 0) + r.get("shares", 0)
                             for r in rows) / n, 2),
                 }
         return summary
@@ -263,10 +269,14 @@ def build_all_verticals() -> dict:
 
     Run after a snapshot. Each vertical learns only from its own posts, so
     fitness patterns never get contaminated by IMG-career patterns.
+
+    Covers RETIRED verticals too, not just the daily rotation: `--vertical
+    fitness` still works for a manual one-off, and a post writer reading a
+    pattern file that stopped being rebuilt would be acting on stale numbers.
     """
-    from linkedin_agent.verticals import all_verticals
+    from linkedin_agent.verticals import ACTIVE, RETIRED
     out = {}
-    for v in all_verticals():
+    for v in ACTIVE + RETIRED:
         print(f"\n🧠 Learning patterns for [{v.key}] {v.name}...")
         out[v.key] = LearningEngine(vertical=v).build_patterns()
     return out

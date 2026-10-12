@@ -14,7 +14,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from linkedin_agent.json_utils import extract_json
 from linkedin_agent.stop_slop_gate import score_post, PASS_THRESHOLD
 from linkedin_agent.dedup import overlaps
-from linkedin_agent.engine.post_writer import PostWriter
+from linkedin_agent.engine.post_writer import (
+    PostWriter, find_markdown, opener_issue, strip_markdown,
+)
 
 # A real post writer instance for validate_post (a pure method — no API client).
 _pw = PostWriter.__new__(PostWriter)
@@ -113,6 +115,82 @@ def test_validate_blocks_over_char_limit():
     v = _pw.validate_post("I " + ("x " * 1600) + "? comment")
     assert not v["valid"]
     assert not v["length_ok"]
+
+
+# ---------- the opener hard gate ----------
+# 0 of the last 130 published posts opened with "I "/"My " even though
+# winning_patterns.json has recommended exactly that since it was first built.
+# The old check only rejected second-person openers; it never required
+# first-person, and it lstripped "*#" so a bold title slipped through.
+
+def test_opener_gate_accepts_first_person_with_number():
+    assert opener_issue("I was 34 and still paying $890 a month.") == ""
+
+def test_opener_gate_accepts_my_with_time():
+    assert opener_issue("My last shift ended at 6:40am on a Tuesday.") == ""
+
+def test_opener_gate_accepts_named_place():
+    assert opener_issue("I stood at the crosswalk on Bank Street in the cold.") == ""
+
+def test_opener_gate_rejects_bold_title():
+    assert opener_issue("**The Weight I Carried**\n\nI stood there.") != ""
+
+def test_opener_gate_rejects_abstract_first_person():
+    assert opener_issue("I learned something important that changed everything.") != ""
+
+def test_opener_gate_rejects_second_person():
+    assert opener_issue("You need to stop waiting for permission.") != ""
+
+def test_opener_gate_rejects_empty():
+    assert opener_issue("") != ""
+
+def test_validate_blocks_non_first_person_opening():
+    v = _pw.validate_post("Three years ago something changed. " + _story())
+    assert not v["valid"]
+    assert not v["opener_ok"]
+
+
+# ---------- markdown must never reach the composer ----------
+# LinkedIn has no markdown renderer: "**Bold Title**" publishes with the
+# asterisks visible. 178 posts shipped that way (median 35 impressions vs 49
+# for plain openers; 34 vs 44 within Jul-Sep alone).
+
+def test_strip_removes_bold():
+    assert strip_markdown("**The Weight**\n\nI stood there.").startswith("The Weight")
+    assert "*" not in strip_markdown("**The Weight**\n\nI stood there.")
+
+def test_strip_removes_heading_lines():
+    out = strip_markdown("# LinkedIn — safe-place\n\n## Hook\n\nMy shift ended.")
+    assert "#" not in out
+    assert "Hook" in out
+
+def test_strip_removes_links_keeping_text_and_url():
+    out = strip_markdown("I paid $890. See [the map](https://x.com/a).")
+    assert "[" not in out and "](" not in out
+    assert "the map" in out and "https://x.com/a" in out
+
+def test_strip_removes_rules_backticks_and_fences():
+    out = strip_markdown("I paid $890.\n\n---\n\n```\nx\n```\n\nUse `code` now.")
+    assert "---" not in out and "`" not in out
+    assert "\n\n\n" not in out, "collapsed blank lines"
+
+def test_strip_leaves_clean_post_untouched():
+    clean = "I was 34 and still paying $890 a month.\n\nIt took two years.\n\n#IMG #CaRMS"
+    assert strip_markdown(clean) == clean
+
+def test_strip_preserves_hashtags():
+    assert "#IMG" in strip_markdown("I quit at 34.\n\n#IMG #CaRMS #MedicalCareers")
+
+def test_find_markdown_flags_destructive_cases():
+    assert find_markdown("**bold**")
+    assert find_markdown("## Hook")
+    assert find_markdown("[t](https://x.com)")
+    assert find_markdown("I was 34 and paid $890. #IMG") == []
+
+def test_validate_blocks_surviving_markdown():
+    v = _pw.validate_post("**I matched at 26.** " + _story())
+    assert not v["valid"]
+    assert v["markdown_found"]
 
 
 def _run():

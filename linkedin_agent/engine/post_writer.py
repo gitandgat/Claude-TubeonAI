@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 # Add parent directories to path for imports
 import sys
@@ -43,9 +44,106 @@ HARD BANS:
 - No section labels in the post (no "HOOK:", "REFRAME:", "CTA:").
 - No AI slop: unleash, dive into, game-changer, supercharge, transformative, leverage, empower, unlock, cutting edge, innovative, paradigm shift, "here's what I learned", "at the end of the day", "honestly", "literally", "let's be real".
 - No abstract openers. If your first line could be a fortune cookie, rewrite it as a scene.
+- NO MARKDOWN — LinkedIn prints it literally. No **bold**, no "#" heading line, no [text](url), no backticks. And no title line above the first sentence.
+
+THE FIRST TWO WORDS ARE A HARD RULE: the post must open with "I " or "My " plus a
+concrete detail (a number, a date, a time, or a named place) drawn from the real
+facts you were given — never an invented age or amount. Anything else is rejected
+before it reaches the schedule.
 
 LENGTH: 150-350 words. Tight. Hard cap 3,000 characters or LinkedIn rejects it.
 VOICE: A real person who lived it. Vulnerable, specific, unhurried."""
+
+
+# ── Render-path hygiene ──────────────────────────────────────────────────────
+# LinkedIn's composer has no markdown renderer: "**Bold Title**" publishes with
+# the asterisks visible. 178 posts on this account opened that way and they
+# median 35 impressions against 49 for plain openers — and the gap holds inside
+# Jul-Sep alone (34 vs 44), so it isn't only an era effect. Two posts published
+# raw scaffolding ("# LinkedIn — everyone-elses-safe-place", "## Hook"). The
+# prompt has always said not to; the model does it anyway. So strip it on the way
+# out, every time, instead of trusting instructions.
+
+_MARKDOWN_SIGNS = (
+    (r"\*\*", "**bold**"),
+    (r"(?m)^\s{0,3}#{1,6}\s+", "# heading line"),
+    (r"(?m)^\s*```", "``` code fence"),
+    (r"\[[^\]]+\]\([^)]+\)", "[text](url) link"),
+    (r"(?m)^\s{0,3}>\s", "> blockquote"),
+)
+
+
+def find_markdown(text: str) -> list:
+    """Markdown constructs LinkedIn would publish literally. Empty list = clean."""
+    return [label for pattern, label in _MARKDOWN_SIGNS if re.search(pattern, text or "")]
+
+
+def strip_markdown(text: str) -> str:
+    """Return the post as LinkedIn should receive it: plain text, no markup."""
+    if not text:
+        return text
+
+    lines = []
+    for line in text.split("\n"):
+        line = re.sub(r"^\s{0,3}#{1,6}\s+", "", line)      # "## Hook" -> "Hook"
+        line = re.sub(r"^\s{0,3}>\s?", "", line)           # "> quote" -> "quote"
+        if re.fullmatch(r"\s*([-*_])\s*(\1\s*){2,}", line):  # "---" rule -> gone
+            lines.append("")
+            continue
+        line = re.sub(r"^(\s*)\*\s+", r"\1- ", line)       # "* item" -> "- item"
+        lines.append(line)
+    text = "\n".join(lines)
+
+    text = re.sub(r"(?m)^\s*```.*$", "", text)             # fences
+    text = re.sub(r"\*{1,3}(\S(?:.*?\S)?)\*{1,3}", r"\1", text)   # **b** *i*
+    text = re.sub(r"__(\S(?:.*?\S)?)__", r"\1", text)             # __b__
+    text = re.sub(r"(?<![A-Za-z0-9_])_(\S(?:.*?\S)?)_(?![A-Za-z0-9_])", r"\1", text)
+    text = re.sub(r"`([^`]+)`", r"\1", text)               # `code`
+    text = re.sub(r"!\[([^\]]*)\]\([^)]*\)", r"\1", text)  # ![alt](url)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r"\1 (\2)", text)   # [t](url)
+    text = re.sub(r"[ \t]+$", "", text, flags=re.MULTILINE)
+    text = re.sub(r"\n{3,}", "\n\n", text)   # removed rules/fences leave gaps
+    return text.strip()
+
+
+# ── Opener hard gate ─────────────────────────────────────────────────────────
+# winning_patterns.json has said "lead with I.../My... and concrete numbers"
+# since it was first built (first-person 555 avg impressions vs 0 for
+# second-person). Zero of the last 130 posts did it, because the old check only
+# *rejected* second-person openers and never *required* first-person — and it
+# lstripped "*#" first, quietly forgiving a bold-title opener. Now it's required.
+
+_CONCRETE_OPENER_RE = re.compile(
+    r"\d"                                                  # 34, $890, 6:40am
+    r"|\b(mon|tues|wednes|thurs|fri|satur|sun)day\b"
+    r"|\b(jan|febr)uary\b|\bmarch\b|\bapril\b|\bjune\b|\bjuly\b|\baugust\b"
+    r"|\b(septem|octo|novem|decem)ber\b"
+    r"|\b(morning|afternoon|evening|midnight|noon|tonight|am|pm)\b",
+    re.IGNORECASE,
+)
+
+
+def _has_proper_noun(line: str) -> bool:
+    """A capitalised word past the first token — a named place, ward, or person."""
+    for token in line.split()[1:]:
+        word = token.strip(".,;:!?\"'()—-")
+        if len(word) > 1 and word[0].isupper() and word != "I":
+            return True
+    return False
+
+
+def opener_issue(post: str) -> str:
+    """Empty string if the opening line clears the gate, else why it doesn't."""
+    line = next((ln.strip() for ln in (post or "").split("\n") if ln.strip()), "")
+    if not line:
+        return "post is empty"
+    if not re.match(r"^(I |I'|My )", line):
+        return f'opener must start with "I " or "My " — got: {line[:70]!r}'
+    if not (_CONCRETE_OPENER_RE.search(line) or _has_proper_noun(line)):
+        return ("opener has no concrete detail (number, date, time, or named "
+                f"place): {line[:70]!r}")
+    return ""
+
 
 class PostWriter:
     def __init__(self, voice_profile: dict = None, vertical=None):
@@ -331,6 +429,44 @@ POST:
             print(f"Hook rescue pass failed: {e}")
             return ""
 
+    def fix_opener(self, post: str, reason: str) -> str:
+        """Rewrite ONLY the first line so it clears the opener hard gate.
+
+        Unlike fix_hook (advisory, chases the virality score), this one exists to
+        clear a blocking gate: no "I "/"My " + concrete detail, no publish.
+        """
+        fix_prompt = f"""This LinkedIn post's opening line is rejected: {reason}
+
+Rewrite ONLY the first line. It must begin with the word "I" or "My" and contain a concrete detail — a number, an amount, a time, a date, or a named place. It must be a real moment, not a summary.
+
+Build it from details ALREADY IN THE POST BELOW. Do not invent an age, an amount, a date, or a place that isn't already there — this is a real person's life, not a composite. Copy the shape, never the contents:
+SHAPE: "I <was doing a specific thing> <at a real time or place>, <concrete detail>."
+SHAPE: "My <specific thing of mine> <did something> at <a real time>."
+BAD: any title line, any bold text, anything starting with "It was" or "Three years ago", anything that doesn't start with I or My.
+
+Keep every other line, the numbers, the voice, the structure, and the hashtags exactly as they are. Plain text only — no markdown, no asterisks, no heading marks. Return ONLY the edited post.
+
+POST:
+{post}"""
+        try:
+            if self.provider == "claude":
+                response = self.client.messages.create(
+                    model="claude-haiku-4-5-20251001",
+                    max_tokens=2000,
+                    system=self.system_prompt,
+                    messages=[{"role": "user", "content": fix_prompt}],
+                )
+            else:
+                response = self.client.create(
+                    messages=[{"role": "user", "content": fix_prompt}],
+                    system=self.system_prompt,
+                    max_tokens=2000,
+                )
+            return strip_markdown(response.content[0].text.strip())
+        except Exception as e:
+            print(f"Opener fix pass failed: {e}")
+            return ""
+
     def validate_post(self, post: str) -> dict:
         """Validate the final post against quality criteria."""
         word_count = len(post.split())
@@ -397,13 +533,19 @@ POST:
         # First-person opening is the PROVEN reach driver (18.2x). Stop-slop
         # doesn't catch second-person advice (it's mechanically clean), so
         # enforce the format separately. Find the first real line.
-        first_line = next((ln.strip().lstrip("*# ").lower()
+        #
+        # Graded on the RAW line — no .lstrip("*# ") — because a "**Bold Title**"
+        # opener IS the failure, not a wrapper around a passing one.
+        first_line = next((ln.strip().lower()
                            for ln in post.split("\n") if ln.strip()), "")
-        import re as _re
-        first_person_open = bool(_re.match(
-            r"^(i |i'|my |we |we'|the day i|the year i|the night i|the morning i)",
-            first_line))
-        second_person_open = bool(_re.match(r"^(you |you'|your )", first_line))
+        first_person_open = bool(re.match(r"^(i |i'|my )", first_line))
+        second_person_open = bool(re.match(r"^(you |you'|your )", first_line))
+
+        # HARD GATES (block scheduling, unlike the advisory virality score):
+        #   - the opener must be "I "/"My " + a concrete detail
+        #   - no markdown survives to the composer
+        opener_fail = opener_issue(post)
+        markdown_found = find_markdown(post)
 
         validation = {
             "word_count": word_count,
@@ -419,6 +561,10 @@ POST:
             "stop_slop_recommendations": recommendations(slop_issue_counts),
             "first_person_open": first_person_open,
             "second_person_open": second_person_open,
+            "opener_issue": opener_fail,
+            "opener_ok": opener_fail == "",
+            "markdown_found": markdown_found,
+            "markdown_ok": len(markdown_found) == 0,
             "has_cta": has_cta,
             "has_closing_question": has_question,
             "virality_score": virality_score,
@@ -431,6 +577,8 @@ POST:
                 len(slop_found) == 0 and
                 slop_pass and
                 not second_person_open and
+                opener_fail == "" and
+                len(markdown_found) == 0 and
                 has_cta and
                 has_question
             )
@@ -451,7 +599,10 @@ POST:
         if not draft:
             return {"success": False, "post": "", "validation": {}}
 
-        final_post = draft
+        # Strip markdown FIRST, before anything validates or scores the text.
+        # LinkedIn publishes "**Bold Title**" with the asterisks showing, so this
+        # is not cosmetic — it's the difference between a hook and a glyph.
+        final_post = strip_markdown(draft)
 
         # Validate
         validation = self.validate_post(final_post)
@@ -484,6 +635,24 @@ POST:
             else:
                 final_post = final_post.rstrip() + "\n\n" + cta_line
             validation = self.validate_post(final_post)
+
+        # Opener hard gate: must open "I "/"My " + a concrete detail. Up to two
+        # repair attempts, because this one BLOCKS publish — a post that still
+        # fails after them is dropped rather than shipped with a dead hook.
+        for attempt in (1, 2):
+            if validation.get("opener_ok"):
+                break
+            print(f"⚠ Opener rejected (attempt {attempt}): {validation['opener_issue']}")
+            fixed = self.fix_opener(final_post, validation["opener_issue"])
+            if not fixed:
+                break
+            new_val = self.validate_post(fixed)
+            # Never trade a passing opener for new slop.
+            if new_val["opener_ok"] and new_val["stop_slop_score"] >= \
+                    validation["stop_slop_score"] - 3:
+                final_post, validation = fixed, new_val
+                print("  ✓ Opener now leads with a first-person concrete detail")
+                break
 
         # Stop-slop gate: if it scores below 35/50, run one targeted rewrite
         # against the specific issues, then re-score. Applies to EVERY post.
@@ -519,8 +688,9 @@ POST:
         repeat_reasons = overlaps(final_post, recent)
         if repeat_reasons:
             print(f"⚠ Repetition detected: {repeat_reasons[0]} — regenerating with avoid-list")
-            regen = self.round_1_draft(hook, pain_point, avoid=avoid_list(recent),
-                                       experiment_instruction=experiment_instruction)
+            regen = strip_markdown(
+                self.round_1_draft(hook, pain_point, avoid=avoid_list(recent),
+                                   experiment_instruction=experiment_instruction))
             if regen and not overlaps(regen, recent):
                 regen_val = self.validate_post(regen)
                 if regen_val["valid"]:
@@ -538,6 +708,8 @@ POST:
         print(f"Stop-slop score: {validation['stop_slop_score']}/50 {'✓' if validation['stop_slop_pass'] else '✗ <'+str(PASS_THRESHOLD)}")
         print(f"Virality score: {validation['virality_score']}/100 (hook {validation['virality_dims']['hook']}/10) {'✓' if validation['virality_pass'] else '~ advisory'}")
         print(f"First-person open: {'✓' if validation['first_person_open'] else ('✗ SECOND-PERSON' if validation['second_person_open'] else '~ neutral')}")
+        print(f"Opener gate: {'✓ I/My + concrete detail' if validation['opener_ok'] else '✗ ' + validation['opener_issue']}")
+        print(f"Markdown: {validation['markdown_found'] or 'None ✓'}")
         print(f"Has CTA: {'✓' if validation['has_cta'] else '✗'}")
         print(f"Has closing question: {'✓' if validation['has_closing_question'] else '✗'}")
         print(f"READY TO PUBLISH: {'✓ YES' if validation['valid'] else '✗ NEEDS REWRITE'}")

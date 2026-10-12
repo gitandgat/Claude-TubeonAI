@@ -52,12 +52,17 @@ LINKEDIN_FIRST_COMMENT = (
     "The free 3-minute Fear Audit names which fear — money, judgment, or identity "
     "— is running your decisions: https://fear-audit.vercel.app"
 )
-LINKEDIN_DAILY_LIMIT = 5
+# Cut 5 → 2 on Oct 1 2026. Zernio allows 5/day and we used all 5; the account's
+# own numbers say that was the mistake. On days with 1-2 posts the median post
+# did 55-57 impressions; on 5-post days, 39. Reach per post fell 15x (686/post in
+# May → 46/post in Sept) while monthly volume rose 46 → 73. Two slots now:
+# crosswalk 08:00, trainer 11:00.
+LINKEDIN_DAILY_LIMIT = 2
 
 # ── Frequency experiment: 5/day vs 2/day ────────────────────────────────────
-# Alternates posting volume by ISO week (even=5/day, odd=2/day). Disabled by
-# default — the user wants 5/day always. Set LINKEDIN_FREQ_EXPERIMENT=1 in .env
-# to re-enable the experiment if you want to compare volume arms again.
+# Alternates posting volume by ISO week (even=5/day, odd=2/day). Left OFF: the
+# volume question is settled (see above), and with only 2 active verticals the
+# "high" arm can no longer be filled anyway. Kept for reference, not for use.
 FREQUENCY_EXPERIMENT = os.getenv("LINKEDIN_FREQ_EXPERIMENT", "0") == "1"
 FREQUENCY_ARMS = {"high": 5, "low": 2}
 
@@ -74,9 +79,13 @@ def current_daily_limit() -> int:
 
 def current_frequency_arm() -> str:
     """'high' (5/day) or 'low' (2/day) for tagging posts so the learning loop
-    can attribute reach to the active frequency arm."""
+    can attribute reach to the active frequency arm.
+
+    With the experiment off, this reports the arm the fixed limit actually is —
+    2/day is the 'low' arm — so the tag on each post stays truthful.
+    """
     if not FREQUENCY_EXPERIMENT:
-        return "high"
+        return "high" if LINKEDIN_DAILY_LIMIT >= FREQUENCY_ARMS["high"] else "low"
     return "high" if datetime_isoweek_even() else "low"
 
 
