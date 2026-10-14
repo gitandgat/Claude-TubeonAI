@@ -14,6 +14,8 @@ crosswalk-wisdom-studio/prisma/*.db-shm
 crosswalk-wisdom-studio/exports/
 prompt_ids.json
 *.txt
+# Dependency manifests are source, despite the blanket *.txt rule above
+!nutrition-agent/requirements.txt
 
 # Lead-magnet pipeline runtime artifacts
 __pycache__/
@@ -140,3 +142,10 @@ ottawa-rental-application-packet.md
 
 # Supabase CLI scratch state (links this dir to an unrelated project), not source
 ottawa-job-agent/supabase/.temp/
+
+# Nutrition agent — dedicated venv (not source; recreate with
+# python3 -m venv .venv && .venv/bin/pip install -r requirements.txt),
+# logs, and the daily meal logs, which are personal health data.
+nutrition-agent/.venv/
+nutrition-agent/*.log
+nutrition-agent/data/

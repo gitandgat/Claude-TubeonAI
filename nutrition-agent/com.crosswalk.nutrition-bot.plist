@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.crosswalk.nutrition-bot</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/toto/Claude TubeonAI/nutrition-agent/run_bot.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/toto/Claude TubeonAI/nutrition-agent</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/toto/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key>
+    <string>/Users/toto</string>
+  </dict>
+
+  <!-- Long-poll process: it should always be running, not scheduled. -->
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <!-- Don't respawn-storm if it crash-loops (e.g. bad token) -->
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+
+  <key>StandardOutPath</key>
+  <string>/Users/toto/Claude TubeonAI/nutrition-agent/bot.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/toto/Claude TubeonAI/nutrition-agent/bot.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>
