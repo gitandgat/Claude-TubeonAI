@@ -16,6 +16,7 @@ prompt_ids.json
 *.txt
 # Dependency manifests are source, despite the blanket *.txt rule above
 !nutrition-agent/requirements.txt
+!workout-agent/requirements.txt
 
 # Lead-magnet pipeline runtime artifacts
 __pycache__/
