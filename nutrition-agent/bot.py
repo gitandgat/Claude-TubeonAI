@@ -59,7 +59,10 @@ async def _hold_typing(update: Update) -> None:
 
 def _analyze_and_log(photo: Path | None, text: str | None):
     report = nutrition.analyze(photo, text)
-    return report, nutrition.log_meal(report)
+    # A meal whose foods all failed to match contributes no numbers; logging it would
+    # only inflate the day's meal count with a blank row.
+    daily = nutrition.log_meal(report) if report.totals else None
+    return report, daily
 
 
 async def _reply_with_analysis(update: Update, photo: Path | None, text: str | None) -> None:
@@ -69,6 +72,8 @@ async def _reply_with_analysis(update: Update, photo: Path | None, text: str | N
             asyncio.to_thread(_analyze_and_log, photo, text), timeout=ANALYSIS_TIMEOUT
         )
         reply = nutrition.format_report(report, daily)
+    except nutrition.NoFoodFound:
+        reply = HELP
     except asyncio.TimeoutError:
         log.error("Analysis timed out")
         reply = "That took too long to analyse — send it again?"

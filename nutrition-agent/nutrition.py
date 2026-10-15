@@ -49,7 +49,39 @@ NUTRIENT_IDS = {
     "dha": 1272,
 }
 
-MACRO_TARGETS = {"calories": 2000, "protein_g": 150, "carbs_g": 250, "fat_g": 65, "fiber_g": 30}
+WEIGHT_KG = 85
+HEIGHT_CM = 179
+AGE = 31
+
+# The app's "athlete" tier. It assumes hard daily training on top of general activity;
+# if bodyweight climbs faster than ~0.5 kg/week, 1.725 ("very active") is the truer
+# figure. The scale over two to three weeks settles it, not the formula.
+ACTIVITY_MULTIPLIER = 1.9
+MUSCLE_GAIN_SURPLUS = 300
+PROTEIN_G_PER_LB = 1.0  # midpoint of the 0.9-1.1 muscle-gain range, i.e. 2.2 g/kg
+
+
+def _daily_targets() -> dict[str, float]:
+    """Mifflin-St Jeor, matching Longevity-Nutrition's calculateDailyTargets.
+
+    Derived rather than hardcoded so this agrees with the web app, which recomputes
+    from the same profile. Change a constant above and both macros and the split follow.
+    """
+    bmr = 10 * WEIGHT_KG + 6.25 * HEIGHT_CM - 5 * AGE + 5  # male
+    calories = round(bmr * ACTIVITY_MULTIPLIER + MUSCLE_GAIN_SURPLUS)
+    protein_g = round(WEIGHT_KG * 2.205 * PROTEIN_G_PER_LB)
+    fat_g = round(calories * 0.3 / 9)
+    carbs_g = round((calories - protein_g * 4 - fat_g * 9) / 4)
+    return {
+        "calories": calories,
+        "protein_g": protein_g,
+        "carbs_g": carbs_g,
+        "fat_g": fat_g,
+        "fiber_g": 35,
+    }
+
+
+MACRO_TARGETS = _daily_targets()
 
 # US RDA, adult male. Used only to show "% of day" context, not as medical advice.
 MICRO_TARGETS = {
@@ -109,6 +141,10 @@ class MealReport:
     unmatched: list[str]
 
 
+class NoFoodFound(Exception):
+    """The message or photo did not describe food — not a failure, just not a meal."""
+
+
 def _client() -> Anthropic:
     return Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
@@ -157,7 +193,11 @@ def identify_foods(photo: Path | None = None, text: str | None = None) -> list[F
         prompt = (
             "Identify every distinct food and drink in this meal description. Use the stated "
             "amounts; where an amount is missing, assume one ordinary serving and say so in the "
-            "name.\n" + PORTION_GUIDANCE + f"\n\nThe meal: {text}"
+            "name.\n"
+            "If the message does not describe food or drink at all — a greeting, a question, "
+            "anything else — return an empty foods list. Never invent a placeholder food.\n"
+            + PORTION_GUIDANCE
+            + f"\n\nThe message: {text}"
         )
 
     content.append({"type": "text", "text": prompt})
@@ -220,7 +260,7 @@ def _parse_foods(raw: object) -> list[Food]:
         )
 
     if not foods:
-        raise RuntimeError("No recognisable food in that — try another photo or describe it.")
+        raise NoFoodFound
     return foods
 
 
