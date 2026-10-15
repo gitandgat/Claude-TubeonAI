@@ -15,6 +15,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.constants import ChatAction
+from telegram.error import NetworkError
 from telegram.ext import Application, ContextTypes, CommandHandler, MessageHandler, filters
 
 import nutrition
@@ -139,8 +140,17 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
     await _reply_with_analysis(update, None, update.message.text)
 
 
+async def on_error(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Keep laptop-sleep and wifi-change noise out of the log without hiding real faults."""
+    if isinstance(context.error, NetworkError):
+        log.warning("Telegram unreachable, polling will retry: %s", context.error)
+        return
+    log.error("Unhandled error", exc_info=context.error)
+
+
 def main() -> None:
     app = Application.builder().token(BOT_TOKEN).build()
+    app.add_error_handler(on_error)
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", start))
     app.add_handler(CommandHandler("today", today))

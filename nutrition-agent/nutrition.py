@@ -172,8 +172,56 @@ def identify_foods(photo: Path | None = None, text: str | None = None) -> list[F
 
     for block in result.content:
         if block.type == "tool_use":
-            return [Food(**f) for f in block.input["foods"]]
+            return _parse_foods(block.input.get("foods"))
     raise RuntimeError("Claude returned no food identification for this meal.")
+
+
+def _parse_foods(raw: object) -> list[Food]:
+    """Normalise the tool's `foods` value.
+
+    Tool output is model output: the schema is a strong hint, not a guarantee. It has
+    come back with `foods` as a JSON string, whose characters then unpacked into
+    Food(**"a"). Anything unreadable is skipped rather than allowed to abort the meal.
+    """
+    if isinstance(raw, str):
+        try:
+            raw = json.loads(raw)
+        except json.JSONDecodeError:
+            raise RuntimeError("Could not read the food list the model returned.") from None
+    if isinstance(raw, dict):
+        raw = [raw]
+    if not isinstance(raw, list):
+        raise RuntimeError("Could not read the food list the model returned.")
+
+    foods: list[Food] = []
+    for item in raw:
+        if isinstance(item, str):
+            try:
+                item = json.loads(item)
+            except json.JSONDecodeError:
+                continue
+        if not isinstance(item, dict):
+            continue
+
+        name = item.get("name") or item.get("fdc_query")
+        query = item.get("fdc_query") or item.get("name")
+        if not name or not query:
+            continue
+        try:
+            grams = float(item.get("portion_grams"))
+            confidence = float(item.get("confidence", 0.5))
+        except (TypeError, ValueError):
+            continue
+        if grams <= 0:
+            continue
+
+        foods.append(
+            Food(name=str(name), fdc_query=str(query), portion_grams=grams, confidence=confidence)
+        )
+
+    if not foods:
+        raise RuntimeError("No recognisable food in that — try another photo or describe it.")
+    return foods
 
 
 def _clean_query(query: str) -> str:
