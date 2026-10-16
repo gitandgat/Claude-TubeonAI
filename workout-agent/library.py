@@ -150,6 +150,36 @@ class ExerciseLibrary:
         return Resolution(raw=phrase, row=None)
 
 
+    def resolve_activity(self, phrase: str) -> Resolution:
+        """Looser resolution for cardio, whose names are free-form.
+
+        "Rowing interval" shares no full token set with "Rowing Machine", so the
+        strict all-tokens shortlist finds nothing and the activity would be
+        flagged absent despite the library having it. Any shared token is enough
+        to become a candidate here; the model still decides, and may answer none
+        — "incline walking" really is not in this library.
+        """
+        strict = self.resolve(phrase)
+        if strict.matched or strict.candidates:
+            return strict
+
+        wanted = _tokens(phrase)
+        hits = [
+            row
+            for row in self.rows
+            if any(
+                wanted & _tokens(name)
+                for name in [row["exercise_name"], *(row.get("alternate_names") or [])]
+            )
+        ]
+        # Prefer genuinely cardio-tagged rows so "run" cannot land on a squat.
+        cardio_hits = [r for r in hits if "cardio" in (r.get("muscle_groups") or [])]
+        pool = cardio_hits or hits
+        if not pool:
+            return strict
+        return Resolution(raw=phrase, row=None, candidates=tuple(pool[:8]))
+
+
 def _client() -> Anthropic:
     return Anthropic()
 

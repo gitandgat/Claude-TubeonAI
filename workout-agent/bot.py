@@ -59,7 +59,10 @@ HELP = (
     "• /today — today's session\n"
     "• /week — volume and sets by muscle group vs your weekly targets\n"
     "• /pr <exercise> — history for one lift\n"
-    "• /bodyweight <kg> — update the load used for pull-ups, dips, push-ups\n\n"
+    "• /bodyweight <kg> — update the load used for pull-ups, dips, push-ups\n"
+    "• /undo — delete the session you just logged\n\n"
+    "Cardio measured in time or distance isn't tracked yet — I'll say so rather "
+    "than guess a rep count.\n\n"
     "No calories-burned estimate: for resistance training those numbers are too "
     "inaccurate to act on, and a wrong one would corrupt the nutrition bot's targets."
 )
@@ -167,6 +170,11 @@ async def bodyweight(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None
     )
 
 
+async def undo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if _authorized(update):
+        await _run(update, workout.undo_last)
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if _authorized(update):
         await update.message.reply_text(HELP, parse_mode="Markdown")
@@ -192,6 +200,7 @@ def main() -> None:
     app.add_handler(CommandHandler("week", week))
     app.add_handler(CommandHandler("pr", pr))
     app.add_handler(CommandHandler("bodyweight", bodyweight))
+    app.add_handler(CommandHandler("undo", undo))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
     log.info("Workout bot starting (allowlisted user id: %s)", ALLOWED_USER_ID)
     app.run_polling()

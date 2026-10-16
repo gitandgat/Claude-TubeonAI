@@ -25,7 +25,22 @@ LIBRARY_FIELDS = (
     "exercise_name,category,muscle_groups,equipment_required,"
     "alternate_names,movement_pattern,rep_ranges,progression_harder"
 )
-SETS_WITH_DATE = "exercise_name,weight,reps,sets,volume_load,set_number,workouts!inner(date,user_id)"
+CARDIO_FIELDS = (
+    "duration_seconds,distance_m,avg_heart_rate,max_heart_rate,rpe,incline_pct,"
+    "speed_kph,resistance_level,interval_work_seconds,interval_rest_seconds,interval_rounds"
+)
+SETS_WITH_DATE = (
+    "exercise_name,kind,source,weight,reps,sets,volume_load,set_number,"
+    + CARDIO_FIELDS
+    + ",workouts!inner(date,user_id)"
+)
+
+
+# workout_exercises columns that are NOT NULL and so must be set by every row
+# builder; the rest are nullable and may be padded away.
+NOT_NULL_SET_FIELDS = frozenset(
+    {"exercise_name", "kind", "source", "weight", "reps", "sets", "volume_load", "set_number"}
+)
 
 
 class StoreError(RuntimeError):
@@ -123,13 +138,37 @@ def insert_workout(user_id: str, when: date, notes: str, total_volume_load: floa
 
 
 def insert_sets(workout_id: str, rows: list[dict]) -> None:
-    """Bulk-insert one row per set. Each row already carries its own set_number."""
+    """Bulk-insert one row per set or cardio entry.
+
+    Every object is padded to the same key set. PostgREST rejects a bulk insert
+    whose objects have differing keys ("All object keys must match"), which a
+    mixed session hits immediately: cardio rows carry duration/distance/HR fields
+    that resistance rows have no use for. Missing keys become NULL, which is what
+    those columns are nullable for.
+    """
     if not rows:
         return
+
+    # Padding fills absent keys with NULL, which is fine for the nullable cardio
+    # columns but silently violates the NOT NULL ones. Check up front so a missing
+    # field reads as a clear message instead of a Postgres 23502 on one row.
+    missing = [
+        (r.get("exercise_name"), sorted(NOT_NULL_SET_FIELDS - set(r)))
+        for r in rows
+        if not NOT_NULL_SET_FIELDS <= set(r)
+    ]
+    if missing:
+        raise StoreError(
+            "Refusing to insert sets: these rows omit NOT NULL columns — "
+            + "; ".join(f"{name}: {cols}" for name, cols in missing)
+        )
+
+    keys = {k for r in rows for k in r} | {"workout_id"}
+    payload = [{k: r.get(k) for k in keys} | {"workout_id": workout_id} for r in rows]
     _request(
         "POST",
         "workout_exercises",
-        json=[{**r, "workout_id": workout_id} for r in rows],
+        json=payload,
         extra_headers={"Prefer": "return=minimal"},
     )
 
@@ -144,8 +183,8 @@ def delete_workout(workout_id: str) -> None:
     _request("DELETE", "workouts", params={"id": f"eq.{workout_id}"})
 
 
-def sets_for_exercise(user_id: str, exercise_name: str) -> list[dict]:
-    """Every logged set of one lift, newest first, with its session date."""
+def sets_for_exercise(user_id: str, exercise_name: str, kind: str = "resistance") -> list[dict]:
+    """Every logged entry for one activity, newest first, with its session date."""
     rows = _request(
         "GET",
         "workout_exercises",

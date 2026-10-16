@@ -40,6 +40,37 @@ class ParsedExercise:
     sets: tuple[ParsedSet, ...]
 
 
+@dataclass(frozen=True)
+class ParsedCardio:
+    """Time/distance work. Never carries reps or a load.
+
+    The split from ParsedExercise exists because volume load and Epley both need
+    reps and a weight. Coercing "50 minutes" into "50 reps" once produced an entry
+    that looked real and was false, so cardio keeps its own fields entirely.
+    """
+
+    raw_name: str
+    duration_seconds: int | None = None
+    distance_m: float | None = None
+    avg_heart_rate: int | None = None
+    max_heart_rate: int | None = None
+    rpe: float | None = None
+    incline_pct: float | None = None
+    speed_kph: float | None = None
+    resistance_level: float | None = None
+    interval_work_seconds: int | None = None
+    interval_rest_seconds: int | None = None
+    interval_rounds: int | None = None
+
+
+@dataclass(frozen=True)
+class ParsedSession:
+    """Rep-based work and time/distance work, kept strictly apart."""
+
+    exercises: tuple[ParsedExercise, ...]
+    cardio: tuple[ParsedCardio, ...] = ()
+
+
 PARSE_TOOL = {
     "name": "record_session",
     "description": "Transcribe a training session into exercises and their sets",
@@ -81,7 +112,39 @@ PARSE_TOOL = {
                     },
                     "required": ["raw_name", "sets"],
                 },
-            }
+            },
+            "cardio": {
+                "type": "array",
+                "description": (
+                    "Work measured by time or distance rather than reps (running, "
+                    "walking, cycling, rowing, intervals, a plank held for time). "
+                    "Never give these reps or a weight."
+                ),
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "raw_name": {
+                            "type": "string",
+                            "description": "The activity as written, without the numbers",
+                        },
+                        "duration_seconds": {
+                            "type": ["integer", "null"],
+                            "description": "Total WORKING seconds, excluding rest. For intervals this is work x rounds.",
+                        },
+                        "distance_m": {"type": ["number", "null"], "description": "Distance in metres"},
+                        "avg_heart_rate": {"type": ["integer", "null"]},
+                        "max_heart_rate": {"type": ["integer", "null"]},
+                        "rpe": {"type": ["number", "null"], "description": "Perceived exertion 1-10, only if stated"},
+                        "incline_pct": {"type": ["number", "null"]},
+                        "speed_kph": {"type": ["number", "null"], "description": "Speed in km/h; convert mph if needed"},
+                        "resistance_level": {"type": ["number", "null"]},
+                        "interval_work_seconds": {"type": ["integer", "null"]},
+                        "interval_rest_seconds": {"type": ["integer", "null"]},
+                        "interval_rounds": {"type": ["integer", "null"]},
+                    },
+                    "required": ["raw_name"],
+                },
+            },
         },
         "required": ["exercises"],
     },
@@ -102,7 +165,23 @@ INSTRUCTIONS = (
     "gives raw_name 'bench'. Do NOT expand, correct or canonicalise the name; matching "
     "it against the exercise library happens later.\n\n"
     "Do not compute volume, totals or one-rep maxes. Only transcribe.\n"
-    "If a rep count is genuinely absent for a set, omit that set rather than guessing."
+    "If a rep count is genuinely absent for a set, omit that set rather than guessing.\n\n"
+    "CRITICAL — time and distance are not reps. Anything measured by duration, "
+    "distance, pace or incline rather than repetitions (a 50-minute incline walk, "
+    "a 5 km run, 4-minute rowing intervals, a 60-second plank) goes in `cardio`, "
+    "never in `exercises`. Never turn minutes, seconds, kilometres or rounds into "
+    "a rep count.\n\n"
+    "For cardio entries:\n"
+    "- Convert minutes to seconds and kilometres to metres.\n"
+    "- duration_seconds is WORKING time, excluding rest. '4 min on, 4 min off, "
+    "4 rounds' is interval_work_seconds 240, interval_rest_seconds 240, "
+    "interval_rounds 4, and duration_seconds 960 (240 x 4).\n"
+    "- Put machine settings in incline_pct / speed_kph / resistance_level: "
+    "'incline walking 15% 4.8 kph 50 minutes' is incline_pct 15, speed_kph 4.8, "
+    "duration_seconds 3000.\n"
+    "- raw_name excludes the numbers: 'incline walking', not 'incline walking 15%'.\n"
+    "- Leave any field null when it was not stated. Do not estimate heart rate, "
+    "distance or effort."
 )
 
 
@@ -140,8 +219,8 @@ def _exercise_list(payload) -> list | None:
     return payload if isinstance(payload, list) else None
 
 
-def parse_session(text: str) -> list[ParsedExercise]:
-    """Free text -> exercises with their sets."""
+def parse_session(text: str) -> ParsedSession:
+    """Free text -> rep-based exercises, plus any time/distance work named separately."""
     if not (text or "").strip():
         raise ParseError("Nothing to parse — send me the session.")
 
@@ -196,9 +275,45 @@ def parse_session(text: str) -> list[ParsedExercise]:
         if name and sets:
             exercises.append(ParsedExercise(raw_name=name, sets=sets))
 
-    if not exercises:
-        raise ParseError(
-            "I couldn't find any sets in that. Try something like "
-            "'bench 3x8 @ 80kg, squat 5,5,5 @ 100'."
+    def _num(entry: dict, key: str, cast):
+        value = entry.get(key)
+        if value is None:
+            return None
+        try:
+            return cast(value)
+        except (TypeError, ValueError):
+            log.warning("Dropping unreadable %s=%r on cardio entry", key, value)
+            return None
+
+    cardio: list[ParsedCardio] = []
+    raw_cardio = payload.get("cardio") if isinstance(payload, dict) else None
+    for entry in _decoded(raw_cardio) or []:
+        entry = _decoded(entry)
+        if not isinstance(entry, dict):
+            continue
+        name = (entry.get("raw_name") or "").strip()
+        if not name:
+            continue
+        cardio.append(
+            ParsedCardio(
+                raw_name=name,
+                duration_seconds=_num(entry, "duration_seconds", int),
+                distance_m=_num(entry, "distance_m", float),
+                avg_heart_rate=_num(entry, "avg_heart_rate", int),
+                max_heart_rate=_num(entry, "max_heart_rate", int),
+                rpe=_num(entry, "rpe", float),
+                incline_pct=_num(entry, "incline_pct", float),
+                speed_kph=_num(entry, "speed_kph", float),
+                resistance_level=_num(entry, "resistance_level", float),
+                interval_work_seconds=_num(entry, "interval_work_seconds", int),
+                interval_rest_seconds=_num(entry, "interval_rest_seconds", int),
+                interval_rounds=_num(entry, "interval_rounds", int),
+            )
         )
-    return exercises
+
+    if not exercises and not cardio:
+        raise ParseError(
+            "I couldn't find a session in that. Try something like "
+            "'bench 3x8 @ 80kg' or 'incline walk 15% at 4.8 kph for 50 minutes'."
+        )
+    return ParsedSession(exercises=tuple(exercises), cardio=tuple(cardio))

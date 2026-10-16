@@ -19,6 +19,7 @@ bench 3x8 @ 80kg, squat 5,5,5 @ 100, pullups 3x12 bodyweight
 | `/week` | Sets and volume by muscle group vs weekly targets, plus glute loading vectors |
 | `/pr <exercise>` | Session history and records for one lift |
 | `/bodyweight <kg>` | Update the load used for pull-ups, dips, push-ups |
+| `/undo` | Delete the session you just logged |
 
 ## Setup
 
@@ -157,6 +158,40 @@ PR            = beats personal_records.max_weight or .max_volume
 - The model only ever *transcribes* notation into sets. Every number is computed in
   Python, so results are reproducible.
 
+## Cardio
+
+Cardio is logged alongside lifting but kept strictly separate in the maths:
+
+```
+Incline walking 15% 4.8 kph 50 minutes
+Rowing interval 4 minutes on 4 minutes off 4 rounds
+hip thrust 4x12 @ 140kg, then 5k run in 25 min avg HR 148
+```
+
+It stores duration, distance, pace, machine settings (incline/speed/resistance),
+interval structure (work/rest/rounds), heart rate and RPE — whatever was actually
+stated, and nothing that wasn't. `duration_seconds` is **working** time: the rowing
+example above is 16 minutes, not 32, with the structure kept in
+`interval_work_seconds`/`interval_rest_seconds`/`interval_rounds` so the total is
+still derivable.
+
+Three rules it follows:
+
+- **Time is never reps.** An early version silently logged "50 minutes" as "50 reps",
+  producing a row that looked real and was false. The parser now puts time/distance
+  work in a separate `cardio` array and will refuse rather than invent a rep count.
+- **Cardio never credits muscle-group sets.** Rowing Machine is tagged
+  legs/back/arms/core in the library, so counting it would inflate resistance volume
+  and make lower-body targets look met when they aren't. `/week` reports cardio in
+  its own section.
+- **`volume_load` stays resistance-only**, left at 0 for cardio. `sets x reps x
+  weight` has no meaning for a walk, and a cardio-only session is legitimately 0 kg.
+
+Cardio names are matched more loosely than lifts, because they're free-form: "Rowing
+interval" resolves to Rowing Machine on a shared token, where the strict all-tokens
+match used for lifts would find nothing. Anything genuinely absent — the library has
+no running or treadmill entry — is still flagged and logged under your own name.
+
 **There is deliberately no calories-burned feature.** Resistance-training energy
 expenditure estimates are too inaccurate to act on, and a wrong number here would
 feed into the nutrition bot's targets.
@@ -173,6 +208,20 @@ varying loads inside one exercise (`100x5, 110x3, 120x1`) survive the round trip
 | `workout_exercises` | one row per set |
 | `personal_records` | upserted on `UNIQUE(user_id, exercise_name)` when a PR lands |
 | `exercise_library` | read only (85 rows) |
+
+Cardio columns (`kind`, `source`, `duration_seconds`, `distance_m`,
+`avg_heart_rate`, `max_heart_rate`, `rpe`, `incline_pct`, `speed_kph`,
+`resistance_level`, `interval_*`, `details` jsonb) were added by
+`20261015202735_add_cardio_tracking.sql` in the Longevity-Nutrition repo. All are
+nullable or defaulted, so the web app is unaffected. `kind` is explicit rather than
+inferred from null patterns, so volume and set counting can exclude cardio without
+guessing.
+
+Two PostgREST traps live in `insert_sets`: a bulk insert whose objects have
+differing keys is rejected outright ("All object keys must match"), so every row is
+padded to one key set — and that padding then writes NULL into NOT NULL columns, so
+`NOT_NULL_SET_FIELDS` is checked up front to turn a Postgres 23502 into a readable
+error.
 
 Bodyweight lives in `data/profile.json`, not Supabase: `user_profiles` has
 `height_cm`, `age` and `sex` but no bodyweight column, and adding one would mean a

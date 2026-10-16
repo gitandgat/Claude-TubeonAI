@@ -16,9 +16,10 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 
+import cardio as cardio_mod
 import config
 import library
 import metrics
@@ -42,10 +43,17 @@ class ExerciseOutcome:
 
 
 @dataclass
+class CardioOutcome:
+    result: cardio_mod.CardioResult
+    comparison: cardio_mod.CardioComparison | None
+
+
+@dataclass
 class SessionReport:
     outcomes: list[ExerciseOutcome]
     unmatched: list[str]
     bodyweight_kg: float | None
+    cardio: list[CardioOutcome] = field(default_factory=list)
     workout_id: str | None = None
     logged: bool = False
 
@@ -78,7 +86,8 @@ def _load_for(parsed_set: parsing.ParsedSet, bodyweight: float | None) -> float:
 def analyze(text: str, when: date | None = None) -> SessionReport:
     """Parse and evaluate a session WITHOUT writing anything."""
     when = when or date.today()
-    parsed = parsing.parse_session(text)
+    session = parsing.parse_session(text)
+    parsed = session.exercises
 
     lib = library.ExerciseLibrary(store.fetch_library())
     resolutions = library.disambiguate([lib.resolve(p.raw_name) for p in parsed])
@@ -118,8 +127,43 @@ def analyze(text: str, when: date | None = None) -> SessionReport:
             ExerciseOutcome(result=result, pr=pr, comparison=_previous(user_id, result, when))
         )
 
+    cardio_outcomes: list[CardioOutcome] = []
+    cardio_resolutions = library.disambiguate(
+        [lib.resolve_activity(c.raw_name) for c in session.cardio]
+    )
+    for entry, resolution in zip(session.cardio, cardio_resolutions):
+        row = resolution.row
+        if row is None:
+            unmatched.append(entry.raw_name)
+        result = cardio_mod.CardioResult(
+            logged_name=resolution.name,
+            parsed=entry,
+            library_name=row["exercise_name"] if row else None,
+            raw_input=entry.raw_name,
+        )
+        cardio_outcomes.append(
+            CardioOutcome(result=result, comparison=_previous_cardio(user_id, result, when))
+        )
+
     return SessionReport(
-        outcomes=outcomes, unmatched=unmatched, bodyweight_kg=bodyweight
+        outcomes=outcomes,
+        unmatched=unmatched,
+        bodyweight_kg=bodyweight,
+        cardio=cardio_outcomes,
+    )
+
+
+def _previous_cardio(
+    user_id: str, result: cardio_mod.CardioResult, when: date
+) -> cardio_mod.CardioComparison | None:
+    """Compare against the most recent earlier session of the same activity."""
+    history = store.sets_for_exercise(user_id, result.logged_name, kind="cardio")
+    earlier = [r for r in history if r["workouts"]["date"] < when.isoformat()]
+    if not earlier:
+        return None
+    last_date = earlier[0]["workouts"]["date"]
+    return cardio_mod.compare(
+        result, [r for r in earlier if r["workouts"]["date"] == last_date], last_date
     )
 
 
@@ -151,6 +195,7 @@ def log_session(report: SessionReport, text: str, when: date | None = None) -> S
     user_id = config.user_id()
     store.ensure_profile(user_id)
 
+    # total_volume_load stays resistance-only; a cardio-only session is legitimately 0.
     workout_id = store.insert_workout(user_id, when, text, report.total_volume_load)
     try:
         rows: list[dict] = []
@@ -159,6 +204,8 @@ def log_session(report: SessionReport, text: str, when: date | None = None) -> S
                 rows.append(
                     {
                         "exercise_name": outcome.result.logged_name,
+                        "kind": "resistance",
+                        "source": "manual",
                         "weight": entry.weight_kg,
                         "reps": entry.reps,
                         "sets": config.SETS_PER_ROW,
@@ -166,6 +213,7 @@ def log_session(report: SessionReport, text: str, when: date | None = None) -> S
                         "set_number": index,
                     }
                 )
+        rows += [cardio_mod.to_row(c.result) for c in report.cardio]
         store.insert_sets(workout_id, rows)
     except Exception:
         log.exception("Set insert failed; rolling back workout %s", workout_id)
@@ -214,7 +262,14 @@ def format_session(report: SessionReport) -> str:
     # The header must not claim a write that did not happen — a dry run and a
     # logged session are easy to confuse once the output looks identical.
     heading = "Session logged" if report.logged else "Session analysed (not logged)"
-    lines = [f"*{heading}* — {report.total_sets} sets, {report.total_volume_load:,.0f} kg total volume"]
+    summary = f"{report.total_sets} sets, {report.total_volume_load:,.0f} kg total volume"
+    if report.cardio:
+        total_cardio = sum(c.result.duration_seconds for c in report.cardio)
+        if total_cardio:
+            summary += f" · {cardio_mod.fmt_duration(total_cardio)} cardio"
+        if not report.outcomes:
+            summary = cardio_mod.fmt_duration(total_cardio) + " cardio"
+    lines = [f"*{heading}* — {summary}"]
 
     for outcome in report.outcomes:
         result, pr, comp = outcome.result, outcome.pr, outcome.comparison
@@ -244,6 +299,26 @@ def format_session(report: SessionReport) -> str:
         elif not pr.is_first_record:
             lines.append("_no earlier session of this lift to compare_")
 
+    for outcome in report.cardio:
+        result, comp = outcome.result, outcome.comparison
+        flag = "" if result.in_library else "  ⚠️ not in library"
+        lines += ["", f"*{_md(result.logged_name)}* (cardio){flag}", cardio_mod.describe(result)]
+        if comp:
+            parts = []
+            if comp.duration_delta:
+                parts.append(f"{comp.duration_delta / 60:+.0f} min")
+            if comp.distance_delta:
+                parts.append(f"{comp.distance_delta / 1000:+.2f} km")
+            if comp.pace_delta:
+                # Lower seconds-per-km is faster, so invert the wording.
+                faster = comp.pace_delta < 0
+                parts.append(f"{abs(comp.pace_delta):.0f}s/km {'faster' if faster else 'slower'}")
+            lines.append(
+                f"vs {comp.last_date}: " + (" · ".join(parts) if parts else "same")
+            )
+        else:
+            lines.append("_no earlier session of this activity to compare_")
+
     if report.unmatched:
         lines += [
             "",
@@ -264,6 +339,11 @@ def _muscle_volume(rows: list[dict], lib: library.ExerciseLibrary) -> tuple[dict
     unclassified: list[str] = []
 
     for row in rows:
+        # Cardio never credits muscle-group sets. Rowing Machine is tagged
+        # legs/back/arms/core in the library, so counting it would inflate
+        # resistance volume and make lower-body targets look met when they aren't.
+        if row.get("kind") == "cardio":
+            continue
         name = row["exercise_name"]
         entry = lib.by_name(name) or lib.resolve(name).row
         set_count = int(row.get("sets") or 1)
@@ -291,10 +371,12 @@ def format_week(when: date | None = None) -> str:
     start = when - timedelta(days=WEEK_DAYS - 1)
     user_id = config.user_id()
 
-    rows = store.sets_in_range(user_id, start, when)
-    if not rows:
-        return f"No sets logged between {start.isoformat()} and {when.isoformat()}."
+    all_rows = store.sets_in_range(user_id, start, when)
+    if not all_rows:
+        return f"Nothing logged between {start.isoformat()} and {when.isoformat()}."
 
+    rows = [r for r in all_rows if r.get("kind") != "cardio"]
+    cardio_rows = [r for r in all_rows if r.get("kind") == "cardio"]
     lib = library.ExerciseLibrary(store.fetch_library())
     by_group, vectors, unclassified = _muscle_volume(rows, lib)
 
@@ -304,14 +386,14 @@ def format_week(when: date | None = None) -> str:
     previous_groups, _, _ = _muscle_volume(previous_rows, lib)
 
     total_volume = sum(float(r.get("volume_load") or 0) for r in rows)
-    days = len({r["workouts"]["date"] for r in rows})
+    days = len({r["workouts"]["date"] for r in all_rows})
 
     lines = [
         f"*Last {WEEK_DAYS} days* — {start.isoformat()} to {when.isoformat()}",
         f"{days} training days · {len(rows)} sets · {total_volume:,.0f} kg total volume",
-        "",
-        "*Sets by muscle group* (primary 1.0, secondary 0.5)",
     ]
+    if rows:
+        lines += ["", "*Sets by muscle group* (primary 1.0, secondary 0.5)"]
 
     ordered = sorted(by_group.items(), key=lambda kv: kv[1]["sets"], reverse=True)
     for group, stats in ordered:
@@ -336,6 +418,30 @@ def format_week(when: date | None = None) -> str:
             mark = "✅" if done >= vector_target else ("🟡" if done >= vector_target * 0.7 else "🔴")
             lines.append(f"{mark} {label}: {done:.0f} / {vector_target} sets")
 
+    if cardio_rows:
+        by_activity: dict[str, list[dict]] = {}
+        for row in cardio_rows:
+            by_activity.setdefault(row["exercise_name"], []).append(row)
+        total_seconds = sum(int(r.get("duration_seconds") or 0) for r in cardio_rows)
+        total_distance = sum(float(r.get("distance_m") or 0) for r in cardio_rows)
+
+        header = f"*Cardio* — {cardio_mod.fmt_duration(total_seconds)} across {len(cardio_rows)} sessions"
+        if total_distance:
+            header += f", {cardio_mod.fmt_distance(total_distance)}"
+        lines += ["", header, "_counted separately; cardio never credits muscle-group sets_"]
+
+        for name, entries in sorted(
+            by_activity.items(),
+            key=lambda kv: sum(int(r.get("duration_seconds") or 0) for r in kv[1]),
+            reverse=True,
+        ):
+            seconds = sum(int(r.get("duration_seconds") or 0) for r in entries)
+            distance = sum(float(r.get("distance_m") or 0) for r in entries)
+            bit = f"• {_md(name)}: {cardio_mod.fmt_duration(seconds)} in {len(entries)}x"
+            if distance:
+                bit += f" · {cardio_mod.fmt_distance(distance)}"
+            lines.append(bit)
+
     if unclassified:
         lines += ["", f"_Not in the library, uncounted: {_md(', '.join(unclassified))}_"]
 
@@ -349,15 +455,21 @@ def format_today(when: date | None = None) -> str:
     if not rows:
         return "Nothing logged yet today."
 
+    cardio_rows = [r for r in rows if r.get("kind") == "cardio"]
+    rows = [r for r in rows if r.get("kind") != "cardio"]
+
     by_exercise: dict[str, list[dict]] = {}
     for row in rows:
         by_exercise.setdefault(row["exercise_name"], []).append(row)
 
     total = sum(float(r.get("volume_load") or 0) for r in rows)
-    lines = [
-        f"*Today* — {len(by_exercise)} lifts, {len(rows)} sets, {total:,.0f} kg volume",
-        "",
-    ]
+    headline = f"*Today* — {len(by_exercise)} lifts, {len(rows)} sets, {total:,.0f} kg volume"
+    if not rows and cardio_rows:
+        headline = "*Today* — cardio only"
+    if cardio_rows:
+        seconds = sum(int(r.get("duration_seconds") or 0) for r in cardio_rows)
+        headline += f" · {cardio_mod.fmt_duration(seconds)} cardio"
+    lines = [headline, ""]
     for name, sets in by_exercise.items():
         result = metrics.ExerciseResult(
             logged_name=name,
@@ -369,6 +481,10 @@ def format_today(when: date | None = None) -> str:
             f"*{_md(name)}* — {_sets_summary(result)} · {result.total_volume_load:,.0f} kg"
             + (f" · est. 1RM {result.best_1rm:g} kg" if result.best_1rm else "")
         )
+
+    for row in cardio_rows:
+        entry = cardio_mod.from_row(row)
+        lines.append(f"*{_md(entry.logged_name)}* (cardio) — {cardio_mod.describe(entry)}")
     return "\n".join(lines)
 
 
@@ -413,6 +529,51 @@ def format_pr(query: str) -> str:
     return "\n".join(lines)
 
 
+def undo_last() -> str:
+    """Delete the most recently logged session.
+
+    Personal records are deliberately NOT rolled back: a record's achieved_at and
+    values would have to be recomputed from the remaining history, and silently
+    lowering a PR is worse than leaving it. If the deleted session set a PR, say so
+    rather than pretending otherwise.
+    """
+    user_id = config.user_id()
+    recent = store._request(
+        "GET",
+        "workouts",
+        params=[
+            ("select", "id,date,notes,total_volume_load"),
+            ("user_id", f"eq.{user_id}"),
+            ("order", "created_at.desc"),
+            ("limit", "1"),
+        ],
+    )
+    if not recent:
+        return "Nothing logged to undo."
+
+    session = recent[0]
+    sets = store._request(
+        "GET",
+        "workout_exercises",
+        params=[("select", "exercise_name"), ("workout_id", f"eq.{session['id']}")],
+    )
+    names = sorted({r["exercise_name"] for r in sets})
+    store.delete_workout(session["id"])
+
+    lines = [
+        f"*Deleted* the session from {session['date']} — "
+        f"{len(sets)} sets, {float(session['total_volume_load']):,.0f} kg",
+    ]
+    if names:
+        lines.append(_md(", ".join(names)))
+    lines.append(f"_was: {_md(session['notes'][:120])}_")
+    lines.append(
+        "\nPersonal records are left as they were — if that session set one, "
+        "it still stands. Tell me and I'll reset it."
+    )
+    return "\n".join(lines)
+
+
 # --- CLI --------------------------------------------------------------------
 
 def _init() -> None:
@@ -434,6 +595,7 @@ def main() -> None:
     parser.add_argument("--week", action="store_true", help="Volume by muscle group")
     parser.add_argument("--pr", metavar="EXERCISE", help="History for one lift")
     parser.add_argument("--bodyweight", type=float, metavar="KG", help="Store bodyweight in kg")
+    parser.add_argument("--undo", action="store_true", help="Delete the most recent session")
     parser.add_argument("--init", action="store_true", help="Create the profile row and self-check")
     args = parser.parse_args()
 
@@ -442,6 +604,9 @@ def main() -> None:
         return
     if args.init:
         _init()
+        return
+    if args.undo:
+        print(undo_last())
         return
     if args.today:
         print(format_today())
@@ -453,7 +618,7 @@ def main() -> None:
         print(format_pr(args.pr))
         return
     if not args.session:
-        parser.error("give a session, or one of --today/--week/--pr/--bodyweight/--init")
+        parser.error("give a session, or one of --today/--week/--pr/--undo/--bodyweight/--init")
 
     report = analyze(args.session)
     if not args.dry_run:
