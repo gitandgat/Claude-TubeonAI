@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 # Validate required env vars
-required = ["SERPER_API_KEY", "GMAIL_APP_PASSWORD", "OUTLOOK_APP_PASSWORD"]
+required = ["SERPER_API_KEY", "GMAIL_APP_PASSWORD"]
 missing = [k for k in required if not os.environ.get(k)]
 if missing:
     print(f"[job_agent] Missing env vars: {', '.join(missing)}")

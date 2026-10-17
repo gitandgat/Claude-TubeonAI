@@ -11,7 +11,7 @@ PROFILE = {
     },
     # Short form shown on the resume header (city/province only)
     "address_display": "Ottawa, Ontario",
-    "email": "Sahawat.nil@outlook.com",
+    "email": "Sahawat.nil@gmail.com",
     "phone": "416-616-9589",
     "linkedin": "linkedin.com/in/sahawatcrosswalkwisdom",
     "website": "crosswalkwisdom.com",

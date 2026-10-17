@@ -1,4 +1,4 @@
-"""Email sender: application emails from Outlook + digest to Gmail."""
+"""Email sender: application drafts in Sahawat's job-search Gmail + digest to Gmail."""
 
 import html
 import imaplib
@@ -17,7 +17,14 @@ from agent_config import has_sent_digest_today, mark_digest_sent
 
 NOTIFY_TO = "totomakus@gmail.com"
 NOTIFY_FROM = "totomakus@gmail.com"
-APPLY_FROM = "Sahawat.nil@outlook.com"
+# The address employers see. Switched from Sahawat.nil@outlook.com on 2026-10-17:
+# he now runs his whole job search out of this Gmail, so drafts belong in its
+# Drafts folder and replies come back to the same inbox.
+APPLY_FROM = "Sahawat.nil@gmail.com"
+# App password for APPLY_FROM (Google Account > Security > App passwords), kept in
+# the repo-root .env. Until it is set, drafts keep landing in NOTIFY_FROM's Drafts
+# as before, with APPLY_FROM in the signature, so nothing silently stops working.
+APPLY_PASSWORD_ENV = "APPLY_GMAIL_APP_PASSWORD"
 
 # Crosswalk Wisdom brand palette — reused from crosswalk-remotion/src/theme.ts
 BRAND_AMBER = "#D4A843"
@@ -71,6 +78,22 @@ def _attach_file(msg: MIMEMultipart, file_path: str, filename: str = None):
     msg.attach(part)
 
 
+def _draft_account() -> tuple:
+    """(account, app password) whose Drafts folder gets the application email.
+
+    APPLY_FROM's own Gmail when its app password is configured, so the draft
+    already sends from the job-search address. Otherwise the digest account,
+    which is how drafting worked before the switch."""
+    apply_password = os.environ.get(APPLY_PASSWORD_ENV, "").strip()
+    if apply_password:
+        return APPLY_FROM, apply_password
+    print(
+        f"[email_sender] {APPLY_PASSWORD_ENV} is not set; drafting in {NOTIFY_FROM} "
+        f"instead of {APPLY_FROM}. Add an app password for {APPLY_FROM} to .env to switch."
+    )
+    return NOTIFY_FROM, os.environ["GMAIL_APP_PASSWORD"]
+
+
 def draft_application(job: dict, cover_letter: str, resume_pdf: str, subject: str) -> bool:
     """Compose the application email and leave it as a draft in Sahawat's own
     Gmail — never sent automatically, regardless of what the posting's apply
@@ -78,8 +101,8 @@ def draft_application(job: dict, cover_letter: str, resume_pdf: str, subject: st
     irreversible once sent, so it always needs his own review and his own
     click to send (see memory feedback_no_autonomous_email_send — a prior
     'send it' doesn't carry forward, and neither does the request sounding
-    routine). Uses IMAP APPEND to Gmail's own Drafts folder with the same
-    app-password credential the digest SMTP send already uses."""
+    routine). Uses IMAP APPEND to the Drafts folder of the account picked by
+    _draft_account(): APPLY_FROM's own Gmail when its app password is set."""
     apply_email = job.get("apply_email")
     if not apply_email:
         return False
@@ -99,9 +122,13 @@ LinkedIn: linkedin.com/in/sahawatcrosswalkwisdom
     msg.attach(MIMEText(body, "plain"))
     _attach_file(msg, resume_pdf)
 
+    account, password = _draft_account()
+    if account == APPLY_FROM:
+        msg["From"] = f"Sahawat Nilwatcharamanee <{APPLY_FROM}>"
+
     try:
         with imaplib.IMAP4_SSL("imap.gmail.com") as imap:
-            imap.login(NOTIFY_FROM, os.environ["GMAIL_APP_PASSWORD"])
+            imap.login(account, password)
             imap.append(
                 "[Gmail]/Drafts",
                 "(\\Draft)",

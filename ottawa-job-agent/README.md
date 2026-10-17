@@ -11,7 +11,7 @@ Fully automated daily job-application agent for Sahawat Nilwatcharamanee, reloca
 4. **Scores fit** 0–10 (Haiku).
 5. For each fresh job ≥5: generates a **tailored cover letter** + a **branded resume PDF** for that category.
 6. For each high-fit job ≥8: builds a **standout microsite** (personal pitch page) + a **30-second video script**.
-7. **Auto-applies**: by email (Outlook, OAuth2/XOAUTH2 — see setup below) where an apply-email exists; otherwise attempts the company's website form via Playwright — auto-submits on known ATS platforms (Greenhouse, Lever) after verifying a real confirmation, and best-effort fills + screenshots everything else without submitting (pauses for your review). A **review-only mode** (`agent_config.py`, see below) can hold every application for your review instead of auto-submitting.
+7. **Auto-applies**: by email where an apply-email exists (drafted in Sahawat.nil@gmail.com's Drafts for his review, never sent automatically — see setup below); otherwise attempts the company's website form via Playwright — auto-submits on known ATS platforms (Greenhouse, Lever) after verifying a real confirmation, and best-effort fills + screenshots everything else without submitting (pauses for your review). A **review-only mode** (`agent_config.py`, see below) can hold every application for your review instead of auto-submitting.
 8. **Tracks every real application** in `applications.json` — status lifecycle: applied → interview_scheduled → offer / rejected_after_application / rejected_after_interview, or auto-marked ghosted after 21 days of silence. Dashboard at `tracker_dashboard.html`.
 9. **Emails a digest** to totomakus@gmail.com every day, even on quiet days — sorted by fit, deadlines flagged (⚠️ ≤3 days), microsite paths + video scripts + resume PDFs + tracker dashboard attached.
 10. Dedupes via `seen_jobs.json` so you only ever see new postings.
@@ -28,20 +28,15 @@ python3 agent_config.py status   # check current mode
 
 This is a persistent JSON flag (`agent_config.json`, gitignored), not a CLI arg — so it applies the same way to scheduled launchd runs as to manual ones.
 
-### One-time setup: authorize Outlook email sending
+### One-time setup: draft applications in your job-search Gmail
 
-Microsoft has permanently disabled Basic Authentication for SMTP AUTH on Outlook.com/Hotmail — `OUTLOOK_APP_PASSWORD` + `smtplib.login()` can no longer send mail (fails every time with `535, 5.7.139`). Application emails now go out via OAuth2 (XOAUTH2), same auth-code-with-PKCE approach as Thunderbird, no Azure app registration needed. One-time action; the token then silently refreshes:
+Application emails come from **Sahawat.nil@gmail.com** (switched from Sahawat.nil@outlook.com on 2026-10-17). The agent never sends them: it drops each one into that account's Drafts folder for you to review and send yourself. It needs an app password for that account:
 
-```bash
-python3 authorize_outlook_smtp.py
-# → prints a sign-in URL. Open it, sign in with Sahawat.nil@outlook.com.
-# → browser lands on https://localhost/?code=... showing "can't connect" — expected.
-#   Copy the full URL from the address bar, then:
-python3 authorize_outlook_smtp.py "<pasted-url>"
-# → saves outlook_token_send.json (gitignored)
-```
+1. Sign in to Sahawat.nil@gmail.com and turn on 2-Step Verification (Google Account → Security), if it isn't on already.
+2. Google Account → Security → App passwords → create one named "job agent".
+3. Add it to the repo-root `.env` as `APPLY_GMAIL_APP_PASSWORD=...`.
 
-Until this is done, `send_application()` fails for every job with an `apply_email` and those jobs fall through to the "couldn't auto-apply" / website-form path instead.
+Until then, drafts keep landing in totomakus@gmail.com's Drafts (the digest account) with the Gmail address in the signature, and every run logs a reminder.
 
 ## Tracking application outcomes
 
@@ -78,9 +73,9 @@ Valid statuses: `applied`, `interview_scheduled`, `offer`, `rejected_after_appli
 | `content_generator.py` | Fit scoring, cover letters, "why them", 30-day plan, video script |
 | `resume_builder.py` | Category-tailored PDF resume (fpdf2) |
 | `microsite_builder.py` | Branded HTML pitch page + personal pitch hub |
-| `email_sender.py` | Outlook application sender + Gmail digest |
-| `outlook_oauth.py` | OAuth2 (XOAUTH2) SMTP-send client for Outlook — Basic Auth is dead, see setup above |
-| `authorize_outlook_smtp.py` | One-time CLI to authorize Outlook email sending (run this first) |
+| `email_sender.py` | Application drafts in Sahawat.nil@gmail.com + Gmail digest |
+| `outlook_oauth.py` | Legacy: OAuth2 SMTP-send client for the old Outlook address (unused since 2026-10-17) |
+| `authorize_outlook_smtp.py` | Legacy: authorized the old Outlook sender (unused since 2026-10-17) |
 | `resume_data.py` | Sahawat's profile, summaries, skills, search targets |
 | `run.sh` | LaunchAgent entry point |
 | `publish.sh` | Deploy microsites live to Vercel |
@@ -200,7 +195,7 @@ Logs: `job_agent.log`, `launchd.log`.
 
 ## Secrets (in repo-root `.env`)
 
-`ANTHROPIC_API_KEY`, `GMAIL_APP_PASSWORD` (optional `VERCEL_TOKEN`). Workday sign-in
+`ANTHROPIC_API_KEY`, `GMAIL_APP_PASSWORD` (digest account), `APPLY_GMAIL_APP_PASSWORD` (job-search Gmail; optional `VERCEL_TOKEN`). Workday sign-in
 uses no env vars at all — see `workday_session.py` above.
 
-Outlook application sending no longer uses a password (`OUTLOOK_APP_PASSWORD` is unused/dead — Basic Auth is disabled by Microsoft) — it uses the OAuth2 token from `python3 authorize_outlook_smtp.py`, see setup above.
+`OUTLOOK_APP_PASSWORD` is no longer required: applications moved from Sahawat.nil@outlook.com to Sahawat.nil@gmail.com on 2026-10-17.
