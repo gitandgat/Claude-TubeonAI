@@ -199,6 +199,26 @@ def sets_for_exercise(user_id: str, exercise_name: str, kind: str = "resistance"
     return sorted(rows, key=lambda r: r["workouts"]["date"], reverse=True)
 
 
+def all_sets_with_units(user_id: str, kind: str = "resistance") -> list[dict]:
+    """Every logged entry of one kind, with its session date and stored unit.
+
+    Used by the unit audit, which has to look at the whole history at once: the
+    question it answers — is any stored weight actually pounds — can only be
+    decided per lift across all of that lift's sessions.
+    """
+    return _request(
+        "GET",
+        "workout_exercises",
+        params={
+            "select": "exercise_name,weight,reps,sets,volume_load,set_number,"
+            "entered_unit,kind,source,workouts!inner(date,user_id)",
+            "workouts.user_id": f"eq.{user_id}",
+            "kind": f"eq.{kind}",
+            "limit": "20000",
+        },
+    )
+
+
 def sets_in_range(user_id: str, start: date, end: date) -> list[dict]:
     """All sets logged between two dates inclusive.
 

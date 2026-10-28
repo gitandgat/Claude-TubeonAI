@@ -110,6 +110,7 @@ def analyze(text: str, when: date | None = None) -> SessionReport:
                 reps=s.reps,
                 weight_kg=_load_for(s, bodyweight),
                 is_bodyweight=s.is_bodyweight,
+                entered_unit=metrics.canonical_unit(s.unit),
             )
             for s in parsed_exercise.sets
         )
@@ -211,6 +212,8 @@ def log_session(report: SessionReport, text: str, when: date | None = None) -> S
                         "sets": config.SETS_PER_ROW,
                         "volume_load": entry.volume_load,
                         "set_number": index,
+                        # Display provenance: weight above is kilograms regardless.
+                        "entered_unit": entry.entered_unit,
                     }
                 )
         rows += [cardio_mod.to_row(c.result) for c in report.cardio]

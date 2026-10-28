@@ -21,6 +21,11 @@ class SetEntry:
     reps: int
     weight_kg: float
     is_bodyweight: bool = False
+    # The unit the person actually typed, carried through for display provenance
+    # only. weight_kg is always kilograms and every calculation below uses it;
+    # nothing here reads entered_unit. It exists because the stored row records
+    # it (workout_exercises.entered_unit) so "185 lb" can be shown back as typed.
+    entered_unit: str = config.DEFAULT_UNIT
 
     @property
     def volume_load(self) -> float:
@@ -168,11 +173,33 @@ def compare_to_previous(
     )
 
 
+# The unit spellings that arrive from typed notation. One list, read by both
+# canonical_unit() and to_kg(), so a spelling can never convert one way and
+# label the other.
+_KG_UNITS = frozenset({"kg", "kgs", "kilo", "kilos", "kilogram", "kilograms"})
+_LB_UNITS = frozenset({"lb", "lbs", "pound", "pounds", "#"})
+
+
+def canonical_unit(unit: str | None) -> str:
+    """Fold a typed unit onto the two values the database stores: 'kg' or 'lb'.
+
+    The CHECK on workout_exercises.entered_unit admits exactly these, so the
+    folding happens here rather than at the insert, where a surprise spelling
+    would surface as a Postgres constraint error on a logged session.
+    """
+    value = (unit or config.DEFAULT_UNIT).lower()
+    if value in _KG_UNITS:
+        return "kg"
+    if value in _LB_UNITS:
+        return "lb"
+    raise ValueError(f"Unknown weight unit {unit!r}")
+
+
 def to_kg(weight: float, unit: str) -> float:
     """Normalise an input weight to kg. Everything is stored in kg."""
     unit = (unit or config.DEFAULT_UNIT).lower()
-    if unit in {"kg", "kgs", "kilo", "kilos", "kilogram", "kilograms"}:
+    if unit in _KG_UNITS:
         return round(float(weight), 2)
-    if unit in {"lb", "lbs", "pound", "pounds", "#"}:
+    if unit in _LB_UNITS:
         return round(float(weight) / config.LB_PER_KG, 2)
     raise ValueError(f"Unknown weight unit {unit!r} — use kg or lb.")
