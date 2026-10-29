@@ -1,0 +1,28 @@
+{
+  "boards": [
+    {
+      "kind": "njoyn",
+      "company_name": "CIHI",
+      "cl": "cl3",
+      "clid": "53103",
+      "category": "health",
+      "auto_apply": false
+    },
+    {
+      "kind": "successfactors",
+      "company_name": "City of Ottawa",
+      "base_url": "https://jobs-emplois.ottawa.ca/city-jobs",
+      "queries": ["health", "data", "analyst", "informatics", "epidemiolog", "records"],
+      "category": "municipal",
+      "auto_apply": false
+    },
+    {
+      "kind": "jobvite",
+      "company_name": "The Royal",
+      "slug": "theroyal",
+      "referer": "https://www.theroyal.ca/jobs/",
+      "category": "health",
+      "auto_apply": false
+    }
+  ]
+}

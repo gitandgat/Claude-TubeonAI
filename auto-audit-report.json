@@ -1,0 +1,2351 @@
+{
+  "status": "INCOMPLETE",
+  "timestamp": "2026-06-07T06:39:08.771815",
+  "loops": 1,
+  "total_posts": 97,
+  "passing": 97,
+  "failing": 0,
+  "threshold": 35,
+  "loop_history": [
+    {
+      "loop": 1,
+      "timestamp": "2026-06-07T06:39:00.635852",
+      "total": 97,
+      "passing": 97,
+      "failing": 0,
+      "results": [
+        {
+          "post_id": "6a02f3c98c29d96a1feac5bb",
+          "score": 43.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 10,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c609d87c67e52946bdc7",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c631dcf7723efc57216c",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17e0d0158de4d1c67e8114",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a4e40fdf9b1236bb3284a",
+          "score": 36.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 7.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a507eaa262a3be970addb",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a4e57876b078e05364469",
+          "score": 40.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 10,
+            "trust": 2.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a5091fa0f7e14583a972b",
+          "score": 42.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 7,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a4e6c876b078e0536478d",
+          "score": 37.0,
+          "scores": {
+            "directness": 6,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a50dffd3e949c11c49ce7",
+          "score": 42.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a50f4fbbfb3adff321dd2",
+          "score": 37.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a510958f49d5b0d08aa86",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a511cbfcd9a46e0b7bb48",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51313c7350472d6bb94b",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a5145fa96b89917968774",
+          "score": 37.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a515a30ccc0508f1c6f4a",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a516e30ccc0508f1c73c2",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51801d668701d715e0e6",
+          "score": 44.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc705b2fb56243f4614eaa",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc705fc77bb52cf8c03d97",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc7061c77bb52cf8c03dd0",
+          "score": 36.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 8.5,
+            "authenticity": 4,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70622fb56243f4614f12",
+          "score": 43.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 10,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17e685ed53a323768d3d07",
+          "score": 42.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 8.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51a78d9a5d92cf3aa7c0",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51bbfb2c42d93172b5aa",
+          "score": 38.0,
+          "scores": {
+            "directness": 4,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51cd8d9a5d92cf3aaaa4",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51e18df20265ef96445d",
+          "score": 39.5,
+          "scores": {
+            "directness": 4,
+            "rhythm": 10,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a51f5cbf1ae0d37eb6a12",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a52078df20265ef964e11",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a521a8df20265ef96514f",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a522fe8feac15d1c50703",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a52426c06a7df30f56508",
+          "score": 36.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 7.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a5257fbc9c305dde84c08",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a5270f8091fcb2d9055ae",
+          "score": 46.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 10,
+            "trust": 8.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a5285d8b15e9be4a7f21e",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 7,
+            "trust": 4.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a52996dcf3a3e0ba03a7f",
+          "score": 37.0,
+          "scores": {
+            "directness": 6,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a52aee8feac15d1c507aa",
+          "score": 42.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a52c4dcb8fb3bac4697e4",
+          "score": 37.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a52ff2d5f0c06395053d5",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c5c585f00e478ed707eb",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a53132351f7b3426a4fd3",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a53252d5f0c0639505da4",
+          "score": 37.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a0a5338cd954a425633d9af",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c8f0e045761236a62c67",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c5ccb5472ed3b49f48d4",
+          "score": 44.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c61cdcf7723efc571c38",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c6457d5c89d5f6340d66",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc706f2fb56243f4615170",
+          "score": 36.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 8.5,
+            "authenticity": 4,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc7072c77bb52cf8c041e1",
+          "score": 45.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 10,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70752fb56243f461532f",
+          "score": 42.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 8.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc7075c77bb52cf8c04332",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c7770d1baf9ac1c15648",
+          "score": 38.0,
+          "scores": {
+            "directness": 4,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c83514150d1d12abc5c3",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c8a85dcc993ec04f7812",
+          "score": 43.0,
+          "scores": {
+            "directness": 6,
+            "rhythm": 10,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c8f9e045761236a62e4f",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c623dcf7723efc571e1c",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "6a17c64d7d5c89d5f6340ead",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70832fb56243f461552e",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70862fb56243f46155cc",
+          "score": 36.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 7.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70882fb56243f461565a",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70892fb56243f4615688",
+          "score": 43.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 10,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70972fb56243f46158d7",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 7,
+            "trust": 4.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc709ac77bb52cf8c04755",
+          "score": 37.0,
+          "scores": {
+            "directness": 6,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc709c2fb56243f4615a04",
+          "score": 42.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc709dc77bb52cf8c047af",
+          "score": 37.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70aac77bb52cf8c0494e",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70ad2fb56243f4615bb2",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70b0c77bb52cf8c04a0e",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70b1c77bb52cf8c04a3c",
+          "score": 37.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70be2fb56243f4615cf6",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70c22fb56243f4615d75",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70c4c77bb52cf8c04b63",
+          "score": 44.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70c52fb56243f4615dcf",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70d2c77bb52cf8c04e28",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70d5c77bb52cf8c04f23",
+          "score": 36.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 8.5,
+            "authenticity": 4,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70d7c77bb52cf8c04fc3",
+          "score": 46.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 10,
+            "trust": 8.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc70d8c77bb52cf8c05008",
+          "score": 42.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 8.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71422fb56243f4616883",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71452fb56243f46168b1",
+          "score": 38.0,
+          "scores": {
+            "directness": 4,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc7148c77bb52cf8c057f9",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71492fb56243f461696f",
+          "score": 41.0,
+          "scores": {
+            "directness": 6,
+            "rhythm": 10,
+            "trust": 7.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71582fb56243f4616b76",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc715b2fb56243f4616bfe",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc715e2fb56243f4616c7d",
+          "score": 39.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc715fc77bb52cf8c05a64",
+          "score": 39.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc716d2fb56243f4616e38",
+          "score": 36.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 7.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71712fb56243f4616eb1",
+          "score": 39.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71732fb56243f4616f4a",
+          "score": 47.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 10,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71742fb56243f4616fbf",
+          "score": 40.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 7,
+            "trust": 5.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71832dc6864e569a64ce",
+          "score": 37.0,
+          "scores": {
+            "directness": 6,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc7187c77bb52cf8c05cd1",
+          "score": 42.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc718ac77bb52cf8c05d43",
+          "score": 37.5,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 5.5,
+            "authenticity": 10,
+            "density": 8
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc718bc77bb52cf8c05d99",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71992dc6864e569a67e6",
+          "score": 41.5,
+          "scores": {
+            "directness": 8,
+            "rhythm": 7,
+            "trust": 8.5,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc719cc77bb52cf8c0609d",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc719f4a40e3748c429bf1",
+          "score": 37.0,
+          "scores": {
+            "directness": 8,
+            "rhythm": 1,
+            "trust": 10.0,
+            "authenticity": 8,
+            "density": 10
+          },
+          "passing": true
+        },
+        {
+          "post_id": "69cc71a02dc6864e569a6a93",
+          "score": 41.0,
+          "scores": {
+            "directness": 10,
+            "rhythm": 4,
+            "trust": 7.0,
+            "authenticity": 10,
+            "density": 10
+          },
+          "passing": true
+        }
+      ]
+    }
+  ],
+  "final_results": [
+    {
+      "post_id": "6a02f3c98c29d96a1feac5bb",
+      "score": 43.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 10,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c609d87c67e52946bdc7",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c631dcf7723efc57216c",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17e0d0158de4d1c67e8114",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a4e40fdf9b1236bb3284a",
+      "score": 36.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 7.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a507eaa262a3be970addb",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a4e57876b078e05364469",
+      "score": 40.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 10,
+        "trust": 2.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a5091fa0f7e14583a972b",
+      "score": 42.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 7,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a4e6c876b078e0536478d",
+      "score": 37.0,
+      "scores": {
+        "directness": 6,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a50dffd3e949c11c49ce7",
+      "score": 42.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a50f4fbbfb3adff321dd2",
+      "score": 37.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a510958f49d5b0d08aa86",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a511cbfcd9a46e0b7bb48",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51313c7350472d6bb94b",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a5145fa96b89917968774",
+      "score": 37.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a515a30ccc0508f1c6f4a",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a516e30ccc0508f1c73c2",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51801d668701d715e0e6",
+      "score": 44.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc705b2fb56243f4614eaa",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc705fc77bb52cf8c03d97",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc7061c77bb52cf8c03dd0",
+      "score": 36.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 8.5,
+        "authenticity": 4,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70622fb56243f4614f12",
+      "score": 43.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 10,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17e685ed53a323768d3d07",
+      "score": 42.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 8.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51a78d9a5d92cf3aa7c0",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51bbfb2c42d93172b5aa",
+      "score": 38.0,
+      "scores": {
+        "directness": 4,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51cd8d9a5d92cf3aaaa4",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51e18df20265ef96445d",
+      "score": 39.5,
+      "scores": {
+        "directness": 4,
+        "rhythm": 10,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a51f5cbf1ae0d37eb6a12",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a52078df20265ef964e11",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a521a8df20265ef96514f",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a522fe8feac15d1c50703",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a52426c06a7df30f56508",
+      "score": 36.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 7.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a5257fbc9c305dde84c08",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a5270f8091fcb2d9055ae",
+      "score": 46.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 10,
+        "trust": 8.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a5285d8b15e9be4a7f21e",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 7,
+        "trust": 4.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a52996dcf3a3e0ba03a7f",
+      "score": 37.0,
+      "scores": {
+        "directness": 6,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a52aee8feac15d1c507aa",
+      "score": 42.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a52c4dcb8fb3bac4697e4",
+      "score": 37.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a52ff2d5f0c06395053d5",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c5c585f00e478ed707eb",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a53132351f7b3426a4fd3",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a53252d5f0c0639505da4",
+      "score": 37.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a0a5338cd954a425633d9af",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c8f0e045761236a62c67",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c5ccb5472ed3b49f48d4",
+      "score": 44.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c61cdcf7723efc571c38",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c6457d5c89d5f6340d66",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc706f2fb56243f4615170",
+      "score": 36.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 8.5,
+        "authenticity": 4,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc7072c77bb52cf8c041e1",
+      "score": 45.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 10,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70752fb56243f461532f",
+      "score": 42.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 8.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc7075c77bb52cf8c04332",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c7770d1baf9ac1c15648",
+      "score": 38.0,
+      "scores": {
+        "directness": 4,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c83514150d1d12abc5c3",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c8a85dcc993ec04f7812",
+      "score": 43.0,
+      "scores": {
+        "directness": 6,
+        "rhythm": 10,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c8f9e045761236a62e4f",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c623dcf7723efc571e1c",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "6a17c64d7d5c89d5f6340ead",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70832fb56243f461552e",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70862fb56243f46155cc",
+      "score": 36.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 7.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70882fb56243f461565a",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70892fb56243f4615688",
+      "score": 43.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 10,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70972fb56243f46158d7",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 7,
+        "trust": 4.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc709ac77bb52cf8c04755",
+      "score": 37.0,
+      "scores": {
+        "directness": 6,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc709c2fb56243f4615a04",
+      "score": 42.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc709dc77bb52cf8c047af",
+      "score": 37.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70aac77bb52cf8c0494e",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70ad2fb56243f4615bb2",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70b0c77bb52cf8c04a0e",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70b1c77bb52cf8c04a3c",
+      "score": 37.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70be2fb56243f4615cf6",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70c22fb56243f4615d75",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70c4c77bb52cf8c04b63",
+      "score": 44.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70c52fb56243f4615dcf",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70d2c77bb52cf8c04e28",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70d5c77bb52cf8c04f23",
+      "score": 36.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 8.5,
+        "authenticity": 4,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70d7c77bb52cf8c04fc3",
+      "score": 46.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 10,
+        "trust": 8.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc70d8c77bb52cf8c05008",
+      "score": 42.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 8.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71422fb56243f4616883",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71452fb56243f46168b1",
+      "score": 38.0,
+      "scores": {
+        "directness": 4,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc7148c77bb52cf8c057f9",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71492fb56243f461696f",
+      "score": 41.0,
+      "scores": {
+        "directness": 6,
+        "rhythm": 10,
+        "trust": 7.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71582fb56243f4616b76",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc715b2fb56243f4616bfe",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc715e2fb56243f4616c7d",
+      "score": 39.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc715fc77bb52cf8c05a64",
+      "score": 39.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc716d2fb56243f4616e38",
+      "score": 36.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 7.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71712fb56243f4616eb1",
+      "score": 39.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71732fb56243f4616f4a",
+      "score": 47.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 10,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71742fb56243f4616fbf",
+      "score": 40.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 7,
+        "trust": 5.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71832dc6864e569a64ce",
+      "score": 37.0,
+      "scores": {
+        "directness": 6,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc7187c77bb52cf8c05cd1",
+      "score": 42.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc718ac77bb52cf8c05d43",
+      "score": 37.5,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 5.5,
+        "authenticity": 10,
+        "density": 8
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc718bc77bb52cf8c05d99",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71992dc6864e569a67e6",
+      "score": 41.5,
+      "scores": {
+        "directness": 8,
+        "rhythm": 7,
+        "trust": 8.5,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc719cc77bb52cf8c0609d",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc719f4a40e3748c429bf1",
+      "score": 37.0,
+      "scores": {
+        "directness": 8,
+        "rhythm": 1,
+        "trust": 10.0,
+        "authenticity": 8,
+        "density": 10
+      },
+      "passing": true
+    },
+    {
+      "post_id": "69cc71a02dc6864e569a6a93",
+      "score": 41.0,
+      "scores": {
+        "directness": 10,
+        "rhythm": 4,
+        "trust": 7.0,
+        "authenticity": 10,
+        "density": 10
+      },
+      "passing": true
+    }
+  ],
+  "failing_posts": []
+}

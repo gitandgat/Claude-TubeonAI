@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.crosswalk.verticals-monitor</string>
+
+  <!-- Daily liveness check for the 5/day engine. Runs 15:00 Bangkok (~04:00 ET),
+       ~2h after com.crosswalk.linkedinverticals (12:47 Bangkok / ~01:47 ET), so
+       the day's posts are scheduled by the time we check. Reaps a hung
+       run_verticals.py and alerts (macOS notification + /tmp/verticals-monitor.log)
+       if fewer than 5 posts are scheduled for today. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/perl</string>
+    <string>-e</string>
+    <string>alarm shift; exec @ARGV</string>
+    <string>120</string>
+    <string>/Library/Frameworks/Python.framework/Versions/3.14/bin/python3</string>
+    <string>verticals_liveness_monitor.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/toto/Claude TubeonAI</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>15</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/verticals-monitor.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/verticals-monitor.log</string>
+</dict>
+</plist>

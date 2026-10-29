@@ -1,0 +1,12 @@
+date,name,platform,context,opener_scenario,replied,quiz_sent,quiz_done,session_offered,sold,notes
+2026-06-12,EXAMPLE Jane D.,LinkedIn,commented on identity cage post,1,yes,yes,no,no,no,"nurse 12yrs, kids, money fear — follow up Mon"
+2026-06-17,Karin,email,offer-flow 3 opens + 1 CLICK,clicker,no,n/a,n/a,no,no,"hottest — clicked link; await reply"
+2026-06-17,Roeline,email,offer-flow opened + 1 CLICK,clicker,no,n/a,n/a,no,no,"clicked link; await reply"
+2026-06-17,Ceinwen,email,offer-flow 11 opens,quiz-judgment,no,n/a,yes,no,no,"heavy opener; Fear Audit=Judgment"
+2026-06-17,Ajay,email,offer-flow 6 opens,quiz-financial,no,n/a,yes,no,no,"Fear Audit=Financial"
+2026-06-17,Dr. Afshan,email,offer-flow 5 opens,quiz-judgment,no,n/a,yes,no,no,"Fear Audit=Judgment"
+2026-06-17,Rebecca,email,offer-flow 4 opens,warm-generic,no,n/a,n/a,no,no,"engaged opener; await reply"
+2026-06-17,Tshilidzi,email,offer-flow 3 opens,warm-generic,no,n/a,n/a,no,no,"engaged opener; await reply"
+2026-06-17,Adeeb,email,offer-flow 3 opens,warm-generic,no,n/a,n/a,no,no,"engaged opener; await reply"
+2026-06-17,Sonja,email,offer-flow 2 opens,quiz-identity,no,n/a,yes,no,no,"Fear Audit=Identity"
+2026-06-17,Emile,email,offer-flow 2 opens,quiz-financial,no,n/a,yes,no,no,"Fear Audit=Financial"

@@ -1,9 +1,152 @@
 .env
+.env.*
+!.env.example
+!*/.env.example
 node_modules/
+
+# Crosswalk Wisdom Studio archive — raw personal notes, incl. notes about
+# identifiable people. Code and migrations are committed; the database is not.
+crosswalk-wisdom-studio/*.db
+crosswalk-wisdom-studio/prisma/*.db
+crosswalk-wisdom-studio/prisma/*.db-journal
+crosswalk-wisdom-studio/prisma/*.db-wal
+crosswalk-wisdom-studio/prisma/*.db-shm
+crosswalk-wisdom-studio/exports/
 prompt_ids.json
 *.txt
+# Dependency manifests are source, despite the blanket *.txt rule above
+!nutrition-agent/requirements.txt
+!workout-agent/requirements.txt
 
 # Lead-magnet pipeline runtime artifacts
 __pycache__/
 lead-magnets/leads_state.json
 lead-magnets/*.html
+
+# Glute intro video — large media (host on YouTube/Loom, don't commit)
+GLUTE-INTRO-VIDEO.mov
+glute-intro-final.mp4
+
+# Physical Assessment App — its own git repo (github.com/gitandgat/Physical-Assessment-App)
+physical-assessment-app/
+
+# Wayfinder app — its own git repo (github.com/gitandgat/wayfinder)
+wayfinder/
+
+# MoneyPrinterTurbo — its own git repo (github.com/harry0703/MoneyPrinterTurbo)
+money-printer-turbo/
+
+# Vivante French — its own git repo (github.com/gitandgat/Vivante-French)
+Vivante-French/
+
+# Job Bank Direct Apply session cookie — real authenticated session, never commit
+ottawa-job-agent/.jobbank_session.json
+
+# Workday candidate-account session cookies (per tenant) — real authenticated sessions, never commit
+ottawa-job-agent/.workday_session_*.json
+
+# OS / editor noise
+.DS_Store
+
+# Email/LinkedIn OAuth tokens and credentials — never commit, one leak rotates every account
+gmail_token*.json
+gmail_credentials.json
+outlook_token*.json
+.outlook_auth_flow.json
+.outlook_*_auth_flow.json
+.linkedin_token
+keychain_secrets.py
+
+# Runtime logs, caches, state — regenerate, don't version
+logs/
+trading-bot/bot/.sector_cache.json
+trading-bot/bot/last_run.json
+trading-bot/bot/universe_cache.json
+trading-bot/trading_bot.db
+linkedin_agent/data/
+linkedin_agent/clients/*/data/
+ottawa-job-agent/*.log
+ottawa-job-agent/automation_runs.jsonl
+ottawa-job-agent/web_apply_screenshots/
+ottawa-job-agent/seen_jobs.json
+ottawa-job-agent/applications.json
+ottawa-job-agent/known_boards.json
+ottawa-job-agent/agent_config.json
+# Output of audit_pending.py — derived from the gitignored applications.json.
+ottawa-job-agent/audit.json
+
+# Ottawa job agent — generated PII/output (resumes, cover letters, autofill data,
+# microsites, dashboard), not source; regenerate, don't version
+ottawa-job-agent/application_autofill.json
+ottawa-job-agent/application_autofill.html
+ottawa-job-agent/tracker_dashboard.html
+ottawa-job-agent/resumes/
+ottawa-job-agent/cover_letters/
+ottawa-job-agent/microsites/
+ottawa-job-agent/manual_applications/
+ottawa-job-agent/archive/
+ottawa-job-agent/jobbank_resume_upload_result.png
+# Prefilled application packages: every one embeds his name, phone, email, home
+# address and a cover letter. Same class as resumes/ and cover_letters/ above — this
+# directory was simply missed when the prefill engine landed, and the repo is public.
+ottawa-job-agent/prefilled/
+
+# Timestamped safety copies the tracker/board scripts write before a bulk edit. They
+# are snapshots of gitignored state files (applications.json, seen_jobs.json,
+# known_boards.json), so versioning them would commit the very data those files are
+# ignored for.
+ottawa-job-agent/*.bak-*
+ottawa-job-agent/*.bak-before-*
+ottawa-job-agent/*.backup-*
+ottawa-job-agent/seen_jobs.json.bak-*
+
+# Job Pilot Telegram bot — dedicated Python 3.13 venv (anaconda base is 3.8,
+# too old for claude-agent-sdk / python-telegram-bot); not source, reinstall
+# with: python3.13 -m venv telegram_venv && telegram_venv/bin/pip install -r telegram_requirements.txt
+ottawa-job-agent/telegram_venv/
+
+# Finished video/audio renders — large binaries, not source; host externally
+identity-audit-intro-*.mp4
+identity-audit-intro-*.mov
+Fiverr- starts with "I will".mov
+videos/
+avatar-engine/ship/
+crosswalk-remotion/public/avatar-career-pivot.mp4
+pipeline-output/
+img-pivot-protocol/
+
+# Local machine/session config — not project source
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+# LinkedIn CDN upload URLs with embedded signed/expiring tokens
+linkedin_assets.json
+
+# Rebel campaign: keep source + carousels + freepik stills, drop rendered/runtime output
+rebel-campaign/reels/
+rebel-campaign/__pycache__/
+rebel-campaign/.DS_Store
+rebel-campaign/*.log
+rebel-campaign/*.pid
+
+# Per-run generated reports (email/file organizer, bulk cleanup, etc.)
+reports/
+
+# Runtime state, not source
+moveassess-content/scheduled_log.json
+CROSSING-SESSION-LAUNCH/.execution_state.json
+
+# Ottawa rental search — real full name + personal phone number, meant to be
+# pasted into outbound emails to landlords; same PII class as the already-
+# excluded ottawa-job-agent/application_autofill.json
+ottawa-rental-application-packet.md
+
+# Supabase CLI scratch state (links this dir to an unrelated project), not source
+ottawa-job-agent/supabase/.temp/
+
+# Nutrition agent — dedicated venv (not source; recreate with
+# python3 -m venv .venv && .venv/bin/pip install -r requirements.txt),
+# logs, and the daily meal logs, which are personal health data.
+nutrition-agent/.venv/
+nutrition-agent/*.log
+nutrition-agent/data/

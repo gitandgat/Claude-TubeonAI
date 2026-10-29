@@ -1,0 +1,16 @@
+title = "Crosswalk Wisdom gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known false positives — documentation placeholders and non-secret strings"
+regexes = [
+  '''LINKEDIN_CLIENT_SECRET=abcd1234efgh5678''',
+  '''LINKEDIN_ACCESS_TOKEN=AQEfAbCdEfG1h2i3j4k5lm6nopqrstu''',
+  '''whisper-large-v3''',
+]
+paths = [
+  '''LINKEDIN_API_SETUP\.md''',
+  '''\.agents/skills/website-to-video/references/capabilities\.md''',
+]

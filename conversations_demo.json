@@ -1,0 +1,30 @@
+{
+  "conversations": [
+    {
+      "id": "Twitter_1780922921.309862",
+      "platform": "Twitter",
+      "person_name": "@creator",
+      "title": "Wish there was an easy way to turn YouTube videos into TikToks",
+      "message_sent": "I actually built exactly this. DM?",
+      "url": "https://twitter.com/creator/status/456",
+      "service": "youtube_repurposing",
+      "date_messaged": "2026-06-08T19:48:41.310050",
+      "status": "deal_closed",
+      "response": "OMG yes, I've been looking for this! Tell me more",
+      "response_date": "2026-06-08T19:48:41.310290",
+      "call_scheduled": true,
+      "call_date": "2026-06-10 14:00",
+      "deal_closed": true,
+      "deal_amount": 1500,
+      "notes": "Closed $1500/month LinkedIn content service"
+    }
+  ],
+  "stats": {
+    "total_messaged": 1,
+    "total_responses": 1,
+    "total_closed": 1,
+    "total_revenue": 1500
+  },
+  "created": "2026-06-08T19:48:41.309397",
+  "last_updated": "2026-06-08T19:48:41.310593"
+}

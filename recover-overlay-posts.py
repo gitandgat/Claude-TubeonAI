@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 
 BASE    = "https://zernio.com/api/v1"
-API_KEY = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as API_KEY
 HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
 OVERLAYS_DIR = Path("/Users/toto/Claude TubeonAI/crosswalk-remotion/out/overlays")

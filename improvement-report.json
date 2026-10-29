@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-06-06T09:10:40.843897",
+  "system_health": {},
+  "agent_scores": [
+    {
+      "agent": "performance_monitor",
+      "avg_rating": 9,
+      "ratings_count": 1,
+      "consistency": 1.0,
+      "overall_score": 9.0
+    },
+    {
+      "agent": "prepublish_gate",
+      "avg_rating": 3,
+      "ratings_count": 1,
+      "consistency": 1.0,
+      "overall_score": 3.0
+    },
+    {
+      "agent": "duplicate_detector",
+      "avg_rating": 4,
+      "ratings_count": 1,
+      "consistency": 1.0,
+      "overall_score": 4.0
+    }
+  ],
+  "adjustments_made": {
+    "performance_monitor": 1,
+    "prepublish_gate": 1
+  },
+  "recommendations": [
+    "Focus on improving: prepublish_gate, duplicate_detector",
+    "Leverage strengths of: performance_monitor"
+  ]
+}

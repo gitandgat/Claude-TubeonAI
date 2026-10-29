@@ -7,7 +7,7 @@ Date: 2026-04-05 at 9:00am ET (13:00 UTC)
 import os, requests
 
 BASE    = "https://zernio.com/api/v1"
-API_KEY = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as API_KEY
 HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
 LINKEDIN_ID  = "690940455f6fbb9ef8323070"

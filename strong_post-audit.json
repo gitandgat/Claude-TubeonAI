@@ -1,0 +1,39 @@
+{
+  "post_id": "strong_post",
+  "score": 48.0,
+  "passing": true,
+  "scores": {
+    "directness": 10,
+    "rhythm": 10,
+    "trust": 10.0,
+    "authenticity": 10,
+    "density": 8
+  },
+  "issues": {
+    "adverbs": 0,
+    "throat_clearing": 0,
+    "passive_voice": 0,
+    "vague_declaratives": 0,
+    "inanimate_actions": 0,
+    "extremes": 0,
+    "em_dashes": 0,
+    "whquestion_starts": 1,
+    "meta_joiners": 0
+  },
+  "recommendations": [],
+  "virality": {
+    "score": 81.5,
+    "pass": true,
+    "dims": {
+      "hook": 10,
+      "curiosity": 8,
+      "emotion": 6,
+      "share": 5,
+      "polarity": 2,
+      "platform": 10
+    },
+    "fixes": [
+      "Close with a comment-driving question or an explicit share/DM cue."
+    ]
+  }
+}

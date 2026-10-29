@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --amber:#D4A843; --charcoal:#2C2C2C; --warm:#FAF7F2; --orange:#E8834A; --teal:#5B9A8B;
+  --line:rgba(250,247,242,0.10); --muted:rgba(250,247,242,0.74); --body:rgba(250,247,242,0.92);
+}
+html,body{ width:1080px; }
+body{ font-family:'Inter',system-ui,sans-serif; background:var(--charcoal); color:var(--body);
+  -webkit-print-color-adjust:exact; padding:84px 96px 0; position:relative; overflow:hidden; }
+body::before{ content:""; position:absolute; top:-170px; right:-170px; width:520px; height:520px;
+  border-radius:50%; background:radial-gradient(circle, rgba(212,168,67,0.15), transparent 70%); }
+
+.top{ display:flex; align-items:center; justify-content:space-between; z-index:1; position:relative; }
+.logo{ display:flex; align-items:center; gap:16px; }
+.logo .stripes{ display:flex; flex-direction:column; gap:6px; }
+.logo .stripes span{ display:block; width:50px; height:10px; border-radius:3px; background:var(--amber); }
+.logo .stripes span:nth-child(even){ opacity:.6; }
+.logo .word{ font-family:'Playfair Display',serif; font-weight:700; font-size:32px;
+  letter-spacing:-0.02em; color:var(--amber); }
+.kicker{ font-size:15px; letter-spacing:.22em; text-transform:uppercase; color:var(--teal);
+  font-weight:700; }
+
+h1{ font-family:'Playfair Display',serif; font-weight:800; font-size:78px; line-height:1.0;
+  letter-spacing:-0.02em; margin:48px 0 14px; z-index:1; position:relative; }
+.sub{ font-family:'Playfair Display',serif; font-style:italic; font-weight:500; font-size:27px;
+  color:var(--muted); margin-bottom:44px; z-index:1; position:relative; }
+
+p{ font-size:23px; line-height:1.62; margin-bottom:24px; max-width:860px; z-index:1; position:relative; }
+.lead-cap::first-letter{ font-family:'Playfair Display',serif; font-weight:800; color:var(--amber);
+  font-size:78px; line-height:0.78; float:left; padding:8px 14px 0 0; }
+em{ font-style:italic; color:var(--warm); }
+
+.phase{ margin:30px 0 24px; max-width:860px; z-index:1; position:relative; }
+.phase .head{ display:flex; align-items:baseline; gap:16px; margin-bottom:8px; }
+.phase .n{ font-family:'Playfair Display',serif; font-weight:800; font-size:40px; color:var(--amber); }
+.phase .l{ font-size:18px; letter-spacing:.16em; text-transform:uppercase; color:var(--teal); font-weight:700; }
+.phase p{ margin-bottom:0; }
+
+.pull{ margin:38px 0; padding:8px 0 8px 34px; border-left:4px solid var(--amber);
+  font-family:'Playfair Display',serif; font-weight:700; font-size:38px; line-height:1.22;
+  color:var(--warm); max-width:860px; z-index:1; position:relative; }
+
+.sign{ font-family:'Playfair Display',serif; font-style:italic; font-size:28px; color:var(--amber);
+  margin:36px 0 70px; z-index:1; position:relative; }
+
+.stripe-motif{ position:absolute; left:0; bottom:0; width:100%; height:14px; display:flex; }
+.stripe-motif span{ flex:1; background:var(--amber); }
+.stripe-motif span:nth-child(even){ background:transparent; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="logo">
+      <div class="stripes"><span></span><span></span><span></span><span></span></div>
+      <div class="word">Crosswalk Wisdom</div>
+    </div>
+    <div class="kicker">Case Study</div>
+  </div>
+
+  <h1>My own Identity Audit</h1>
+  <div class="sub">The case study I know best — because I lived it.</div>
+
+  <p class="lead-cap">For years, "doctor" wasn't what I did. It was who I was. I'd built my whole identity around it — the years of training, the title, the version of me that everyone, including me, had agreed to call a success. Then one day the math stopped working. Not the income. The meaning. I was good at the work. I just no longer recognized the life it was building.</p>
+
+  <p>If you've felt that quiet disconnect — successful on paper, hollow underneath — you know it doesn't announce itself. It leaks. A Sunday-night dread. A flatness where pride used to be. The sense that you're maintaining a life instead of living one.</p>
+
+  <p>Here's what I learned untangling my own: the hardest part of leaving medicine isn't the money or the logistics. It's that you can't see past the identity. Every exit looks like failure when you've been taught that the role <em>is</em> you.</p>
+
+  <p>So I ran an audit on myself — the same one I now do with other people. Three passes.</p>
+
+  <div class="phase">
+    <div class="head"><span class="n">01</span><span class="l">Strip away the noise</span></div>
+    <p>I wrote down every belief I was carrying about what leaving would mean. <em>"Walking away wastes everything you sacrificed." "If you're not a doctor, who are you?" "Wanting out is weakness."</em> Then I asked one question of each: is this mine, or did I inherit it? Almost none of them were mine. They were borrowed — from training, from family, from a culture that confuses endurance with virtue.</p>
+  </div>
+
+  <div class="phase">
+    <div class="head"><span class="n">02</span><span class="l">Define the boundaries</span></div>
+    <p>I looked at where my energy was actually going, and how much of it went to protecting an image. I stopped explaining myself to people who were never going to approve. I gave myself one rule: no irreversible decisions while I was still running on someone else's definition of success.</p>
+  </div>
+
+  <div class="phase">
+    <div class="head"><span class="n">03</span><span class="l">Find the true north</span></div>
+    <p>With the noise cleared, the signal was embarrassingly simple. The parts of medicine I never resented were the human ones — teaching, guiding, helping someone see a way through. What pulled me forward wasn't <em>away</em> from medicine. It was <em>toward</em> building things that help people cross.</p>
+  </div>
+
+  <p>That's the work now. I help doctors and healthcare professionals do what I did: separate who they are from what they trained to be, and find the next thing that's actually theirs — then build the systems that make the crossing real.</p>
+
+  <div class="pull">I didn't waste those years in medicine. I just hadn't been shown what they were worth.</div>
+
+  <p>If any of this sounds like your own quiet disconnect, that's exactly what an Identity Audit is for. Let's figure out what your next chapter looks like.</p>
+
+  <div class="sign">— Sahawat · From the Ward to the World</div>
+
+  <div class="stripe-motif">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+</body></html>

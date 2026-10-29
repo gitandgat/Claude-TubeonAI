@@ -1,0 +1,542 @@
+{
+  "timestamp": "2026-06-06T09:05:20.009136",
+  "total_failed": 28,
+  "recovered": 15,
+  "unrecoverable": 13,
+  "recoveries": [
+    {
+      "post_id": "6a226f594331b35a452acef4",
+      "platform": "youtube",
+      "timestamp": "2026-06-06T09:03:52.737056",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": true,
+          "message": "Rescheduled to 2026-06-13T02:03:55.366303Z"
+        }
+      ],
+      "final_status": "RECOVERED_RESCHEDULE"
+    },
+    {
+      "post_id": "6a1f9a01c6eb0971cafe9a9d",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:03:56.647048",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1f6841398e4c86bea14c4a",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:03:58.323219",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1ed38e4e634fab0647287f",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:00.100603",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1e6c15b99fc55293c1c9dc",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:01.779717",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1e24c144400ae2081a0852",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:03.456868",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1d6f769d2475fd69b01610",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:05.255155",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1d6f2f2211e1c120519af9",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:06.910012",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1d45c131ec205bac6a2144",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:08.611091",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1d16cee35fe3d25f6fabcd",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:10.410424",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1d00377817c32213eef362",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:12.054123",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a1bb92f6e20bf9e0a212037",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:13.848420",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": true,
+          "message": "Retry triggered"
+        }
+      ],
+      "final_status": "RECOVERED_RETRY"
+    },
+    {
+      "post_id": "6a01c08783c9098c846a8d93",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:16.098915",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "6a06ff6c9923b685c9f96848",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:19.876720",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "6a06ff1061b1bd8ac698851f",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:23.242479",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "6a01865490415b5a27ec111f",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:26.654302",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c8698b6351a5d8b6359f64",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:30.323547",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c8698b6351a5d8b6359f64",
+      "platform": "facebook",
+      "timestamp": "2026-06-06T09:04:33.688253",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c9d75631a3d7c2c2464896",
+      "platform": "facebook",
+      "timestamp": "2026-06-06T09:04:37.379500",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c3435da2793a87ad0626d7",
+      "platform": "facebook",
+      "timestamp": "2026-06-06T09:04:40.999214",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69d1d42e45303bb923017606",
+      "platform": "tiktok",
+      "timestamp": "2026-06-06T09:04:44.629973",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c8692b8247c2bebe2647a2",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:48.289999",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c9d6ff260bc8b60a848e0c",
+      "platform": "tiktok",
+      "timestamp": "2026-06-06T09:04:51.841776",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69c868b38247c2bebe263c55",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:04:55.535896",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": true,
+          "message": "Rescheduled to 2026-06-13T02:04:58.058975Z"
+        }
+      ],
+      "final_status": "RECOVERED_RESCHEDULE"
+    },
+    {
+      "post_id": "69c868b38247c2bebe263c55",
+      "platform": "facebook",
+      "timestamp": "2026-06-06T09:04:59.132150",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": true,
+          "message": "Rescheduled to 2026-06-13T02:05:02.360945Z"
+        }
+      ],
+      "final_status": "RECOVERED_RESCHEDULE"
+    },
+    {
+      "post_id": "69c868b38247c2bebe263c55",
+      "platform": "tiktok",
+      "timestamp": "2026-06-06T09:05:05.928614",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": true,
+          "message": "Rescheduled to 2026-06-13T02:05:09.751615Z"
+        }
+      ],
+      "final_status": "RECOVERED_RESCHEDULE"
+    },
+    {
+      "post_id": "69717ece92cda5dd28d875d0",
+      "platform": "tiktok",
+      "timestamp": "2026-06-06T09:05:12.130808",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    },
+    {
+      "post_id": "69113c4bf05474063bf9a490",
+      "platform": "linkedin",
+      "timestamp": "2026-06-06T09:05:16.125566",
+      "attempts": [
+        {
+          "step": "retry",
+          "success": false,
+          "message": "API rejected: 400"
+        },
+        {
+          "step": "repost",
+          "success": false,
+          "message": "Create failed: 400"
+        },
+        {
+          "step": "reschedule",
+          "success": false,
+          "message": "Reschedule failed: 400"
+        }
+      ],
+      "final_status": "UNRECOVERABLE"
+    }
+  ]
+}

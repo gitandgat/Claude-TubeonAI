@@ -1,0 +1,44 @@
+{
+  "campaign": "moveassess-case-of-day",
+  "batch": 2,
+  "notes": "Completes the 7-test series (batch 1 covered checks 1/2/3/4/7; this adds checks 5 and 6) plus one hub post for the full 60-Second Movement Self-Test lead magnet. Same house rules as batch 1: first-person, contrarian reframe (varied), no source-video reference, link in FIRST COMMENT, 5 platforms, TikTok caption <=90 chars. All bodies passed /stop-slop (min 35/50) on 2026-07-03. Scores per post below. Videos: cod-06/07 have no rendered demo yet; cod-08 hub pairs with the self-test card.",
+  "platforms": ["linkedin", "instagram", "facebook", "tiktok", "youtube"],
+  "posts": [
+    {
+      "id": "cod-06-arch-collapse",
+      "case": "pes-planus",
+      "self_test_check": "05 The Arch Test",
+      "image": "physical-assessment-app/public/images/cases/pes-planus.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=pes-planus&utm_campaign=case-of-day",
+      "hook": "The knee pain you keep icing may start two joints lower.",
+      "body": "The knee pain you keep icing may start two joints lower.\n\nStand barefoot, feet under your hips, and look straight down at your inner arches.\n\nIf they sink toward the floor and your ankles roll in, your base is collapsing. A base that rolls in doesn't stay a foot problem. The shin turns to follow it, and the low back settles the tab at the top.\n\nFor years I watched people treat the joint that hurt while the real culprit sat inside their shoe.\n\nBuild control from the ground up. That's where the chain starts.",
+      "tiktok_caption": "Look at your bare arches. Rolling inward? Your knee pain may start at your feet.",
+      "first_comment": "See how the collapse travels up the chain, free and in 3D: https://physical-assessment-app.vercel.app/?case=pes-planus&utm_campaign=case-of-day\n\nIt's check #5 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 8, "rhythm": 8, "trust": 8, "authenticity": 8, "density": 8, "total": 40 }
+    },
+    {
+      "id": "cod-07-wall-reach",
+      "case": "upper-crossed",
+      "self_test_check": "06 The Wall Reach",
+      "image": "physical-assessment-app/public/images/cases/upper-crossed.jpg",
+      "deep_link": "https://physical-assessment-app.vercel.app/?case=upper-crossed&utm_campaign=case-of-day",
+      "hook": "If your shoulder catches reaching for a seatbelt, don't blame the shoulder.",
+      "body": "If your shoulder catches reaching for a seatbelt, don't blame the shoulder.\n\nStand with your back to a wall and press your low back flat against it. Raise both arms overhead and try to touch the backs of your hands to the wall, keeping that low back flat.\n\nIf your hands stop short, or your back peels off the wall to let them through, there's your answer. Your shoulders can't get cleanly overhead, so your spine arches to finish the reach. Every overhead move borrows from your lower back, and your back pays the interest.\n\nThis is the tech-neck body: a rounded upper back and shoulders that lost their last inches of overhead range without you noticing.\n\nGive the range back to the joint that lost it, and your back stops covering for it.",
+      "tiktok_caption": "Back to wall, low back flat, arms overhead. Hands won't touch? That's the tell.",
+      "first_comment": "See which links went stiff and which went quiet, free and in 3D: https://physical-assessment-app.vercel.app/?case=upper-crossed&utm_campaign=case-of-day\n\nIt's check #6 in the full 60-second self-test.",
+      "stop_slop_score": { "directness": 9, "rhythm": 8, "trust": 8, "authenticity": 9, "density": 8, "total": 42 }
+    },
+    {
+      "id": "cod-08-do-all-seven",
+      "case": null,
+      "self_test_check": "all 7 (hub / lead-magnet)",
+      "image": "lead-magnets/movement-self-test-card.png",
+      "deep_link": "https://physical-assessment-app.vercel.app/self-test?utm_campaign=self-test",
+      "hook": "Give me 60 seconds, a wall, and a chair, and I'll show you where your body breaks down first.",
+      "body": "Give me 60 seconds, a wall, and a chair, and I'll show you where your body breaks down first.\n\nMost people wait for pain to tell them something's wrong. By then the compensation is years old. The body leaks long before it hurts, and the leaks are visible if you know the seven spots to check.\n\nCan you touch the back of your head to a wall without craning up? Do your knees hold their line when you squat? Can you stand out of a chair without your hands? Each check takes seconds, and each failed one points to a link in the chain that's gone quiet.\n\nDon't spend another year managing pain you could measure. Count your tells. Under three, you're moving well. Three or more, you're carrying movement debt, and it compounds every year you leave it.\n\nI put all seven into one free self-test. No equipment, no floor work. A wall, a chair, a mirror.",
+      "tiktok_caption": "7 checks. A wall, a chair, a mirror. Find where your body breaks down first.",
+      "first_comment": "The full 60-second self-test, free: https://physical-assessment-app.vercel.app/self-test\n\nEach check you fail links to the exact pattern behind it, in 3D.",
+      "stop_slop_score": { "directness": 8, "rhythm": 8, "trust": 8, "authenticity": 8, "density": 8, "total": 40 }
+    }
+  ]
+}

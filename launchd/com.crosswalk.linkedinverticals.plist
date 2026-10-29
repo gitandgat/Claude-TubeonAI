@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.crosswalk.linkedinverticals</string>
+
+  <!-- One daily run: snapshot + per-vertical learn, then ONE post per vertical
+       (crosswalk 08:00, trainer 11:00, fitness 14:00, mind 17:00, health 20:00
+       ET), each cross-posted to the shared IG/FB accounts. Fills the LinkedIn
+       5/day cap exactly. REPLACES com.crosswalk.linkedinbatch (run_agent.py
+       --batch 5), which filled all 5 slots with Crosswalk-only content.
+       Runs 12:47 Bangkok = ~01:47 ET, before the 08:00 slot, so all 5 schedule
+       for the same day. Self-heals on wake if the Mac was asleep. -->
+  <!-- perl alarm wrapper = hard 30min wall-clock cap. SIGALRM survives exec, so a
+       hung run (any cause, not just network) is killed and launchd re-runs next
+       day. Belt-and-suspenders with socket.setdefaulttimeout(300) inside the
+       script. A 9-day hang here silently killed 5/day Jun 17-26 2026. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/perl</string>
+    <string>-e</string>
+    <string>alarm shift; exec @ARGV</string>
+    <string>1800</string>
+    <string>/Library/Frameworks/Python.framework/Versions/3.14/bin/python3</string>
+    <string>run_verticals.py</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/toto/Claude TubeonAI</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>12</integer>
+    <key>Minute</key>
+    <integer>47</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/verticals.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/verticals.log</string>
+</dict>
+</plist>

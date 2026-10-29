@@ -17,7 +17,7 @@ import json
 import sys
 
 BASE    = "https://zernio.com/api/v1"
-API_KEY = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as API_KEY
 HEADERS = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
 
 TIKTOK_ID  = "690941425f6fbb9ef8323078"

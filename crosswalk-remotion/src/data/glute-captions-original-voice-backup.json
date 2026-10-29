@@ -1,0 +1,1924 @@
+[
+  {
+    "text": "If you're watching this,",
+    "startMs": 0,
+    "tokens": [
+      {
+        "text": "If",
+        "fromMs": 0,
+        "toMs": 410
+      },
+      {
+        "text": " you're",
+        "fromMs": 1030,
+        "toMs": 1650
+      },
+      {
+        "text": " watching",
+        "fromMs": 1650,
+        "toMs": 3390
+      },
+      {
+        "text": " this,",
+        "fromMs": 3390,
+        "toMs": 4120
+      }
+    ],
+    "durationMs": 4120
+  },
+  {
+    "text": "you just applied for the",
+    "startMs": 4560,
+    "tokens": [
+      {
+        "text": "you",
+        "fromMs": 4560,
+        "toMs": 4720
+      },
+      {
+        "text": " just",
+        "fromMs": 4813,
+        "toMs": 4907
+      },
+      {
+        "text": " applied",
+        "fromMs": 4954,
+        "toMs": 5000
+      },
+      {
+        "text": " for",
+        "fromMs": 5000,
+        "toMs": 6000
+      },
+      {
+        "text": " the",
+        "fromMs": 6000,
+        "toMs": 6280
+      }
+    ],
+    "durationMs": 1720
+  },
+  {
+    "text": "Glute Longevity 6-Week Protocol.",
+    "startMs": 6778,
+    "tokens": [
+      {
+        "text": "Glute",
+        "fromMs": 6778,
+        "toMs": 7275
+      },
+      {
+        "text": " Longevity",
+        "fromMs": 7607,
+        "toMs": 7938
+      },
+      {
+        "text": " 6-Week",
+        "fromMs": 8104,
+        "toMs": 8270
+      },
+      {
+        "text": " Protocol.",
+        "fromMs": 8270,
+        "toMs": 9000
+      }
+    ],
+    "durationMs": 2222
+  },
+  {
+    "text": "So first,",
+    "startMs": 9720,
+    "tokens": [
+      {
+        "text": "So",
+        "fromMs": 9720,
+        "toMs": 9960
+      },
+      {
+        "text": " first,",
+        "fromMs": 9960,
+        "toMs": 10690
+      }
+    ],
+    "durationMs": 970
+  },
+  {
+    "text": "thank you.",
+    "startMs": 10810,
+    "tokens": [
+      {
+        "text": "thank",
+        "fromMs": 10810,
+        "toMs": 11420
+      },
+      {
+        "text": " you.",
+        "fromMs": 11420,
+        "toMs": 11840
+      }
+    ],
+    "durationMs": 1030
+  },
+  {
+    "text": "Give me two minutes and",
+    "startMs": 12160,
+    "tokens": [
+      {
+        "text": "Give",
+        "fromMs": 12160,
+        "toMs": 12510
+      },
+      {
+        "text": " me",
+        "fromMs": 12510,
+        "toMs": 12620
+      },
+      {
+        "text": " two",
+        "fromMs": 12620,
+        "toMs": 12850
+      },
+      {
+        "text": " minutes",
+        "fromMs": 12850,
+        "toMs": 13390
+      },
+      {
+        "text": " and",
+        "fromMs": 13390,
+        "toMs": 13620
+      }
+    ],
+    "durationMs": 1460
+  },
+  {
+    "text": "I'll show you exactly what",
+    "startMs": 13825,
+    "tokens": [
+      {
+        "text": "I'll",
+        "fromMs": 13825,
+        "toMs": 14030
+      },
+      {
+        "text": " show",
+        "fromMs": 14030,
+        "toMs": 14230
+      },
+      {
+        "text": " you",
+        "fromMs": 14230,
+        "toMs": 14460
+      },
+      {
+        "text": " exactly",
+        "fromMs": 14460,
+        "toMs": 15020
+      },
+      {
+        "text": " what",
+        "fromMs": 15020,
+        "toMs": 15310
+      }
+    ],
+    "durationMs": 1485
+  },
+  {
+    "text": "you've signed up to explore,",
+    "startMs": 15540,
+    "tokens": [
+      {
+        "text": "you've",
+        "fromMs": 15540,
+        "toMs": 15770
+      },
+      {
+        "text": " signed",
+        "fromMs": 15770,
+        "toMs": 16230
+      },
+      {
+        "text": " up",
+        "fromMs": 16230,
+        "toMs": 16380
+      },
+      {
+        "text": " to",
+        "fromMs": 16380,
+        "toMs": 16530
+      },
+      {
+        "text": " explore,",
+        "fromMs": 16530,
+        "toMs": 17160
+      }
+    ],
+    "durationMs": 1620
+  },
+  {
+    "text": "and why it's different from",
+    "startMs": 17160,
+    "tokens": [
+      {
+        "text": "and",
+        "fromMs": 17160,
+        "toMs": 17460
+      },
+      {
+        "text": " why",
+        "fromMs": 17460,
+        "toMs": 17830
+      },
+      {
+        "text": " it's",
+        "fromMs": 17995,
+        "toMs": 18160
+      },
+      {
+        "text": " different",
+        "fromMs": 18160,
+        "toMs": 19080
+      },
+      {
+        "text": " from",
+        "fromMs": 19080,
+        "toMs": 19480
+      }
+    ],
+    "durationMs": 2320
+  },
+  {
+    "text": "anything you've tried.",
+    "startMs": 19480,
+    "tokens": [
+      {
+        "text": "anything",
+        "fromMs": 19480,
+        "toMs": 20300
+      },
+      {
+        "text": " you've",
+        "fromMs": 20605,
+        "toMs": 20910
+      },
+      {
+        "text": " tried.",
+        "fromMs": 20910,
+        "toMs": 21730
+      }
+    ],
+    "durationMs": 2250
+  },
+  {
+    "text": "Here's what most people miss.",
+    "startMs": 22040,
+    "tokens": [
+      {
+        "text": "Here's",
+        "fromMs": 22040,
+        "toMs": 22350
+      },
+      {
+        "text": " what",
+        "fromMs": 22350,
+        "toMs": 22720
+      },
+      {
+        "text": " most",
+        "fromMs": 22720,
+        "toMs": 22720
+      },
+      {
+        "text": " people",
+        "fromMs": 22720,
+        "toMs": 23250
+      },
+      {
+        "text": " miss.",
+        "fromMs": 23250,
+        "toMs": 23650
+      }
+    ],
+    "durationMs": 1610
+  },
+  {
+    "text": "Your glutes aren't about looks.",
+    "startMs": 23960,
+    "tokens": [
+      {
+        "text": "Your",
+        "fromMs": 23960,
+        "toMs": 24270
+      },
+      {
+        "text": " glutes",
+        "fromMs": 24550,
+        "toMs": 24830
+      },
+      {
+        "text": " aren't",
+        "fromMs": 24970,
+        "toMs": 25110
+      },
+      {
+        "text": " about",
+        "fromMs": 25110,
+        "toMs": 25490
+      },
+      {
+        "text": " looks.",
+        "fromMs": 25490,
+        "toMs": 25890
+      }
+    ],
+    "durationMs": 1930
+  },
+  {
+    "text": "They're the foundation of how",
+    "startMs": 26375,
+    "tokens": [
+      {
+        "text": "They're",
+        "fromMs": 26375,
+        "toMs": 26860
+      },
+      {
+        "text": " the",
+        "fromMs": 26860,
+        "toMs": 27160
+      },
+      {
+        "text": " foundation",
+        "fromMs": 27710,
+        "toMs": 28260
+      },
+      {
+        "text": " of",
+        "fromMs": 28260,
+        "toMs": 28460
+      },
+      {
+        "text": " how",
+        "fromMs": 28460,
+        "toMs": 28750
+      }
+    ],
+    "durationMs": 2375
+  },
+  {
+    "text": "you move,",
+    "startMs": 28750,
+    "tokens": [
+      {
+        "text": "you",
+        "fromMs": 28750,
+        "toMs": 29110
+      },
+      {
+        "text": " move,",
+        "fromMs": 29110,
+        "toMs": 29460
+      }
+    ],
+    "durationMs": 710
+  },
+  {
+    "text": "stand,",
+    "startMs": 29660,
+    "tokens": [
+      {
+        "text": "stand,",
+        "fromMs": 29660,
+        "toMs": 30160
+      }
+    ],
+    "durationMs": 500
+  },
+  {
+    "text": "and stay pain-free as you",
+    "startMs": 30390,
+    "tokens": [
+      {
+        "text": "and",
+        "fromMs": 30390,
+        "toMs": 30760
+      },
+      {
+        "text": " stay",
+        "fromMs": 30760,
+        "toMs": 31110
+      },
+      {
+        "text": " pain-free",
+        "fromMs": 31585,
+        "toMs": 32060
+      },
+      {
+        "text": " as",
+        "fromMs": 32060,
+        "toMs": 32260
+      },
+      {
+        "text": " you",
+        "fromMs": 32260,
+        "toMs": 32560
+      }
+    ],
+    "durationMs": 2170
+  },
+  {
+    "text": "age.",
+    "startMs": 32840,
+    "tokens": [
+      {
+        "text": "age.",
+        "fromMs": 32840,
+        "toMs": 33120
+      }
+    ],
+    "durationMs": 280
+  },
+  {
+    "text": "When they go quiet,",
+    "startMs": 33120,
+    "tokens": [
+      {
+        "text": "When",
+        "fromMs": 33120,
+        "toMs": 33550
+      },
+      {
+        "text": " they",
+        "fromMs": 33550,
+        "toMs": 33980
+      },
+      {
+        "text": " go",
+        "fromMs": 33980,
+        "toMs": 34180
+      },
+      {
+        "text": " quiet,",
+        "fromMs": 34180,
+        "toMs": 34750
+      }
+    ],
+    "durationMs": 1630
+  },
+  {
+    "text": "from sitting all day,",
+    "startMs": 34970,
+    "tokens": [
+      {
+        "text": "from",
+        "fromMs": 34970,
+        "toMs": 35390
+      },
+      {
+        "text": " sitting",
+        "fromMs": 35390,
+        "toMs": 36090
+      },
+      {
+        "text": " all",
+        "fromMs": 36090,
+        "toMs": 36390
+      },
+      {
+        "text": " day,",
+        "fromMs": 36390,
+        "toMs": 36690
+      }
+    ],
+    "durationMs": 1720
+  },
+  {
+    "text": "from age,",
+    "startMs": 36890,
+    "tokens": [
+      {
+        "text": "from",
+        "fromMs": 36890,
+        "toMs": 37300
+      },
+      {
+        "text": " age,",
+        "fromMs": 37300,
+        "toMs": 37590
+      }
+    ],
+    "durationMs": 700
+  },
+  {
+    "text": "from training the wrong way,",
+    "startMs": 37850,
+    "tokens": [
+      {
+        "text": "from",
+        "fromMs": 37850,
+        "toMs": 38240
+      },
+      {
+        "text": " training",
+        "fromMs": 38585,
+        "toMs": 38930
+      },
+      {
+        "text": " the",
+        "fromMs": 38930,
+        "toMs": 39230
+      },
+      {
+        "text": " wrong",
+        "fromMs": 39230,
+        "toMs": 39730
+      },
+      {
+        "text": " way,",
+        "fromMs": 39730,
+        "toMs": 40150
+      }
+    ],
+    "durationMs": 2300
+  },
+  {
+    "text": "your posture starts to collapse.",
+    "startMs": 40160,
+    "tokens": [
+      {
+        "text": "your",
+        "fromMs": 40160,
+        "toMs": 40360
+      },
+      {
+        "text": " posture",
+        "fromMs": 40930,
+        "toMs": 41500
+      },
+      {
+        "text": " starts",
+        "fromMs": 41500,
+        "toMs": 42010
+      },
+      {
+        "text": " to",
+        "fromMs": 42010,
+        "toMs": 42190
+      },
+      {
+        "text": " collapse.",
+        "fromMs": 42190,
+        "toMs": 43400
+      }
+    ],
+    "durationMs": 3240
+  },
+  {
+    "text": "Your knees and your lower",
+    "startMs": 43560,
+    "tokens": [
+      {
+        "text": "Your",
+        "fromMs": 43560,
+        "toMs": 43980
+      },
+      {
+        "text": " knees",
+        "fromMs": 43980,
+        "toMs": 44510
+      },
+      {
+        "text": " and",
+        "fromMs": 44510,
+        "toMs": 44830
+      },
+      {
+        "text": " your",
+        "fromMs": 44830,
+        "toMs": 45250
+      },
+      {
+        "text": " lower",
+        "fromMs": 45405,
+        "toMs": 45560
+      }
+    ],
+    "durationMs": 2000
+  },
+  {
+    "text": "back quietly pick up the",
+    "startMs": 45560,
+    "tokens": [
+      {
+        "text": "back",
+        "fromMs": 45560,
+        "toMs": 46180
+      },
+      {
+        "text": " quietly",
+        "fromMs": 46180,
+        "toMs": 46790
+      },
+      {
+        "text": " pick",
+        "fromMs": 46790,
+        "toMs": 47170
+      },
+      {
+        "text": " up",
+        "fromMs": 47170,
+        "toMs": 47380
+      },
+      {
+        "text": " the",
+        "fromMs": 47380,
+        "toMs": 47670
+      }
+    ],
+    "durationMs": 2110
+  },
+  {
+    "text": "slack.",
+    "startMs": 47670,
+    "tokens": [
+      {
+        "text": "slack.",
+        "fromMs": 47670,
+        "toMs": 48310
+      }
+    ],
+    "durationMs": 640
+  },
+  {
+    "text": "And getting older starts to",
+    "startMs": 48310,
+    "tokens": [
+      {
+        "text": "And",
+        "fromMs": 48310,
+        "toMs": 48530
+      },
+      {
+        "text": " getting",
+        "fromMs": 48530,
+        "toMs": 49270
+      },
+      {
+        "text": " older",
+        "fromMs": 49270,
+        "toMs": 49810
+      },
+      {
+        "text": " starts",
+        "fromMs": 50070,
+        "toMs": 50330
+      },
+      {
+        "text": " to",
+        "fromMs": 50330,
+        "toMs": 50540
+      }
+    ],
+    "durationMs": 2230
+  },
+  {
+    "text": "feel like breaking down.",
+    "startMs": 50540,
+    "tokens": [
+      {
+        "text": "feel",
+        "fromMs": 50540,
+        "toMs": 51040
+      },
+      {
+        "text": " like",
+        "fromMs": 51040,
+        "toMs": 51620
+      },
+      {
+        "text": " breaking",
+        "fromMs": 51620,
+        "toMs": 52670
+      },
+      {
+        "text": " down.",
+        "fromMs": 52670,
+        "toMs": 53210
+      }
+    ],
+    "durationMs": 2670
+  },
+  {
+    "text": "Most glute programs chase the",
+    "startMs": 53778,
+    "tokens": [
+      {
+        "text": "Most",
+        "fromMs": 53778,
+        "toMs": 54346
+      },
+      {
+        "text": " glute",
+        "fromMs": 54772,
+        "toMs": 55198
+      },
+      {
+        "text": " programs",
+        "fromMs": 55482,
+        "toMs": 55766
+      },
+      {
+        "text": " chase",
+        "fromMs": 55908,
+        "toMs": 56050
+      },
+      {
+        "text": " the",
+        "fromMs": 56050,
+        "toMs": 56380
+      }
+    ],
+    "durationMs": 2602
+  },
+  {
+    "text": "burn.",
+    "startMs": 56380,
+    "tokens": [
+      {
+        "text": "burn.",
+        "fromMs": 56380,
+        "toMs": 56830
+      }
+    ],
+    "durationMs": 450
+  },
+  {
+    "text": "They never rebuild the strength",
+    "startMs": 57303,
+    "tokens": [
+      {
+        "text": "They",
+        "fromMs": 57303,
+        "toMs": 57777
+      },
+      {
+        "text": " never",
+        "fromMs": 58014,
+        "toMs": 58250
+      },
+      {
+        "text": " rebuild",
+        "fromMs": 58250,
+        "toMs": 59010
+      },
+      {
+        "text": " the",
+        "fromMs": 59180,
+        "toMs": 59400
+      },
+      {
+        "text": " strength",
+        "fromMs": 59400,
+        "toMs": 60250
+      }
+    ],
+    "durationMs": 2947
+  },
+  {
+    "text": "underneath it.",
+    "startMs": 60250,
+    "tokens": [
+      {
+        "text": "underneath",
+        "fromMs": 60250,
+        "toMs": 61300
+      },
+      {
+        "text": " it.",
+        "fromMs": 61300,
+        "toMs": 61530
+      }
+    ],
+    "durationMs": 1280
+  },
+  {
+    "text": "I'm a former physician.",
+    "startMs": 61885,
+    "tokens": [
+      {
+        "text": "I'm",
+        "fromMs": 61885,
+        "toMs": 62240
+      },
+      {
+        "text": " a",
+        "fromMs": 62240,
+        "toMs": 62360
+      },
+      {
+        "text": " former",
+        "fromMs": 62360,
+        "toMs": 63080
+      },
+      {
+        "text": " physician.",
+        "fromMs": 63080,
+        "toMs": 64190
+      }
+    ],
+    "durationMs": 2305
+  },
+  {
+    "text": "And I got tired of",
+    "startMs": 64190,
+    "tokens": [
+      {
+        "text": "And",
+        "fromMs": 64190,
+        "toMs": 64530
+      },
+      {
+        "text": " I",
+        "fromMs": 64530,
+        "toMs": 64650
+      },
+      {
+        "text": " got",
+        "fromMs": 64650,
+        "toMs": 65010
+      },
+      {
+        "text": " tired",
+        "fromMs": 65010,
+        "toMs": 65610
+      },
+      {
+        "text": " of",
+        "fromMs": 65610,
+        "toMs": 65850
+      }
+    ],
+    "durationMs": 1660
+  },
+  {
+    "text": "watching capable people accept that",
+    "startMs": 65850,
+    "tokens": [
+      {
+        "text": "watching",
+        "fromMs": 65850,
+        "toMs": 66820
+      },
+      {
+        "text": " capable",
+        "fromMs": 66820,
+        "toMs": 67670
+      },
+      {
+        "text": " people",
+        "fromMs": 67670,
+        "toMs": 68390
+      },
+      {
+        "text": " accept",
+        "fromMs": 68390,
+        "toMs": 69110
+      },
+      {
+        "text": " that",
+        "fromMs": 69110,
+        "toMs": 69590
+      }
+    ],
+    "durationMs": 3740
+  },
+  {
+    "text": "decline as if it were",
+    "startMs": 69590,
+    "tokens": [
+      {
+        "text": "decline",
+        "fromMs": 69590,
+        "toMs": 70520
+      },
+      {
+        "text": " as",
+        "fromMs": 70520,
+        "toMs": 70820
+      },
+      {
+        "text": " if",
+        "fromMs": 70820,
+        "toMs": 70820
+      },
+      {
+        "text": " it",
+        "fromMs": 70820,
+        "toMs": 71000
+      },
+      {
+        "text": " were",
+        "fromMs": 71360,
+        "toMs": 71720
+      }
+    ],
+    "durationMs": 2130
+  },
+  {
+    "text": "inevitable.",
+    "startMs": 71720,
+    "tokens": [
+      {
+        "text": "inevitable.",
+        "fromMs": 71720,
+        "toMs": 72950
+      }
+    ],
+    "durationMs": 1230
+  },
+  {
+    "text": "It isn't.",
+    "startMs": 73320,
+    "tokens": [
+      {
+        "text": "It",
+        "fromMs": 73320,
+        "toMs": 73510
+      },
+      {
+        "text": " isn't.",
+        "fromMs": 73845,
+        "toMs": 74180
+      }
+    ],
+    "durationMs": 860
+  },
+  {
+    "text": "So I built this protocol",
+    "startMs": 74180,
+    "tokens": [
+      {
+        "text": "So",
+        "fromMs": 74180,
+        "toMs": 74440
+      },
+      {
+        "text": " I",
+        "fromMs": 74440,
+        "toMs": 74460
+      },
+      {
+        "text": " built",
+        "fromMs": 74460,
+        "toMs": 74950
+      },
+      {
+        "text": " this",
+        "fromMs": 74950,
+        "toMs": 75340
+      },
+      {
+        "text": " protocol",
+        "fromMs": 75340,
+        "toMs": 76120
+      }
+    ],
+    "durationMs": 1940
+  },
+  {
+    "text": "around what the research actually",
+    "startMs": 76380,
+    "tokens": [
+      {
+        "text": "around",
+        "fromMs": 76380,
+        "toMs": 76640
+      },
+      {
+        "text": " what",
+        "fromMs": 76770,
+        "toMs": 76900
+      },
+      {
+        "text": " the",
+        "fromMs": 76900,
+        "toMs": 77300
+      },
+      {
+        "text": " research",
+        "fromMs": 77300,
+        "toMs": 78030
+      },
+      {
+        "text": " actually",
+        "fromMs": 78160,
+        "toMs": 78940
+      }
+    ],
+    "durationMs": 2560
+  },
+  {
+    "text": "supports,",
+    "startMs": 79280,
+    "tokens": [
+      {
+        "text": "supports,",
+        "fromMs": 79280,
+        "toMs": 79620
+      }
+    ],
+    "durationMs": 340
+  },
+  {
+    "text": "progressive,",
+    "startMs": 79620,
+    "tokens": [
+      {
+        "text": "progressive,",
+        "fromMs": 79620,
+        "toMs": 80800
+      }
+    ],
+    "durationMs": 1180
+  },
+  {
+    "text": "well-dosed strength work that treats",
+    "startMs": 81280,
+    "tokens": [
+      {
+        "text": "well-dosed",
+        "fromMs": 81280,
+        "toMs": 81760
+      },
+      {
+        "text": " strength",
+        "fromMs": 81760,
+        "toMs": 82630
+      },
+      {
+        "text": " work",
+        "fromMs": 82840,
+        "toMs": 83270
+      },
+      {
+        "text": " that",
+        "fromMs": 83270,
+        "toMs": 83700
+      },
+      {
+        "text": " treats",
+        "fromMs": 84095,
+        "toMs": 84490
+      }
+    ],
+    "durationMs": 3210
+  },
+  {
+    "text": "your glutes as the engine",
+    "startMs": 84490,
+    "tokens": [
+      {
+        "text": "your",
+        "fromMs": 84490,
+        "toMs": 84860
+      },
+      {
+        "text": " glutes",
+        "fromMs": 85200,
+        "toMs": 85540
+      },
+      {
+        "text": " as",
+        "fromMs": 85540,
+        "toMs": 85630
+      },
+      {
+        "text": " the",
+        "fromMs": 85630,
+        "toMs": 85950
+      },
+      {
+        "text": " engine",
+        "fromMs": 85950,
+        "toMs": 86600
+      }
+    ],
+    "durationMs": 2110
+  },
+  {
+    "text": "of longevity.",
+    "startMs": 86600,
+    "tokens": [
+      {
+        "text": "of",
+        "fromMs": 86600,
+        "toMs": 86810
+      },
+      {
+        "text": " longevity.",
+        "fromMs": 86810,
+        "toMs": 87790
+      }
+    ],
+    "durationMs": 1190
+  },
+  {
+    "text": "Six weeks,",
+    "startMs": 88240,
+    "tokens": [
+      {
+        "text": "Six",
+        "fromMs": 88240,
+        "toMs": 88560
+      },
+      {
+        "text": " weeks,",
+        "fromMs": 88560,
+        "toMs": 89090
+      }
+    ],
+    "durationMs": 850
+  },
+  {
+    "text": "six modules,",
+    "startMs": 89300,
+    "tokens": [
+      {
+        "text": "six",
+        "fromMs": 89300,
+        "toMs": 89670
+      },
+      {
+        "text": " modules,",
+        "fromMs": 89670,
+        "toMs": 90360
+      }
+    ],
+    "durationMs": 1060
+  },
+  {
+    "text": "a simple weekly plan you'll",
+    "startMs": 90570,
+    "tokens": [
+      {
+        "text": "a",
+        "fromMs": 90570,
+        "toMs": 90670
+      },
+      {
+        "text": " simple",
+        "fromMs": 90670,
+        "toMs": 91400
+      },
+      {
+        "text": " weekly",
+        "fromMs": 91400,
+        "toMs": 91950
+      },
+      {
+        "text": " plan",
+        "fromMs": 91950,
+        "toMs": 92370
+      },
+      {
+        "text": " you'll",
+        "fromMs": 92530,
+        "toMs": 92690
+      }
+    ],
+    "durationMs": 2120
+  },
+  {
+    "text": "actually keep up with,",
+    "startMs": 92690,
+    "tokens": [
+      {
+        "text": "actually",
+        "fromMs": 92690,
+        "toMs": 93560
+      },
+      {
+        "text": " keep",
+        "fromMs": 93560,
+        "toMs": 93960
+      },
+      {
+        "text": " up",
+        "fromMs": 93960,
+        "toMs": 94170
+      },
+      {
+        "text": " with,",
+        "fromMs": 94170,
+        "toMs": 94580
+      }
+    ],
+    "durationMs": 1890
+  },
+  {
+    "text": "not a punishing one you'll",
+    "startMs": 94800,
+    "tokens": [
+      {
+        "text": "not",
+        "fromMs": 94800,
+        "toMs": 95120
+      },
+      {
+        "text": " a",
+        "fromMs": 95120,
+        "toMs": 95440
+      },
+      {
+        "text": " punishing",
+        "fromMs": 95440,
+        "toMs": 96280
+      },
+      {
+        "text": " one",
+        "fromMs": 96280,
+        "toMs": 96700
+      },
+      {
+        "text": " you'll",
+        "fromMs": 96910,
+        "toMs": 97120
+      }
+    ],
+    "durationMs": 2320
+  },
+  {
+    "text": "quit in week two.",
+    "startMs": 97120,
+    "tokens": [
+      {
+        "text": "quit",
+        "fromMs": 97120,
+        "toMs": 97670
+      },
+      {
+        "text": " in",
+        "fromMs": 97670,
+        "toMs": 97950
+      },
+      {
+        "text": " week",
+        "fromMs": 97950,
+        "toMs": 98500
+      },
+      {
+        "text": " two.",
+        "fromMs": 98500,
+        "toMs": 98920
+      }
+    ],
+    "durationMs": 1800
+  },
+  {
+    "text": "It meets you where you",
+    "startMs": 99360,
+    "tokens": [
+      {
+        "text": "It",
+        "fromMs": 99360,
+        "toMs": 99600
+      },
+      {
+        "text": " meets",
+        "fromMs": 99900,
+        "toMs": 100200
+      },
+      {
+        "text": " you",
+        "fromMs": 100200,
+        "toMs": 100780
+      },
+      {
+        "text": " where",
+        "fromMs": 100780,
+        "toMs": 101190
+      },
+      {
+        "text": " you",
+        "fromMs": 101190,
+        "toMs": 101520
+      }
+    ],
+    "durationMs": 2160
+  },
+  {
+    "text": "are and builds from there.",
+    "startMs": 101520,
+    "tokens": [
+      {
+        "text": "are",
+        "fromMs": 101520,
+        "toMs": 101890
+      },
+      {
+        "text": " and",
+        "fromMs": 101890,
+        "toMs": 102240
+      },
+      {
+        "text": " builds",
+        "fromMs": 102520,
+        "toMs": 102800
+      },
+      {
+        "text": " from",
+        "fromMs": 102800,
+        "toMs": 103320
+      },
+      {
+        "text": " there.",
+        "fromMs": 103320,
+        "toMs": 103920
+      }
+    ],
+    "durationMs": 2400
+  },
+  {
+    "text": "You get the full protocol,",
+    "startMs": 104320,
+    "tokens": [
+      {
+        "text": "You",
+        "fromMs": 104320,
+        "toMs": 104630
+      },
+      {
+        "text": " get",
+        "fromMs": 104630,
+        "toMs": 104880
+      },
+      {
+        "text": " the",
+        "fromMs": 104880,
+        "toMs": 105160
+      },
+      {
+        "text": " full",
+        "fromMs": 105160,
+        "toMs": 105530
+      },
+      {
+        "text": " protocol,",
+        "fromMs": 105530,
+        "toMs": 106290
+      }
+    ],
+    "durationMs": 1970
+  },
+  {
+    "text": "the training modules,",
+    "startMs": 106460,
+    "tokens": [
+      {
+        "text": "the",
+        "fromMs": 106460,
+        "toMs": 106740
+      },
+      {
+        "text": " training",
+        "fromMs": 106740,
+        "toMs": 107490
+      },
+      {
+        "text": " modules,",
+        "fromMs": 107860,
+        "toMs": 108230
+      }
+    ],
+    "durationMs": 1770
+  },
+  {
+    "text": "lifetime access,",
+    "startMs": 108230,
+    "tokens": [
+      {
+        "text": "lifetime",
+        "fromMs": 108230,
+        "toMs": 108980
+      },
+      {
+        "text": " access,",
+        "fromMs": 108980,
+        "toMs": 109590
+      }
+    ],
+    "durationMs": 1360
+  },
+  {
+    "text": "and a money-back guarantee.",
+    "startMs": 109720,
+    "tokens": [
+      {
+        "text": "and",
+        "fromMs": 109720,
+        "toMs": 110000
+      },
+      {
+        "text": " a",
+        "fromMs": 110000,
+        "toMs": 110090
+      },
+      {
+        "text": " money-back",
+        "fromMs": 110555,
+        "toMs": 111020
+      },
+      {
+        "text": " guarantee.",
+        "fromMs": 111020,
+        "toMs": 112030
+      }
+    ],
+    "durationMs": 2310
+  },
+  {
+    "text": "Do the work as designed,",
+    "startMs": 112080,
+    "tokens": [
+      {
+        "text": "Do",
+        "fromMs": 112080,
+        "toMs": 112290
+      },
+      {
+        "text": " the",
+        "fromMs": 112290,
+        "toMs": 112610
+      },
+      {
+        "text": " work",
+        "fromMs": 112610,
+        "toMs": 113030
+      },
+      {
+        "text": " as",
+        "fromMs": 113030,
+        "toMs": 113260
+      },
+      {
+        "text": " designed,",
+        "fromMs": 113260,
+        "toMs": 114100
+      }
+    ],
+    "durationMs": 2020
+  },
+  {
+    "text": "and if your strength,",
+    "startMs": 114100,
+    "tokens": [
+      {
+        "text": "and",
+        "fromMs": 114100,
+        "toMs": 114470
+      },
+      {
+        "text": " if",
+        "fromMs": 114470,
+        "toMs": 114640
+      },
+      {
+        "text": " your",
+        "fromMs": 114640,
+        "toMs": 115110
+      },
+      {
+        "text": " strength,",
+        "fromMs": 115110,
+        "toMs": 116090
+      }
+    ],
+    "durationMs": 1990
+  },
+  {
+    "text": "posture,",
+    "startMs": 116140,
+    "tokens": [
+      {
+        "text": "posture,",
+        "fromMs": 116140,
+        "toMs": 116890
+      }
+    ],
+    "durationMs": 750
+  },
+  {
+    "text": "and comfort haven't improved,",
+    "startMs": 117100,
+    "tokens": [
+      {
+        "text": "and",
+        "fromMs": 117100,
+        "toMs": 117420
+      },
+      {
+        "text": " comfort",
+        "fromMs": 117420,
+        "toMs": 118160
+      },
+      {
+        "text": " haven't",
+        "fromMs": 118545,
+        "toMs": 118930
+      },
+      {
+        "text": " improved,",
+        "fromMs": 118930,
+        "toMs": 119950
+      }
+    ],
+    "durationMs": 2850
+  },
+  {
+    "text": "I refund you.",
+    "startMs": 120090,
+    "tokens": [
+      {
+        "text": "I",
+        "fromMs": 120090,
+        "toMs": 120200
+      },
+      {
+        "text": " refund",
+        "fromMs": 120240,
+        "toMs": 120740
+      },
+      {
+        "text": " you.",
+        "fromMs": 120740,
+        "toMs": 121180
+      }
+    ],
+    "durationMs": 1090
+  },
+  {
+    "text": "The risk is mine,",
+    "startMs": 121240,
+    "tokens": [
+      {
+        "text": "The",
+        "fromMs": 121240,
+        "toMs": 121720
+      },
+      {
+        "text": " risk",
+        "fromMs": 121720,
+        "toMs": 122360
+      },
+      {
+        "text": " is",
+        "fromMs": 122360,
+        "toMs": 122660
+      },
+      {
+        "text": " mine,",
+        "fromMs": 122660,
+        "toMs": 123320
+      }
+    ],
+    "durationMs": 2080
+  },
+  {
+    "text": "not yours.",
+    "startMs": 123640,
+    "tokens": [
+      {
+        "text": "not",
+        "fromMs": 123640,
+        "toMs": 124120
+      },
+      {
+        "text": " yours.",
+        "fromMs": 124120,
+        "toMs": 125240
+      }
+    ],
+    "durationMs": 1600
+  },
+  {
+    "text": "So here's what happens next.",
+    "startMs": 125440,
+    "tokens": [
+      {
+        "text": "So",
+        "fromMs": 125440,
+        "toMs": 125600
+      },
+      {
+        "text": " here's",
+        "fromMs": 125875,
+        "toMs": 126150
+      },
+      {
+        "text": " what",
+        "fromMs": 126150,
+        "toMs": 126390
+      },
+      {
+        "text": " happens",
+        "fromMs": 126390,
+        "toMs": 126930
+      },
+      {
+        "text": " next.",
+        "fromMs": 126930,
+        "toMs": 127260
+      }
+    ],
+    "durationMs": 1820
+  },
+  {
+    "text": "I personally review your application",
+    "startMs": 127550,
+    "tokens": [
+      {
+        "text": "I",
+        "fromMs": 127550,
+        "toMs": 127620
+      },
+      {
+        "text": " personally",
+        "fromMs": 127620,
+        "toMs": 128700
+      },
+      {
+        "text": " review",
+        "fromMs": 128700,
+        "toMs": 129350
+      },
+      {
+        "text": " your",
+        "fromMs": 129350,
+        "toMs": 129840
+      },
+      {
+        "text": " application",
+        "fromMs": 129840,
+        "toMs": 130970
+      }
+    ],
+    "durationMs": 3420
+  },
+  {
+    "text": "within twenty-four hours,",
+    "startMs": 130970,
+    "tokens": [
+      {
+        "text": "within",
+        "fromMs": 130970,
+        "toMs": 131610
+      },
+      {
+        "text": " twenty-four",
+        "fromMs": 131940,
+        "toMs": 132270
+      },
+      {
+        "text": " hours,",
+        "fromMs": 132270,
+        "toMs": 132810
+      }
+    ],
+    "durationMs": 1840
+  },
+  {
+    "text": "then send your enrollment details.",
+    "startMs": 133020,
+    "tokens": [
+      {
+        "text": "then",
+        "fromMs": 133020,
+        "toMs": 133450
+      },
+      {
+        "text": " send",
+        "fromMs": 133450,
+        "toMs": 133880
+      },
+      {
+        "text": " your",
+        "fromMs": 133880,
+        "toMs": 134310
+      },
+      {
+        "text": " enrollment",
+        "fromMs": 134310,
+        "toMs": 135390
+      },
+      {
+        "text": " details.",
+        "fromMs": 135390,
+        "toMs": 136240
+      }
+    ],
+    "durationMs": 3220
+  },
+  {
+    "text": "When that email lands,",
+    "startMs": 136240,
+    "tokens": [
+      {
+        "text": "When",
+        "fromMs": 136240,
+        "toMs": 136670
+      },
+      {
+        "text": " that",
+        "fromMs": 136670,
+        "toMs": 137100
+      },
+      {
+        "text": " email",
+        "fromMs": 137100,
+        "toMs": 137850
+      },
+      {
+        "text": " lands,",
+        "fromMs": 137850,
+        "toMs": 138180
+      }
+    ],
+    "durationMs": 1940
+  },
+  {
+    "text": "just reply,",
+    "startMs": 138390,
+    "tokens": [
+      {
+        "text": "just",
+        "fromMs": 138390,
+        "toMs": 138820
+      },
+      {
+        "text": " reply,",
+        "fromMs": 138820,
+        "toMs": 139360
+      }
+    ],
+    "durationMs": 970
+  },
+  {
+    "text": "I'm in.",
+    "startMs": 139665,
+    "tokens": [
+      {
+        "text": "I'm",
+        "fromMs": 139665,
+        "toMs": 139970
+      },
+      {
+        "text": " in.",
+        "fromMs": 139970,
+        "toMs": 140200
+      }
+    ],
+    "durationMs": 535
+  },
+  {
+    "text": "Founding spots are limited on",
+    "startMs": 140745,
+    "tokens": [
+      {
+        "text": "Founding",
+        "fromMs": 140745,
+        "toMs": 141290
+      },
+      {
+        "text": " spots",
+        "fromMs": 141290,
+        "toMs": 141840
+      },
+      {
+        "text": " are",
+        "fromMs": 141840,
+        "toMs": 142160
+      },
+      {
+        "text": " limited",
+        "fromMs": 142160,
+        "toMs": 142920
+      },
+      {
+        "text": " on",
+        "fromMs": 142920,
+        "toMs": 143110
+      }
+    ],
+    "durationMs": 2365
+  },
+  {
+    "text": "purpose.",
+    "startMs": 143110,
+    "tokens": [
+      {
+        "text": "purpose.",
+        "fromMs": 143110,
+        "toMs": 143890
+      }
+    ],
+    "durationMs": 780
+  },
+  {
+    "text": "I keep this group small",
+    "startMs": 144240,
+    "tokens": [
+      {
+        "text": "I",
+        "fromMs": 144240,
+        "toMs": 144360
+      },
+      {
+        "text": " keep",
+        "fromMs": 144360,
+        "toMs": 144840
+      },
+      {
+        "text": " this",
+        "fromMs": 145170,
+        "toMs": 145500
+      },
+      {
+        "text": " group",
+        "fromMs": 145665,
+        "toMs": 145830
+      },
+      {
+        "text": " small",
+        "fromMs": 145830,
+        "toMs": 146400
+      }
+    ],
+    "durationMs": 2160
+  },
+  {
+    "text": "so I can stay close",
+    "startMs": 146400,
+    "tokens": [
+      {
+        "text": "so",
+        "fromMs": 146400,
+        "toMs": 146640
+      },
+      {
+        "text": " I",
+        "fromMs": 146640,
+        "toMs": 146780
+      },
+      {
+        "text": " can",
+        "fromMs": 146780,
+        "toMs": 147120
+      },
+      {
+        "text": " stay",
+        "fromMs": 147120,
+        "toMs": 147600
+      },
+      {
+        "text": " close",
+        "fromMs": 147600,
+        "toMs": 148190
+      }
+    ],
+    "durationMs": 1790
+  },
+  {
+    "text": "to it.",
+    "startMs": 148190,
+    "tokens": [
+      {
+        "text": "to",
+        "fromMs": 148190,
+        "toMs": 148440
+      },
+      {
+        "text": " it.",
+        "fromMs": 148440,
+        "toMs": 148680
+      }
+    ],
+    "durationMs": 490
+  },
+  {
+    "text": "Talk soon.",
+    "startMs": 149080,
+    "tokens": [
+      {
+        "text": "Talk",
+        "fromMs": 149080,
+        "toMs": 149520
+      },
+      {
+        "text": " soon.",
+        "fromMs": 149520,
+        "toMs": 149720
+      }
+    ],
+    "durationMs": 640
+  }
+]

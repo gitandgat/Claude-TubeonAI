@@ -13,10 +13,12 @@
     "render:april:one": "remotion render src/index.ts"
   },
   "dependencies": {
+    "@remotion/captions": "^4.0.438",
     "@remotion/cli": "4.0.438",
-    "remotion": "4.0.438",
+    "@remotion/install-whisper-cpp": "^4.0.438",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "remotion": "4.0.438"
   },
   "devDependencies": {
     "@types/react": "18.3.1",

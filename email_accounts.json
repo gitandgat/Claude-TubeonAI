@@ -1,0 +1,40 @@
+[
+  {
+    "provider": "gmail",
+    "name": "gmail-personal",
+    "credentials_file": "gmail_credentials.json",
+    "token_file": "gmail_token.json"
+  },
+  {
+    "provider": "outlook",
+    "name": "hotmail-main",
+    "token_file": "outlook_token.json",
+    "email": "toto_makus@hotmail.com"
+  },
+  {
+    "provider": "outlook",
+    "name": "outlook-sahawat",
+    "token_file": "outlook_token_sahawat.json",
+    "email": "sahawat.nil@outlook.com"
+  },
+  {
+    "provider": "gmail",
+    "name": "gmail-sahawat",
+    "credentials_file": "gmail_credentials.json",
+    "token_file": "gmail_token_sahawatnil.json"
+  },
+  {
+    "provider": "gmail",
+    "name": "gmail-coaching",
+    "credentials_file": "gmail_credentials.json",
+    "token_file": "gmail_token_coaching.json"
+  },
+  {
+    "provider": "imap",
+    "name": "crosswalk-wisdom",
+    "host": "mail.privateemail.com",
+    "port": 993,
+    "email": "sahawat@crosswalkwisdom.com",
+    "password_env": "CROSSWALK_EMAIL_PASSWORD"
+  }
+]

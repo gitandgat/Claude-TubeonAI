@@ -1,0 +1,27 @@
+{
+  "post_id": "live-post-test",
+  "score": 42.5,
+  "passing": true,
+  "scores": {
+    "directness": 10,
+    "rhythm": 4,
+    "trust": 8.5,
+    "authenticity": 10,
+    "density": 10
+  },
+  "issues": {
+    "adverbs": 0,
+    "throat_clearing": 0,
+    "passive_voice": 0,
+    "vague_declaratives": 0,
+    "inanimate_actions": 0,
+    "extremes": 1,
+    "em_dashes": 2,
+    "whquestion_starts": 0,
+    "meta_joiners": 0
+  },
+  "recommendations": [
+    "Replace 1 lazy extremes (always, never, every)",
+    "Remove all 2 em-dashes"
+  ]
+}

@@ -1,12 +1,17 @@
 """Content vertical registry for the multi-vertical LinkedIn + cross-post agent.
 
-All five verticals publish to the ONE LinkedIn profile (Dr. Sahawat) — same
+Every vertical publishes to the ONE LinkedIn profile (Dr. Sahawat) — same
 person, different subject lens — so the voice stays coherent across the brand's
-"doctor who chose a new path" story. The 5/day LinkedIn cap is the design: one
-day-part slot per vertical, exactly 5.
+"doctor who chose a new path" story.
+
+TWO are in the daily rotation as of Oct 1 2026: crosswalk (08:00) and trainer
+(11:00). fitness/mind/health are RETIRED — still importable for a manual
+one-off, out of the daily run. See the ACTIVE / RETIRED block at the bottom for
+the numbers behind that call. Filling the 5/day Zernio cap was the old design
+and it cost reach: 5 posts/day median 39 impressions, 1-2/day median 55-57.
 
 Each vertical owns:
-  - its LinkedIn day-part slot (08:00 / 11:00 / 14:00 / 17:00 / 20:00 ET)
+  - its LinkedIn day-part slot (08:00 / 11:00 ET for the active pair)
   - a persona/domain system prompt (shares the proven first-person FORMAT_SPINE)
   - a rotating theme list (no Reddit research needed off the Crosswalk vertical)
   - its first-comment CTA + a fallback CTA line
@@ -24,6 +29,7 @@ from linkedin_agent.config import (
     LINKEDIN_FIRST_COMMENT,
     DATA_DIR,
 )
+from linkedin_agent.verified_facts import VERIFIED_FACTS_BLOCK
 
 # ── The proven format spine ──────────────────────────────────────────────────
 # Extracted verbatim (structure-wise) from the post_writer prompt that produced
@@ -35,6 +41,18 @@ THE ONE RULE THAT MATTERS (proven by this account's own data):
 Write in FIRST PERSON about a SPECIFIC MOMENT, with CONCRETE NUMBERS and SENSORY DETAIL.
 Posts that do this get 4,000-14,000 views. Abstract second-person advice ("You should...", "Discipline is a muscle") gets 15-50 views. Never write the second kind.
 
+THE FIRST TWO WORDS ARE A HARD RULE:
+The post MUST open with "I " or "My " followed by something concrete — a place, a
+time, an object, a number. Not a title. Not a label. Not a scene-setting phrase.
+The SHAPE to copy (never the contents — use only real details from the facts
+above; do not borrow any number, age, or amount from this example):
+  SHAPE: "I <was doing a specific thing> <at a real time or place>, <concrete detail>."
+  SHAPE: "My <specific thing of mine> <did something> at <a real time>."
+  BAD:  "**The Weight I Carried**" (a bold title line — LinkedIn prints the
+        asterisks literally, so the hook dies on the page)
+  BAD:  "Three years ago, something changed." (no I/My, no concrete detail)
+  BAD:  "It was October 2021 when I stopped." (starts with "It", not I/My)
+
 HOW YOUR BEST POSTS ARE BUILT:
 1. Open mid-scene, first person: a real moment with a time, place, or object.
 2. Concrete numbers and objects: dollars, reps, years, the exact thing in the room.
@@ -44,6 +62,11 @@ HOW YOUR BEST POSTS ARE BUILT:
 6. 3-5 topic hashtags ({hashtags}). Never meta-hashtags like #Hook #LinkedIn.
 
 HARD BANS:
+- NO MARKDOWN. None. LinkedIn does not render it — it prints the raw characters.
+  No **bold**, no *italics*, no `backticks`, no "# " or "## " heading lines, no
+  "---" rules, no [text](link). Write plain sentences and blank lines only.
+- No title line of any kind above the opening sentence. The first line of the
+  post IS the first sentence of the story.
 - No second-person sermons ("You need to...", "You're not...", "Your fear is...").
 - No section labels in the post (no "HOOK:", "REFRAME:", "CTA:").
 - No AI slop: unleash, dive into, game-changer, supercharge, transformative, leverage, empower, unlock, cutting edge, innovative, paradigm shift, "here's what I learned", "at the end of the day", "honestly", "literally", "let's be real".
@@ -53,9 +76,19 @@ LENGTH: 150-350 words. Tight. Hard cap 3,000 characters or LinkedIn rejects it.
 VOICE: A real person who lived it. Vulnerable, specific, unhurried."""
 
 
-def _build_prompt(persona: str, hashtags: str) -> str:
-    """Compose a vertical system prompt from its persona + the shared spine."""
-    return f"{persona}\n\n{FORMAT_SPINE.format(hashtags=hashtags)}"
+def _build_prompt(persona: str, hashtags: str, facts_block: str = "") -> str:
+    """Compose a vertical system prompt from its persona + the shared spine.
+
+    facts_block is opt-in per vertical: verticals whose posts draw on
+    Sahawat's real biography (currently just Crosswalk) pass
+    VERIFIED_FACTS_BLOCK so the writer can't invent a new specific job,
+    employer, or number when a theme needs a concrete detail it doesn't have.
+    """
+    parts = [persona]
+    if facts_block:
+        parts.append(facts_block)
+    parts.append(FORMAT_SPINE.format(hashtags=hashtags))
+    return "\n\n".join(parts)
 
 
 # Cross-post targets for IMAGE posts: reuse the existing Crosswalk IG + FB
@@ -79,6 +112,16 @@ class Vertical:
     first_comment: str           # auto-posted as the first comment (the CTA path)
     cta_fallback: str            # appended only if the writer omits a CTA entirely
     crosspost: dict = field(default_factory=lambda: dict(CROSSPOST_IMAGE))
+    first_comment_overrides: dict = field(default_factory=dict)  # theme -> CTA
+
+    def first_comment_for(self, theme: str) -> str:
+        """This vertical's first-comment CTA, or a theme-specific override.
+
+        Lets a subset of themes (e.g. a specific paid-offer campaign) route
+        to a different landing page without needing a whole extra vertical
+        or a hard swap of the vertical's default CTA.
+        """
+        return self.first_comment_overrides.get(theme, self.first_comment)
 
     @property
     def data_dir(self) -> str:
@@ -99,6 +142,21 @@ class Vertical:
 
 # ── The five verticals ───────────────────────────────────────────────────────
 
+    # IMG Pivot Protocol themes (added Jul 2026): the paid Triage Call offer's
+    # recurring rotation, folded into Crosswalk's existing 08:00 slot rather
+    # than a 6th vertical, since the 5/day Zernio cap has no room for one.
+    # Every scene here must trace to VERIFIED_FACTS_BLOCK — no new invented
+    # jobs/numbers. These route their first comment to the landing page via
+    # first_comment_overrides below instead of the evergreen pivot-map guide.
+_IMG_PIVOT_PROTOCOL_THEMES = (
+    "the moment you stopped hiding the MD and started using it as leverage instead of a cage",
+    "the first time someone paid you for work that had nothing to do with medicine",
+    "what actually happened the day you called someone about your immigration status instead of googling it at 2am",
+    "the difference between the job title on your visa paperwork and the person actually doing the job",
+    "why any job is fine as long as it's yours to choose, not one you're stuck defending",
+    "what a twenty-minute conversation undid that years of silence couldn't",
+)
+
 CROSSWALK = Vertical(
     key="crosswalk",
     name="Crosswalk Wisdom (IMG career pivot)",
@@ -109,6 +167,7 @@ CROSSWALK = Vertical(
         "You are NOT a marketer. You are a person telling true stories from your "
         "life as an unmatched IMG who chose to stop and build something new.",
         "#IMG #CaRMS #MedicalCareers",
+        facts_block=VERIFIED_FACTS_BLOCK,
     ),
     draft_subject="from your life as an IMG who left the residency chase",
     themes=(
@@ -122,13 +181,20 @@ CROSSWALK = Vertical(
         "using AI to plan a new chapter in 30 minutes",
         "the first non-clinical income you ever earned",
         "what the crossing guard vest taught you about starting over",
-    ),
+    ) + _IMG_PIVOT_PROTOCOL_THEMES,
     first_comment=(
         "I put the map I wish I'd had into a free guide — The Unmatched Doctor's "
         "Pivot Map: 5 paths that use your medical degree without a residency seat, "
         "plus a 90-day plan. Grab it here: https://www.crosswalkwisdom.com/pivot-map"
     ),
     cta_fallback="If this hit home, share it with one IMG who needs to hear it.",
+    first_comment_overrides={
+        theme: (
+            "I built a Triage Call around this exact permission — 20 minutes, "
+            "no pitch, no pressure, just a real answer: https://img-pivot-protocol.vercel.app"
+        )
+        for theme in _IMG_PIVOT_PROTOCOL_THEMES
+    },
 )
 
 TRAINER = Vertical(
@@ -194,38 +260,75 @@ FITNESS = Vertical(
         "injury-free. Grab it here: https://www.crosswalkwisdom.com/train-like-a-clinician"
     ),
     cta_fallback="Follow along if a clinical take on training is useful to you.",
+    # Movement/pain and glute themes route to the paid funnels instead of the
+    # evergreen guide — these posts pre-qualify the exact buyer each funnel wants.
+    first_comment_overrides={
+        **{
+            theme: (
+                "I built MoveAssess for exactly this — a clinical movement assessment "
+                "you do from home that shows what to fix first, before it becomes an "
+                "injury: https://physical-assessment-app.vercel.app"
+            )
+            for theme in (
+                "the squat tweak that quietly fixed someone's low-back pain",
+                "the difference between sore and injured, from a clinician's eyes",
+            )
+        },
+        **{
+            theme: (
+                "I turned this into a full program, Glute Longevity — clinically "
+                "grounded lower-body strength for the decades ahead. Start here: "
+                "https://glute.crosswalkwisdom.com"
+            )
+            for theme in (
+                "why glute strength changes how a person moves through the world",
+                "why you program lower body the way you do",
+            )
+        },
+    },
 )
 
+# Wayfinder (added Jul 2026): repoints the 17:00 slot from the old
+# physician-burnout persona to a new standalone brand — an AI companion for
+# people stuck in decision paralysis (career pivot, life direction, identity).
+# Keeps key="mind" so the existing learning-loop history in
+# data/verticals/mind/ keeps compounding rather than restarting cold.
 MIND = Vertical(
     key="mind",
-    name="Emotional / Mental Health",
+    name="Wayfinder (AI for decision paralysis)",
     slot_time="17:00",
     system_prompt=_build_prompt(
-        "You are Dr. Sahawat — a physician who burned out, left medicine, and "
-        "writes honestly about identity, fear, and mental health from the inside. "
-        "You are not a wellness influencer. You are someone who lived the parking-"
-        "lot tears and the body saying no before the mind admitted it.",
-        "#MentalHealth #Burnout #Identity",
+        "You are Sahawat — a physician who left medicine, spent months stuck in "
+        "decision paralysis about what came next, and built Wayfinder: an AI "
+        "companion for people facing that same kind of stuck moment. You write "
+        "first-person about that overwhelm — the paralysis of a career pivot, a "
+        "life direction, an identity in flux — and how using AI as a thinking "
+        "partner, not a search engine, moved you forward. You are not a "
+        "productivity guru. You are someone who was stuck and found a way through.",
+        "#DecisionParalysis #Overwhelm #AI #GettingUnstuck",
     ),
-    draft_subject="as a physician who burned out and chose to leave",
+    draft_subject="as someone who used AI to get unstuck from a decision that had you paralyzed",
     themes=(
-        "the moment your body knew before your brain did",
-        "the difference between burnout and being done",
-        "who you are when the title is gone",
-        "naming the fear that was actually running your decisions",
-        "the grief of leaving an identity you spent years building",
-        "why self-care never fixed the real problem",
-        "the permission no one gives you to stop",
-        "the smallest act of courage that started the change",
-        "what numbness was trying to tell you",
-        "the quiet relief on the other side of a hard choice",
+        "the three tabs open at 1am comparing paths you couldn't choose between",
+        "the moment you realized more research wasn't the problem",
+        "asking AI the question you were too afraid to ask a person",
+        "the difference between not knowing what you want and not letting yourself want it",
+        "the pro-con list that never once made the decision easier",
+        "what changed when you stopped asking 'what should I do' and started asking 'what am I actually afraid of'",
+        "the decision you kept deferring until it made itself, badly",
+        "the one conversation with an AI that surfaced what you'd been avoiding for months",
+        "why being stuck was never about lacking options",
+        "the smallest next step that finally broke the paralysis",
     ),
+    # Interim CTA: the Wayfinder lead magnet/landing page doesn't exist yet
+    # (see lead-magnets/ + Encharge steps). DM/comment capture until it's live,
+    # then swap this for a real link like every other vertical's first_comment.
     first_comment=(
-        "I wrote a free guide on the five inner voices that keep capable people "
-        "stuck, and how to answer each one. Read it here: "
-        "https://www.crosswalkwisdom.com/inner-voices"
+        "I'm building Wayfinder, an AI companion for exactly this kind of stuck. "
+        "If you want early access, comment 'wayfinder' or DM me and I'll add you "
+        "to the list."
     ),
-    cta_fallback="If this is where you are, share it with someone who needs to read it tonight.",
+    cta_fallback="If you've ever been stuck like this, share it with someone who needs to see it.",
 )
 
 HEALTH = Vertical(
@@ -258,24 +361,54 @@ HEALTH = Vertical(
         "lost. Grab it here: https://www.crosswalkwisdom.com/marginal-decade"
     ),
     cta_fallback="Follow for clinically-grounded, no-hype health writing.",
+    # Longevity-through-strength themes route to the Glute Longevity funnel —
+    # the reader those posts attract is that program's exact buyer.
+    first_comment_overrides={
+        theme: (
+            "This is why I built Glute Longevity — a clinically grounded "
+            "lower-body strength program for the decades ahead. Start here: "
+            "https://glute.crosswalkwisdom.com"
+        )
+        for theme in (
+            "strength training as the most underrated health intervention",
+            "the difference between living longer and living well",
+        )
+    },
 )
 
 
-VERTICALS = {
-    v.key: v for v in (CROSSWALK, TRAINER, FITNESS, MIND, HEALTH)
-}
+# ── Active vs retired ────────────────────────────────────────────────────────
+# Retired Oct 1 2026 on this account's own numbers: fitness + mind + health ran
+# 93 LinkedIn posts for 3,538 impressions and 24 likes combined (fitness alone:
+# 29 impressions/post, 0.15 likes/post). Crosswalk (IMG/career-pivot) does 103
+# impressions/post and the identity/family-shame cluster pulls 2.6 likes/post —
+# 4x every other topic. So the daily run publishes crosswalk + trainer only,
+# which is also the cadence the data wants: 1-2 posts/day medians 55-57
+# impressions, 5/day medians 39.
+#
+# The retired definitions stay importable on purpose: `--vertical fitness` still
+# works for a manual one-off, and data/verticals/{fitness,mind,health}/ keeps its
+# history so nothing that was learned is thrown away. They are simply no longer
+# in the daily rotation or the nightly learning sweep.
+ACTIVE = (CROSSWALK, TRAINER)
+RETIRED = (FITNESS, MIND, HEALTH)
+
+VERTICALS = {v.key: v for v in ACTIVE + RETIRED}
 
 # Daily publishing order = slot order.
-ORDERED = (CROSSWALK, TRAINER, FITNESS, MIND, HEALTH)
+ORDERED = ACTIVE
 
 
 def get(key: str) -> Vertical:
-    """Look up a vertical by key, raising a clear error on a typo."""
+    """Look up a vertical by key, raising a clear error on a typo.
+
+    Resolves retired verticals too, so a manual one-off run still works.
+    """
     if key not in VERTICALS:
         raise KeyError(f"Unknown vertical '{key}'. Known: {', '.join(VERTICALS)}")
     return VERTICALS[key]
 
 
 def all_verticals() -> tuple:
-    """All five verticals in slot order."""
+    """The verticals in the daily rotation (slot order) — active ones only."""
     return ORDERED

@@ -1,0 +1,10 @@
+# Virtualenv — rebuild from requirements.txt
+.venv/
+__pycache__/
+
+# Runtime logs, including rotated/renamed copies ('*.log' alone misses bot.log.old)
+*.log
+*.log.*
+
+# Personal health data: bodyweight and any local session cache. This repo is public.
+data/

@@ -1,0 +1,249 @@
+{
+  "date": "2026-06-08",
+  "timestamp": "2026-06-08T20:12:16.149284",
+  "total_prospects": 10,
+  "prospects": [
+    {
+      "rank": 1,
+      "platform": "Twitter",
+      "name": "Prospect",
+      "title": "Wish there was an easy way to turn my YouTube videos into Ti",
+      "score": 370,
+      "url": "https://twitter.com/creator/status/456",
+      "services": [
+        "youtube_repurposing"
+      ],
+      "sequence": {
+        "message_1": "hey, saw your tweet about turning YouTube videos into TikToks\u2014that's such a pain to do manually. we might have something that could help. mind if I DM you?",
+        "message_2": "Hey! I know you're probably swamped, but wanted to follow up on my last message. I get it if it's not top priority\u2014just thought you'd want to know we've helped a few creators cut their editing time from like 30 mins down to 5 for YouTube\u2192TikTok conversions. No pressure, but if you're curious how it works, I'm happy to show you. Otherwise totally cool!",
+        "call_script": "# 30-Second Call Opener\n\nHey [Name]! Thanks for jumping on.\n\nSo I'm curious \u2014 when you're uploading videos to YouTube, how much time are you spending repurposing that content across other platforms, or does that just kind of fall off your radar?\n\nYeah, I hear that a lot. Most creators we talk to feel like they're leaving money on the table because one video could live in so many places. \n\nThat's actually why I called \u2014 we've built something that basically automates turning your YouTube videos into clips, posts, and content for every platform. Cuts the work down to minutes instead of hours."
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 2,
+      "platform": "Twitter",
+      "name": "Prospect",
+      "title": "Looking for someone to help with LinkedIn content strategy f",
+      "score": 222,
+      "url": "https://twitter.com/founder/status/123",
+      "services": [
+        "linkedin_content",
+        "brand_positioning"
+      ],
+      "sequence": {
+        "message_1": "Hey, saw you're working on a LinkedIn content strategy. I've helped a few founders nail their posting schedule and engagement. Would love to chat about what you're trying to accomplish - mind if I DM you?",
+        "message_2": "Hey again! I know you're probably swamped, but wanted to drop one quick thing \u2013 I put together a breakdown of what's actually working on LinkedIn right now for founders (spoiler: it's not daily posting). Happy to share it if you're curious. No pressure at all, just thought it might be useful as you're planning things out.",
+        "call_script": "\"Hey [Name]! Thanks for jumping on. I noticed you're in [industry] \u2013 are you actively trying to grow your LinkedIn presence right now, or is content strategy something you've been meaning to tackle? The reason I ask is we work with a lot of teams who feel like they're posting but not really getting traction or building real relationships. Just curious where you're at with it.\""
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 3,
+      "platform": "Twitter",
+      "name": "Prospect",
+      "title": "My content gets views but no engagement. Need a complete aud",
+      "score": 195,
+      "url": "https://twitter.com/creator2/status/012",
+      "services": [
+        "content_audit",
+        "brand_positioning"
+      ],
+      "sequence": {
+        "message_1": "Hey, noticed your content's getting views but the engagement isn't following. That's usually an audience fit issue, not a content one. Open to a quick chat about what might be going on?",
+        "message_2": "Hey, just following up on my last message \u2013 no pressure at all if the timing's off.\n\nI was thinking about what you mentioned with the views-but-no-engagement thing. Usually when that happens, it's because the people clicking through aren't actually your ideal audience. We've seen this pattern a lot, and it's fixable, but it requires knowing *who* you're trying to reach more than anything else.\n\nIf you're curious, I could share a quick breakdown of what that usually looks like. No obligation \u2013 just figured it might be useful context.\n\nLet me know if you want to jump on a brief call, or I can send over some specific examples if that's easier.",
+        "call_script": "Hey [Name]! Thanks for jumping on.\n\nSo I'm curious \u2014 when you say your content gets views but engagement is dropping off, what does that usually look like? Like, are people scrolling past, or clicking but not converting?\n\nI ask because we see this a lot \u2014 it's rarely about the content itself. Usually it's that the message isn't landing with the right audience, or there's a disconnect between what you're putting out and what they actually want.\n\nThat's exactly what our content audit uncovers. We'd look at what's working, what's not, and why \u2014 then give you a specific play to fix it.\n\nDoes that sound like something worth exploring?"
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 4,
+      "platform": "YouTube",
+      "name": "Prospect",
+      "title": "Short Form Content Strategy - Comment",
+      "score": 162,
+      "url": "https://youtube.com/watch?v=1",
+      "services": [
+        "youtube_repurposing"
+      ],
+      "sequence": {
+        "message_1": "Hey, I noticed you're working on short form content strategy. I've helped a few creators nail their comment game and boost engagement that way. Would love to chat about what you're working on if you're open to it.",
+        "message_2": "Hey, just following up on my last message\u2014no pressure at all! \n\nI realized I didn't mention that I've worked with creators who went from maybe 5-10% engagement rates to consistently hitting 20%+ just by shifting their comment strategy. Turns out most people are leaving engagement on the table without realizing it.\n\nIf you're still grinding on the short form side and want to compare notes on what's actually moving the needle, I'm here for it. Either way, keep crushing it!",
+        "call_script": "\"Hey [Name]! Thanks for jumping on. So I'm curious\u2014when you're creating content, how much of it actually gets repurposed or is it mostly one-off pieces? I ask because most creators we talk to feel like they're leaving money on the table with short-form content. We actually help creators take one YouTube video and turn it into dozens of social clips automatically. Has that ever crossed your mind?\""
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 5,
+      "platform": "Quora",
+      "name": "Prospect",
+      "title": "How do I create engaging LinkedIn content consistently?",
+      "score": 140,
+      "url": "https://quora.com/q1",
+      "services": [
+        "linkedin_content"
+      ],
+      "sequence": {
+        "message_1": "Hey! I noticed you're looking to create engaging LinkedIn content consistently. I've been helping creators crack that exact challenge - happy to share what's worked. Want to chat about it?",
+        "message_2": "Hey! Wanted to follow up on my last message - no pressure at all if the timing's off.\n\nI was just thinking about your question on creating consistent LinkedIn content. Most creators I work with struggle with the same thing: they know *what* to post, but not *how* to make it land with their audience.\n\nOne thing that shifts the needle quickly is batching content around your actual wins/lessons rather than generic advice. The creators who do this see 3-4x more engagement within a month.\n\nIf you ever want to explore what's worked for others in your space, I'm here. Otherwise, totally get it!",
+        "call_script": "Hey [Name]! Thanks for jumping on.\n\nI'm curious\u2014are you looking to build more engagement on LinkedIn but struggling to figure out what to post consistently?\n\nThe thing is, most people know *they should* be posting, but creating content that actually resonates week after week is tough. That's exactly what I help creators and professionals solve."
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 6,
+      "platform": "Quora",
+      "name": "Prospect",
+      "title": "What's the best way to repurpose YouTube content for TikTok?",
+      "score": 109,
+      "url": "https://quora.com/q2",
+      "services": [
+        "youtube_repurposing"
+      ],
+      "sequence": {
+        "message_1": "Hey! I noticed your question about repurposing YouTube content for TikTok. I've been experimenting with this and have some strategies that worked really well for me. Would love to chat about what's been working and what hasn't. Feel free to DM me if you want to discuss!",
+        "message_2": "Hey! Just wanted to follow up on my earlier message\u2014no pressure at all if you're busy. I was going through some of my TikTok analytics and realized I've been able to get 3-5x better engagement by repurposing YouTube Shorts clips compared to full videos. Thought it might be helpful context if you're still exploring this. Happy to share what I've learned, or feel free to ignore if you've already figured out a system that works!",
+        "call_script": "Hey [Name]! Thanks for jumping on.\n\nSo I'm curious \u2014 when you're creating YouTube content, how much of it actually makes it to TikTok? \n\nI ask because most creators we talk to feel like they're leaving views on the table. The formats are so different that it feels like starting from scratch every time.\n\nWe've actually built something that takes your YouTube videos and automatically adapts them for TikTok \u2014 so you're not duplicating work, just repurposing smarter."
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 7,
+      "platform": "YouTube",
+      "name": "Prospect",
+      "title": "Email Marketing Setup - Comment",
+      "score": 107,
+      "url": "https://youtube.com/watch?v=2",
+      "services": [
+        "email_automation"
+      ],
+      "sequence": {
+        "message_1": "Hey, I noticed you're working through email marketing setup. I've helped a few creators streamline theirs and cut setup time in half. Would love to chat about what you're running into \u2013 mind if we DM?",
+        "message_2": "Hey, just following up on my last message \u2013 no pressure at all! I know email setup can be a lot to juggle. \n\nI put together a quick breakdown of the biggest bottlenecks I see creators hit (list building, segmentation, automation workflows) and honestly, there are usually a few quick wins hiding in there. Happy to share if it'd be useful, or just ignore this if you've got it locked down already. Either way, good luck with the setup!",
+        "call_script": "\"Hey [Name]! Thanks for jumping on. So I saw you were looking into email marketing setup \u2014 what's got you exploring that right now? Is it just getting the initial campaigns running, or are you dealing with something more like keeping things organized as you scale? The reason I ask is most teams we talk to are juggling a lot manually, and there's usually a way to automate the repetitive stuff so you're actually spending time on strategy instead. Curious if that resonates at all?\""
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 8,
+      "platform": "Twitter",
+      "name": "Prospect",
+      "title": "Email automation is killing me. Encharge is confusing. Anyon",
+      "score": 104,
+      "url": "https://twitter.com/marketer/status/789",
+      "services": [
+        "email_automation"
+      ],
+      "sequence": {
+        "message_1": "Hey, saw you mention Encharge being a headache. Been there with email automation tools that overcomplicate things. If you're open to it, I'd love to chat about what's actually slowing you down. DM me?",
+        "message_2": "Hey, just wanted to follow up since my last message might've gotten buried. No pressure at all\u2014just figured I'd share that a few people I've talked to had the same Encharge frustration, and most realized they were only using like 20% of what it could do (or it was just the wrong fit).\n\nEither way, if you ever want to brainstorm what's actually eating up your time with email automation, I'm around. Happy to just chat or point you toward some resources that helped others simplify their setup.\n\nAll good if not though!",
+        "call_script": "Hey [Name]! Thanks for jumping on.\n\nSo I noticed you're using Encharge\u2014how's that been working out for you? I talk to a lot of folks who feel like email automation platforms have way too many moving parts.\n\nThe thing is, most of them weren't built with simplicity in mind. We actually work with teams who felt the same way, and they've found a much cleaner approach that takes half the setup time.\n\nWorth a quick conversation?"
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 9,
+      "platform": "Quora",
+      "name": "Prospect",
+      "title": "How do I set up email automation for my online course?",
+      "score": 76,
+      "url": "https://quora.com/q3",
+      "services": [
+        "email_automation"
+      ],
+      "sequence": {
+        "message_1": "Hey! I've helped a few course creators automate their email sequences without it being a total headache. If you want to chat about what's been tricky for you, I'm happy to swap some ideas. DM me if you'd like.",
+        "message_2": "Hey, just following up on my last message! I know email automation can feel overwhelming when you're juggling everything else with your course.\n\nI've been mapping out email sequences for creators lately, and one thing I've noticed is most people overcomplicate it early on. Usually the biggest wins come from just automating welcome sequences and post-purchase follow-ups first\u2014keeps it simple but actually moves the needle on engagement.\n\nIf you want to see what I mean or just brainstorm your specific situation, totally open to it. No pressure either way.",
+        "call_script": "\"Hey [Name]! Thanks for jumping on. So I saw you're working on getting your online course set up\u2014quick question, are you looking to automate your email sequences to students right now? A lot of course creators struggle with that because it takes forever to set up manually. The good news is there's a way to do this that saves weeks of work. Have you explored any automation tools yet, or is this still on your to-do list?\""
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    },
+    {
+      "rank": 10,
+      "platform": "YouTube",
+      "name": "Prospect",
+      "title": "LinkedIn Growth Tips - Comment",
+      "score": 71,
+      "url": "https://youtube.com/watch?v=0",
+      "services": [
+        "linkedin_content"
+      ],
+      "sequence": {
+        "message_1": "Hey, I noticed you're sharing LinkedIn growth tips through comments. Would love to chat about what strategies are working best for you right now. Mind if I DM you?",
+        "message_2": "Hey, just following up on my last message! No pressure at all if you're swamped.\n\nI've been tracking what actually moves the needle on LinkedIn lately, and the comment strategy you're using is solid. I recently helped a few people in our space go from maybe 5-10 meaningful replies per post to 30-40+ by tweaking *how* they're commenting (not just what they say).\n\nThought it might be worth a quick chat if you're open to it, but totally understand if the timing's off. Either way, keep crushing it out there.",
+        "call_script": "Hey [Name]! Thanks for jumping on.\n\nI noticed you've been looking into ways to grow on LinkedIn \u2014 is that something you're actively working on right now?\n\nThe thing is, most people post great content but it just doesn't gain traction because they're not getting enough meaningful engagement early on.\n\nThat's actually what we help with \u2014 we work with [industry] professionals to create content that naturally sparks conversations and attracts the right audience. Would that be something worth exploring?"
+      },
+      "status": "ready_to_contact",
+      "sent": false,
+      "sent_date": null,
+      "response_received": false,
+      "response_date": null,
+      "call_scheduled": false,
+      "deal_closed": false,
+      "deal_amount": 0
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root{
+  --amber:#D4A843; --charcoal:#2C2C2C; --warm:#FAF7F2; --orange:#E8834A; --teal:#5B9A8B;
+  --surface:rgba(250,247,242,0.045); --line:rgba(250,247,242,0.10); --muted:rgba(250,247,242,0.72);
+}
+html,body{ width:1080px; }
+body{ font-family:'Inter',system-ui,sans-serif; background:var(--charcoal); color:var(--warm);
+  -webkit-print-color-adjust:exact; padding:74px 80px 0; position:relative; overflow:hidden; }
+body::before{ content:""; position:absolute; top:-180px; right:-180px; width:520px; height:520px;
+  border-radius:50%; background:radial-gradient(circle, rgba(212,168,67,0.16), transparent 70%); }
+
+.top{ display:flex; align-items:flex-start; justify-content:space-between; z-index:1; position:relative; }
+.logo{ display:flex; align-items:center; gap:16px; }
+.logo .stripes{ display:flex; flex-direction:column; gap:6px; }
+.logo .stripes span{ display:block; width:52px; height:10px; border-radius:3px; background:var(--amber); }
+.logo .stripes span:nth-child(even){ opacity:.6; }
+.logo .word{ font-family:'Playfair Display',serif; font-weight:700; font-size:34px;
+  letter-spacing:-0.02em; color:var(--amber); }
+.sample{ font-size:15px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+  border:1px solid var(--line); padding:8px 14px; border-radius:999px; }
+
+.badge{ display:inline-block; margin:46px 0 18px; background:var(--teal); color:var(--warm);
+  font-weight:600; font-size:19px; letter-spacing:.16em; text-transform:uppercase;
+  padding:10px 20px; border-radius:999px; z-index:1; position:relative; }
+h1{ font-family:'Playfair Display',serif; font-weight:800; font-size:84px; line-height:1.0;
+  letter-spacing:-0.02em; z-index:1; position:relative; }
+.lede{ color:var(--muted); font-size:23px; margin-top:14px; z-index:1; position:relative; }
+
+.snapshot{ margin:34px 0 8px; background:var(--surface); border:1px solid var(--line);
+  border-left:4px solid var(--orange); border-radius:14px; padding:26px 30px; z-index:1; position:relative; }
+.snapshot .k{ font-size:16px; letter-spacing:.2em; text-transform:uppercase; color:var(--orange);
+  font-weight:600; margin-bottom:10px; }
+.snapshot .v{ font-size:25px; line-height:1.4; }
+.snapshot .v em{ color:var(--amber); font-style:italic; }
+
+.phase{ display:flex; gap:28px; padding:34px 0; border-bottom:1px solid var(--line); z-index:1; position:relative; }
+.phase:last-of-type{ border-bottom:none; }
+.num{ font-family:'Playfair Display',serif; font-weight:800; font-size:62px; color:var(--amber);
+  line-height:1; min-width:96px; }
+.phase .body{ flex:1; }
+.phase .label{ font-size:16px; letter-spacing:.18em; text-transform:uppercase; color:var(--teal);
+  font-weight:700; margin-bottom:8px; }
+.phase h2{ font-family:'Playfair Display',serif; font-weight:700; font-size:38px; margin-bottom:18px; }
+.phase ul{ list-style:none; display:flex; flex-direction:column; gap:13px; }
+.phase li{ font-size:23px; line-height:1.35; padding-left:30px; position:relative; color:var(--warm); }
+.phase li::before{ content:""; position:absolute; left:0; top:13px; width:12px; height:12px;
+  border-radius:50%; background:var(--amber); }
+.phase li.dim{ color:var(--muted); }
+.phase .sub{ font-size:16px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  font-weight:600; margin:22px 0 12px; }
+
+.next{ margin:36px 0 0; background:linear-gradient(120deg, rgba(212,168,67,0.16), rgba(212,168,67,0.04));
+  border:1px solid rgba(212,168,67,0.45); border-radius:16px; padding:30px 34px; z-index:1; position:relative; }
+.next .k{ font-size:16px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber);
+  font-weight:700; margin-bottom:12px; }
+.next .v{ font-family:'Playfair Display',serif; font-size:31px; line-height:1.32; }
+
+.foot{ display:flex; align-items:center; justify-content:space-between; margin:40px 0 0;
+  padding-bottom:50px; z-index:1; position:relative; }
+.foot .tag{ font-family:'Playfair Display',serif; font-style:italic; font-size:27px; color:var(--amber); }
+.foot .by{ font-size:18px; color:var(--muted); letter-spacing:.04em; }
+
+.stripe-motif{ position:absolute; left:0; bottom:0; width:100%; height:14px; display:flex; }
+.stripe-motif span{ flex:1; background:var(--amber); }
+.stripe-motif span:nth-child(even){ background:transparent; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="logo">
+      <div class="stripes"><span></span><span></span><span></span><span></span></div>
+      <div class="word">Crosswalk Wisdom</div>
+    </div>
+    <div class="sample">Sample · illustrative</div>
+  </div>
+
+  <span class="badge">Identity Audit</span>
+  <h1>Your Identity Map</h1>
+  <div class="lede">The written map you receive after our session — yours to keep and act on.</div>
+
+  <div class="snapshot">
+    <div class="k">Client snapshot</div>
+    <div class="v">12+ years into a successful career. <em>"Everyone says I've made it. It doesn't feel like mine."</em></div>
+  </div>
+
+  <div class="phase">
+    <div class="num">01</div>
+    <div class="body">
+      <div class="label">Strip away the noise</div>
+      <h2>Scripts that aren't yours</h2>
+      <ul>
+        <li>"Success means never disappointing the people who invested in me."</li>
+        <li>"Stability is the same thing as safety."</li>
+        <li>"Wanting more makes me ungrateful."</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="num">02</div>
+    <div class="body">
+      <div class="label">Define your boundaries</div>
+      <h2>Where your energy leaks</h2>
+      <ul>
+        <li>Saying yes before checking whether you mean it.</li>
+        <li>Carrying decisions that belong to other people.</li>
+      </ul>
+      <div class="sub">Boundaries to hold</div>
+      <ul>
+        <li class="dim">No new commitments for the next 30 days.</li>
+        <li class="dim">Protect the first hour of the day — it's yours.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="num">03</div>
+    <div class="body">
+      <div class="label">Find your true north</div>
+      <h2>What actually pulls you forward</h2>
+      <ul>
+        <li>Building things that outlast a job title.</li>
+        <li>Time that isn't accounted for to anyone.</li>
+        <li>Teaching — the part of the work you never resented.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="next">
+    <div class="k">Your next step</div>
+    <div class="v">One experiment, not a leap: spend 30 days protecting your mornings for the work that feels like yours. We reassess from there.</div>
+  </div>
+
+  <div class="foot">
+    <span class="tag">From the Ward to the World</span>
+    <span class="by">Crosswalk Wisdom · Identity Audit</span>
+  </div>
+
+  <div class="stripe-motif">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+</body></html>

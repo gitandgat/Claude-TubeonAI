@@ -1,0 +1,190 @@
+{
+  "timestamp": "2026-06-08T20:12:16.146138",
+  "total_found": 10,
+  "by_platform": {
+    "Twitter": 4,
+    "YouTube": 3,
+    "Quora": 3
+  },
+  "by_service": {
+    "youtube_repurposing": 3,
+    "linkedin_content": 3,
+    "brand_positioning": 2,
+    "content_audit": 1,
+    "email_automation": 3
+  },
+  "top_10": [
+    {
+      "rank": 1,
+      "platform": "Twitter",
+      "title": "Wish there was an easy way to turn my YouTube videos into Ti",
+      "score": 370,
+      "services": [
+        "youtube_repurposing"
+      ],
+      "url": "https://twitter.com/creator/status/456",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "youtube_repurposing",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 2,
+      "platform": "Twitter",
+      "title": "Looking for someone to help with LinkedIn content strategy f",
+      "score": 222,
+      "services": [
+        "linkedin_content",
+        "brand_positioning"
+      ],
+      "url": "https://twitter.com/founder/status/123",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "linkedin_content",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 3,
+      "platform": "Twitter",
+      "title": "My content gets views but no engagement. Need a complete aud",
+      "score": 195,
+      "services": [
+        "content_audit",
+        "brand_positioning"
+      ],
+      "url": "https://twitter.com/creator2/status/012",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "content_audit",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 4,
+      "platform": "YouTube",
+      "title": "Short Form Content Strategy - Comment",
+      "score": 162,
+      "services": [
+        "youtube_repurposing"
+      ],
+      "url": "https://youtube.com/watch?v=1",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "youtube_repurposing",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 5,
+      "platform": "Quora",
+      "title": "How do I create engaging LinkedIn content consistently?",
+      "score": 140,
+      "services": [
+        "linkedin_content"
+      ],
+      "url": "https://quora.com/q1",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "linkedin_content",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 6,
+      "platform": "Quora",
+      "title": "What's the best way to repurpose YouTube content for TikTok?",
+      "score": 109,
+      "services": [
+        "youtube_repurposing"
+      ],
+      "url": "https://quora.com/q2",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "youtube_repurposing",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 7,
+      "platform": "YouTube",
+      "title": "Email Marketing Setup - Comment",
+      "score": 107,
+      "services": [
+        "email_automation"
+      ],
+      "url": "https://youtube.com/watch?v=2",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "email_automation",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 8,
+      "platform": "Twitter",
+      "title": "Email automation is killing me. Encharge is confusing. Anyon",
+      "score": 104,
+      "services": [
+        "email_automation"
+      ],
+      "url": "https://twitter.com/marketer/status/789",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "email_automation",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 9,
+      "platform": "Quora",
+      "title": "How do I set up email automation for my online course?",
+      "score": 76,
+      "services": [
+        "email_automation"
+      ],
+      "url": "https://quora.com/q3",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "email_automation",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    },
+    {
+      "rank": 10,
+      "platform": "YouTube",
+      "title": "LinkedIn Growth Tips - Comment",
+      "score": 71,
+      "services": [
+        "linkedin_content"
+      ],
+      "url": "https://youtube.com/watch?v=0",
+      "analysis": {
+        "problem": "Needs your service",
+        "urgency": 7,
+        "best_service": "linkedin_content",
+        "price_point": "$500-2000",
+        "reply": "Message them"
+      }
+    }
+  ]
+}

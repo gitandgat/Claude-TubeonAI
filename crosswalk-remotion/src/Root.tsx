@@ -1,7 +1,7 @@
 import React from 'react';
 import { Composition } from 'remotion';
 import { InstagramCarousel } from './compositions/InstagramCarousel';
-import { TikTokReel } from './compositions/TikTokReel';
+import { TikTokReel, type ScriptSegment } from './compositions/TikTokReel';
 import { LinkedInVideo } from './compositions/LinkedInVideo';
 import { QuizResultVideo } from './compositions/QuizResultVideo';
 import { FearExplainer } from './compositions/FearExplainer';
@@ -20,6 +20,15 @@ import { EmailSignatureBanner } from './compositions/EmailSignatureBanner';
 import { VideoOverlay } from './compositions/VideoOverlay';
 import { CrosswalkHero } from './compositions/CrosswalkHero';
 import { StoryReel } from './compositions/StoryReel';
+import { CareerPivotReel, CAREER_PIVOT_TOTAL_FRAMES } from './compositions/CareerPivotReel';
+import { GluteIntro, GLUTE_TOTAL_FRAMES } from './compositions/GluteIntro';
+import {
+  MovementTest,
+  MovementHub,
+  MOVEMENT_TESTS,
+  MOVEMENT_TEST_FRAMES,
+  MOVEMENT_HUB_FRAMES,
+} from './compositions/MovementTest';
 import { APRIL_POSTS } from './data/april-posts';
 import { MARCH_POSTS } from './data/march-posts';
 
@@ -149,6 +158,34 @@ export const RemotionRoot: React.FC = () => (
     />
 
     {/* ── TikTok / Reels ── */}
+    {/* Dynamic: the agent passes generated segments via --props; duration is
+        computed from the segments so each video is exactly as long as needed. */}
+    <Composition
+      id="TikTokReel-Dynamic"
+      component={TikTokReel}
+      fps={30}
+      width={1080}
+      height={1920}
+      durationInFrames={TIKTOK_FRAMES}
+      defaultProps={{
+        segments: [] as ScriptSegment[],
+        background: 'assets/bg-tiktok-yellow-vest.jpg',
+        handle: '@crosswalkwisdom',
+      }}
+      calculateMetadata={({ props }) => {
+        const segs = (props.segments ?? []) as ScriptSegment[];
+        const total = segs.reduce((sum, s) => sum + (s.durationFrames ?? 0), 0);
+        return { durationInFrames: Math.max(total, 30) };
+      }}
+    />
+    <Composition
+      id="CareerPivotReel"
+      component={CareerPivotReel}
+      durationInFrames={CAREER_PIVOT_TOTAL_FRAMES}
+      fps={30}
+      width={1080}
+      height={1920}
+    />
     <Composition
       id="TikTokReel-POVDoctorCrossingGuard"
       component={TikTokReel}
@@ -484,5 +521,37 @@ export const RemotionRoot: React.FC = () => (
         defaultProps={{ overlayId: id }}
       />
     ))}
+
+    {/* ── Glute Longevity — 2-min post-application intro (1280×720, your footage) ── */}
+    <Composition
+      id="GluteIntro"
+      component={GluteIntro}
+      durationInFrames={GLUTE_TOTAL_FRAMES}
+      fps={30}
+      width={1280}
+      height={720}
+    />
+
+    {/* ── MoveAssess — 60-Second Self-Test demos (1080×1920, kinetic text) ── */}
+    {Object.values(MOVEMENT_TESTS).map((t) => (
+      <Composition
+        key={t.slug}
+        id={`MovementTest-${t.slug}`}
+        component={MovementTest}
+        durationInFrames={MOVEMENT_TEST_FRAMES}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{ slug: t.slug }}
+      />
+    ))}
+    <Composition
+      id="MovementHub"
+      component={MovementHub}
+      durationInFrames={MOVEMENT_HUB_FRAMES}
+      fps={30}
+      width={1080}
+      height={1920}
+    />
   </>
 );

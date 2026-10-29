@@ -7,7 +7,7 @@ Images to be added later via PATCH once user generates them on Freepik.
 import requests
 import json
 
-ZERNIO_KEY = "***REMOVED-ZERNIO-KEY***"
+from zernio_key import ZERNIO_API_KEY as ZERNIO_KEY
 BASE = "https://zernio.com/api/v1"
 HEADERS = {
     "Authorization": f"Bearer {ZERNIO_KEY}",

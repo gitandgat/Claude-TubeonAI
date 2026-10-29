@@ -1,0 +1,33 @@
+{
+  "post_id": "sample-post",
+  "score": 28.0,
+  "passing": false,
+  "scores": {
+    "directness": 2,
+    "rhythm": 7,
+    "trust": 7.0,
+    "authenticity": 2,
+    "density": 10
+  },
+  "issues": {
+    "adverbs": 4,
+    "throat_clearing": 3,
+    "passive_voice": 0,
+    "vague_declaratives": 1,
+    "inanimate_actions": 0,
+    "extremes": 2,
+    "em_dashes": 1,
+    "whquestion_starts": 0,
+    "meta_joiners": 0
+  },
+  "recommendations": [
+    "Remove 4 adverbs (really, truly, literally, etc.)",
+    "Cut 3 throat-clearing phrases (here's what, this is, etc.)",
+    "Replace 1 vague declaratives with specifics",
+    "Replace 2 lazy extremes (always, never, every)",
+    "Remove all 1 em-dashes"
+  ],
+  "auto_fixed": true,
+  "fixed_content": "# Sample Post for Testing\n\nFew people tell you what the white coat does to you.\n\nLeaving medicine wrecks you, and the reasons run deeper than fear of a pay cut. Training fuses your professional identity to your personal one. By residency, you stop being a person who practices medicine and become a physician who happens to have a life. So the dread of losing status makes sense.\n\nThe research backs this up. Physicians considering a career change report identity threat, and the emotional fallout shows up in their sleep, their marriages, their health. Staying in a job that hollows you out feels safer than walking away. Decades of training taught you to equate the coat with your worth.\n\nYou can keep your physician identity. You can also stretch it past the hospital walls.",
+  "fixed_score": 48.0
+}
