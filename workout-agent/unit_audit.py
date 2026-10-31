@@ -100,7 +100,33 @@ def main() -> None:
     args = parser.parse_args()
 
     user_id = config.user_id()
-    rows = store.all_sets_with_units(user_id)
+    try:
+        rows = store.all_sets_with_units(user_id)
+    except store.StoreError as exc:
+        # Two failures are worth naming rather than dumping: the migration not
+        # being applied yet (the whole point of running this), and the project
+        # being unreachable. Everything else re-raises with its response body.
+        message = str(exc)
+        # Reachability is tested FIRST: a connection error carries the request
+        # URL, whose select list mentions entered_unit, so a column test placed
+        # ahead of this one matches an offline project and reports the wrong fault.
+        if "could not reach Supabase" in message:
+            print(
+                f"Cannot reach {config.supabase_url()}.\n"
+                "Nothing was read or written. If the host does not resolve at all,\n"
+                "the project is paused or gone rather than the network being down."
+            )
+            raise SystemExit(1)
+        if "entered_unit" in message:
+            print(
+                "The entered_unit column does not exist yet — apply\n"
+                "20261028103000_add_weight_unit_provenance.sql first, then re-run.\n"
+                "Do that BEFORE restarting the bot: the agent now writes that\n"
+                "column, and the insert fails without it."
+            )
+            raise SystemExit(1)
+        raise
+
     if not rows:
         print("No resistance sets stored for this user — nothing to audit.")
         return
