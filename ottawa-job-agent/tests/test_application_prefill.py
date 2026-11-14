@@ -443,3 +443,76 @@ def test_a_commitment_question_with_no_long_option_is_flagged_not_forced():
     result = answer("How long can you commit?", kind="select",
                     options=["Less than 3 months", "3 to 6 months"], required=True)
     assert result["needs_input"] is True
+
+
+# --- declining a protected-characteristic question the form won't let you decline ---
+
+def test_a_demographic_question_is_declined_when_the_form_offers_that_option():
+    """The normal case, unchanged: say "prefer not to answer" and move on."""
+    result = answer("Gender", kind="select",
+                    options=["Man", "Woman", "Prefer not to answer"], required=True)
+    assert result["answer"] == "Prefer not to answer"
+    assert not result["needs_input"]
+
+
+def test_an_unconstrained_demographic_field_still_gets_the_decline_text():
+    """A free-text self-identification box has no options to match against."""
+    result = answer("Voluntary self-identification", required=False)
+    assert result["answer"] == ap.DECLINE_ANSWER
+    assert not result["needs_input"]
+
+
+def test_the_aoda_accommodation_question_is_flagged_not_answered():
+    """Live on Knak's Greenhouse form. Ontario's AODA line matches the
+    demographic pattern on the word "Disabilities" while actually asking
+    something only he can answer, and it offers Yes/No only. The engine used to
+    paste "Prefer not to answer" into that select and report it ready: invalid
+    (the form rejects it, so any submit silently died) *and* a claim about his
+    health made on his behalf.
+    """
+    result = answer(
+        "According to the Accessibility of Ontarians with Disabilities Act (AODA), "
+        "would you require any accommodations if selected for an interview?",
+        kind="select", options=["Yes", "No"], required=True)
+    assert result["needs_input"] is True
+    assert result["answer"] == ""
+    assert "prefer not to answer" in result["hint"].lower()
+
+
+# --- the form's own field name, carried so a browser filler can find the input ---
+
+def test_the_form_field_name_is_carried_through_to_the_answer():
+    """Greenhouse names its custom questions question_<id>, which no label match
+    will ever recover, so the name has to travel with the answer."""
+    field_with_name = dict(field("What is your desired salary?", required=True),
+                           name="question_8995444005")
+    result = ap.answer_field(field_with_name, CHEO, generated_budget=0)
+    assert result["name"] == "question_8995444005"
+
+
+def test_a_flagged_answer_carries_the_field_name_too():
+    """Even a question he has to answer himself keeps its name: the filler needs
+    it to know which input to leave alone."""
+    field_with_name = dict(
+        field("Gender", kind="select", options=["Yes", "No"], required=True),
+        name="question_1")
+    result = ap.answer_field(field_with_name, CHEO, generated_budget=0)
+    assert result["needs_input"] is True
+    assert result["name"] == "question_1"
+
+
+def test_a_field_with_no_name_falls_back_to_its_label():
+    """form_schema uses the label when an input carries neither name nor id. The
+    browser filler then looks for [name="Street address"], finds nothing, and
+    skips the field — which is the right outcome, since a field that anonymous
+    is one of the standard ones the dedicated selectors already handle."""
+    result = answer("Street address")
+    assert result["name"] == "Street address"
+
+
+def test_an_answer_with_no_name_key_at_all_reports_an_empty_string():
+    """Never None: the filler treats name as a string."""
+    result = ap.answer_field(
+        {"label": "Street address", "kind": "text", "required": False, "options": []},
+        CHEO, generated_budget=0)
+    assert result["name"] == ""

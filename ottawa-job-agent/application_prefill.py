@@ -269,6 +269,12 @@ _THIS_EMPLOYER_RE = re.compile(
 def _ready(field: dict, answer: str, source: str) -> dict:
     return {
         "label": field["label"],
+        # The form's own name/id for this field. Carried so the auto-apply filler can
+        # target the exact input instead of re-deriving it from the label: Greenhouse
+        # names its custom questions "question_8995444005", which no label match will
+        # ever recover. Empty for the typical-question fallback set, which describes no
+        # real form.
+        "name": str(field.get("name") or ""),
         "kind": field.get("kind", "text"),
         "required": bool(field.get("required")),
         "answer": answer,
@@ -281,6 +287,7 @@ def _ready(field: dict, answer: str, source: str) -> dict:
 def _needs(field: dict, hint: str) -> dict:
     return {
         "label": field["label"],
+        "name": str(field.get("name") or ""),
         "kind": field.get("kind", "text"),
         "required": bool(field.get("required")),
         "answer": "",
@@ -555,7 +562,18 @@ def _derive_answer(field: dict, job: dict, cover_letter: str = "", resume_pdf: s
 
     if _DECLINE_RE.search(label):
         matched = match_option(DECLINE_ANSWER, options)
-        return _ready(field, matched or DECLINE_ANSWER, "screening")
+        if matched:
+            return _ready(field, matched, "screening")
+        # The label names a protected characteristic but the form offers no way to
+        # decline. The live case is Ontario's AODA line — "would you require any
+        # accommodations if selected for an interview?" — which matches here on the
+        # word "Disabilities" while actually asking something only he can answer,
+        # and offers Yes/No only. Pasting "Prefer not to answer" into a Yes/No
+        # select was both invalid (the form rejects it) and reported as a ready
+        # answer, so auto-submit would have staked a claim about his health on his
+        # behalf and then failed validation anyway. Every other branch flags when no
+        # option matches; this one has to as well.
+        return _needs(field, "The form offers no 'prefer not to answer' — your call.")
 
     company = job.get("company", "") or ""
     named_employer = bool(_LOOSE_PRIOR_EMPLOYMENT_RE.search(label)) and any(

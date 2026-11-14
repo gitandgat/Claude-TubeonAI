@@ -636,15 +636,127 @@ def _harvest_apply_email(page) -> str:
 
 
 def _apply_form(page, ats_guess, job, cover_letter, resume_pdf):
-    """Detect the ATS actually rendered on this page and fill/submit it."""
+    """Detect the ATS actually rendered on this page and fill/submit it.
+
+    Answers are planned before anything is typed: read the questions off the
+    untouched form, answer them with the same engine that writes the emailed
+    package, and hand that plan to the filler. Planning after the fill would
+    read our own typed values back as if they were the posting's defaults.
+    """
     ats = _detect_ats_from_frames(page, ats_guess)
-    if ats == "greenhouse":
+    if ats in ("greenhouse", "lever"):
         frame = _form_frame(page, ats)
-        return ats, _apply_greenhouse(frame, page, job, cover_letter, resume_pdf)
-    if ats == "lever":
-        frame = _form_frame(page, ats)
-        return ats, _apply_lever(frame, page, job, cover_letter, resume_pdf)
+        answers = _plan_answers(page, ats, job, cover_letter, resume_pdf)
+        if ats == "greenhouse":
+            return ats, _apply_greenhouse(frame, page, job, cover_letter, resume_pdf, answers)
+        return ats, _apply_lever(frame, page, job, cover_letter, resume_pdf, answers)
     return ats, _apply_generic(page, job, cover_letter, resume_pdf)
+
+
+def _field_selector(name: str) -> str:
+    """Target a field by its form name or id.
+
+    Attribute selectors rather than "#id" on purpose: real ATS field names carry
+    brackets and dots ("job_application[answers][0]"), which are CSS combinators
+    inside an id selector and would silently match nothing.
+    """
+    esc = (name or "").replace("\\", "\\\\").replace('"', '\\"')
+    return '[name="{0}"], [id="{0}"]'.format(esc)
+
+
+def _select_planned(frame, selector: str, answer: str) -> bool:
+    """Pick an option on a native <select>. Comboboxes are left to
+    _answer_comboboxes, which knows how to open a react-select menu."""
+    try:
+        box = frame.locator(selector).first
+        if not box.count() or not box.is_visible(timeout=ACTION_TIMEOUT_MS):
+            return False
+        if (box.evaluate("el => el.tagName") or "").lower() != "select":
+            return False
+        box.select_option(label=answer, timeout=ACTION_TIMEOUT_MS)
+        return True
+    except Exception:
+        return False
+
+
+# Answered by their own dedicated steps, not by typing text into them.
+_PLANNED_SKIP_KINDS = {"file"}
+
+
+def _fill_planned_answers(frame, answers: list) -> int:
+    """Type the answer engine's answers into the form's custom questions.
+
+    This is what makes auto-apply reach a posting's *own* questions. The standard
+    passes above cover name/email/phone/resume and the Yes/No questions whose
+    wording appears in BOOLEAN_ANSWERS; everything else a board asks — Knak's
+    required "LinkedIn Profile", a "How did you hear about us?" select, a "why this
+    role" essay — had no filler at all, so a fully-packaged application still hit
+    the board's validation wall and came back "submit_unconfirmed". The answers are
+    the same ones the emailed package shows him, so the form and the package can no
+    longer disagree.
+
+    Anything flagged needs-input is skipped deliberately: a blank required question
+    is what makes the submit gate refuse, which is the honest outcome.
+    """
+    filled = 0
+    for answer in answers or []:
+        if answer.get("needs_input"):
+            continue
+        value = str(answer.get("answer") or "").strip()
+        name = str(answer.get("name") or "").strip()
+        kind = str(answer.get("kind") or "text")
+        if not value or not name or kind in _PLANNED_SKIP_KINDS:
+            continue
+        selector = _field_selector(name)
+        if kind in ("select", "radio", "checkbox"):
+            if _select_planned(frame, selector, value):
+                filled += 1
+            continue
+        if _fill(frame, selector, value):
+            filled += 1
+    return filled
+
+
+def _plan_answers(page, ats: str, job: dict, cover_letter: str, resume_pdf: str) -> list:
+    """Read the questions on the form in front of us and answer them.
+
+    Imported inside the function because form_schema and application_prefill both
+    import from this module; at module level this would be a circular import.
+    Fail-open: on any error the caller proceeds with the standard passes alone,
+    which is exactly the behaviour that existed before this step.
+    """
+    try:
+        from form_schema import extract_form_fields
+        from application_prefill import answer_fields
+    except Exception:
+        return []
+    try:
+        fields = extract_form_fields(page, ats) or []
+    except Exception:
+        return []
+    if not fields:
+        return []
+    try:
+        return answer_fields(fields, job, cover_letter, resume_pdf) or []
+    except Exception:
+        return []
+
+
+def _unanswered_required(answers: list) -> list:
+    """Labels of required questions with no honest answer.
+
+    A required file field is excluded: uploads are handled by their own step, and
+    its answer row is a description ("Upload: resume.pdf"), not form input.
+    """
+    blocked = []
+    for answer in answers or []:
+        if not answer.get("required"):
+            continue
+        if str(answer.get("kind") or "") in _PLANNED_SKIP_KINDS:
+            continue
+        if answer.get("needs_input") or not str(answer.get("answer") or "").strip():
+            blocked.append(str(answer.get("label") or "(unlabelled question)"))
+    return blocked
 
 
 def _submit_and_verify(frame, page) -> bool:
@@ -744,18 +856,35 @@ def _has_interactive_captcha(page) -> bool:
     return False
 
 
-def _maybe_submit(frame, page) -> dict:
+def _maybe_submit(frame, page, answers: list = None) -> dict:
     """Click submit and verify — unless review-only mode is active (agent_config.py),
     in which case report the same shape as "no safe submit path was found" so the
     pipeline lands on its existing prefilled_pending_review status instead of a new
     one, keeping digest/tracker/dashboard code unchanged. Checked fresh on every call
-    (not cached) since the flag can flip between runs, including scheduled ones."""
+    (not cached) since the flag can flip between runs, including scheduled ones.
+
+    Also refuses to click when a required question has no honest answer. Clicking
+    anyway achieved nothing — the board rejects the form on validation — but it
+    reported "submit_unconfirmed", which reads like a system fault rather than the
+    truth: one question is his to answer. Declining names the questions instead.
+
+    `declined_submit` marks both cases so the caller does not mistake a deliberate
+    stop for "this page had no form" and go hunting for an Apply button elsewhere.
+    """
     if is_review_only():
-        return {"submitted": False, "attempted_submit": False}
+        return {"submitted": False, "attempted_submit": False, "declined_submit": True}
+    blocked = _unanswered_required(answers)
+    if blocked:
+        return {
+            "submitted": False,
+            "attempted_submit": False,
+            "declined_submit": True,
+            "needs_input_labels": blocked,
+        }
     return {"submitted": _submit_and_verify(frame, page), "attempted_submit": True}
 
 
-def _apply_greenhouse(frame, page, job, cover_letter, resume_pdf) -> dict:
+def _apply_greenhouse(frame, page, job, cover_letter, resume_pdf, answers=None) -> dict:
     filled_name = _fill(frame, "#first_name", FIRST_NAME)
     _fill(frame, "#last_name", LAST_NAME)
     filled_email = _fill(frame, "#email", PROFILE["email"])
@@ -775,8 +904,9 @@ def _apply_greenhouse(frame, page, job, cover_letter, resume_pdf) -> dict:
         _upload(frame, "#cover_letter", cl_pdf)
 
     _answer_boolean_selects(frame)
+    _fill_planned_answers(frame, answers)
 
-    return _maybe_submit(frame, page)
+    return _maybe_submit(frame, page, answers)
 
 
 def _current_company_text() -> str:
@@ -790,7 +920,7 @@ def _current_company_text() -> str:
     return "In transition"
 
 
-def _apply_lever(frame, page, job, cover_letter, resume_pdf) -> dict:
+def _apply_lever(frame, page, job, cover_letter, resume_pdf, answers=None) -> dict:
     filled_name = _fill(frame, "input[name='name']", PROFILE["name"])
     filled_email = _fill(frame, "input[name='email']", PROFILE["email"])
     _fill(frame, "input[name='phone']", PROFILE["phone"])
@@ -812,8 +942,9 @@ def _apply_lever(frame, page, job, cover_letter, resume_pdf) -> dict:
     _upload(frame, "input[name='resume']", resume_pdf)
     _fill(frame, "textarea[name='comments']", cover_letter)
     _answer_boolean_selects(frame)
+    _fill_planned_answers(frame, answers)
 
-    return _maybe_submit(frame, page)
+    return _maybe_submit(frame, page, answers)
 
 
 # Keyword -> profile value, checked against each visible text-input's label/placeholder/name.
@@ -1042,7 +1173,11 @@ def _apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: b
             # button once — it may open a new tab, navigate, or reveal an in-page form —
             # and retry on wherever it leads, re-detecting the ATS from scratch since it
             # commonly turns out to be a white-labeled Greenhouse/Lever form after all.
-            if not result.get("attempted_submit"):
+            # A deliberate stop is not a missing form. Review-only mode and the
+            # required-question gate both fill this page and then decline to click;
+            # hunting for an Apply button afterwards would abandon a completed form
+            # and re-fill somewhere else for no reason.
+            if not (result.get("attempted_submit") or result.get("declined_submit")):
                 apply_btn = _find_apply_button(page)
                 if apply_btn is not None:
                     followed_page = _follow_apply_button(page, apply_btn)
@@ -1132,7 +1267,15 @@ def _apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: b
                 return dict(outcome, status="captcha_gate")
             if result.get("attempted_submit"):
                 return dict(outcome, status="submit_unconfirmed")
-            return dict(outcome, status="prefilled_pending_review", found_email=found_email)
+            # Same status as before so the digest, tracker and dashboard need no
+            # changes; needs_input_labels says *which* questions stopped the submit,
+            # which is the difference between "we gave up" and "these two are yours".
+            return dict(
+                outcome,
+                status="prefilled_pending_review",
+                found_email=found_email,
+                needs_input_labels=result.get("needs_input_labels") or [],
+            )
 
     except Exception as e:
         print(f"[web_applier] Failed on {job['url']}: {e}")
