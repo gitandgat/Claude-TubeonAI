@@ -871,7 +871,7 @@ def _maybe_submit(frame, page, answers: list = None) -> dict:
     `declined_submit` marks both cases so the caller does not mistake a deliberate
     stop for "this page had no form" and go hunting for an Apply button elsewhere.
     """
-    if is_review_only():
+    if _ASSISTED_HANDOFF or is_review_only():
         return {"submitted": False, "attempted_submit": False, "declined_submit": True}
     blocked = _unanswered_required(answers)
     if blocked:
@@ -1074,11 +1074,78 @@ def _wait_for_human_to_clear_captcha(page, timeout_s: int = HEADED_CAPTCHA_WAIT_
     return False
 
 
-def apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: bool = True) -> dict:
+# Set by assisted_apply.py for the lifetime of an assisted session. It is a
+# module flag rather than a threaded parameter because _maybe_submit already
+# consults process-wide config (is_review_only) and every per-ATS apply helper
+# would otherwise need a new argument. It is a safety interlock, not a
+# preference: in assisted mode the applicant submits, never the agent, and that
+# must hold even if review_only is flipped off in agent_config.json.
+_ASSISTED_HANDOFF = False
+
+
+def set_assisted_handoff(active: bool) -> None:
+    """Forbid every automatic Submit click for the rest of this process."""
+    global _ASSISTED_HANDOFF
+    _ASSISTED_HANDOFF = bool(active)
+
+
+HANDOFF_WAIT_S = 1800
+_HANDOFF_POLL_INTERVAL_MS = 2000
+
+
+def _page_is_gone(page) -> bool:
+    """True once the window is closed. A dead browser also counts as gone."""
+    try:
+        return page.is_closed()
+    except Exception:
+        return True
+
+
+def _wait_for_human_handoff(page, timeout_s: int = HANDOFF_WAIT_S) -> str:
+    """Hold a filled-but-unsubmitted form open and let the applicant finish it.
+
+    Returns "submitted" (confirmation text appeared), "skipped" (the window was
+    closed), or "timeout".
+
+    This is the assisted-apply path, and it is deliberately the opposite of
+    automation: the agent fills every field it can answer honestly, then stops.
+    The applicant reviews what was filled, answers anything left blank, solves
+    any captcha, signs any attestation, and clicks Submit. Nothing reaches the
+    employer until they do.
+
+    Closing the window is how they skip a job — the terminal is blocked polling
+    this page, so there is nowhere to type. A transient error does not end the
+    wait: submitting navigates to a thank-you page, and that navigation can make
+    one poll fail. Only a genuinely closed window ends it, or the confirmation
+    text the submit was waiting for.
+    """
+    print(
+        "[web_applier] Form filled. Review it, then Submit in the open window "
+        "— or close the window to skip (waiting up to %ds)..." % timeout_s
+    )
+    deadline = time.time() + timeout_s
+    while time.time() < deadline:
+        if _page_is_gone(page):
+            return "skipped"
+        try:
+            page.wait_for_timeout(_HANDOFF_POLL_INTERVAL_MS)
+            body_text = page.locator("body").inner_text(timeout=ACTION_TIMEOUT_MS) or ""
+        except Exception:
+            if _page_is_gone(page):
+                return "skipped"
+            continue
+        if CONFIRMATION_PATTERN.search(body_text):
+            print("[web_applier] Confirmation text detected — submission verified.")
+            return "submitted"
+    return "timeout"
+
+
+def apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: bool = True,
+                     handoff: bool = False) -> dict:
     """Thin logging wrapper around _apply_on_website(job, cover_letter, resume_pdf) —
     records the run to automation_runs.jsonl without altering its behavior."""
     start = time.time()
-    result = _apply_on_website(job, cover_letter, resume_pdf, headless=headless)
+    result = _apply_on_website(job, cover_letter, resume_pdf, headless=headless, handoff=handoff)
     record_run(
         "Website Auto-Apply",
         f"{job.get('title', '?')} @ {job.get('company', '?')}",
@@ -1089,7 +1156,8 @@ def apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: bo
     return result
 
 
-def _apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: bool = True) -> dict:
+def _apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: bool = True,
+                      handoff: bool = False) -> dict:
     """Attempt to fill and submit the application form at job['url'].
 
     Args:
@@ -1220,6 +1288,24 @@ def _apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: b
                 except Exception:
                     pass
 
+            # Assisted apply: the form is filled and the agent has deliberately
+            # not submitted it — review-only mode, or a required question only he
+            # can answer honestly. The captcha wait above cannot cover this case
+            # because it fires only after an attempted submit. Holding the window
+            # open here is the whole point of the mode: it is the difference
+            # between a package saved to disk that nobody opens and a form that is
+            # one reviewed click from sent.
+            handoff_result = ""
+            if handoff and not headless and not result.get("submitted"):
+                handoff_result = _wait_for_human_handoff(page)
+                if handoff_result == "submitted":
+                    result["submitted"] = True
+                    has_captcha = False
+                try:
+                    page.screenshot(path=screenshot, full_page=True)
+                except Exception:
+                    pass
+
             # Must happen while the browser is still open: if nothing was
             # submittable, the page may name an application inbox that unlocks
             # the captcha-free email lane.
@@ -1259,6 +1345,7 @@ def _apply_on_website(job: dict, cover_letter: str, resume_pdf: str, headless: b
                 "screenshot": screenshot,
                 "apply_url": form_url,
                 "form_fields": form_fields,
+                "handoff": handoff_result,
             }
 
             if result.get("submitted"):
