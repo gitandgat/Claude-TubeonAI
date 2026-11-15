@@ -471,6 +471,7 @@ def _notify_card_html(j: dict) -> str:
 def _digest_html(
     applied: list, notify: list, total_found: int,
     skipped: int = 0, newly_ghosted: list = None, alerts: list = None,
+    jobs_list_html: str = "",
 ) -> str:
     """HTML counterpart to _digest_body — same data, richer rendering. Pure function, no I/O."""
     newly_ghosted = newly_ghosted or []
@@ -533,6 +534,7 @@ def _digest_html(
       Couldn't auto-apply {len(notify)} &middot; Skipped {skipped}
     </p>
     {alerts_html}
+    {jobs_list_html}
     {empty_html}
     {applied_html}
     {notify_html}
@@ -545,24 +547,40 @@ def _digest_html(
 </body></html>"""
 
 
-def _send_quiet_status(total_found: int, sources_checked: int) -> bool:
+def _send_quiet_status(total_found: int, sources_checked: int,
+                       jobs_list_html: str = "", jobs_list_text: str = "") -> bool:
     """Sahawat asked (Sep18) for a daily email regardless of results, so a run
     that finds nothing no longer goes fully silent — it sends one short status
     note instead of the full digest. Throttled to once/day by has_sent_digest_today()
     in the caller, since the pipeline runs 6x/day and the other 5 quiet runs that
     day still shouldn't re-notify."""
     subject = "Ottawa Job Agent — daily check-in (nothing new today)"
-    body = (
+    status = (
         f"Checked {sources_checked} job source(s) today, {total_found} posting(s) seen total — "
         "nothing new that cleared the fit bar, nothing pending your review, no alerts.\n\n"
         "The agent is running on schedule; this is just confirmation it's alive. "
         "You'll get the full digest (with attachments) the moment there's something to act on."
     )
+    body = status
     msg = MIMEMultipart("alternative")
     msg["From"] = NOTIFY_FROM
     msg["To"] = NOTIFY_TO
+    if jobs_list_text:
+        # New Centretown/remote postings exist even though nothing cleared the
+        # apply bar. The list is the point of this email then, so lead with it.
+        subject = "Ottawa Job Agent — new Centretown & remote jobs (nothing applied today)"
+        body = jobs_list_text + "\n\n" + status
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
+    if jobs_list_html:
+        status_html = html.escape(status).replace("\n\n", "<br><br>")
+        msg.attach(MIMEText(
+            f'<!DOCTYPE html><html><body style="margin:0;padding:0;background:{BRAND_WARM_WHITE};'
+            "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;\">"
+            '<div style="max-width:640px;margin:0 auto;padding:28px 20px;">'
+            f"{jobs_list_html}"
+            f'<p style="font-size:12px;color:#999;">{status_html}</p>'
+            "</div></body></html>", "html"))
     try:
         with _gmail_smtp() as s:
             s.sendmail(NOTIFY_FROM, NOTIFY_TO, msg.as_string())
@@ -577,6 +595,7 @@ def send_digest(
     applied: list, notify: list, total_found: int,
     tracker_html: str = None, newly_ghosted: list = None, skipped: int = 0,
     alerts: list = None, autofill_html: str = None, sources_checked: int = 5,
+    jobs_list_html: str = "", jobs_list_text: str = "",
 ) -> bool:
     """Send the daily summary to Sahawat's Gmail. A run that applied to nothing,
     has nothing for him to review, ghosted nothing, and raised no alert sends a
@@ -591,13 +610,16 @@ def send_digest(
         if has_sent_digest_today():
             print("[email_sender] Quiet run (nothing applied, nothing to review, no alerts) — already sent today's status, skipping")
             return False
-        sent = _send_quiet_status(total_found, sources_checked)
+        sent = _send_quiet_status(total_found, sources_checked, jobs_list_html, jobs_list_text)
         if sent:
             mark_digest_sent()
         return sent
 
     subject, body = _digest_body(applied, notify, total_found, skipped, newly_ghosted, alerts)
-    body_html = _digest_html(applied, notify, total_found, skipped, newly_ghosted, alerts)
+    body_html = _digest_html(applied, notify, total_found, skipped, newly_ghosted, alerts,
+                             jobs_list_html=jobs_list_html)
+    if jobs_list_text:
+        body = body + "\n\n" + jobs_list_text
 
     msg = MIMEMultipart("mixed")
     msg["From"] = NOTIFY_FROM

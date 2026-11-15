@@ -150,3 +150,6 @@ ottawa-job-agent/supabase/.temp/
 nutrition-agent/.venv/
 nutrition-agent/*.log
 nutrition-agent/data/
+ottawa-job-agent/centretown_jobs_pending.json
+ottawa-job-agent/centretown_jobs_listed.json
+ottawa-job-agent/centretown_jobs.html

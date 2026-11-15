@@ -39,6 +39,7 @@ from qualification_gate import check_qualification_gate
 from resume_builder import build_pdf
 import retry_policy
 from walkability import classify_commute, commute_score_adjustment
+import centretown_jobs
 from web_applier import apply_on_website
 from workday_applier import apply_on_workday
 from workday_source import (WorkdaySource, discover_workday_tenants_from_jobs,
@@ -297,6 +298,17 @@ def run(only_categories: Optional[set] = None):
     reopened = sum(1 for j in new_jobs if j["id"] in retry_ids)
     log(f"New (unseen) jobs: {len(new_jobs) - reopened}"
         + (f" | re-opened for retry: {reopened}" if reopened else ""))
+
+    # Centretown / Remote-Canada list: every lead the sources pulled this run,
+    # applied-to or not, queued for the next email that actually goes out.
+    # A list problem must never stop the apply pipeline.
+    jobs_list_store = centretown_jobs.Store(Path(__file__).parent)
+    try:
+        queued = jobs_list_store.queue(j for j in all_jobs if not is_expired(j))
+        log(f"Centretown/remote list: +{queued['added']} new row(s) queued, "
+            f"{queued['unknown_ottawa']} Ottawa posting(s) left out (no walkable address stated)")
+    except Exception as e:
+        log(f"Centretown/remote list queue failed (non-fatal): {e}")
 
     # Drop expired / closed postings before anything else
     expired = 0
@@ -911,12 +923,29 @@ def run(only_categories: Optional[set] = None):
 
     log(f"Summary — applied: {len(applied)}, couldn't auto-apply: {len(notify)}, skipped: {skipped}, expired: {expired}")
 
+    jobs_list = []
+    try:
+        jobs_list = jobs_list_store.pending()
+        centretown_jobs.write_preview(jobs_list, Path(__file__).parent / centretown_jobs.PREVIEW_FILENAME)
+    except Exception as e:
+        log(f"Centretown/remote list read failed (non-fatal): {e}")
+
     sent = send_digest(
         applied, notify, len(all_jobs),
         tracker_html=tracker_html, newly_ghosted=newly_ghosted, skipped=skipped,
         alerts=alerts, autofill_html=autofill_html,
+        jobs_list_html=centretown_jobs.render_html(jobs_list),
+        jobs_list_text=centretown_jobs.render_text(jobs_list),
     )
     log("Summary sent." if sent else "Quiet run — no email sent.")
+    # Only rows that actually reached the inbox count as listed; on a quiet
+    # run that sent nothing they stay pending for the next email.
+    if sent and jobs_list:
+        try:
+            jobs_list_store.mark_listed(jobs_list)
+            log(f"Centretown/remote list: {len(jobs_list)} row(s) sent and marked listed")
+        except Exception as e:
+            log(f"Centretown/remote list mark-listed failed (non-fatal): {e}")
 
     # Refresh the Job-agent dashboard's data files so the UI always reflects
     # today's run without any manual step. SystemExit is caught too: the export

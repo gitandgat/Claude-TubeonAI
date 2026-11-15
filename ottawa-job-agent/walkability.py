@@ -68,6 +68,20 @@ def _contains_any(text: str, terms) -> bool:
     return any(term in text for term in terms)
 
 
+def is_walkable(text: Optional[str]) -> bool:
+    """True when the text names a place within walking distance of Centretown.
+    Ignores any "remote" wording, unlike classify_commute, so a hybrid posting
+    with a walkable office still counts. Same precedence as classify_commute:
+    a named walkable place wins, a named suburb/transit place beats a postal FSA."""
+    low = (text or "").lower()
+    if _contains_any(low, _WALK_TERMS):
+        return True
+    if _contains_any(low, _FAR_TERMS) or _contains_any(low, _TRANSIT_TERMS):
+        return False
+    fsa_match = _FSA_RE.search(text or "")
+    return bool(fsa_match and fsa_match.group(1).upper() in _WALK_FSAS)
+
+
 def classify_commute(text: Optional[str]) -> dict:
     """Classify a job's commute from Centretown based on free text (location +
     title + description, whatever's available). Returns {mode, minutes, label}.
