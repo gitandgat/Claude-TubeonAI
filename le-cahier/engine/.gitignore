@@ -1,0 +1,4 @@
+# Sorties du moteur : pistes audio et lots de la semaine (trop lourds pour le dépôt public).
+out/
+state.json
+recit-voix/

@@ -1,0 +1,1982 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Le Cahier</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --paper:#F6EBCF; --paper-2:#EBDDB8; --raised:#FBF3DC;
+  --ink:#241D3D; --ink-soft:#594C68; --ink-faint:#7A6C77;
+  --rule-major:#A98B3E; --rule-minor:#DCCB98; --vert:#E4D5A8;
+  --margin-red:#A8321F; --correct:#1F6F4A; --misplaced:#A06C12;
+  --absent:#8E8472; --border:#D3C08A; --tile:#FFF9E6;
+  --shadow:0 1px 2px rgba(36,29,61,.14), 0 10px 26px -14px rgba(36,29,61,.5);
+  --ground:#0F1450; --ground-2:#1A2273; --ground-3:#2631A0;
+  --gold:#E3B445; --gold-hi:#F8DE93; --gold-lo:#9B741F; --gold-ink:#2B1D00;
+  --on-ground:#EFE5C6; --on-ground-soft:#B9B5D8; --hp:#C93B2B;
+  --display:"Grenze Gotisch",Georgia,serif; --body:"EB Garamond",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --grain:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .29 0 0 0 0 .13 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#14113A; --paper-2:#1B1748; --raised:#1E1A4C;
+  --ink:#F1E6C6; --ink-soft:#C6BBCE; --ink-faint:#9189AE;
+  --rule-major:#B8923F; --rule-minor:#2E2A66; --vert:#2A2660;
+  --margin-red:#F28B6F; --correct:#62D3A3; --misplaced:#E6B65C;
+  --absent:#6F6A92; --border:#3C3680; --tile:#242058;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 28px -16px #000;
+  --ground:#080B33; --ground-2:#121867; --ground-3:#1C2478; --grain:none;
+}}
+:root[data-theme="dark"]{
+  --paper:#14113A; --paper-2:#1B1748; --raised:#1E1A4C;
+  --ink:#F1E6C6; --ink-soft:#C6BBCE; --ink-faint:#9189AE;
+  --rule-major:#B8923F; --rule-minor:#2E2A66; --vert:#2A2660;
+  --margin-red:#F28B6F; --correct:#62D3A3; --misplaced:#E6B65C;
+  --absent:#6F6A92; --border:#3C3680; --tile:#242058;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 12px 28px -16px #000;
+  --ground:#080B33; --ground-2:#121867; --ground-3:#1C2478; --grain:none;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.5;-webkit-font-smoothing:antialiased}
+.sheet{max-width:1080px;margin:0 auto;padding-inline:18px;padding-block:22px 56px}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+:focus-visible{outline:2px solid var(--margin-red);outline-offset:3px;border-radius:2px}
+
+.masthead{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;
+  padding-bottom:14px;border-bottom:1px solid var(--border);box-shadow:0 1px 0 var(--margin-red)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,9vw,4rem);
+  line-height:.9;margin:0;letter-spacing:-.01em}
+.sub{margin:.4rem 0 0;font-style:italic;color:var(--ink-soft);font-size:.95rem}
+.head-tools{display:flex;align-items:center;gap:10px}
+.pill{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;
+  border:1px solid var(--border);border-radius:99px;padding:6px 12px;background:var(--raised);white-space:nowrap}
+.pill b{font-weight:600;color:var(--margin-red)}
+.icon-btn{border:1px solid var(--border);border-radius:99px;min-width:38px;height:38px;padding:0 10px;
+  background:var(--raised);display:grid;place-items:center;font-size:.78rem;
+  font-family:"IBM Plex Mono",monospace;letter-spacing:.08em;transition:background .18s}
+#themeBtn{font-size:1rem;padding:0}
+.icon-btn:hover{background:var(--paper-2)}
+
+.tabs{display:flex;gap:6px;margin-top:-1px;padding-top:18px;flex-wrap:wrap;align-items:flex-end}
+.tab{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;
+  padding:11px 18px 10px;border:1px solid transparent;border-radius:9px 9px 0 0;
+  color:var(--ink-faint);background:transparent;position:relative;top:1px;
+  transition:color .18s,background .18s}
+.tab:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.tab[aria-selected="true"]{background:var(--raised);color:var(--ink);font-weight:600;
+  border-color:var(--border);border-bottom-color:var(--raised);
+  box-shadow:0 -2px 0 var(--margin-red) inset, 0 -6px 14px -10px rgba(36,28,74,.4)}
+
+.body{display:grid;grid-template-columns:196px minmax(0,1fr);border:1px solid var(--border);
+  border-radius:0 10px 10px 10px;background:var(--raised);box-shadow:var(--shadow);overflow:hidden}
+.margin{border-right:1px solid var(--margin-red);padding:28px 20px;display:flex;flex-direction:column;
+  gap:22px;background:linear-gradient(to bottom,var(--paper-2),color-mix(in srgb,var(--paper-2) 60%,var(--raised)))}
+.mstat{display:flex;flex-direction:column;gap:2px}
+.mstat .k{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.mstat .v{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:1.6rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.mstat .n{font-size:.78rem;color:var(--ink-soft);font-style:italic}
+.annot{margin-top:auto;font-style:italic;color:var(--margin-red);font-size:.86rem;border-top:1px dashed var(--border);padding-top:12px}
+
+.field{padding:34px 38px 40px;min-height:430px;position:relative;
+  background-image:repeating-linear-gradient(to bottom,transparent 0 27px,
+    color-mix(in srgb,var(--rule-minor) 45%,transparent) 27px 28px);
+  background-position:0 12px}
+.field::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,var(--raised) 0,transparent 90px)}
+.field > section{position:relative}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--margin-red);margin:0 0 20px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* ---- Le Trou ---- */
+.sentence{font-size:clamp(1.35rem,3.6vw,1.85rem);line-height:1.75;margin:0 0 6px;max-width:34ch;text-wrap:balance}
+.blank{display:inline-block;min-width:4.5ch;border-bottom:2px dotted var(--margin-red);text-align:center;
+  font-weight:600;color:var(--margin-red);padding:0 .2em}
+.blank.done{border-bottom-style:solid;border-bottom-color:currentColor}
+.blank.ok{color:var(--correct)} .blank.no{color:var(--margin-red)}
+.gloss{font-style:italic;color:var(--ink-soft);font-size:.95rem;margin:0 0 22px;max-width:44ch;min-height:1.5em}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;max-width:480px}
+@media (max-width:440px){.options{grid-template-columns:1fr}}
+.opt{border:1px solid var(--border);background:var(--tile);border-radius:6px;padding:12px 14px;text-align:left;
+  font-size:1.02rem;transition:border-color .16s,transform .16s,background .16s}
+.opt:hover:not(:disabled){border-color:var(--ink);transform:translateY(-1px)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--correct);background:color-mix(in srgb,var(--correct) 12%,transparent);color:var(--correct);font-weight:600}
+.opt.wrong{border-color:var(--margin-red);background:color-mix(in srgb,var(--margin-red) 10%,transparent);color:var(--margin-red)}
+.after{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:20px;min-height:44px}
+.after:empty{min-height:0;margin-top:0}
+.go{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);border-radius:99px;padding:12px 22px;font-weight:500;
+  box-shadow:0 1px 2px rgba(36,28,74,.18);transition:transform .16s,box-shadow .16s,opacity .16s}
+.go:hover{transform:translateY(-1px);box-shadow:0 4px 12px -4px rgba(36,28,74,.45)}
+.go:active{transform:none}
+.ghost{border:1px solid var(--border);background:var(--raised);border-radius:99px;padding:11px 18px;
+  font-size:.9rem;transition:border-color .16s,background .16s}
+.ghost:hover{border-color:var(--ink);background:var(--paper-2)}
+
+/* ---- Motus ---- */
+.grid{display:grid;gap:6px;width:fit-content;margin-bottom:20px}
+.row{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.cell{width:clamp(38px,10vw,52px);aspect-ratio:1;display:grid;place-items:center;border:1px solid var(--border);
+  background:var(--tile);border-radius:5px;font-family:"IBM Plex Mono",monospace;font-weight:600;
+  font-size:clamp(1.1rem,4vw,1.45rem);text-transform:uppercase;color:var(--ink)}
+.cell.dot{color:var(--ink-faint)}
+.cell.c-ok{background:var(--correct);border-color:var(--correct);color:#fff}
+.cell.c-mis{background:var(--misplaced);border-color:var(--misplaced);color:#fff}
+.cell.c-no{background:var(--absent);border-color:var(--absent);color:#fff}
+.kb{display:flex;flex-direction:column;gap:6px;max-width:470px}
+.kb-row{display:flex;gap:5px;justify-content:center}
+.key{flex:1;min-width:0;padding:11px 2px;border:1px solid var(--border);background:var(--tile);border-radius:5px;
+  font-family:"IBM Plex Mono",monospace;font-size:.85rem;text-align:center}
+.key:hover{border-color:var(--ink)}
+.key.wide{flex:1.7;font-size:.95rem}
+.key.c-ok{background:var(--correct);border-color:var(--correct);color:#fff}
+.key.c-mis{background:var(--misplaced);border-color:var(--misplaced);color:#fff}
+.key.c-no{background:var(--absent);border-color:var(--absent);color:#fff;opacity:.55}
+.note{font-style:italic;color:var(--ink-soft);margin:14px 0 0;min-height:1.5em}
+.clue{margin:0 0 18px;font-size:1.05rem;color:var(--ink-soft)}
+.clue b{color:var(--ink);font-style:italic;font-weight:600}
+
+/* ---- La Vidéo ---- */
+.lede{max-width:52ch;margin:0 0 16px;line-height:1.6}
+.lede.dim{color:var(--ink-faint);font-style:italic;font-size:.88rem;line-height:1.65;max-width:56ch}
+.fld{display:block;max-width:560px;margin-bottom:14px}
+.fld span{display:block;font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+.fld input,.fld textarea{width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--tile);
+  border:1px solid var(--border);border-radius:6px;padding:10px 12px;resize:vertical}
+.fld textarea{font-size:.9rem;line-height:1.55}
+.fld input:focus,.fld textarea:focus{border-color:var(--ink);outline:none}
+.deckList{max-width:560px;margin:16px 0 0;padding:0;list-style:none;border-top:1px dashed var(--border)}
+.deckList li{padding:9px 0;border-bottom:1px dashed var(--border);font-size:.94rem}
+.deckList li.more{color:var(--ink-faint);font-style:italic;border-bottom:none}
+a{color:var(--margin-red);text-underline-offset:3px}
+
+/* ---- Les Mots Croisés ---- */
+.xwrap{overflow-x:auto;padding-bottom:4px}
+.xgrid{--xc:clamp(26px,6.4vw,38px);display:grid;width:max-content}
+.xblock{width:var(--xc);height:var(--xc)}
+.xcell{position:relative;width:var(--xc);height:var(--xc);background:var(--tile);
+  border:1px solid var(--ink-faint);box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.xnum{position:absolute;top:1px;left:3px;font-family:"IBM Plex Mono",monospace;font-size:.52rem;
+  color:var(--ink-faint);pointer-events:none;z-index:1}
+.xcell input{position:absolute;inset:0;width:100%;height:100%;border:none;background:transparent;
+  text-align:center;font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:calc(var(--xc)*.5);
+  color:var(--ink);text-transform:uppercase;padding:0;caret-color:var(--margin-red)}
+.xcell input:focus{outline:none}
+.xcell input.act{background:color-mix(in srgb,var(--rule-major) 22%,transparent)}
+.xcell input.cur{background:color-mix(in srgb,var(--misplaced) 32%,transparent)}
+.xcell input.err{color:var(--margin-red);background:color-mix(in srgb,var(--margin-red) 16%,transparent)}
+.xcell input.ok{color:var(--correct)}
+.xcell input.act.ok{background:color-mix(in srgb,var(--correct) 12%,transparent)}
+.xclue{margin:16px 0 0;font-size:1.02rem;min-height:1.6em}
+.xclue b{font-style:italic}
+.xboard{display:grid;grid-template-columns:auto minmax(230px,1fr);gap:30px;align-items:start}
+.xleft{min-width:0}
+.pic{font-size:2.1rem;line-height:1;margin-right:.55rem;vertical-align:-.4rem}
+.picsm{font-size:1.05rem;margin-right:.1rem}
+.cueword{font-size:.95rem}
+.cueword.dim{color:var(--ink-faint);font-size:.85rem}
+@media (max-width:820px){.xboard{grid-template-columns:1fr;gap:18px}}
+.xcols{display:grid;gap:18px;margin-top:2px}
+.xcols h3{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);margin:0 0 8px;font-weight:500}
+.xcols ul{margin:0;padding:0;list-style:none}
+.xcols li{padding:5px 6px;border-radius:4px;font-size:.92rem;cursor:pointer}
+.xcols li:hover{background:var(--paper-2)}
+.xcols li.act{background:color-mix(in srgb,var(--rule-major) 20%,transparent)}
+.xn{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-faint);margin-right:3px}
+
+/* ---- La Dictée ---- */
+.dwarn{margin:0 0 16px;padding:10px 13px;border-left:3px solid var(--misplaced);
+  background:color-mix(in srgb,var(--misplaced) 10%,transparent);font-size:.9rem;
+  font-style:italic;max-width:52ch;border-radius:0 5px 5px 0}
+.dplay{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.dbig{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--ink);color:var(--paper);border-radius:99px;padding:14px 26px;transition:opacity .16s}
+.dbig:hover{opacity:.85}
+.dcorr{margin:18px 0 0;font-size:1.15rem;line-height:2;max-width:46ch;min-height:1.6em}
+.dcorr .w.ok{color:var(--ink)}
+.dcorr .w.acc{color:var(--misplaced);border-bottom:2px dotted var(--misplaced);cursor:help}
+.dcorr del{color:var(--margin-red);text-decoration:line-through;text-decoration-thickness:1.5px;opacity:.75}
+.dcorr ins{color:var(--correct);text-decoration:none;font-weight:600}
+.dcorr ins.miss{border-bottom:2px solid var(--correct)}
+
+/* ---- La Seance ---- */
+.sebar{height:5px;background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:99px;
+  overflow:hidden;max-width:560px;margin-bottom:10px}
+#seFill{height:100%;width:0;background:var(--margin-red);transition:width .3s ease}
+.sehead{display:flex;justify-content:space-between;align-items:baseline;max-width:560px;gap:12px;margin-bottom:22px}
+.sekind{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin:0}
+.sekind b{color:var(--margin-red);font-weight:500}
+.secount{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.seinput{width:100%;font-family:var(--body);font-size:1.15rem;color:var(--ink);background:var(--tile);
+  border:1px solid var(--border);border-radius:6px;padding:11px 13px}
+.seinput:focus{border-color:var(--ink);outline:none}
+.seinput.ok{border-color:var(--correct);color:var(--correct)}
+.seinput.no{border-color:var(--margin-red);color:var(--margin-red);text-decoration:line-through}
+.sedone{font-family:var(--display);font-size:2rem;margin:0 0 10px;line-height:1.1}
+.fchead{font-family:"IBM Plex Mono",monospace;font-size:.61rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ink-soft);margin:34px 0 12px;padding-top:14px;border-top:1px solid var(--border)}
+.forecast{display:flex;gap:10px;align-items:flex-end;max-width:380px}
+.fcol{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fbar{width:100%;min-height:3px;background:var(--rule-major);border-radius:2px 2px 0 0}
+.fnum,.flab{font-family:"IBM Plex Mono",monospace;font-size:.6rem;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+/* ---- Niveau et production ---- */
+.promote{font-family:var(--display);font-size:1.3rem;color:var(--correct);margin:0 0 14px;
+  border-left:3px solid var(--correct);padding-left:12px}
+.phtask{font-size:clamp(1.2rem,3.2vw,1.6rem);line-height:1.5;max-width:40ch;margin:0 0 20px;
+  text-wrap:balance;border-left:3px solid var(--margin-red);padding-left:14px}
+.phverdict{font-family:var(--display);font-size:1.6rem;margin:18px 0 8px}
+.phverdict.good{color:var(--correct)}
+.phverdict.bad{color:var(--margin-red)}
+.phline{margin:0 0 8px;max-width:48ch;font-size:.98rem}
+.dimline{color:var(--ink-soft);font-style:italic}
+.phfix{margin:0 0 10px;max-width:48ch;font-size:1.05rem}
+.phfix ins{text-decoration:none;color:var(--correct);font-weight:600}
+textarea.seinput{font-family:var(--body);line-height:1.5;resize:vertical}
+.nvbadge{font-family:var(--display);font-size:clamp(3rem,12vw,5rem);line-height:1;
+  margin:0 0 10px;color:var(--margin-red)}
+.lvrow{display:flex;align-items:center;gap:12px;padding:7px 0;max-width:420px}
+.lvname{font-family:"IBM Plex Mono",monospace;font-size:.78rem;width:2.2em;color:var(--ink-soft)}
+.lvtrack{flex:1;height:7px;background:var(--paper-2);border-radius:99px;overflow:hidden}
+.lvfill{height:100%;background:var(--rule-major);border-radius:99px}
+.lvnum{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-faint);
+  font-variant-numeric:tabular-nums;width:4.5em;text-align:right}
+.lvrow.now .lvname{color:var(--ink);font-weight:600}
+.lvrow.now .lvfill{background:var(--margin-red)}
+.lvrow.locked{opacity:.42}
+
+/* ---- Le Profil ---- */
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px}
+.chip{border:1px solid var(--border);background:var(--tile);border-radius:99px;padding:8px 14px;
+  font-size:.88rem;color:var(--ink-soft);transition:border-color .15s,background .15s,color .15s}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.rangerow{display:flex;align-items:center;gap:12px;max-width:380px}
+.rangerow input[type=range]{flex:1;accent-color:var(--margin-red)}
+.rangeout{font-family:"IBM Plex Mono",monospace;font-size:.8rem;color:var(--ink-soft);width:4.5em}
+.weakname{font-size:.9rem;width:11em;color:var(--ink)}
+.lvfill.weak{background:var(--margin-red)}
+.prsec{margin:30px 0 0}
+
+/* ---- La Conversation ---- */
+.scene{max-width:52ch;margin:0 0 16px;padding:11px 14px;border-left:3px solid var(--margin-red);
+  background:var(--paper-2);border-radius:0 6px 6px 0;font-size:.97rem;line-height:1.5}
+.chatlog{max-width:560px;max-height:360px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;
+  padding:4px 2px 4px 0;margin-bottom:14px}
+.bub{max-width:82%;padding:10px 14px;border-radius:14px;font-size:1rem;line-height:1.5;white-space:pre-wrap}
+.bub.them{align-self:flex-start;background:var(--paper-2);border:1px solid var(--border);
+  border-bottom-left-radius:4px}
+.bub.me{align-self:flex-end;background:var(--ink);color:var(--paper);border-bottom-right-radius:4px}
+.cvrow{display:flex;gap:8px;align-items:flex-end;max-width:560px}
+.cvrow textarea{flex:1}
+.micbtn{border:1px solid var(--border);background:var(--tile);border-radius:99px;width:44px;height:44px;
+  display:grid;place-items:center;font-size:1.1rem;flex:none}
+.micbtn:hover{border-color:var(--ink)}
+.micbtn.rec{background:var(--margin-red);border-color:var(--margin-red);color:#fff}
+.micbtn.wait{opacity:.6}
+/* « à toi » : le micro attend un tap — la dictée ne démarre jamais seule */
+.micbtn.ready{border-color:var(--margin-red);color:var(--margin-red);animation:impulse 1.2s ease-in-out infinite}
+/* La mission du jour : la seule boîte élevée du panneau, c'est le geste principal */
+.mission{max-width:620px;margin:0 0 22px;padding:16px 18px 6px;background:var(--raised);
+  border:1px solid var(--border);border-left:3px solid var(--margin-red);border-radius:0 8px 8px 0;box-shadow:var(--shadow)}
+.mission-head{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.mission-k{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+.mission-state{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.mission-state.done{color:var(--correct)}
+.mission-clock{margin-left:auto}
+.mission-txt{margin:8px 0 0;font-size:.95rem;line-height:1.55;color:var(--ink-soft);max-width:56ch}
+.speakrow{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--ink-soft);margin:0 0 14px}
+.speakrow input{accent-color:var(--margin-red)}
+
+/* ---- L'Examen ---- */
+.exhead{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between;
+  max-width:620px;margin-bottom:6px}
+.exdip{font-family:var(--display);font-size:1.9rem;line-height:1}
+.exclock{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-variant-numeric:tabular-nums;
+  color:var(--ink-soft)}
+.exclock.urgent{color:var(--margin-red);font-weight:600}
+.exrow{display:grid;grid-template-columns:1fr auto auto auto;gap:14px;align-items:center;
+  padding:11px 0;border-bottom:1px dashed var(--border);max-width:620px}
+.exname{font-size:.98rem}
+.exdur{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-faint)}
+.exscore{font-family:"IBM Plex Mono",monospace;font-size:.88rem;font-variant-numeric:tabular-nums;
+  width:4.6em;text-align:right}
+.exscore.bad{color:var(--margin-red)}
+.exrule{font-style:italic;color:var(--ink-soft);font-size:.9rem;max-width:52ch;margin:10px 0 0}
+.extext{max-width:54ch;margin:0 0 22px;padding:16px 18px;background:var(--tile);
+  border:1px solid var(--border);border-radius:6px}
+.extext h3{font-family:var(--display);font-size:1.3rem;margin:0 0 10px;font-weight:700}
+.extext p{margin:0 0 10px;font-size:1rem;line-height:1.65}
+.extext p:last-child{margin-bottom:0}
+.exq{margin:0 0 20px;max-width:560px}
+.exqt{margin:0 0 8px;font-size:1rem}
+.exopt{display:block;padding:5px 0;font-size:.96rem;cursor:pointer}
+.exopt input{accent-color:var(--margin-red);margin-right:7px}
+@media (max-width:560px){.exrow{grid-template-columns:1fr auto;row-gap:6px}}
+
+/* ---- Le personnage ---- */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,260px);gap:28px;align-items:start}
+.heroid{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.avatar{font-size:3.2rem;line-height:1;width:72px;height:72px;display:grid;place-items:center;
+  background:var(--paper-2);border:1px solid var(--border);border-radius:50%;flex:none}
+.heroname{min-width:0}
+.heroname input{font-family:var(--display);font-size:1.5rem;color:var(--ink);
+  background:transparent;border:none;border-bottom:1px dashed var(--border);width:100%;padding:2px 0}
+.heroname input:focus{outline:none;border-bottom-color:var(--margin-red)}
+.herotitle{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--margin-red);margin:4px 0 0}
+.xpbar{height:9px;background:var(--paper-2);border-radius:99px;overflow:hidden;margin:4px 0 6px}
+.xpbar div{height:100%;background:var(--margin-red);border-radius:99px;transition:width .4s ease}
+.xprow{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;color:var(--ink-faint)}
+.avbtn{font-size:1.4rem;background:var(--tile);border:1px solid var(--border);border-radius:50%;
+  width:40px;height:40px;line-height:1;transition:transform .14s,border-color .14s}
+.avbtn:hover{transform:translateY(-2px);border-color:var(--ink)}
+.rgrid{fill:none;stroke:var(--border);stroke-width:1}
+.rshape{fill:color-mix(in srgb,var(--margin-red) 22%,transparent);stroke:var(--margin-red);stroke-width:2}
+.rdot{fill:var(--margin-red)}
+.rlab{font-family:"IBM Plex Mono",monospace;font-size:7.5px;fill:var(--ink-soft);letter-spacing:.04em}
+.quest{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;padding:10px 0;
+  border-bottom:1px dashed var(--border)}
+.quest.done{opacity:.55}
+.quest.done .qtext{text-decoration:line-through}
+.qmark{font-family:"IBM Plex Mono",monospace;color:var(--margin-red);width:1.2em}
+.quest.done .qmark{color:var(--correct)}
+.qtext{font-size:.95rem}
+.qprog{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink-faint);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.levelup{font-family:var(--display);font-size:1.5rem;color:var(--correct);cursor:pointer;
+  border:1px solid var(--correct);border-radius:8px;padding:12px 16px;margin:0 0 18px;
+  background:color-mix(in srgb,var(--correct) 10%,transparent)}
+@media (max-width:760px){.hero{grid-template-columns:1fr}}
+
+/* ---- Verdict bien visible ---- */
+.verdict{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:8px;margin:0 0 18px;
+  font-size:1.05rem;border:1px solid}
+.verdict .vmark{font-family:"IBM Plex Mono",monospace;font-size:1.2rem;font-weight:600}
+.verdict.good{border-color:var(--correct);color:var(--correct);
+  background:color-mix(in srgb,var(--correct) 11%,transparent)}
+.verdict.bad{border-color:var(--margin-red);color:var(--margin-red);
+  background:color-mix(in srgb,var(--margin-red) 10%,transparent)}
+.verdict b{font-weight:600}
+
+/* ---- Navigation à deux étages ---- */
+.tabs.minor{padding-top:0;margin-bottom:0}
+.tabs.minor .tab{font-size:.63rem;padding:7px 11px 6px;opacity:.9}
+.navlabel{font-family:"IBM Plex Mono",monospace;font-size:.56rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-faint);margin:10px 0 4px}
+
+.motpic{font-size:4.5rem;line-height:1;margin:0 0 14px}
+.mkgrid{display:grid;grid-template-columns:2fr 1fr;gap:12px;max-width:560px}
+@media (max-width:520px){.mkgrid{grid-template-columns:1fr}}
+
+.mkbox{max-width:560px}
+.mkmini{font-size:.82rem;padding:8px 12px}
+.motpic.small{font-size:2rem;margin:0 0 10px}
+
+.sbbox{max-width:620px;margin-bottom:26px}
+
+/* ---- L'histoire ---- */
+.story{max-width:38em;font-size:1.08rem;line-height:1.85}
+.story p{margin:0 0 1.1em}
+.glossy{border-bottom:1px dotted var(--rule-major);cursor:pointer}
+.glossy:hover{border-bottom-color:var(--margin-red)}
+.glossy.shown{border-bottom-style:solid;color:var(--ink-soft)}
+.glosstip{font-size:.8rem;color:var(--margin-red);font-style:italic;margin:0 .3em 0 .25em;white-space:nowrap}
+.sttitle{font-family:var(--display);font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.15;margin:0 0 18px}
+
+.taptip{position:absolute;z-index:50;background:var(--ink);color:var(--paper);
+  border-radius:7px;padding:8px 11px;font-size:.88rem;line-height:1.35;box-shadow:var(--shadow);
+  cursor:pointer;font-family:var(--body)}
+.taptip.wait{opacity:.7}
+.sentence,.story,.bub,.extext,.noun,.clue,.phtask,.scene,.xclue,.fiche-mot,.rule{cursor:help}
+
+/* ---- Le ou La ---- */
+.noun{font-family:var(--display);font-size:clamp(2.6rem,10vw,4.2rem);line-height:1.05;margin:4px 0 8px}
+.artchoice{display:flex;gap:12px;margin:22px 0 0;flex-wrap:wrap}
+.art{font-family:var(--display);font-size:1.7rem;border:1px solid var(--border);background:var(--tile);
+  border-radius:8px;padding:14px 40px;transition:border-color .16s,transform .16s}
+.art:hover:not(:disabled){border-color:var(--ink);transform:translateY(-1px)}
+.art.right{border-color:var(--correct);background:color-mix(in srgb,var(--correct) 12%,transparent);color:var(--correct)}
+.art.wrong{border-color:var(--margin-red);background:color-mix(in srgb,var(--margin-red) 10%,transparent);color:var(--margin-red)}
+.rule{font-style:italic;color:var(--ink-soft);margin:18px 0 0;max-width:44ch;min-height:3em}
+.rule b{font-style:normal;color:var(--ink)}
+
+/* ---- Mes cartes ---- */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:720px;margin:0 0 20px}
+@media (max-width:640px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.step{display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left;padding:11px 12px 12px;
+  border:1px solid var(--border);border-radius:6px;background:var(--tile);transition:border-color .16s}
+.step:hover{border-color:var(--ink)}
+.step .sn{font-family:"IBM Plex Mono",monospace;font-size:.64rem;letter-spacing:.14em;color:var(--margin-red)}
+.step .st{font-family:var(--display);font-weight:500;font-size:1.18rem;line-height:1.15}
+.step .sc{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.step .sa{font-size:.8rem;font-style:italic;color:var(--ink-faint);margin-top:4px}
+
+.ckreview{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+  max-width:720px;padding:14px 16px;border:1px solid var(--ink);border-radius:6px;background:var(--raised)}
+.ckrev-txt{min-width:0}
+.ckrev-n{font-family:var(--display);font-size:1.55rem;line-height:1.1;margin:0}
+.ckrev-sub{margin:3px 0 0;font-size:.88rem;font-style:italic;color:var(--ink-soft)}
+.go:disabled{opacity:.4;cursor:default}
+
+.gcue{display:flex;gap:.55rem;align-items:baseline;margin:10px 0 0;max-width:50ch;font-size:.98rem;color:var(--ink-soft)}
+.gcue .gpic{font-size:1.35rem;line-height:1;flex:none}
+.gcue b{color:var(--ink);font-weight:600}
+.mkbox .gcue{margin:0 0 14px}
+
+.gimg{max-width:720px;margin:4px 0 0;border:1px solid var(--border);border-radius:6px;background:var(--tile)}
+.gimg summary{cursor:pointer;padding:11px 14px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;
+  align-items:baseline;font-size:.95rem;list-style:none}
+.gimg summary::-webkit-details-marker{display:none}
+.gimg summary::after{content:"+";font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
+.gimg[open] summary::after{content:"−"}
+.gimg-now{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--ink-soft);margin-left:auto}
+.gimg-body{padding:0 14px 16px}
+.gimg-row{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:10px;align-items:start;margin-top:12px}
+.gimg-art{font-family:var(--display);font-size:1.5rem;line-height:1.5}
+
+.ckbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:720px;margin-bottom:8px}
+.ckbar .seinput{flex:1 1 220px;min-width:0;font-size:1rem;padding:9px 12px}
+.deck{list-style:none;margin:8px 0 0;padding:0;max-width:720px;border-top:1px solid var(--border)}
+.ckitem{border-bottom:1px dashed var(--border)}
+.ckitem.open{background:var(--paper-2)}
+.ckrow{display:grid;grid-template-columns:2.4rem minmax(0,1fr) auto 6.5em;gap:12px;align-items:center;
+  width:100%;text-align:left;padding:9px 6px}
+.ckrow:hover{background:var(--paper-2)}
+.ckpic{font-size:1.55rem;line-height:1;text-align:center}
+.ckmain{display:flex;flex-direction:column;min-width:0}
+.ckword{font-size:1.05rem}
+.cknote{font-size:.82rem;font-style:italic;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ckdots{display:flex;gap:4px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink-faint);flex:none}
+.dot.on{background:var(--ink-faint)}
+.dot.due{background:var(--margin-red);border-color:var(--margin-red)}
+.dot.held{background:var(--correct);border-color:var(--correct)}
+.ckdue{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-faint);text-align:right;
+  font-variant-numeric:tabular-nums}
+.ckdue.now{color:var(--margin-red)}
+.ckedit{padding:4px 6px 16px calc(2.4rem + 18px)}
+.ckcards{display:grid;gap:4px;margin:2px 0 14px;font-size:.86rem}
+.ckcards > div{display:grid;grid-template-columns:9px 9.5em minmax(0,1fr);gap:10px;align-items:center}
+.ckclab{font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--ink-soft)}
+.ckcst{color:var(--ink-soft);font-style:italic}
+.ckleg{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 0;font-size:.78rem;color:var(--ink-faint)}
+.ckleg > span{display:inline-flex;align-items:center;gap:6px}
+.danger{color:var(--margin-red)}
+.danger.arm{background:var(--margin-red);border-color:var(--margin-red);color:var(--paper)}
+@media (max-width:520px){
+  .ckrow{grid-template-columns:2rem minmax(0,1fr) auto;gap:10px}
+  .ckdue{display:none}
+  .ckedit{padding-left:6px}
+  .ckcards > div{grid-template-columns:9px 8.5em minmax(0,1fr)}
+}
+
+.ckfld{margin-top:10px}
+.sugg{list-style:none;margin:14px 0 0;padding:0;max-width:720px;display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+@media (max-width:540px){.sugg{grid-template-columns:1fr}}
+.sug{display:grid;grid-template-columns:2.2rem minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;
+  text-align:left;padding:9px 10px;border:1px solid var(--border);border-radius:6px;background:var(--tile);
+  transition:border-color .15s,opacity .15s}
+.sug[aria-pressed="true"]{border-color:var(--ink)}
+.sug[aria-pressed="false"]{opacity:.55}
+.spic{font-size:1.5rem;line-height:1;text-align:center}
+.sw{display:flex;flex-direction:column;min-width:0}
+.sfr{font-size:1.02rem}
+.sen{font-size:.8rem;font-style:italic;color:var(--ink-faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.schk{width:20px;height:20px;border-radius:4px;border:1.5px solid var(--ink-faint);display:grid;place-items:center;
+  font-size:.72rem;color:transparent}
+.sug[aria-pressed="true"] .schk{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* ---- La fiche : une fiche bristol, ligne rouge en tête, lignes bleues dessous ---- */
+.fiche{position:relative;max-width:460px;min-height:210px;margin:0 0 6px;padding:14px 20px 18px;
+  background:var(--tile);border:1px solid var(--border);border-radius:3px;box-shadow:var(--shadow)}
+.fiche::before{content:"";position:absolute;inset:66px 0 0;border-radius:0 0 3px 3px;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,transparent 0 27px,var(--rule-minor) 27px 28px)}
+.fiche::after{content:"";position:absolute;left:0;right:0;top:64px;height:1.5px;background:var(--margin-red);opacity:.75}
+.fiche > *{position:relative}
+.fiche-face{display:flex;gap:12px;align-items:center;justify-content:space-between;min-height:44px}
+.fiche-mot{font-family:var(--display);font-weight:500;font-size:clamp(1.8rem,7vw,2.4rem);
+  line-height:1.1;margin:0;min-width:0;overflow-wrap:anywhere}
+.fiche-say{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--raised);
+  font-size:.85rem;display:grid;place-items:center}
+.fiche-say:hover{border-color:var(--ink)}
+.fiche-ask{margin:30px 0 0;font-style:italic;color:var(--ink-soft);max-width:36ch;line-height:28px}
+.fiche-back{padding-top:22px;transform-origin:top center;animation:ficheIn .38s cubic-bezier(.2,.7,.3,1)}
+.fiche-back .motpic{margin:0 0 6px}
+.fiche-note{margin:0;font-style:italic;color:var(--ink-soft);line-height:28px;max-width:40ch}
+@keyframes ficheIn{from{opacity:0;transform:perspective(700px) rotateX(-65deg)}to{opacity:1;transform:none}}
+.fiche-ans{font-family:var(--display);font-size:1.6rem;line-height:1.2;margin:14px 0 0}
+
+.grades{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;max-width:460px}
+@media (max-width:380px){.grades{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grade{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 9px;
+  border:1px solid var(--border);border-radius:6px;background:var(--tile);transition:border-color .16s,background .16s}
+.grade:hover{border-color:var(--ink)}
+.grade-lab{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.98rem}
+.grade-lab::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gc,var(--ink-faint))}
+.grade-iv{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.03em;color:var(--ink-faint);white-space:nowrap}
+.g1{--gc:var(--margin-red)} .g3{--gc:var(--misplaced)} .g4{--gc:var(--correct)} .g5{--gc:var(--rule-major)}
+
+.foot{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;
+  margin-top:14px;font-size:.82rem;color:var(--ink-faint);font-style:italic}
+.carnet{font-family:"IBM Plex Mono",monospace;font-style:normal;font-size:.7rem;letter-spacing:.06em}
+
+@media (max-width:720px){
+  .body{grid-template-columns:1fr;border-radius:10px}
+  .field{padding:24px 20px 30px}
+  .margin{border-right:none;border-bottom:2px solid var(--margin-red);flex-direction:row;flex-wrap:wrap;gap:22px;padding:16px 18px}
+  .annot{display:none}
+  .field{padding:22px 18px 28px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* L'Ordre — les jetons de mots */
+.orgauge{font-size:0.75rem;letter-spacing:.08em;text-transform:uppercase;opacity:.6;margin:0 0 8px}
+.orline{display:flex;flex-wrap:wrap;gap:8px;min-height:54px;padding:12px;border:1px dashed
+  var(--rule,#cfcabb);border-radius:10px;margin:0 0 14px;align-items:center}
+.orbank{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.orslot{width:40px;height:28px;border-bottom:2px dotted var(--rule,#cfcabb)}
+.orchip{font:inherit;font-size:1rem;padding:7px 12px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--rule,#cfcabb);background:var(--card,transparent);color:inherit;
+  transition:transform .12s ease,background .12s ease,border-color .12s ease}
+.orchip:hover{transform:translateY(-1px)}
+.orchip.ok{background:rgba(76,160,100,.18);border-color:rgba(76,160,100,.65)}
+.orchip.off{background:rgba(214,160,60,.18);border-color:rgba(214,160,60,.65)}
+/* Décider — le choix et son pourquoi */
+.ydq{font-size:0.875rem;opacity:.75;margin:16px 0 10px}
+.ydopts{display:flex;flex-direction:column;gap:10px;max-width:620px}
+.ydopt{font:inherit;font-size:1rem;text-align:left;padding:12px 14px;border-radius:10px;cursor:pointer;
+  border:1px solid var(--rule,#cfcabb);background:var(--card,transparent);color:inherit}
+.ydopt.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.ydopt:hover:not(:disabled){border-color:rgba(130,124,110,.9)}
+.ydopt.ok{background:rgba(76,160,100,.18);border-color:rgba(76,160,100,.65)}
+.ydopt.no{background:rgba(200,80,70,.16);border-color:rgba(200,80,70,.6)}
+.ydwhy{font-size:0.9375rem;line-height:1.55;border-left:3px solid var(--rule,#cfcabb);
+  padding:4px 0 4px 14px;margin:14px 0 0;max-width:620px}
+.ydwhyen{display:block;margin-top:8px;font-size:0.8125rem;opacity:.68;font-style:italic}
+.enhint{display:block;margin-top:6px;font-size:0.8125rem;opacity:.66;font-style:italic}
+.note.good{color:#3f8f57}
+.note.bad{color:#c2554a}
+
+/* Aujourd'hui — le plan du jour */
+.jbuds{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.jbud{font:inherit;font-size:0.9375rem;padding:8px 16px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--rule,#cfcabb);background:var(--card,transparent);color:inherit}
+.jbud.on{background:rgba(76,160,100,.18);border-color:rgba(76,160,100,.7);font-weight:600}
+.jstats{font-size:0.75rem;letter-spacing:.07em;text-transform:uppercase;opacity:.6;margin:0 0 16px}
+.jsteps{display:flex;flex-direction:column;gap:10px;max-width:660px}
+.jstep{display:flex;gap:14px;align-items:flex-start;text-align:left;font:inherit;cursor:pointer;
+  padding:14px 16px;border-radius:12px;border:1px solid var(--rule,#cfcabb);
+  background:var(--card,transparent);color:inherit;transition:border-color .12s ease,transform .12s ease}
+.jstep:hover{transform:translateY(-1px);border-color:rgba(130,124,110,.9)}
+.jstep.lead{border-left:4px solid rgba(76,160,100,.75)}
+.jnum{flex:0 0 auto;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+  font-size:0.75rem;font-weight:600;background:rgba(130,124,110,.16)}
+.jmid{display:flex;flex-direction:column;gap:3px;flex:1 1 auto;min-width:0}
+.jtitle{font-size:1.0625rem;font-weight:600}
+.jdetail{font-size:0.8125rem;opacity:.7}
+.jwhy{font-size:0.8125rem;line-height:1.5;opacity:.85;margin-top:4px}
+.jen{font-size:0.75rem;line-height:1.5;opacity:.6;font-style:italic}
+.jmin{flex:0 0 auto;font-size:0.75rem;opacity:.6;white-space:nowrap;padding-top:3px}
+.jweak{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:18px}
+.jweaklab{font-size:0.75rem;letter-spacing:.07em;text-transform:uppercase;opacity:.6}
+.jchip{font:inherit;font-size:0.8125rem;padding:5px 11px;border-radius:999px;cursor:pointer;
+  border:1px solid rgba(214,160,60,.6);background:rgba(214,160,60,.14);color:inherit}
+
+/* Imiter — l'ombre de la voix */
+.imsrc{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);margin:14px 0 6px}
+.imsrc.real{color:var(--correct)}
+.imtext.veil{filter:blur(9px);cursor:pointer;user-select:none}
+.imtake.wait{opacity:.6}
+.imtake.rec{background:var(--margin-red);color:#fff;animation:impulse 1s ease-in-out infinite}
+@keyframes impulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--margin-red) 50%,transparent)}
+  50%{box-shadow:0 0 0 10px transparent}}
+.imheard{margin:0 0 14px}
+.imheard:empty{display:none}
+#imGrades{margin:6px 0 0}
+/* L'anneau du jour */
+.ringwrap{display:flex;align-items:center;gap:10px}
+.ringwrap svg{transform:rotate(-90deg);flex:none}
+.ringbg{fill:none;stroke:color-mix(in srgb,var(--ink) 9%,transparent);stroke-width:4}
+.ringarc{fill:none;stroke:var(--margin-red);stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset .5s ease,stroke .3s}
+.ringarc.closed{stroke:var(--correct)}
+.ringn{font-size:1.15rem!important}
+/* +XP qui monte */
+.xpfloat{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.08em;
+  color:var(--correct);animation:xprise .9s ease-out both}
+@keyframes xprise{from{opacity:0;transform:translateY(6px)}30%{opacity:1}to{opacity:1;transform:translateY(-2px)}}
+/* le bilan de fin de séance */
+.sewrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:baseline;margin:0 0 14px}
+.sexp{font-family:var(--display);font-size:1.9rem;color:var(--correct);line-height:1}
+.seq{font-size:.9rem;color:var(--ink-soft)}
+.seq b{color:var(--correct);font-weight:600}
+/* la carte des jours */
+.heat{display:grid;grid-template-rows:repeat(7,9px);grid-auto-flow:column;grid-auto-columns:9px;gap:2px;
+  overflow-x:auto;padding-bottom:6px;max-width:100%}
+.heat i{display:block;width:9px;height:9px;border-radius:2px;background:color-mix(in srgb,var(--rule-minor) 55%,transparent)}
+.heat i.h1{background:color-mix(in srgb,var(--margin-red) 30%,var(--paper-2))}
+.heat i.h2{background:color-mix(in srgb,var(--margin-red) 55%,var(--paper-2))}
+.heat i.h3{background:color-mix(in srgb,var(--margin-red) 80%,var(--paper-2))}
+.heat i.h4{background:var(--margin-red)}
+.heatleg{font-family:"IBM Plex Mono",monospace;font-size:.62rem;color:var(--ink-faint);margin:6px 0 0}
+/* la série en danger */
+.jrisk{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 16px;padding:10px 14px;
+  border-left:3px solid var(--misplaced);background:color-mix(in srgb,var(--misplaced) 10%,transparent);
+  border-radius:0 6px 6px 0;font-size:.95rem}
+/* sangsues */
+.leechrow{display:flex;gap:12px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--border);max-width:560px;font-size:.95rem}
+.leechrow .lt{flex:1;min-width:0}
+/* Sauvegarde */
+.svmeta{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.06em;color:var(--ink-faint);margin:0 0 12px}
+.svmeta.stale{color:var(--misplaced)}
+.svfile{display:inline-block;cursor:pointer}
+
+/* ============================================================================
+   Le Cahier · habillage RPG
+   Lapis, or et parchemin. Ce qui se lit reste sur parchemin ; ce qui est
+   « jeu » (HUD, navigation, marge) vit sur le lapis, sous un filet d'or.
+   Tout passe par les jetons : les deux thèmes (parchemin / nuit) en héritent.
+   ============================================================================ */
+
+body{background-color:var(--ground);color:var(--ink);font-family:var(--body);font-size:1.1562rem;
+  background-image:
+    radial-gradient(1100px 480px at 50% -120px,color-mix(in srgb,var(--ground-3) 75%,transparent),transparent 72%),
+    radial-gradient(1.6px 1.6px at 12% 24%,rgba(248,222,147,.55),transparent 60%),
+    radial-gradient(1.2px 1.2px at 37% 68%,rgba(248,222,147,.4),transparent 60%),
+    radial-gradient(1.8px 1.8px at 61% 18%,rgba(248,222,147,.5),transparent 60%),
+    radial-gradient(1.2px 1.2px at 83% 52%,rgba(248,222,147,.35),transparent 60%),
+    radial-gradient(1.6px 1.6px at 92% 88%,rgba(248,222,147,.45),transparent 60%),
+    radial-gradient(1.2px 1.2px at 24% 92%,rgba(248,222,147,.35),transparent 60%);
+  background-size:auto,620px 620px,620px 620px,620px 620px,620px 620px,620px 620px,620px 620px}
+.sheet{max-width:1120px}
+:focus-visible{outline:2px solid var(--margin-red);outline-offset:3px;border-radius:3px}
+.hud :focus-visible,.world :focus-visible,.margin :focus-visible,.foot :focus-visible,.toasts :focus-visible{outline-color:var(--gold-hi)}
+
+/* ---------- le HUD ---------- */
+.hud{position:relative;padding:14px 18px 16px;border:1px solid var(--gold-lo);border-radius:14px;color:var(--on-ground);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--ground-2) 92%,#000),var(--ground));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 20%,transparent),0 18px 40px -22px #000}
+.hud-top{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;align-items:center;
+  padding-bottom:12px;border-bottom:1px solid color-mix(in srgb,var(--gold) 30%,transparent)}
+.brand h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,6.4vw,3.2rem);line-height:.95;margin:0;
+  letter-spacing:.005em;color:var(--gold-hi);
+  text-shadow:0 2px 0 rgba(0,0,0,.45),0 0 24px color-mix(in srgb,var(--gold) 38%,transparent)}
+.brand .sub{margin:.35rem 0 0;font-style:italic;font-size:.95rem;color:var(--on-ground-soft)}
+.head-tools{display:flex;align-items:center;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:5px 13px 5px 9px;font-family:var(--mono);font-size:.68rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--on-ground-soft);background:rgba(0,0,0,.35);
+  border:1px solid var(--gold-lo);border-radius:99px}
+.pill .fl{width:19px;height:19px;fill:var(--gold);stroke:var(--gold-lo);stroke-width:1.1;flex:none}
+.pill b{font-family:var(--display);font-size:1.3rem;line-height:1;font-weight:700;color:var(--gold-hi)}
+.icon-btn{border:1px solid var(--gold-lo);background:rgba(0,0,0,.35);color:var(--gold-hi)}
+.icon-btn:hover{background:color-mix(in srgb,var(--gold) 24%,rgba(0,0,0,.35))}
+
+.hud-hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;padding-top:14px}
+.portrait{position:relative;width:84px;height:84px;padding:0;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 32% 28%,var(--ground-3),var(--ground) 74%);border:3px solid var(--gold);
+  box-shadow:0 0 0 3px var(--ground),0 0 0 4.5px var(--gold-lo),0 8px 22px -8px #000,inset 0 0 18px rgba(0,0,0,.55);
+  transition:transform .2s,box-shadow .2s}
+.portrait:hover{transform:translateY(-2px) rotate(-2deg);box-shadow:0 0 0 3px var(--ground),0 0 0 4.5px var(--gold),0 12px 26px -8px #000,inset 0 0 18px rgba(0,0,0,.55)}
+.pface{display:grid;place-items:center;height:100%;font-size:2.7rem;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.6))}
+.plv{position:absolute;right:-6px;bottom:-4px;min-width:31px;height:31px;padding:0 7px;border-radius:99px;
+  font:700 1.1rem/27px var(--display);text-align:center;color:var(--gold-ink);
+  background:linear-gradient(var(--gold-hi),var(--gold));border:2px solid var(--ground);box-shadow:0 2px 6px rgba(0,0,0,.55)}
+.hud-name{margin:0;display:flex;flex-wrap:wrap;gap:2px 12px;align-items:baseline;font:700 1.55rem/1.1 var(--display);color:var(--on-ground)}
+.hud-name em{font:500 .68rem var(--mono);font-style:normal;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.xp{position:relative;height:19px;margin:8px 0 4px;border-radius:99px;overflow:hidden;background:rgba(0,0,0,.55);
+  border:1px solid var(--gold-lo);box-shadow:inset 0 2px 5px rgba(0,0,0,.7)}
+.xp i{position:absolute;inset:0 auto 0 0;width:0;border-radius:99px;transition:width .7s cubic-bezier(.2,.8,.2,1);
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));
+  box-shadow:0 0 14px color-mix(in srgb,var(--gold) 65%,transparent)}
+.xp::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),rgba(0,0,0,.28) calc(10% - 1px) 10%)}
+.xp span{position:absolute;inset:0;display:grid;place-items:center;z-index:1;font:600 .64rem var(--mono);
+  letter-spacing:.08em;color:#fff;text-shadow:0 1px 2px #000;font-variant-numeric:tabular-nums}
+.hud-rank{margin:0;font:.74rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-ground-soft)}
+
+/* ---------- la carte du monde : la navigation ---------- */
+.world{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;margin-top:14px}
+.world .tab{position:static;top:0;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 3px 9px;
+  text-align:center;text-transform:none;letter-spacing:0;color:var(--on-ground-soft);
+  border:1px solid color-mix(in srgb,var(--gold) 28%,transparent);border-radius:10px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--ground-2) 90%,#000),var(--ground));
+  transition:transform .18s,color .18s,border-color .18s,box-shadow .18s}
+.world .tab:hover{color:var(--gold-hi);border-color:var(--gold);transform:translateY(-2px);background:linear-gradient(180deg,var(--ground-2),var(--ground))}
+.world .tab[aria-selected="true"]{color:var(--gold-ink);font-weight:inherit;border-color:var(--gold-hi);
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 68%,var(--gold-lo));
+  box-shadow:0 0 0 1px var(--gold-lo),0 8px 18px -8px color-mix(in srgb,var(--gold) 70%,transparent)}
+.ti{width:23px;height:23px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tl{font:700 1.02rem/1 var(--display);letter-spacing:.005em}
+.ts{font:500 .55rem/1.15 var(--mono);letter-spacing:.09em;text-transform:uppercase;opacity:.78}
+.navlabel{display:flex;align-items:center;gap:10px;margin:16px 2px 8px;font:500 .6rem var(--mono);letter-spacing:.2em;
+  text-transform:uppercase;color:var(--on-ground-soft)}
+.navlabel::before{content:"";width:7px;height:7px;transform:rotate(45deg);background:var(--gold)}
+.navlabel::after{content:"";flex:1;height:1px;background:color-mix(in srgb,var(--gold) 30%,transparent)}
+.tabs.minor{gap:6px;padding-top:0;margin:0 0 12px}
+.tabs.minor .tab{position:static;padding:7px 13px 6px;opacity:1;font:500 .6rem var(--mono);letter-spacing:.11em;text-transform:uppercase;
+  color:var(--on-ground-soft);border:1px solid color-mix(in srgb,var(--gold) 26%,transparent);border-radius:99px;background:rgba(0,0,0,.28)}
+.tabs.minor .tab:hover{color:var(--gold-hi);border-color:var(--gold);background:rgba(0,0,0,.4)}
+.tabs.minor .tab[aria-selected="true"]{color:var(--gold-ink);font-weight:600;border-color:var(--gold-hi);box-shadow:none;
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold))}
+
+/* ---------- le cadre : lapis à gauche, parchemin à droite ---------- */
+.body{position:relative;margin-top:0;border:1px solid var(--gold-lo);border-radius:14px;background:var(--raised);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 32%,transparent),0 24px 50px -26px #000}
+.body::before,.body::after{content:"";position:absolute;z-index:3;width:28px;height:28px;pointer-events:none;border:2px solid var(--gold)}
+.body::before{top:7px;left:7px;border-right:0;border-bottom:0;border-top-left-radius:9px}
+.body::after{right:7px;bottom:7px;border-left:0;border-top:0;border-bottom-right-radius:9px}
+.margin{border-right:1px solid var(--gold-lo);color:var(--on-ground);
+  background:linear-gradient(180deg,var(--ground-2),var(--ground))}
+.mstat .k{color:var(--gold)}
+.mstat .v{font-family:var(--display);font-weight:700;font-size:1.95rem;color:var(--on-ground);letter-spacing:.01em}
+.mstat .n{color:var(--on-ground-soft)}
+.annot{color:var(--gold-hi);border-top:1px dashed color-mix(in srgb,var(--gold) 38%,transparent)}
+.ringbg{stroke:rgba(255,255,255,.15)}
+.ringarc{stroke:var(--gold)}
+.ringarc.closed{stroke:#62D3A3}
+.ringn{font-size:1.25rem!important}
+.field{background-color:var(--raised);
+  background-image:var(--grain),repeating-linear-gradient(to bottom,transparent 0 27px,color-mix(in srgb,var(--rule-minor) 75%,transparent) 27px 28px);
+  background-position:0 0,0 12px}
+.field::before{background:linear-gradient(to bottom,color-mix(in srgb,var(--raised) 88%,transparent) 0,transparent 84px)}
+.eyebrow{font-family:var(--mono);color:var(--margin-red)}
+.eyebrow::before{content:"";flex:none;width:7px;height:7px;transform:rotate(45deg);background:var(--rule-major)}
+.eyebrow::after{background:linear-gradient(90deg,var(--rule-major),transparent)}
+.fchead{color:var(--ink-soft);display:flex;align-items:center;gap:10px}
+.fchead::after{content:"";flex:1;max-width:220px;height:1px;background:linear-gradient(90deg,var(--rule-major),transparent)}
+.foot{color:var(--on-ground-soft)}
+.foot #syncNote{color:var(--on-ground-soft)}
+
+/* ---------- boutons : l'or pour l'action, l'encre pour le reste ---------- */
+.go,.dbig{font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:.015em;text-transform:none;
+  padding:10px 24px 9px;color:var(--gold-ink);border:1px solid var(--gold-lo);text-shadow:0 1px 0 rgba(255,255,255,.4);
+  background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 2px 0 var(--gold-lo),0 10px 18px -10px rgba(0,0,0,.7)}
+.go:hover,.dbig:hover{opacity:1;filter:brightness(1.07);transform:translateY(-1px)}
+.go:active,.dbig:active{transform:translateY(1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 0 var(--gold-lo)}
+.go:disabled{filter:grayscale(.7) brightness(.95);transform:none}
+.ghost{font-family:var(--body);font-weight:500;background:transparent;border:1px solid var(--rule-major);color:var(--ink)}
+.ghost:hover{background:color-mix(in srgb,var(--gold) 16%,transparent);border-color:var(--gold-lo)}
+.chip.on{background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:var(--gold-ink);border-color:var(--gold-lo)}
+.opt,.ydopt,.exopt,.sug{box-shadow:0 2px 0 var(--border)}
+.seinput,.fld input,.fld textarea{font-family:var(--body)}
+.seinput:focus,.fld input:focus,.fld textarea:focus{border-color:var(--gold-lo);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 38%,transparent)}
+
+/* ---------- le combat : La Séance ---------- */
+.battle{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;align-items:end;max-width:660px;margin:0 0 12px}
+.foe-name{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:700 1.35rem/1.1 var(--display);color:var(--ink)}
+.foe-name .ti{width:21px;height:21px;color:var(--margin-red)}
+.battle .sebar{max-width:none;height:15px;margin:0;background:var(--ground);border:1px solid var(--gold-lo);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.7)}
+.battle #seFill{background:linear-gradient(180deg,#FF9B86,var(--hp) 52%,#7B1B11);box-shadow:0 0 10px rgba(201,59,43,.55);
+  transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.sebar.hit{animation:hitflash .45s ease-out}
+@keyframes hitflash{0%{box-shadow:inset 0 2px 5px rgba(0,0,0,.7),0 0 0 0 rgba(248,222,147,.9)}100%{box-shadow:inset 0 2px 5px rgba(0,0,0,.7),0 0 0 9px rgba(248,222,147,0)}}
+#seCard.shake{animation:shake .36s}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.foe-side{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.secount{font:600 .72rem var(--mono);letter-spacing:.08em;color:var(--ink-soft)}
+.hearts{display:inline-flex;gap:3px}
+.hearts svg{width:19px;height:19px;stroke:var(--hp);stroke-width:1.8;stroke-linejoin:round;fill:var(--hp)}
+.hearts svg.lost{fill:none;stroke:var(--ink-faint);opacity:.55}
+.sehead{margin-bottom:18px}
+.sekind{font-family:var(--mono)}
+.verdict{font-family:var(--body)}
+.verdict .vmark{font-family:var(--display)}
+.sedone{font-size:2.5rem;color:var(--margin-red);text-shadow:0 1px 0 color-mix(in srgb,var(--gold) 55%,transparent)}
+.sewrap .sexp{font-size:2.2rem}
+
+/* ---------- les quêtes ---------- */
+.jstep{border-color:var(--border);background:linear-gradient(180deg,var(--tile),color-mix(in srgb,var(--tile) 70%,var(--paper-2)));
+  box-shadow:0 2px 0 var(--border),0 12px 20px -16px rgba(0,0,0,.5)}
+.jstep.lead{border-left:4px solid var(--gold);border-color:var(--gold-lo);box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 55%,transparent),0 12px 22px -14px rgba(0,0,0,.6)}
+.jnum{font-family:var(--display);font-size:1.05rem;color:var(--gold-ink);background:linear-gradient(var(--gold-hi),var(--gold));border:1px solid var(--gold-lo)}
+.jtitle{font:700 1.3rem/1.1 var(--display)}
+.jkind{font:600 .56rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--margin-red)}
+.jstep:not(.lead) .jkind{color:var(--ink-faint)}
+.jbud.on{background:linear-gradient(180deg,var(--gold-hi),var(--gold));border-color:var(--gold-lo);color:var(--gold-ink)}
+.questlist{display:grid;gap:8px;max-width:640px;margin:0 0 4px}
+.jquests{margin-top:22px}
+.jrisk{border-left-color:var(--margin-red);background:color-mix(in srgb,var(--margin-red) 9%,transparent)}
+
+/* ---------- La Taverne : des gens, pas des consignes ---------- */
+.npc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;max-width:620px;margin:0 0 16px;
+  padding:12px 16px 12px 12px;border:1px solid var(--border);border-radius:12px;
+  background:linear-gradient(180deg,var(--tile),color-mix(in srgb,var(--tile) 65%,var(--paper-2)));box-shadow:0 2px 0 var(--border)}
+.npc .np{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;font-size:2rem;line-height:1;
+  background:radial-gradient(circle at 32% 28%,var(--ground-3),var(--ground) 76%);border:2px solid var(--gold);
+  box-shadow:0 0 0 2px var(--ground),0 0 0 3px var(--gold-lo),0 6px 14px -6px rgba(0,0,0,.7)}
+.npc .nn{margin:0;font:700 1.35rem/1.1 var(--display)}
+.npc .nr{margin:2px 0 0;font:.62rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.npc .nt{margin:6px 0 0;font-size:.95rem;line-height:1.45;color:var(--ink-soft);font-style:italic}
+.chatlog{--npc:"🎭";--hero:"🦊"}
+.bub{position:relative;font-family:var(--body)}
+.bub.them{margin-left:30px}
+.bub.me{margin-right:30px}
+.bub.them::before,.bub.me::after{position:absolute;bottom:-4px;display:grid;place-items:center;width:30px;height:30px;
+  border-radius:50%;font-size:1.05rem;line-height:1;background:var(--ground);border:1.5px solid var(--gold)}
+.bub.them::before{content:var(--npc);left:-34px}
+.bub.me::after{content:var(--hero);right:-34px}
+.mission{border-left:3px solid var(--gold);border-color:var(--gold-lo);border-left-color:var(--gold)}
+.mission-k{font-size:1.5rem}
+.mission-who{margin:6px 0 0;font:600 1.05rem/1.35 var(--display);color:var(--margin-red)}
+
+/* ---------- l'inventaire : la rareté suit ce qui tient ---------- */
+.ckitem{border-left:4px solid transparent}
+.ckitem.r1{border-left-color:#5EA874}
+.ckitem.r2{border-left-color:#4E8ED8}
+.ckitem.r3{border-left-color:#9A68D6}
+.ckitem.r4{border-left-color:var(--gold)}
+.ckitem.r4 .ckpic{filter:drop-shadow(0 0 7px color-mix(in srgb,var(--gold) 80%,transparent))}
+.ckline{display:flex;flex-wrap:wrap;gap:2px 9px;align-items:baseline}
+.rar{font:600 .52rem var(--mono);letter-spacing:.13em;text-transform:uppercase;padding:1px 6px 0;border-radius:4px;border:1px solid currentColor}
+.rar.r0{color:var(--ink-faint)}
+.rar.r1{color:#2F7F4A}
+.rar.r2{color:#2F6EC0}
+.rar.r3{color:#7C45BE}
+.rar.r4{color:var(--gold-lo)}
+:root[data-theme="dark"] .rar.r1{color:#7FD09A}
+:root[data-theme="dark"] .rar.r2{color:#82B4F0}
+:root[data-theme="dark"] .rar.r3{color:#C3A0F0}
+:root[data-theme="dark"] .rar.r4{color:var(--gold)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .rar.r1{color:#7FD09A}
+  :root:not([data-theme="light"]) .rar.r2{color:#82B4F0}
+  :root:not([data-theme="light"]) .rar.r3{color:#C3A0F0}
+  :root:not([data-theme="light"]) .rar.r4{color:var(--gold)}
+}
+.ckrev-n,.ckrev-sub{font-family:var(--display)}
+.ckrev-sub{font-family:var(--body)}
+
+/* ---------- la fiche de personnage ---------- */
+.avatar{width:92px;height:92px;font-size:3.5rem;border:3px solid var(--gold);
+  background:radial-gradient(circle at 32% 28%,var(--ground-3),var(--ground) 76%);
+  box-shadow:0 0 0 3px var(--raised),0 0 0 4.5px var(--gold-lo),0 10px 20px -10px rgba(0,0,0,.7)}
+.heroname input{font-family:var(--display);font-weight:700;font-size:1.8rem}
+.herotitle{font-family:var(--mono)}
+.heroclass{margin:3px 0 0;font:600 .66rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.xpbar{height:13px;border:1px solid var(--gold-lo);background:var(--ground);box-shadow:inset 0 2px 4px rgba(0,0,0,.6)}
+.xpbar div{background:linear-gradient(180deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));box-shadow:0 0 10px color-mix(in srgb,var(--gold) 55%,transparent)}
+.rshape{stroke:var(--gold-lo);fill:color-mix(in srgb,var(--gold) 30%,transparent)}
+.rdot{fill:var(--gold-lo)}
+.rgrid{stroke:var(--rule-major);opacity:.55}
+.lvfill{background:linear-gradient(90deg,var(--gold-lo),var(--gold))}
+.levelup{font-family:var(--display);font-weight:700}
+.classes{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;max-width:660px;margin:0 0 6px}
+.cls{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;padding:11px 12px 12px;
+  border:1px solid var(--border);border-radius:10px;background:var(--tile);box-shadow:0 2px 0 var(--border);
+  transition:transform .16s,border-color .16s,box-shadow .16s}
+.cls:hover{transform:translateY(-2px);border-color:var(--gold-lo)}
+.cls[aria-pressed="true"]{border-color:var(--gold-lo);background:color-mix(in srgb,var(--gold) 15%,var(--tile));
+  box-shadow:0 0 0 2px var(--gold),0 8px 16px -10px rgba(0,0,0,.6)}
+.cls .ti{width:28px;height:28px;color:var(--margin-red);margin-bottom:2px}
+.cls b{font:700 1.2rem/1.1 var(--display)}
+.cls span{font-size:.8rem;line-height:1.35;color:var(--ink-soft)}
+.medals{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:8px;max-width:700px}
+.medal{display:flex;gap:10px;align-items:center;padding:8px 10px 8px 8px;border:1px solid var(--border);border-radius:10px;background:var(--tile)}
+.medal .mi{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;color:var(--gold-ink);
+  background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 58%,var(--gold-lo));box-shadow:0 2px 6px -2px rgba(0,0,0,.6)}
+.medal .mi .ti{width:19px;height:19px}
+.medal b{display:block;font:700 1.02rem/1.1 var(--display)}
+.medal small{display:block;margin-top:1px;font-size:.74rem;line-height:1.25;color:var(--ink-soft)}
+.medal.locked{opacity:.66}
+.medal.locked .mi{color:var(--ink-faint);background:var(--paper-2);box-shadow:none;border:1px dashed var(--rule-major)}
+
+/* ---------- les fenêtres : création, montée de niveau, hauts faits ---------- */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;
+  background:radial-gradient(800px 520px at 50% 38%,rgba(35,44,138,.55),rgba(4,6,28,.9));backdrop-filter:blur(3px)}
+.mcard{position:relative;width:min(540px,100%);max-height:calc(100dvh - 36px);overflow:auto;padding:26px 24px 22px;
+  border:2px solid var(--gold);border-radius:16px;color:var(--ink);
+  background:linear-gradient(180deg,var(--raised),var(--paper-2));
+  box-shadow:0 0 0 4px var(--ground),0 0 0 5px var(--gold-lo),0 30px 70px -20px #000;
+  animation:mpop .5s cubic-bezier(.2,1.25,.3,1) both}
+@keyframes mpop{from{opacity:0;transform:translateY(18px) scale(.94)}to{opacity:1;transform:none}}
+.mk{margin:0 0 4px;font:600 .66rem var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--margin-red)}
+.mcard h2{margin:0 0 6px;font:700 2rem/1.05 var(--display)}
+.mtxt{margin:0 0 16px;font-size:.98rem;line-height:1.5;color:var(--ink-soft)}
+.mact{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+.mcard.lvl{text-align:center;overflow:hidden}
+.mcard.lvl>*{position:relative}
+.rays{position:absolute!important;inset:-70% -40% auto -40%;height:170%;pointer-events:none;opacity:.9;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(227,180,69,.28) 0 5deg,transparent 5deg 16deg);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000,transparent 62%);mask-image:radial-gradient(circle at 50% 50%,#000,transparent 62%);
+  animation:spin 28s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.mbig{margin:2px 0 0;font:700 6.2rem/1 var(--display);color:var(--gold-lo);
+  text-shadow:0 2px 0 var(--gold-hi),0 0 34px color-mix(in srgb,var(--gold) 70%,transparent)}
+.mcard.lvl .mact{justify-content:center}
+.mcard .fld{max-width:none}
+.pickrow{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.pickrow .avbtn{width:42px;height:42px}
+.pickrow .avbtn.on{border-color:var(--gold-lo);box-shadow:0 0 0 2px var(--gold)}
+.toasts{position:fixed;right:16px;bottom:16px;z-index:90;display:flex;flex-direction:column;gap:8px;max-width:min(380px,calc(100vw - 32px))}
+.toast{display:flex;gap:11px;align-items:center;padding:10px 14px 10px 10px;border:1px solid var(--gold);border-radius:12px;
+  background:var(--ground);color:var(--on-ground);box-shadow:0 14px 30px -12px #000;animation:toastin .4s cubic-bezier(.2,1.1,.3,1) both}
+.toast.out{animation:toastout .3s ease-in both}
+@keyframes toastin{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes toastout{to{opacity:0;transform:translateX(24px)}}
+.toast .mi{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;color:var(--gold-ink);
+  background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 58%,var(--gold-lo))}
+.toast .mi .ti{width:20px;height:20px}
+.toast b{display:block;font:700 1.05rem/1.15 var(--display);color:var(--gold-hi)}
+.toast small{display:block;font-size:.8rem;line-height:1.3;color:var(--on-ground-soft)}
+
+@media (min-width:761px){.hero{grid-template-columns:minmax(0,1fr) minmax(250px,300px)}}
+.rlab{font-size:8.6px;fill:var(--ink-soft)}
+
+/* ---------- petits écrans ---------- */
+@media (max-width:900px){
+  .world{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .sheet{padding-inline:12px}
+  .hud{padding:12px 12px 14px}
+  .portrait{width:66px;height:66px}
+  .pface{font-size:2.15rem}
+  .plv{min-width:27px;height:27px;font-size:.95rem;line-height:23px}
+  .hud-name{font-size:1.3rem}
+  .world .tab{padding:8px 2px 7px}
+  .tabs.minor{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  .tabs.minor::-webkit-scrollbar{display:none}
+  .tabs.minor .tab{flex:none}
+  .tl{font-size:.88rem;letter-spacing:-.01em}
+  .ts{display:none}
+  .ti{width:21px;height:21px}
+  .battle{grid-template-columns:1fr}
+  .foe-side{flex-direction:row;justify-content:space-between;align-items:center}
+  .bub.them{margin-left:26px}
+  .bub.me{margin-right:26px}
+  .bub.them::before{left:-30px}
+  .bub.me::after{right:-30px}
+  .mbig{font-size:5rem}
+  .toasts{right:10px;left:10px;bottom:10px;max-width:none}
+}
+
+/* ==== monde : le ciel, le guide, le récit ==== */
+
+/* ---------- le ciel du HUD : un village de nuit, décor pur ---------- */
+.hud{overflow:hidden}
+.hud-sky{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.62}
+.hud>*:not(.hud-sky){position:relative;z-index:1}
+
+/* ---------- Maître Encrier ---------- */
+.guide{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;max-width:680px;
+  margin:0 0 14px;padding:12px 14px;border:1px solid var(--gold-lo);border-radius:14px;color:var(--on-ground);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--ground-2) 92%,#000),var(--ground));
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--gold) 18%,transparent),0 14px 26px -18px #000}
+.gface{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;font-size:1.9rem;line-height:1;
+  background:radial-gradient(circle at 32% 28%,var(--ground-3),var(--ground) 74%);border:2px solid var(--gold);
+  box-shadow:0 0 0 3px var(--ground),0 0 0 4px var(--gold-lo),inset 0 0 14px rgba(0,0,0,.55)}
+.gname{margin:0;font:600 .6rem var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.gfr{margin:3px 0 0;font:500 1.12rem/1.42 var(--body);color:var(--on-ground)}
+.gen{margin:3px 0 0;font:italic .9rem/1.4 var(--body);color:var(--on-ground-soft)}
+.gtip{width:40px;height:40px;padding:0;border-radius:50%;border:1px solid var(--gold-lo);cursor:pointer;
+  background:rgba(0,0,0,.35);color:var(--gold-hi);font-size:1.1rem;line-height:1;
+  transition:transform .18s,background .18s}
+.gtip:hover{background:color-mix(in srgb,var(--gold) 24%,rgba(0,0,0,.35));transform:translateY(-1px)}
+.guide .nt{cursor:default}
+
+/* ---------- la carte du récit (Quêtes) ---------- */
+.rcard{position:relative;max-width:680px;margin:0 0 18px;padding:14px 18px 14px;border:2px solid var(--gold);border-radius:14px;
+  background:linear-gradient(180deg,var(--raised),var(--paper-2));
+  box-shadow:0 0 0 3px var(--ground),0 0 0 4px var(--gold-lo),0 18px 32px -20px rgba(0,0,0,.7)}
+.rcard::before{content:"";position:absolute;inset:6px;border:1px solid color-mix(in srgb,var(--gold-lo) 55%,transparent);border-radius:9px;pointer-events:none}
+.rcard>*{position:relative}
+.rc-head{display:flex;align-items:center;gap:10px}
+.rc-ic{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;color:var(--gold-ink);
+  background:radial-gradient(circle at 35% 30%,var(--gold-hi),var(--gold) 58%,var(--gold-lo));box-shadow:0 2px 5px -2px rgba(0,0,0,.6)}
+.rc-ic .ti{width:17px;height:17px}
+.rc-kicker{margin:0;font:600 .6rem var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--margin-red)}
+.rc-title{margin:8px 0 6px;font:700 1.75rem/1.05 var(--display);color:var(--ink)}
+.rc-lead{margin:0 0 4px;font-size:1.04rem;line-height:1.45;color:var(--ink)}
+.rc-sub{margin:0 0 4px;font-size:.92rem;color:var(--ink-soft)}
+.rc-tease{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;margin:8px 0 0;padding:8px 11px;border-left:3px solid var(--gold);
+  background:color-mix(in srgb,var(--gold) 11%,transparent);border-radius:0 8px 8px 0}
+.rc-tlab{font:600 .58rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--margin-red)}
+.rc-hook{font-style:italic;font-size:1.02rem;line-height:1.4;color:var(--ink)}
+.rc-en{font-size:.88rem;line-height:1.4;color:var(--ink-faint);font-style:italic}
+.rcard .rc-en{display:block}
+.rcard .rc-tease .rc-en{flex-basis:100%}
+.rcard[data-state="sealed"] .rc-title{color:var(--ink-soft)}
+.rcard[data-state="sealed"] .rc-ic{filter:saturate(.35) brightness(.9)}
+.rc-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:12px}
+.rc-foot .go,.rc-foot .ghost{margin-left:auto}
+.rc-pips{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.rc-pip{width:13px;height:13px;border-radius:50%;border:2px solid var(--rule-major);background:transparent}
+.rc-pip.gap{margin-left:7px}
+.rc-pip.on{background:linear-gradient(var(--gold-hi),var(--gold));border-color:var(--gold-lo)}
+.rc-pip.now{border-color:var(--margin-red);box-shadow:0 0 0 3px color-mix(in srgb,var(--margin-red) 28%,transparent)}
+.rc-saved{font:600 .6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---------- le lecteur : une scène qui se dévoile ---------- */
+.rcread{display:flex;flex-direction:column;overflow:hidden;width:min(700px,100%);height:min(760px,calc(100dvh - 36px));padding:18px 18px 14px}
+.rc-top{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.rc-top h2{margin:0;font:700 1.75rem/1.05 var(--display)}
+.rc-subt{margin:2px 0 0;font-size:.9rem;font-style:italic;color:var(--ink-faint)}
+.rc-tools{display:flex;gap:6px;flex:none}
+.rc-tool{min-width:38px;height:38px;padding:0 9px;border-radius:99px;cursor:pointer;border:1px solid var(--rule-major);
+  background:var(--tile);color:var(--ink);font:600 .72rem var(--mono);letter-spacing:.06em}
+.rc-tool:hover{border-color:var(--gold-lo);background:color-mix(in srgb,var(--gold) 16%,var(--tile))}
+.rc-tool[aria-pressed="true"]{border-color:var(--gold-lo);background:color-mix(in srgb,var(--gold) 26%,var(--tile))}
+.rc-place{margin:8px 0 0;font:600 .62rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--margin-red)}
+.rc-placeen{margin:1px 0 0;font-size:.82rem;font-style:italic;color:var(--ink-faint)}
+.rc-log{flex:1;min-height:0;overflow:auto;display:grid;align-content:start;gap:12px;margin:12px -6px 0;padding:10px 6px 14px;
+  border-top:1px solid var(--rule-minor);border-bottom:1px solid var(--rule-minor);scroll-behavior:auto}
+.rc-row{animation:rcin .38s cubic-bezier(.2,.9,.3,1) both}
+.rc-row p{margin:0}
+.rc-b .rc-en,.rc-n .rc-en{margin-top:3px}
+@keyframes rcin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rc-n{margin:2px 14px;text-align:center}
+.rc-n .rc-fr{margin:0;font:italic 1.08rem/1.65 var(--body);color:var(--ink-soft)}
+.rc-s{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start}
+.rc-face{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;font-size:1.45rem;line-height:1;
+  background:radial-gradient(circle at 32% 28%,var(--ground-3),var(--ground) 74%);border:2px solid var(--gold);
+  box-shadow:0 0 0 2px var(--ground),0 6px 12px -6px #000}
+.rc-b{position:relative;padding:8px 12px 9px;border:1px solid var(--border);border-radius:4px 14px 14px 14px;
+  background:var(--tile);box-shadow:0 2px 0 var(--border)}
+.rc-nm{display:block;margin-bottom:1px;font:600 .58rem var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--margin-red)}
+.rc-s .rc-fr{margin:0;font:500 1.12rem/1.5 var(--body);color:var(--ink)}
+.rc-say{width:34px;height:34px;padding:0;border-radius:50%;cursor:pointer;border:1px solid var(--rule-major);
+  background:transparent;font-size:.95rem;line-height:1;opacity:.75}
+.rc-say:hover{opacity:1;background:color-mix(in srgb,var(--gold) 18%,transparent)}
+.rc-s.who-H{grid-template-columns:auto minmax(0,1fr) auto}
+.rc-s.who-H .rc-face{order:3}
+.rc-s.who-H .rc-b{order:2;border-radius:14px 4px 14px 14px;border-color:var(--gold-lo);
+  background:color-mix(in srgb,var(--gold) 15%,var(--tile))}
+.rc-s.who-H .rc-say{order:1}
+.rc-s.who-B .rc-b{background:color-mix(in srgb,var(--ground-3) 22%,var(--tile));border-style:dashed}
+.rc-s.who-B .rc-fr{font-style:italic;letter-spacing:.01em}
+.rcread .rc-en{display:none}
+.rcread.show-en .rc-en,.rcread .rc-end .rc-en{display:block}
+.rc-choice{display:grid;gap:8px;padding:10px 12px 12px;border:1px dashed var(--gold-lo);border-radius:12px;
+  background:color-mix(in srgb,var(--gold) 9%,transparent)}
+.rc-q{margin:0;font:600 .6rem var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--margin-red)}
+.rc-opt{display:flex;align-items:baseline;gap:10px;width:100%;text-align:left;padding:10px 12px;cursor:pointer;
+  border:1px solid var(--rule-major);border-radius:10px;background:var(--tile);color:var(--ink);
+  font:500 1.06rem/1.4 var(--body);transition:transform .14s,border-color .14s,background .14s}
+.rc-opt:hover:not(:disabled){transform:translateX(3px);border-color:var(--gold-lo);background:color-mix(in srgb,var(--gold) 14%,var(--tile))}
+.rc-key{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font:700 .72rem var(--mono);
+  color:var(--gold-ink);background:linear-gradient(var(--gold-hi),var(--gold));border:1px solid var(--gold-lo)}
+.rc-opt.wrong{opacity:.55;text-decoration:line-through;text-decoration-color:var(--margin-red);cursor:default}
+.rc-opt.wrong .rc-key{background:var(--paper-2);color:var(--ink-faint);border-color:var(--rule-minor)}
+.rc-miss{margin:0;font-size:.9rem;line-height:1.4;color:var(--margin-red)}
+.rc-end{display:grid;gap:7px;padding:14px 16px;border:2px solid var(--gold);border-radius:14px;
+  background:linear-gradient(180deg,var(--raised),var(--paper-2));box-shadow:0 0 0 3px var(--ground),0 0 0 4px var(--gold-lo)}
+.rc-endk{margin:0;font:700 1.5rem/1.1 var(--display);color:var(--ink)}
+.rc-endl{margin:0;font-size:.95rem;color:var(--ink-soft)}
+.rc-endh{margin:6px 0 0;font:600 .62rem var(--mono);letter-spacing:.17em;text-transform:uppercase;color:var(--margin-red)}
+.rc-cards{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.rc-cards li{padding:7px 10px;border-left:3px solid var(--gold);background:color-mix(in srgb,var(--gold) 10%,transparent);border-radius:0 8px 8px 0}
+.rc-cfr{display:block;font:500 1.06rem/1.45 var(--body);color:var(--ink)}
+.rc-cfr mark{padding:0 3px;border-radius:3px;background:color-mix(in srgb,var(--gold) 45%,transparent);color:var(--ink)}
+.rc-endn{margin:0;font-size:.9rem;font-style:italic;color:var(--ink-soft)}
+.rc-xp{margin:0;font:700 1.05rem var(--mono);letter-spacing:.08em;color:var(--correct)}
+.rc-act{margin:6px 0 0;font:700 1.25rem var(--display);color:var(--margin-red)}
+.rc-foot2{display:flex;align-items:center;gap:12px;margin-top:12px}
+.rc-hint{font-size:.82rem;color:var(--ink-faint)}
+
+.rc-prog{height:3px;margin:9px 0 0;border-radius:2px;background:var(--rule-minor);overflow:hidden}
+.rc-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold-hi));transition:width .35s ease}
+
+/* ---------- la puce de quête du HUD ---------- */
+.hud-quest{display:inline-flex;align-items:center;gap:8px;max-width:100%;margin-top:9px;padding:5px 13px 5px 9px;cursor:pointer;
+  border:1px solid var(--gold-lo);border-radius:99px;background:rgba(0,0,0,.4);color:var(--on-ground);
+  font:500 .92rem/1.2 var(--body);text-align:left;transition:transform .16s,background .16s,border-color .16s}
+.hud-quest[hidden]{display:none}
+.hud-quest:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 20%,rgba(0,0,0,.4));transform:translateY(-1px)}
+.hud-quest .ti{width:18px;height:18px;flex:none;color:var(--gold)}
+.hud-quest .hq-k{font:600 .56rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.hud-quest .hq-t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hud-quest[data-state="open"]{border-color:var(--gold);box-shadow:0 0 0 1px color-mix(in srgb,var(--gold) 38%,transparent),0 0 18px -5px var(--gold)}
+@media (prefers-reduced-motion:no-preference){
+  .hud-quest[data-state="open"] .ti{animation:hqpulse 2.4s ease-in-out infinite}
+}
+@keyframes hqpulse{50%{transform:scale(1.2)}}
+
+/* ---------- le livre (Chroniques) ---------- */
+.rcbook{max-width:680px;margin:0 0 20px}
+.rcbook[hidden]{display:none}
+.rc-booklist{display:grid;gap:6px;margin-top:6px}
+.rc-bookrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 12px;align-items:baseline;width:100%;text-align:left;
+  padding:8px 12px;cursor:pointer;border:1px solid var(--border);border-radius:10px;background:var(--tile);color:var(--ink);
+  transition:transform .14s,border-color .14s}
+.rc-bookrow:hover{transform:translateX(3px);border-color:var(--gold-lo)}
+.rc-bk{grid-row:1/3;font:700 1.25rem var(--display);color:var(--gold-lo);min-width:1.4em}
+.rc-bt{font:700 1.1rem/1.2 var(--display)}
+.rc-bc{grid-column:2;font-size:.82rem;color:var(--ink-faint)}
+.rc-bgo{grid-row:1/3;grid-column:3;font:600 .58rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--margin-red)}
+
+/* Les avis et la bulle du mot touché passent devant les fenêtres : un mot touché
+   dans une scène doit se lire, un haut fait gagné en lisant doit se voir. */
+.toasts{z-index:120}
+.taptip{z-index:130}
+
+@media (max-width:560px){
+  .guide{grid-template-columns:auto minmax(0,1fr);padding:10px 12px}
+  .gtip{grid-column:2;justify-self:end;margin-top:-4px}
+  .gface{width:48px;height:48px;font-size:1.55rem}
+  .gfr{font-size:1.04rem}
+  .rcard{padding:12px 14px}
+  .rc-title{font-size:1.5rem}
+  .rc-foot .go,.rc-foot .ghost{margin-left:0;flex:1 1 100%}
+  .rcread{padding:14px 12px 12px;height:calc(100dvh - 24px)}
+  .rc-top h2{font-size:1.45rem}
+  .rc-s{grid-template-columns:auto minmax(0,1fr)}
+  .rc-s .rc-say{display:none}
+  .rc-s.who-H{grid-template-columns:minmax(0,1fr) auto}
+  .rc-s.who-H .rc-b{order:1}
+  .rc-s.who-H .rc-face{order:2}
+  .rc-face{width:36px;height:36px;font-size:1.2rem}
+  .rc-bookrow{grid-template-columns:auto minmax(0,1fr)}
+  .rc-bgo{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .rc-row{animation:none}
+  .rc-opt,.rc-bookrow,.gtip{transition:none}
+}
+
+/* ==== taille du texte : quatre crans (taille.js). Sans choix, la largeur décide. ==== */
+:root{--k:1}
+:root[data-text="0"]{font-size:100%;--k:1}
+:root[data-text="1"]{font-size:112.5%;--k:1.125}
+:root[data-text="2"]{font-size:125%;--k:1.25}
+:root[data-text="3"]{font-size:140%;--k:1.4}
+@media (min-width:561px){:root:not([data-text]){font-size:112.5%;--k:1.125}}
+@media (min-width:760px){:root:not([data-text]){font-size:125%;--k:1.25}}
+.sheet{max-width:calc(1120px * var(--k))}
+@media (min-width:721px){.body{grid-template-columns:calc(196px * var(--k)) minmax(0,1fr)}}
+.world.rows2{grid-template-columns:repeat(5,minmax(0,1fr))}
+.xp{height:calc(19px * var(--k))}
+.mcard{width:min(calc(540px * var(--k)),100%)}
+.rcread{width:min(calc(700px * var(--k)),100%);height:min(calc(760px * var(--k)),calc(100dvh - 36px))}
+.toasts{max-width:min(calc(380px * var(--k)),calc(100vw - 32px))}
+.guide,.rcard,.rcbook,.jsteps,.questlist{max-width:calc(680px * var(--k))}
+.tsz{font-family:var(--mono);font-weight:600;font-size:.78rem;letter-spacing:0;padding:0 9px}
+.tsz:disabled{opacity:.38;cursor:default}
+@media (max-width:560px){.tsz{min-width:34px;height:34px;padding:0 7px}}
+</style>
+
+<div class="sheet">
+  <header class="hud">
+    <canvas class="hud-sky" id="hudSky" aria-hidden="true"></canvas>
+    <div class="hud-top">
+      <div class="brand">
+        <h1>Le&nbsp;Cahier</h1>
+        <p class="sub">Rappel espacé. Niveau tenu. Touche un mot pour son sens.</p>
+      </div>
+      <div class="head-tools">
+        <span class="pill" id="streakPill"><svg class="fl" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flamme"/></svg><b>—</b></span>
+        <button class="icon-btn tsz" id="txtDown" type="button" data-keep="1" title="Texte plus petit" aria-label="Texte plus petit">A−</button>
+        <button class="icon-btn tsz" id="txtUp" type="button" data-keep="1" title="Texte plus grand" aria-label="Texte plus grand">A+</button>
+        <button class="icon-btn" id="langBtn" title="Switch the interface to English">EN</button>
+        <button class="icon-btn" id="themeBtn" title="Changer de thème" aria-label="Changer de thème">◐</button>
+      </div>
+    </div>
+    <div class="hud-hero">
+      <button class="portrait" id="hudPortrait" type="button" title="Ouvrir la fiche du personnage" aria-label="Ouvrir la fiche du personnage">
+        <span class="pface" id="hudAvatar">🦊</span><span class="plv" id="hudLv">1</span>
+      </button>
+      <div class="hud-who">
+        <p class="hud-name"><span id="hudName">Aventurier</span><em id="hudClass"></em></p>
+        <div class="xp" role="progressbar" aria-label="Expérience" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="hudXpBar"><i id="hudXpFill"></i><span id="hudXp">0 / 50 XP</span></div>
+        <p class="hud-rank" id="hudRank">Débutant</p>
+        <button type="button" class="hud-quest" id="hudQuest" data-keep="1" hidden>
+          <svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chroniques"/></svg>
+          <span class="hq-k" id="hudQuestK"></span><span class="hq-t" id="hudQuestT"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="world" role="tablist" aria-label="Main">
+    <button class="tab" id="tab-jour" role="tab" data-mode="jour" aria-selected="true" aria-controls="panel-jour"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-quetes"/></svg><span class="tl">Quêtes</span><span class="ts">Aujourd’hui</span></button>
+    <button class="tab" id="tab-seance" role="tab" data-mode="seance" aria-selected="false" aria-controls="panel-seance"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seance"/></svg><span class="tl">Combat</span><span class="ts">Séance</span></button>
+    <button class="tab" id="tab-cartes" role="tab" data-mode="cartes" aria-selected="false" aria-controls="panel-cartes"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-inventaire"/></svg><span class="tl">Inventaire</span><span class="ts">Mes cartes</span></button>
+    <button class="tab" id="tab-phrase" role="tab" data-mode="phrase" aria-selected="false" aria-controls="panel-phrase"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-forge"/></svg><span class="tl">Forge</span><span class="ts">Phrase</span></button>
+    <button class="tab" id="tab-parler" role="tab" data-mode="parler" aria-selected="false" aria-controls="panel-parler"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-taverne"/></svg><span class="tl">Taverne</span><span class="ts">Conversation</span></button>
+    <button class="tab" id="tab-perso" role="tab" data-mode="perso" aria-selected="false" aria-controls="panel-perso"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-perso"/></svg><span class="tl">Héros</span><span class="ts">Personnage</span></button>
+    <button class="tab" id="tab-examen" role="tab" data-mode="examen" aria-selected="false" aria-controls="panel-examen"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-donjon"/></svg><span class="tl">Donjon</span><span class="ts">Examen</span></button>
+    <button class="tab" id="tab-sons" role="tab" data-mode="sons" aria-selected="false" aria-controls="panel-sons"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sons"/></svg><span class="tl">Oreille</span><span class="ts">Sons</span></button>
+    <button class="tab" id="tab-ref" role="tab" data-mode="ref" aria-selected="false" aria-controls="panel-ref"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-biblio"/></svg><span class="tl">Bibliothèque</span><span class="ts">Références</span></button>
+    <button class="tab" id="tab-histoire" role="tab" data-mode="histoire" aria-selected="false" aria-controls="panel-histoire"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chroniques"/></svg><span class="tl">Chroniques</span><span class="ts">Histoire</span></button>
+  </nav>
+  <p class="navlabel">Salle d’armes</p>
+  <nav class="tabs minor" role="tablist" aria-label="Drills">
+    <button class="tab" id="tab-trou" role="tab" data-mode="trou" aria-selected="false" aria-controls="panel-trou">Le Trou</button>
+    <button class="tab" id="tab-ordre" role="tab" data-mode="ordre" aria-selected="false" aria-controls="panel-ordre">L’Ordre</button>
+    <button class="tab" id="tab-decider" role="tab" data-mode="decider" aria-selected="false" aria-controls="panel-decider">Décider</button>
+    <button class="tab" id="tab-imiter" role="tab" data-mode="imiter" aria-selected="false" aria-controls="panel-imiter">Imiter</button>
+    <button class="tab" id="tab-motus" role="tab" data-mode="motus" aria-selected="false" aria-controls="panel-motus">Motus</button>
+    <button class="tab" id="tab-genre" role="tab" data-mode="genre" aria-selected="false" aria-controls="panel-genre">Le ou La</button>
+    <button class="tab" id="tab-video" role="tab" data-mode="video" aria-selected="false" aria-controls="panel-video">La Vidéo</button>
+    <button class="tab" id="tab-croise" role="tab" data-mode="croise" aria-selected="false" aria-controls="panel-croise">Mots Croisés</button>
+    <button class="tab" id="tab-dictee" role="tab" data-mode="dictee" aria-selected="false" aria-controls="panel-dictee">La Dictée</button>
+    <button class="tab" id="tab-niveau" role="tab" data-mode="niveau" aria-selected="false" aria-controls="panel-niveau">Le Niveau</button>
+    <button class="tab" id="tab-profil" role="tab" data-mode="profil" aria-selected="false" aria-controls="panel-profil">Le Profil</button>
+  </nav>
+
+  <div class="body">
+    <aside class="margin">
+      <div class="mstat"><span class="k">Série</span><span class="v" id="mStreak">0</span><span class="n" id="mStreakN">jour</span></div>
+      <div class="mstat"><span class="k">Palier</span><span class="v" id="mLevel">A2</span><span class="n" id="mLevelN">non testé</span></div>
+      <div class="mstat"><span class="k">À revoir</span><span class="v" id="mDue">0</span><span class="n" id="mDueN">cartes aujourd'hui</span></div>
+      <div class="mstat mring"><span class="k">Anneau</span>
+        <span class="ringwrap"><svg viewBox="0 0 40 40" width="44" height="44" aria-hidden="true">
+          <circle class="ringbg" cx="20" cy="20" r="17"/>
+          <circle class="ringarc" id="ringArc" cx="20" cy="20" r="17"/></svg>
+          <span class="v ringn" id="ringN">0/5</span></span>
+        <span class="n" id="mRingN">rappels aujourd'hui</span></div>
+      <div class="mstat"><span class="k">Rappel</span><span class="v" id="mRecall">—</span><span class="n" id="mRecallN">de mémoire</span></div>
+      <div class="mstat"><span class="k">Justes</span><span class="v" id="mScore">0</span><span class="n" id="mScoreN">sur 0</span></div>
+      <p class="annot" id="annot">Commence par une phrase.</p>
+    </aside>
+
+    <main class="field">
+
+      <section id="panel-seance" role="tabpanel" aria-labelledby="tab-seance">
+        <div class="battle">
+          <div class="foe">
+            <p class="foe-name"><svg class="ti" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-seance"/></svg><span id="seFoe">Gardien de l’oubli</span></p>
+            <div class="sebar" id="seBar"><div id="seFill"></div></div>
+          </div>
+          <div class="foe-side">
+            <span class="secount" id="seCount"></span>
+            <span class="hearts" id="seHearts" role="img" aria-label="Endurance"></span>
+          </div>
+        </div>
+        <div class="sehead"><p class="sekind" id="seKind"></p></div>
+        <div id="seCard"></div>
+        <div class="after" id="seAfter"></div>
+        <p class="note" id="seNote"></p>
+        <div class="after"><button class="ghost" id="seRestart" hidden>Reprendre une séance</button></div>
+        <p class="lede dim" id="seMethod">Chaque carte se redemande juste avant que tu l’oublies :
+          1 jour, 3 jours, puis de plus en plus loin selon ce que tu réussis. On écrit de mémoire
+          avant de voir la moindre proposition, et les types d’exercice alternent exprès —
+          c’est plus dur sur le moment, et c’est ce qui tient.</p>
+      </section>
+
+      <section id="panel-cartes" role="tabpanel" aria-labelledby="tab-cartes" hidden>
+        <p class="eyebrow">Mes cartes · méthode Fluent Forever</p>
+        <p class="lede">Des images à la place des traductions, un souvenir à toi sur chaque carte,
+          et chaque mot vu de quatre côtés. Dans cet ordre&nbsp;: l’oreille, le socle, tes mots,
+          puis les phrases.</p>
+        <div class="steps" id="ckSteps"></div>
+
+        <div class="ckreview">
+          <div class="ckrev-txt">
+            <p class="ckrev-n" id="ckRevN"></p>
+            <p class="ckrev-sub" id="ckRevSub"></p>
+          </div>
+          <button class="go" id="ckGo">Réviser mes cartes</button>
+        </div>
+
+        <p class="fchead">Fabriquer une carte</p>
+        <p class="lede dim">Une image plutôt qu’une traduction, et un souvenir à toi :
+          c’est fabriquer la carte qui la fait tenir. Un mot donne quatre cartes :
+          mot → image, image → mot, son → orthographe, et le genre.</p>
+        <div id="mkForm"></div>
+        <details class="gimg" id="ckGimg"></details>
+
+        <p class="fchead">Les mots de ton monde</p>
+        <p class="lede dim">Après le socle, la méthode passe aux mots dont toi tu as besoin.
+          Choisis tes terrains : Claude propose des mots concrets avec leur image et leur genre,
+          et tu gardes ceux qui te parlent.</p>
+        <p class="dwarn" id="ckWarn" hidden>Les propositions viennent de Claude, et il faut ton
+          accord. Le reste de tes cartes fonctionne sans lui.</p>
+        <div class="chips" id="ckDoms"></div>
+        <label class="fld ckfld"><span>Une situation précise — facultatif</span>
+          <input id="ckTopic" class="seinput" autocomplete="off" spellcheck="false"
+            placeholder="expliquer un exercice à un client, prendre rendez-vous à la clinique…"></label>
+        <div class="fld"><span>Le français de</span><div class="chips" id="ckVar"></div></div>
+        <div class="after">
+          <button class="go" id="ckSuggest">Proposer 12 mots</button>
+          <button class="ghost" id="ckStop" hidden>Arrêter</button>
+        </div>
+        <p class="note" id="ckSugNote"></p>
+        <ul class="sugg" id="ckSugList" hidden></ul>
+        <div class="after" id="ckSugAct" hidden>
+          <button class="go" id="ckSugAdd">Ajouter les mots choisis</button>
+          <button class="ghost" id="ckSugMore">12 autres</button>
+        </div>
+
+
+        <p class="fchead">Tes captures · depuis le dictionnaire pop-up</p>
+        <p class="lede dim">Le dictionnaire exporte un CSV « Word,Sentence » : le mot
+          français, et la phrase que tu as dite à voix haute — en anglais la plupart du
+          temps. Ta phrase est traduite fidèlement, seul le mot nu passe sous le trou,
+          l’article reste dans la phrase et le genre devient une étiquette.</p>
+        <p class="dwarn" id="cpWarn" hidden>La fabrication passe par Claude, et il faut
+          ton accord.</p>
+        <div class="ckbar">
+          <input type="file" id="cpFile" accept=".csv,text/csv,text/plain" class="seinput">
+        </div>
+        <label class="fld"><span>… ou colle le CSV ici</span>
+          <textarea id="cpText" class="seinput" rows="4" spellcheck="false"
+            placeholder="Word,Sentence&#10;écouteurs,&quot;My favourite headphones are my Apple Pro Max.&quot;"></textarea></label>
+        <div class="after">
+          <button class="go" id="cpGo">Fabriquer les dix premières</button>
+          <button class="ghost" id="cpNext">Dix suivantes</button>
+        </div>
+        <p class="note" id="cpNote"></p>
+        <ul class="sugg" id="cpList" hidden></ul>
+        <div class="after" id="cpAct" hidden>
+          <button class="go" id="cpKeep">Garder les cartes cochées</button>
+        </div>
+        <p class="fchead">Ton paquet</p>
+        <div class="ckbar">
+          <input id="ckSearch" class="seinput" type="search" autocomplete="off" spellcheck="false"
+            placeholder="chercher un mot ou un souvenir…" aria-label="Chercher">
+          <div class="chips" id="ckFilters"></div>
+        </div>
+        <p class="exdur" id="ckCount"></p>
+        <ul class="deck" id="ckList"></ul>
+        <p class="lede dim" id="ckEmpty" hidden>Ton paquet est vide. Ajoute un thème du socle,
+          ou fabrique ta première carte plus haut.</p>
+        <div class="after"><button class="ghost" id="ckMore" hidden>Afficher plus</button></div>
+        <p class="lede dim" style="margin-top:14px">La rareté d’un mot compte ses cartes tenues trois semaines et plus : aucune, c’est un mot <b>commun</b> ; les quatre, c’est un mot <b>légendaire</b>.</p>
+        <p class="ckleg">
+          <span><span class="dot new"></span><span>pas encore vue</span></span>
+          <span><span class="dot on"></span><span>prévue</span></span>
+          <span><span class="dot due"></span><span>à revoir aujourd’hui</span></span>
+          <span><span class="dot held"></span><span>tenue trois semaines et plus</span></span>
+        </p>
+
+
+        <p class="fchead">Les 625 · la liste du livre</p>
+        <p class="lede dim">La liste de départ de Wyner, telle qu’elle est dans le livre :
+          629 mots concrets en anglais, en 27 catégories. Elle est en anglais à dessein —
+          la méthode veut que tu la traduises toi-même. Choisis une catégorie : chaque mot
+          revient avec son genre et son image, et tu gardes ce qui te va.</p>
+        <div class="chips" id="ffCats"></div>
+        <p class="exdur" id="ffCount"></p>
+        <p class="note" id="ffNote"></p>
+        <ul class="sugg" id="ffList" hidden></ul>
+        <div class="after" id="ffAct" hidden>
+          <button class="go" id="ffKeep">Garder les mots cochés</button>
+        </div>
+        <p class="fchead" id="ckSocle">Le socle · vocabulaire de base</p>
+        <p class="lede dim">Des mots concrets, qu’on peut montrer du doigt — c’est par là que
+          commence la méthode. Chaque mot entre avec son image et son genre, sans traduction,
+          et donne quatre cartes.</p>
+        <div class="sbbox">
+          <div class="chips" id="sbThemes"></div>
+          <div class="after">
+            <button class="ghost" id="sbAll">Tout ajouter</button>
+            <span class="exdur" id="sbCount"></span>
+          </div>
+          <p class="note" id="sbNote"></p>
+        </div>
+      </section>
+
+      <section id="panel-trou" role="tabpanel" aria-labelledby="tab-trou" hidden>
+        <p class="eyebrow" id="trouEyebrow">Exercice I · Complétez la phrase</p>
+        <p class="sentence" id="sentence"></p>
+        <p class="gloss" id="gloss"></p>
+        <label class="fld" id="trouField"><span>De mémoire</span>
+          <input id="trouIn" class="seinput" autocomplete="off" spellcheck="false"
+            placeholder="le mot qui manque"></label>
+        <div class="options" id="options" hidden></div>
+        <div class="after" id="trouAfter"></div>
+      </section>
+
+      <section id="panel-motus" role="tabpanel" aria-labelledby="tab-motus" hidden>
+        <p class="eyebrow" id="motusEyebrow">Exercice II · Six lettres, six essais</p>
+        <p class="clue" id="motusClue"></p>
+        <div class="grid" id="motusGrid"></div>
+        <div class="kb" id="kb"></div>
+        <p class="note" id="motusNote"></p>
+      </section>
+
+      <section id="panel-genre" role="tabpanel" aria-labelledby="tab-genre" hidden>
+        <p class="eyebrow">Exercice III · Masculin ou féminin</p>
+        <p class="noun" id="noun"></p>
+        <p class="gloss" id="nounGloss"></p>
+        <div class="artchoice">
+          <button class="art" id="artLe">le</button>
+          <button class="art" id="artLa">la</button>
+        </div>
+        <p class="rule" id="genreRule"></p>
+      </section>
+
+      <section id="panel-video" role="tabpanel" aria-labelledby="tab-video" hidden>
+        <p class="eyebrow">Exercice IV · D'après une vidéo</p>
+        <p class="lede">Regarde n'importe quelle vidéo française sur YouTube. Ouvre <b>Afficher la
+          transcription</b> sous la vidéo, copie le texte, colle-le ici : le cahier en tire tes
+          propres phrases à trous, qui rejoignent l'exercice&nbsp;I.</p>
+        <p class="lede dim" id="vidHow" hidden>Claude relit la transcription, choisit les mots qui
+          valent la peine et traduit chaque phrase.</p>
+        <label class="fld"><span>Lien de la vidéo — facultatif, pour y revenir</span>
+          <input id="vidUrl" type="url" placeholder="https://www.youtube.com/watch?v=…"></label>
+        <label class="fld"><span>Transcription</span>
+          <textarea id="vidText" rows="6" spellcheck="false"
+            placeholder="Colle ici deux ou trois minutes de transcription…"></textarea></label>
+        <div class="after">
+          <button class="go" id="vidGo">Fabriquer les exercices</button>
+          <button class="ghost" id="vidStop" hidden>Arrêter</button>
+          <button class="ghost" id="vidClear" hidden>Effacer mes cartes</button>
+        </div>
+        <p class="note" id="vidNote"></p>
+        <ul class="deckList" id="vidList" hidden></ul>
+      </section>
+
+      <section id="panel-croise" role="tabpanel" aria-labelledby="tab-croise" hidden>
+        <p class="eyebrow">Exercice V · Grille de conjugaison</p>
+        <p class="lede dim">Chaque définition donne un verbe, une personne et un temps : écris la forme
+          conjuguée. Sans accents, comme dans toutes les grilles françaises.</p>
+        <p class="speakrow"><input type="checkbox" id="xLive" checked>
+          <label for="xLive">Correction immédiate, lettre par lettre</label></p>
+        <div class="xboard">
+          <div class="xleft">
+            <div class="xwrap"><div class="xgrid" id="xGrid"></div></div>
+            <p class="xclue" id="xClue"></p>
+          </div>
+          <div class="xcols">
+            <div><h3>Horizontalement</h3><ul id="xAcross"></ul></div>
+            <div><h3>Verticalement</h3><ul id="xDown"></ul></div>
+          </div>
+        </div>
+        <div class="after">
+          <button class="go" id="xCheck">Vérifier</button>
+          <button class="ghost" id="xHint">Une lettre</button>
+          <button class="ghost" id="xNew">Nouvelle grille</button>
+        </div>
+        <p class="note" id="xNote"></p>
+      </section>
+
+      <section id="panel-dictee" role="tabpanel" aria-labelledby="tab-dictee" hidden>
+        <p class="eyebrow">Exercice VI · Dictée</p>
+        <p class="dwarn" id="dWarn" hidden></p>
+        <p class="lede dim">Écoute la phrase, écris-la. La correction sépare les vraies fautes
+          des fautes d’accent — les phrases viennent de l’exercice I et de tes vidéos.</p>
+        <div class="dplay">
+          <button class="dbig" id="dPlay">▶ Écouter</button>
+          <button class="ghost" id="dSlow">Lentement</button>
+          <button class="ghost" id="dReveal">Indice</button>
+        </div>
+        <label class="fld"><span>Ce que tu entends</span>
+          <textarea id="dInput" rows="3" spellcheck="false" autocapitalize="sentences"
+            placeholder="Écris la phrase ici…"></textarea></label>
+        <div class="after">
+          <button class="go" id="dCheck">Corriger</button>
+          <button class="go" id="dNext" hidden>Phrase suivante</button>
+        </div>
+        <p class="note" id="dNote"></p>
+        <p class="dcorr" id="dCorr"></p>
+        <p class="gloss" id="dGloss"></p>
+      </section>
+
+      <section id="panel-phrase" role="tabpanel" aria-labelledby="tab-phrase" hidden>
+        <p class="eyebrow">Exercice VII · Écrire une phrase · niveau <span id="phLevel">A2</span></p>
+        <p class="dwarn" id="phWarn" hidden>Ici c’est Claude qui corrige, et il faut ton accord
+          pour ça. Sans lui, cet exercice ne peut rien te dire.</p>
+        <p class="phtask" id="phTask"></p>
+        <label class="fld"><span>Ta phrase — accents compris</span>
+          <textarea id="phIn" class="seinput" rows="3" spellcheck="false"></textarea></label>
+        <div class="after">
+          <button class="go" id="phGo">Soumettre</button>
+          <button class="ghost" id="phNew">Autre consigne</button>
+        </div>
+        <p class="note" id="phNote"></p>
+        <div id="phOut"></div>
+        <p class="lede dim">Corrigé sans complaisance : un accord raté, un temps qui ne va pas,
+          une préposition de travers, et la phrase est fausse. C’est en écrivant qu’on finit
+          par écrire.</p>
+      </section>
+
+      <section id="panel-niveau" role="tabpanel" aria-labelledby="tab-niveau" hidden>
+        <p class="eyebrow">Le niveau</p>
+        <div id="nvIntro">
+          <p class="lede">Douze phrases à écrire de mémoire, sans propositions. \u00c7a monte
+            quand tu réussis, ça descend quand tu rates — au bout, le cahier sait où te
+            faire travailler.</p>
+          <div class="after"><button class="go" id="nvStart">Passer le test</button></div>
+        </div>
+        <div id="nvTest" hidden>
+          <div class="sehead">
+            <p class="sekind">On teste le <b id="nvLv">A2</b></p>
+            <span class="secount" id="nvCount"></span>
+          </div>
+          <div id="nvCard"></div>
+          <div class="after"><button class="go" id="nvCheck">Valider</button></div>
+          <p class="note" id="nvNote"></p>
+        </div>
+        <div id="nvResult" hidden>
+          <p class="nvbadge" id="nvBadge">A2</p>
+          <p class="lede" id="nvVerdict"></p>
+          <div class="after"><button class="ghost" id="nvAgain">Refaire le test</button></div>
+        </div>
+        <p class="fchead">Cartes entrées dans le cycle, par niveau</p>
+        <div id="nvBars"></div>
+        <p class="lede dim" id="nvGate"></p>
+        <p class="lede dim">Niveau actuel : <b id="nvNow">A2</b>. Il ne monte pas tout seul et il ne
+          redescend jamais pour t’arranger : tu restes ici tant que le rappel ne tient pas.</p>
+      </section>
+
+      <section id="panel-profil" role="tabpanel" aria-labelledby="tab-profil" hidden>
+        <p class="eyebrow">Le profil · pour qui est ce cahier</p>
+        <p class="dwarn" id="prWarn" hidden>La fabrication de cartes passe par Claude, et il faut
+          ton accord. Le reste du profil fonctionne sans lui.</p>
+
+        <label class="fld"><span>Pourquoi tu apprends le français</span>
+          <textarea id="prWhy" class="seinput" rows="2" spellcheck="false"
+            placeholder="Travailler en français à Ottawa, parler aux patients, lire la presse…"></textarea></label>
+
+        <p class="fchead">Ce dont tu as besoin de parler</p>
+        <div class="chips" id="prChips"></div>
+
+        <div class="prsec">
+          <label class="fld"><span>Ta langue la plus forte</span>
+            <input id="prL1" class="seinput" autocomplete="off" placeholder="anglais, thaï…"></label>
+          <p class="fchead">Temps par jour</p>
+          <div class="rangerow">
+            <input type="range" id="prMin" min="5" max="40" step="5" value="10">
+            <span class="rangeout" id="prMinOut">10 min</span>
+          </div>
+          <p class="lede dim">Le nombre de cartes neuves par jour suit ce curseur. Mieux vaut dix
+            minutes tous les jours que deux heures le dimanche.</p>
+        </div>
+
+        <div class="after">
+          <button class="go" id="prSave">Enregistrer le profil</button>
+          <button class="ghost" id="prMake">Fabriquer 10 cartes sur mon monde</button>
+        </div>
+        <p class="note" id="prNote"></p>
+        <ul class="deckList" id="prList" hidden></ul>
+
+        <p class="fchead">Ce que tu rates en ce moment</p>
+        <p class="exdur" id="prRet"></p>
+        <div id="prWeak"></div>
+        <p class="lede dim">Mesuré sur tes rappels des trente derniers jours, pas sur une impression.
+          Un type sous 80 % reçoit moins de cartes neuves, sous 70 % aucune : ce sont les cartes
+          dues qui le travaillent. Les cartes fabriquées visent ces points.</p>
+
+        <p class="fchead">Sangsues</p>
+        <p class="lede dim">Une carte ratée six fois s’endort au lieu de revenir une septième.
+          Refais-la autrement, ou réveille-la telle quelle.
+          <span class="enhint">Leeches: cards failed six times are suspended. Remake them, or wake them as they are.</span></p>
+        <div id="prLeech"></div>
+
+        <div class="prsec">
+          <p class="fchead">Sauvegarde</p>
+          <p class="lede dim">Tout le cahier dans un fichier : le planning, le profil, tes mots, tes
+            phrases. Le compte synchronise ; le fichier est ce qui reste si le compte, le navigateur
+            ou la page disparaissent.
+            <span class="enhint">Everything in one JSON file you keep. Export it now and then; import it on a
+            new device — Replace wipes this device's notebook, Merge combines the two, card by card.</span></p>
+          <p class="svmeta" id="svMeta"></p>
+          <div class="after">
+            <button class="go" id="svExport">Exporter le cahier</button>
+            <label class="ghost svfile" for="svFile">Importer un fichier</label>
+            <input type="file" id="svFile" accept=".json,application/json" hidden>
+            <button class="ghost" id="svPaste">Lire le texte collé</button>
+          </div>
+          <p class="note" id="svNote"></p>
+          <div id="svConfirm" hidden>
+            <p class="phline" id="svSummary"></p>
+            <div class="after">
+              <button class="go" id="svMerge">Fusionner</button>
+              <button class="ghost danger" id="svReplace">Remplacer</button>
+              <button class="ghost" id="svCancel">Annuler</button>
+            </div>
+          </div>
+          <div id="svRawBox" hidden>
+            <label class="fld"><span>Le cahier, en texte</span>
+              <textarea id="svRaw" class="seinput" rows="4" spellcheck="false"></textarea></label>
+            <div class="after"><button class="ghost" id="svCopy">Copier</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-parler" role="tabpanel" aria-labelledby="tab-parler" hidden>
+        <p class="eyebrow">Exercice VIII · Conversation · niveau <span id="cvLevel"></span></p>
+        <p class="dwarn" id="cvWarn" hidden>La conversation et le débriefing passent par Claude,
+          et il faut ton accord. Chaque réplique est une demande sur ton compte.</p>
+        <div class="mission" id="cvMission">
+          <div class="mission-head">
+            <span class="mission-k">Mission du jour</span>
+            <span class="mission-state" id="cvMissionState"></span>
+            <span class="exclock mission-clock" id="cvClock" hidden>3:00</span>
+          </div>
+          <p class="mission-who" id="cvMissionWho"></p>
+          <p class="mission-txt">Trois minutes à l’oral, sur une situation tirée de tes sujets. Le micro
+            se tend tout seul après chaque réplique ; parle, une pause envoie. À zéro, le débriefing
+            arrive et tes fautes repartent en cartes.
+            <span class="enhint">Three spoken minutes on a scene from your topics. The mic arms itself after
+            each reply — speak, and a pause sends it. At zero the debrief lands and your mistakes become cards.</span></p>
+          <div class="after">
+            <button class="dbig" id="cvMissionGo">Lancer la mission · 3 min</button>
+            <button class="ghost" id="cvMissionStop" hidden>Arrêter et corriger</button>
+            <span class="exdur" id="cvMissionCount"></span>
+          </div>
+        </div>
+        <div class="npc" id="cvScene">
+          <span class="np" id="cvNpP">🎭</span>
+          <div>
+            <p class="nn" id="cvNpN">Quelqu’un t’attend</p>
+            <p class="nr" id="cvNpR"></p>
+            <p class="nt" id="cvNpT">Tu vas devoir t’en sortir en français. Il ne te corrigera pas pendant — la correction vient à la fin.</p>
+          </div>
+        </div>
+        <p class="speakrow"><input type="checkbox" id="cvSpeak" checked>
+          <label for="cvSpeak">Lire ses répliques à voix haute</label></p>
+        <div class="chatlog" id="cvLog"></div>
+        <div class="cvrow" id="cvRow" hidden>
+          <textarea id="cvIn" class="seinput" rows="2" spellcheck="false"
+            placeholder="Réponds-lui en français…"></textarea>
+          <button class="micbtn" id="cvMic" title="Parler" aria-label="Parler">●</button>
+          <button class="go" id="cvSend">Envoyer</button>
+        </div>
+        <label class="fld"><span>Une situation précise à travailler — facultatif</span>
+          <input id="cvTopic" class="seinput" autocomplete="off"
+            placeholder="expliquer un diagnostic à une famille, négocier un délai…"></label>
+        <div class="after">
+          <button class="go" id="cvStart">Commencer une situation</button>
+          <button class="ghost" id="cvEnd" hidden>Terminer et corriger</button>
+        </div>
+        <p class="note" id="cvNote"></p>
+        <div id="cvOut"></div>
+        <p class="fchead" id="cvHistHead" hidden>Vos conversations précédentes</p>
+        <ul class="deckList" id="cvHist" hidden></ul>
+        <p class="lede dim">Il ne te corrige jamais ouvertement : il reprend ta phrase correctement dans la sienne,
+          l’air de rien, et continue. Il se souvient des fois d’avant. Le débriefing arrive à la fin, et tes fautes repartent en cartes
+          dans la séance.</p>
+      </section>
+
+      <section id="panel-examen" role="tabpanel" aria-labelledby="tab-examen" hidden>
+        <p class="eyebrow">L’examen blanc · format officiel</p>
+        <p class="dwarn" id="exWarn" hidden>Les sujets et la correction passent par Claude,
+          et il faut ton accord.</p>
+
+        <div id="exBoard">
+          <div class="exhead">
+            <span class="exdip" id="exDiploma">DELF B1</span>
+          </div>
+          <div class="chips" id="exLevels"></div>
+          <div id="exGrid"></div>
+          <p class="phverdict" id="exVerdict"></p>
+          <p class="exrule" id="exRule"></p>
+          <p class="lede dim">Quatre épreuves sur 25, chacune chronométrée à la durée
+            officielle. Admis à 50/100 — mais une seule épreuve sous 5/25 et c’est
+            éliminatoire, comme au vrai examen. Tu peux les passer une par une.</p>
+        </div>
+
+        <div id="exRoom" hidden>
+          <div class="exhead">
+            <span class="exdip" id="exTitle"></span>
+            <span class="exclock" id="exClock">--:--</span>
+          </div>
+          <div id="exBody"></div>
+          <div class="after">
+            <button class="go" id="exSubmit" hidden>Rendre la copie</button>
+            <span class="exdur" id="exCount"></span>
+            <button class="ghost" id="exQuit">Abandonner</button>
+          </div>
+          <p class="note" id="exNote"></p>
+          <div id="exOut"></div>
+        </div>
+      </section>
+
+      <section id="panel-perso" role="tabpanel" aria-labelledby="tab-perso" hidden>
+        <p class="eyebrow">Fiche de personnage</p>
+        <p class="levelup" id="hLevelUp" hidden></p>
+        <div class="hero">
+          <div>
+            <div class="heroid">
+              <span class="avatar" id="hAvatar">🦊</span>
+              <div class="heroname">
+                <input id="hName" placeholder="Ton nom" autocomplete="off" aria-label="Name">
+                <p class="herotitle" id="hTitle"></p>
+                <p class="heroclass" id="hClass"></p>
+              </div>
+            </div>
+            <div class="xpbar"><div id="hBarFill"></div></div>
+            <div class="xprow"><span id="hXp"></span><span id="hNext"></span></div>
+            <p class="fchead">Caractéristiques</p>
+            <div id="hStats"></div>
+            <p class="fchead">Journal de quêtes</p>
+            <div id="hQuests"></div>
+            <p class="note" id="hToday"></p>
+            <p class="fchead">Classe</p>
+            <div class="classes" id="hClasses"></div>
+            <p class="heatleg" id="hClassNote"></p>
+            <p class="fchead">Hauts faits</p>
+            <div class="medals" id="hAch"></div>
+            <p class="heatleg" id="hAchLeg"></p>
+            <p class="fchead">L’année, jour par jour</p>
+            <div class="heat" id="hHeat"></div>
+            <p class="heatleg" id="hHeatLeg"></p>
+            <p class="fchead">Avatar</p>
+            <div class="chips" id="hPick"></div>
+          </div>
+          <div>
+            <div id="hRadar"></div>
+            <p class="lede dim">Aucun de ces chiffres n’est offert : ils sortent de tes rappels,
+              de tes dictées, de tes phrases et de tes conversations. Monter une
+              caractéristique veut dire la mériter.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="panel-sons" role="tabpanel" aria-labelledby="tab-sons" hidden>
+        <p class="eyebrow">Les sons · paires minimales</p>
+        <p class="dwarn" id="snWarn" hidden>Aucune voix française sur cet appareil : cet exercice
+          a besoin d’une vraie voix française pour avoir un sens.</p>
+        <p class="lede">Avant le vocabulaire, l’oreille. Tant que deux sons français se
+          confondent chez toi, tu ne les diras pas et tu ne les écriras pas. \u00c9coute, puis
+          dis lequel des deux tu as entendu.</p>
+        <div id="snBody"></div>
+        <p class="note" id="snNote"></p>
+        <p class="fchead">Ce que ton oreille distingue</p>
+        <div id="snStats"></div>
+        <p class="lede dim">Chaque paire est une carte du planning : celles que tu confonds
+          reviennent, les autres s’espacent.</p>
+      </section>
+
+      <section id="panel-histoire" role="tabpanel" aria-labelledby="tab-histoire" hidden>
+        <p class="eyebrow">L’histoire · lire en continu</p>
+        <div class="rcbook" id="rcBook" hidden>
+          <p class="fchead" id="rcBookH">Le Récit · les pages lues</p>
+          <div class="rc-booklist" id="rcBookList"></div>
+        </div>
+        <p class="dwarn" id="stWarn" hidden>Le feuilleton est écrit par Claude, et il faut ton accord.</p>
+        <p class="lede">Un feuilleton écrit à ton niveau, avec les mots que tu connais déjà.
+          Lis d’un bout à l’autre sans t’arrêter. Les mots soulignés cachent un sens
+          dessous, mais plus tu en ouvres, moins tu lis — le flou fait partie du travail.</p>
+        <p class="sttitle" id="stTitle"></p>
+        <div class="story" id="stText"></div>
+        <div class="after">
+          <button class="go" id="stDone" hidden>J’ai fini de lire</button>
+          <button class="ghost" id="stRead">▶ Écouter</button>
+          <button class="go" id="stGo">Commencer l’histoire</button>
+        </div>
+        <p class="note" id="stNote"></p>
+        <div id="stEnd"></div>
+      </section>
+
+      <section id="panel-ref" role="tabpanel" aria-labelledby="tab-ref" hidden>
+        <p class="eyebrow">Les références · à consulter</p>
+        <p class="lede">Les tableaux qu’on vient regarder quand on hésite. Ce sont les mêmes
+          formes que le cahier te fait réviser — rien d’inventé à côté.</p>
+        <div class="mkgrid">
+          <label class="fld"><span>Le verbe</span>
+            <select id="refVerb" class="seinput"></select></label>
+          <div class="after"><button class="ghost" id="refSay">▶ Écouter</button></div>
+        </div>
+        <div id="refBody"></div>
+        <p class="fchead">Les images des phrases</p>
+        <p class="lede dim">Chaque phrase peut avoir sa petite scène. Claude les fabrique par
+          vingt-quatre, une fois pour toutes, et elles s’affichent ensuite sur la carte.</p>
+        <div class="after"><button class="go" id="refPicGo">Mettre les phrases en image</button></div>
+        <p class="note" id="refPicNote"></p>
+      </section>
+
+      <section id="panel-ordre" role="tabpanel" aria-labelledby="tab-ordre" hidden>
+        <p class="eyebrow">Exercice XVII · Remettre la phrase en ordre · niveau <span id="orLv">A2</span></p>
+        <p class="lede dim">Le trou teste un mot. Ici c’est la phrase entière qui se construit :
+          ordre des mots, accords, pronoms.
+          <span class="enhint">Build the whole sentence from its scrambled words. A word placed in the right
+          position turns green; a misplaced one turns amber — it never tells you where it belonged.</span></p>
+        <p class="orgauge" id="orGauge"></p>
+        <div class="orline" id="orLine"></div>
+        <div class="orbank" id="orBank"></div>
+        <div class="after">
+          <button class="dbig" id="orCheck">Vérifier</button>
+          <button class="ghost" id="orHear">▶ Écouter</button>
+          <button class="ghost" id="orHint">Un mot</button>
+          <button class="dbig" id="orNext" hidden>Phrase suivante</button>
+        </div>
+        <p class="note" id="orNote"></p>
+        <p class="dgloss" id="orGloss" hidden></p>
+      </section>
+
+      <section id="panel-decider" role="tabpanel" aria-labelledby="tab-decider" hidden>
+        <p class="eyebrow">Exercice XVIII · Décider · <span id="ydTag"></span> · niveau <span id="ydLv">A2</span></p>
+        <p class="lede dim">Deux formes correctes, une seule qui dit ce que tu veux dire.
+          <span class="enhint">Two grammatical options — only one says what you mean. On mood questions you
+          state your meaning first, and that choice decides the form.</span></p>
+        <p class="sentence" id="ydStem"></p>
+        <p class="ydq" id="ydQ"></p>
+        <div class="ydopts" id="ydOpts"></div>
+        <p class="note" id="ydNote"></p>
+        <p class="ydwhy" id="ydWhy" hidden></p>
+        <div class="after"><button class="dbig" id="ydNext" hidden>Suivant</button></div>
+      </section>
+
+      <section id="panel-imiter" role="tabpanel" aria-labelledby="tab-imiter" hidden>
+        <p class="eyebrow">Exercice XIX · Imiter · niveau <span id="imLv">A2</span></p>
+        <p class="dwarn" id="imWarn" hidden></p>
+        <p class="lede dim">Écoute la phrase, redis-la tout de suite — même rythme, mêmes liaisons.
+          Pas comprendre : reproduire. C’est là que l’accent se prend.
+          <span class="enhint">Shadowing: hear a real French voice, say it straight back at the same pace.
+          The mic records your take so you can hear yourself next to the model, then you grade yourself.
+          Headphones help, especially when speaking along with the voice.</span></p>
+        <div class="chips" id="imModes"></div>
+        <div class="chips" id="imRates"></div>
+        <p class="imsrc" id="imSrc"></p>
+        <p class="sentence imtext" id="imText"></p>
+        <p class="gloss" id="imGloss"></p>
+        <div class="dplay">
+          <button class="dbig" id="imPlay">▶ Écouter</button>
+          <button class="ghost" id="imLoop">Écouter ×3</button>
+          <button class="ghost" id="imHide">Cacher le texte</button>
+        </div>
+        <div id="imRow"></div>
+        <div class="imheard" id="imHeard"></div>
+        <div id="imGrades"></div>
+        <p class="note" id="imNote"></p>
+        <div class="after"><button class="dbig" id="imNext" hidden>Phrase suivante</button></div>
+      </section>
+
+      <section id="panel-jour" role="tabpanel" aria-labelledby="tab-jour" hidden>
+        <p class="eyebrow">Aujourd’hui · niveau <span id="jLv">A2</span></p>
+    <div class="guide" id="jGuide">
+      <span class="gface" id="jGuideFace" aria-hidden="true">🧙</span>
+      <div>
+        <p class="gname" data-keep="1">Maître Encrier</p>
+        <p class="gfr nt" id="jGuideFr" lang="fr"></p>
+        <p class="gen" id="jGuideEn" hidden></p>
+      </div>
+      <button type="button" class="gtip" id="jGuideTip" title="Un conseil de méthode" aria-label="Un conseil de méthode">💡</button>
+    </div>
+    <section class="rcard" id="jStory" aria-labelledby="jStoryT"></section>
+        <p class="lede dim">Seize panneaux, c’est seize raisons de ne rien commencer. Dis combien de
+          temps tu as ; le cahier tranche.
+          <span class="enhint">Pick how long you actually have. This adds no new exercises — it reads what
+          your spaced repetition is owed, what you miss most, and your time, then decides the order.</span></p>
+        <div class="jrisk" id="jRisk" hidden></div>
+        <div class="jbuds" id="jBudgets"></div>
+        <p class="jstats" id="jStats"></p>
+        <div class="jsteps" id="jSteps"></div>
+        <div class="after"><button class="dbig" id="jGo">Commencer</button></div>
+        <div class="jquests">
+          <p class="fchead">Journal de quêtes</p>
+          <div class="questlist" id="jQuests"></div>
+        </div>
+        <p class="jweak" id="jWeak" hidden></p>
+      </section>
+
+
+    </main>
+  </div>
+
+  <div class="foot">
+    <span id="carnet" class="carnet">Carnet d'erreurs : vide</span>
+    <span id="syncNote">Progrès enregistrés sur cet appareil.</span>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-quetes" viewBox="0 0 24 24"><path d="M6 21V3"/><path d="M6 4.5h11.5l-2.8 3.8 2.8 3.7H6"/></symbol>
+    <symbol id="i-seance" viewBox="0 0 24 24"><path d="M19 4L9 14M6.5 11.5l5 5M8.5 15.5L5 19"/><path d="M5 4l10 10M12.5 11.5l5 5M15.5 15.5L19 19"/></symbol>
+    <symbol id="i-inventaire" viewBox="0 0 24 24"><path d="M7 10a5 5 0 0 1 10 0v9a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2z"/><path d="M9.5 6V4.2h5V6M9 14h6M10 21v-3.5h4V21"/></symbol>
+    <symbol id="i-forge" viewBox="0 0 24 24"><path d="M19.5 4C13 4 8.5 8 7.5 14.5L6 19l4.5-1.5C17 16.5 20 11 19.5 4z"/><path d="M9.5 15.5L15 10"/></symbol>
+    <symbol id="i-taverne" viewBox="0 0 24 24"><path d="M5.5 9h9.5v8a3 3 0 0 1-3 3H8.5a3 3 0 0 1-3-3z"/><path d="M15 11h1.8a2.2 2.2 0 0 1 0 4.4H15M8 6c0-1.2 1-1.2 1-2.4M11.8 6c0-1.2 1-1.2 1-2.4"/></symbol>
+    <symbol id="i-perso" viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.5-3 7.8-7 9.5-4-1.7-7-5-7-9.5V6z"/><path d="M12 8v8M8.5 11.5h7"/></symbol>
+    <symbol id="i-donjon" viewBox="0 0 24 24"><path d="M5 21V8.5h3V10h2V8.5h4V10h2V8.5h3V21z"/><path d="M10 21v-4.5a2 2 0 0 1 4 0V21"/></symbol>
+    <symbol id="i-sons" viewBox="0 0 24 24"><path d="M5 10v4h3.2l4.3 3.2V6.8L8.2 10z"/><path d="M15.5 9.3a3.7 3.7 0 0 1 0 5.4M18 6.8a7.2 7.2 0 0 1 0 10.4"/></symbol>
+    <symbol id="i-biblio" viewBox="0 0 24 24"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H19v14.5H7.5A2.5 2.5 0 0 0 5 20z"/><path d="M5 20a2 2 0 0 0 2 1h12M9 7.5h6"/></symbol>
+    <symbol id="i-chroniques" viewBox="0 0 24 24"><path d="M4 6.5l5-2 6 2 5-2v13l-5 2-6-2-5 2z"/><path d="M9 4.5v13M15 6.5v13"/></symbol>
+    <symbol id="i-flamme" viewBox="0 0 24 24"><path d="M12 2.5c.8 3.2 5.2 5.3 5.2 10.4a5.2 5.2 0 0 1-10.4 0c0-2.1 1-3.6 2.2-4.6.1 1.9 1 2.9 2 3.1.5-3-.5-5.6 1-8.9z"/></symbol>
+    <symbol id="i-coeur" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-8-10.8A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.7c0 5.9-8 10.8-8 10.8z"/></symbol>
+    <symbol id="i-medaille" viewBox="0 0 24 24"><circle cx="12" cy="9.5" r="5.5"/><path d="M8.8 14.2L7 21l5-2.6 5 2.6-1.8-6.8M12 7l.9 1.8 2 .3-1.4 1.4.3 2-1.8-1-1.8 1 .3-2-1.4-1.4 2-.3z"/></symbol>
+    <symbol id="i-cadenas" viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+  </defs>
+</svg>
+<div class="modal" id="mdLevel" role="dialog" aria-modal="true" aria-labelledby="mdLevelT" hidden>
+  <div class="mcard lvl">
+    <div class="rays" aria-hidden="true"></div>
+    <p class="mk">Niveau supérieur</p>
+    <p class="mbig" id="mdLevelN">2</p>
+    <h2 id="mdLevelT">Apprenti</h2>
+    <p class="mtxt" id="mdLevelTxt"></p>
+    <div class="mact"><button class="go" id="mdLevelGo" type="button">Continuer</button></div>
+  </div>
+</div>
+<div class="modal" id="mdCreate" role="dialog" aria-modal="true" aria-labelledby="mdCreateT" hidden>
+  <div class="mcard">
+    <p class="mk">Nouvelle aventure</p>
+    <h2 id="mdCreateT">Crée ton personnage</h2>
+    <p class="mtxt">Un nom, un visage, une classe. Rien de tout cela ne change ce que tu apprends : la classe donne
+      seulement un bonus d’XP sur ce que tu aimes faire.</p>
+    <label class="fld"><span>Ton nom</span>
+      <input id="mdName" class="seinput" maxlength="24" autocomplete="off" placeholder="Comment t’appelle-t-on ?"></label>
+    <p class="fchead">Ton visage</p>
+    <div class="pickrow" id="mdAvatars"></div>
+    <p class="fchead">Ta classe</p>
+    <div class="classes" id="mdClasses"></div>
+    <div class="mact">
+      <button class="go" id="mdCreateGo" type="button">Commencer l’aventure</button>
+      <button class="ghost" id="mdCreateSkip" type="button">Plus tard</button>
+    </div>
+  </div>
+</div>
+<div class="modal" id="mdPage" role="dialog" aria-modal="true" aria-labelledby="rcT" hidden>
+  <div class="mcard rcread" id="rcCard">
+    <div class="rc-top">
+      <div>
+        <p class="mk" id="rcK" data-keep="1"></p>
+        <h2 id="rcT" lang="fr"></h2>
+        <p class="rc-subt" id="rcSub" hidden></p>
+      </div>
+      <div class="rc-tools">
+        <button type="button" class="rc-tool" id="rcTr" aria-pressed="false">EN</button>
+        <button type="button" class="rc-tool" id="rcVoice" aria-pressed="true">🔊</button>
+        <button type="button" class="rc-tool" id="rcClose" aria-label="Fermer la page">✕</button>
+      </div>
+    </div>
+    <p class="rc-place" id="rcPlace" lang="fr"></p>
+    <p class="rc-placeen" id="rcPlaceEn" hidden></p>
+    <div class="rc-prog" aria-hidden="true"><i id="rcProg"></i></div>
+    <div class="rc-log" id="rcLog" role="log" aria-live="polite" aria-label="Scène"></div>
+    <div class="rc-foot2">
+      <button type="button" class="go" id="rcNext" data-keep="1">Suivant ▸</button>
+      <span class="rc-hint" data-keep="1">→ · 1 2 3</span>
+    </div>
+  </div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script src="taille.js"></script>
+<script src="lang.js"></script>
+<script src="croise.js"></script>
+<script src="srs.js"></script>
+<script src="seance.js"></script>
+<script src="voix-map.js"></script>
+<script src="voix-recit.js"></script>
+<script src="dictee.js"></script>
+<script src="niveau.js"></script>
+<script src="phrase.js"></script>
+<script src="profil.js"></script>
+<script src="parler.js"></script>
+<script src="examen.js"></script>
+<script src="rpg.js"></script>
+<script src="sons.js"></script>
+<script src="socle.js"></script>
+<script src="cartes.js"></script>
+<script src="histoire.js"></script>
+<script src="captures.js"></script>
+<script src="ff625.js"></script>
+<script src="tap.js"></script>
+<script src="photo.js"></script>
+<script src="ref.js"></script>
+<script src="voix.js"></script>
+<script src="aujourdhui.js"></script>
+<script src="ordre.js"></script>
+<script src="decider.js"></script>
+<script src="imiter.js"></script>
+<script src="sauvegarde.js"></script>
+<script src="phrases.js"></script>
+<script src="recit-data.js"></script>
+<script src="recit.js"></script>
+<script src="monde.js"></script>
+<script src="cahier.js"></script>
+
+</body></html>

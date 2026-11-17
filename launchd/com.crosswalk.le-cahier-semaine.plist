@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.crosswalk.le-cahier-semaine</string>
+  <!-- 1800s (30 min) hard-watchdog cap: the engine takes ~3 min (twenty voice calls), the
+       headless publish ~5 min, plus one 2-min retry on a transient server error. -->
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/perl</string>
+    <string>-e</string>
+    <string>alarm shift; exec @ARGV</string>
+    <string>1800</string>
+    <string>/bin/bash</string>
+    <string>/Users/toto/Claude TubeonAI/run_le_cahier_semaine.sh</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/toto/Claude TubeonAI</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/Users/toto/.local/bin:/Library/Frameworks/Python.framework/Versions/3.14/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key>
+    <string>/Users/toto</string>
+  </dict>
+  <!-- Monday 06:00 local time. The Mac is on Eastern time (EST/EDT) since the Oct 2026 move
+       to Ottawa, so no offset applies. If the system time zone changes again, change Hour.
+       A run missed while the Mac sleeps fires once at wake. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key>
+    <integer>1</integer>
+    <key>Hour</key>
+    <integer>6</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/tmp/le-cahier-semaine.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/le-cahier-semaine.log</string>
+</dict>
+</plist>
