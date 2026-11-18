@@ -232,7 +232,7 @@ with sync_playwright() as p:
     ctx, pg = make(b)
     ev(pg, """(() => { window.SpeechSynthesisUtterance = class { constructor(t){ this.text = t; } };
       speechSynthesis.getVoices = () => [{name: 'Thomas', lang: 'fr-FR', voiceURI: 'Thomas', localService: true}]; })()""")
-    ev(pg, "speakFr('parapluie', .9)")
+    ev(pg, "speakFr('zébrure', .9)")
     pg.wait_for_timeout(150)
     s = ev(pg, "window.__spoken")
     check(len(s) == 1 and s[0]["voice"] == "Thomas", "V5 un mot sans enregistrement : synthèse, voix française")

@@ -24,6 +24,7 @@ French notebook built on spaced recall. The published artifact is the source of 
 | `monde.js` | Maître Encrier (context-aware guide line + method tips) and the night-village canvas behind the HUD |
 | `phrases.js`, `voix-map.js`, `voix-AAwSS.mp3` | Weekly sentences + recorded voice; rewritten every Monday by `engine/semaine.py` — do not edit by hand |
 | `voix-recit.js`, `voix-rNN.mp3` | The story's recorded voice: every line, every correct reply and every card sentence, one track per page. Built by `engine/voix_recit.py`; merged into `VOIX_REC` at load |
+| `voix-mots.js`, `voix-mNN.mp3` | 544 single words (base deck with article, le/la nouns, minimal pairs) in the same voice. Built by `engine/voix_mots.py` |
 | `taille.js` | Text size: four steps (100 / 112.5 / 125 / 140 %), A− / A+ in the HUD. Default follows width: 125 % from 760 px, 112.5 % above 560 px, 100 % on phones. Choice kept per device |
 
 SRS id prefixes: `s` dictation, `x` translation, `o` word order, `i` shadowing (all on a cloze card id),
